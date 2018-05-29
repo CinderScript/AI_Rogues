@@ -2,7 +2,7 @@
 
 using System.Collections.Generic;
 
-namespace PawnOfKings.Unity.Values {
+namespace AIRogue.Unity.Values {
 
     /// <summary>
     /// Provides a container of Units that can be populated in the Unity editor with UnitProperties.

@@ -1,15 +1,12 @@
-﻿using System;
-using PawnOfKings.Logic.Actor;
-using PawnOfKings.Logic.World;
+﻿namespace AIRogue.Logic.GameState
+{
 
-namespace PawnOfKings.Logic.GameState {
-
-    /// <summary>
-    /// The IGameState interfaces are the states used in the GameStateManager's state machine.
-    /// 
-    /// DEPENDENCY:  The GameStateManager is dependant on the IGameState interface.
-    /// </summary>
-    interface IGameState {
+	/// <summary>
+	/// The IGameState interfaces are the states used in the GameStateManager's state machine.
+	/// 
+	/// DEPENDENCY:  The GameStateManager is dependant on the IGameState interface.
+	/// </summary>
+	interface IGameState {
 
         void FixedUpdate();
         void Update();

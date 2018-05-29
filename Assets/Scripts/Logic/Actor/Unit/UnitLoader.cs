@@ -2,10 +2,10 @@
 
 using UnityEngine;
 
-using PawnOfKings.Unity.Values;
+using AIRogue.Unity.Values;
 
 
-namespace PawnOfKings.Logic.Actor {
+namespace AIRogue.Logic.Actor {
 
     /// <summary>
     /// The unit loader provides a way to instance new Units using unit settings/props 
@@ -41,8 +41,8 @@ namespace PawnOfKings.Logic.Actor {
             {
                 Transform prefab = p.Prefab;
                 Condition cond = new Condition( p.MaxHealth, p.Armour );
-                Movement move = new Movement( p.MoveType, p.MoveSpeed, p.MoveRange, p.MoveCost );
-                Attack attack = new Attack( p.AttackType, p.AttackRange, p.AttackDamage, p.AttackCost );
+                Movement move = new Movement( p.MoveSpeed, p.MoveRange, p.MoveCost );
+                Attack attack = new Attack( p.AttackRange, p.AttackDamage, p.AttackCost );
 
                 unit = new Unit( type, prefab, cond,  move, attack );
             }

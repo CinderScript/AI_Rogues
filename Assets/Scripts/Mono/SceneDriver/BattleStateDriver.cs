@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
-using PawnOfKings.Logic.GameState;
-using PawnOfKings.Unity.Values;
+using AIRogue.Logic.GameState;
+using AIRogue.Unity.Values;
 
-namespace PawnOfKings.Unity.Drivers {
+namespace AIRogue.Unity.Drivers {
 
     /// <summary>
     /// Each Driver script is the entry point in the current scene into the Unity framework.  
@@ -19,7 +19,6 @@ namespace PawnOfKings.Unity.Drivers {
     class BattleStateDriver : MonoBehaviour {
 
         [Header( "Tuning Variables" )]
-        public GridProperties GridProperties = null; // set null to stop 'no assignment' warning
         public UnitBank UnitBank;
 
         private GameStateManager game;
@@ -31,7 +30,7 @@ namespace PawnOfKings.Unity.Drivers {
 
         void Start()
         {
-            game.LoadBattleState( GridProperties, UnitBank );
+            game.LoadBattleState( UnitBank );
         }
 
         void FixedUpdate()

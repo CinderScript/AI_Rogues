@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
+
+using AIRogue.Unity.Values;
+
 using UnityEngine;
 
-using PawnOfKings.Logic.World;
 
-using PawnOfKings.Unity.Values;
+namespace AIRogue.Logic.Actor
+{
 
-
-namespace PawnOfKings.Logic.Actor {
-
-    /// <summary>
-    /// ArmyManager holds a list of UnitControllers (of type T, generic) that will be used to control 
-    /// the units in the instanced army.  The ArmyManager keeps track of the correct unit's turn and 
-    /// runs that unit's update in the ArmyManager's update.  The ArmyManager also privides functions 
-    /// for adding and spawning units for that army.  Armys are created in the GameStateManager and 
-    /// these armys are updated in the BattleState.
-    /// 
-    /// DEPENDENCY: The BattleState and GameStateManager have dependency on ArmyManager.
-    /// ArmyManager uses the UnitController, UnitLoader, UnitBank, and Grid classes.
-    /// </summary>
-    /// <typeparam name="T">Type of UnitController each unit in army will be controlled by.</typeparam>
-    class ArmyManager<T> where T : UnitController, new() {
+	/// <summary>
+	/// ArmyManager holds a list of UnitControllers (of type T, generic) that will be used to control 
+	/// the units in the instanced army.  The ArmyManager keeps track of the correct unit's turn and 
+	/// runs that unit's update in the ArmyManager's update.  The ArmyManager also privides functions 
+	/// for adding and spawning units for that army.  Armys are created in the GameStateManager and 
+	/// these armys are updated in the BattleState.
+	/// 
+	/// DEPENDENCY: The BattleState and GameStateManager have dependency on ArmyManager.
+	/// ArmyManager uses the UnitController, UnitLoader, UnitBank, and Grid classes.
+	/// </summary>
+	/// <typeparam name="T">Type of UnitController each unit in army will be controlled by.</typeparam>
+	class ArmyManager<T> where T : UnitController, new() {
 
         public string Name { get; private set; }
 
@@ -27,7 +27,6 @@ namespace PawnOfKings.Logic.Actor {
         private T activeController;
 
         private readonly UnitLoader unitLoader;
-        private readonly Grid grid;
 
         /// <summary>
         /// Instance a new ArmyManager
@@ -35,12 +34,11 @@ namespace PawnOfKings.Logic.Actor {
         /// <param name="unitBank"></param>
         /// <param name="grid"></param>
         /// <param name="name"></param>
-        public ArmyManager(UnitBank unitBank, Grid grid, string name)
+        public ArmyManager(UnitBank unitBank, string name)
         {
             controllers = new List<T>();
 
             unitLoader = new UnitLoader( unitBank );
-            this.grid = grid;
             this.Name = name;
         }
 
@@ -99,7 +97,7 @@ namespace PawnOfKings.Logic.Actor {
 
                 // spawn unit at cell
                 unit.Transform = (Transform)Object.Instantiate(
-                        unit.Prefab, unit.Cell.Position, Quaternion.identity );
+                        unit.Prefab, new Vector3( 528, 108, 122), Quaternion.identity );
                 unit.Transform.name = Name + unit.Id + " " + unit.Type;
             }
         }
@@ -110,7 +108,7 @@ namespace PawnOfKings.Logic.Actor {
         /// </summary>
         /// <param name="unitType"></param>
         /// <param name="spawnLocation"></param>
-        public void AddUnit(UnitType unitType, Cell spawnLocation)
+        public void AddUnit(UnitType unitType)
         {
             int id = controllers.Count;
             Unit unit = unitLoader.LoadUnit( unitType );
@@ -119,7 +117,7 @@ namespace PawnOfKings.Logic.Actor {
             {
                 T controller = new T();
 
-                controller.Initialize( unit, id, grid, spawnLocation );
+                controller.Initialize( unit, id );
 
                 controllers.Add( controller );
             }

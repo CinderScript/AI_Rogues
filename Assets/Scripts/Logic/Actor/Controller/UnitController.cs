@@ -1,41 +1,37 @@
-﻿using PawnOfKings.Logic.World;
-
-namespace PawnOfKings.Logic.Actor {
-
-    /// <summary>
-    /// The UnitController stores one Unit and applies/updates a behavior for that unit.
-    /// 
-    /// This is a Base class that is extended by specific controller types, 
-    /// i.e. AI and Player controllers.  This base class provides
-    /// an update method that updates a UnitBehavior and applies the 
-    /// affects of that behavior onto the controller's unit and sends relevant 
-    /// Event messages to other objects (such as a DeliverDamage event).
-    /// 
-    /// The implementing class must contain an Update method that is called during 
-    /// Unity's Update cycle (in the ArmyManager's update). The implemented Update should 
-    /// call this.updateUnit( getBehaviorChooser() ). The getBehaviorChooser delegate 
-    /// needs to be defined in the extending class and should return an IBehavior.  This 
-    /// IBehavior also needs to be defined specifically for the controller and picks 
-    /// the correct Behavior to run on its unit. For AI units, this will be an AI decision 
-    /// behavior.  For player units, this will be a behavior that watches for input and 
-    /// returns the appropriate action behavior to this Unit.
-    /// 
-    /// DEPENDENCY:  UnitController is a Generic Type used by the ArmyManager and is 
-    /// also used by the GameStateManager, BattleState.
-    /// </summary>
-    abstract class UnitController {
+﻿namespace AIRogue.Logic.Actor
+{
+	/// <summary>
+	/// The UnitController stores one Unit and applies/updates a behavior for that unit.
+	/// 
+	/// This is a Base class that is extended by specific controller types, 
+	/// i.e. AI and Player controllers.  This base class provides
+	/// an update method that updates a UnitBehavior and applies the 
+	/// affects of that behavior onto the controller's unit and sends relevant 
+	/// Event messages to other objects (such as a DeliverDamage event).
+	/// 
+	/// The implementing class must contain an Update method that is called during 
+	/// Unity's Update cycle (in the ArmyManager's update). The implemented Update should 
+	/// call this.updateUnit( getBehaviorChooser() ). The getBehaviorChooser delegate 
+	/// needs to be defined in the extending class and should return an IBehavior.  This 
+	/// IBehavior also needs to be defined specifically for the controller and picks 
+	/// the correct Behavior to run on its unit. For AI units, this will be an AI decision 
+	/// behavior.  For player units, this will be a behavior that watches for input and 
+	/// returns the appropriate action behavior to this Unit.
+	/// 
+	/// DEPENDENCY:  UnitController is a Generic Type used by the ArmyManager and is 
+	/// also used by the GameStateManager, BattleState.
+	/// </summary>
+	abstract class UnitController {
 
         public Unit Unit { get; private set; }
-        public Grid Grid { get; private set; }
 
         /// <summary>
         /// Must be included so updateUnit(behaviorGetter) logic can be inherited by sub controllers and 
         /// work universally.
         /// </summary>
         /// <param name="unit"></param>
-        /// <param name="grid"></param>
         /// <returns></returns>
-        protected delegate IUnitBehavior getBehaviorChooser(Unit unit, Grid grid);
+        protected delegate IUnitBehavior getBehaviorChooser(Unit unit);
         private IUnitBehavior behavior = null;  // behavior to be called every update
 
         /// <summary>
@@ -45,15 +41,10 @@ namespace PawnOfKings.Logic.Actor {
         /// </summary>
         /// <param name="unit"></param>
         /// <param name="id"></param>
-        /// <param name="grid"></param>
-        /// <param name="spawnLocation"></param>
-        public void Initialize(Unit unit, int id, Grid grid, Cell spawnLocation)
+        public void Initialize(Unit unit, int id)
         {
             Unit = unit;
             Unit.Id = id;
-            Grid = grid;
-
-            Unit.Cell = spawnLocation;
         }
 
         /// <summary>
@@ -84,7 +75,7 @@ namespace PawnOfKings.Logic.Actor {
             // if behavior == null, behavior picker has not yet run this turn.
             if ( behavior == null )
             {
-                behavior = behaviorChooserGetter(Unit, Grid);
+                behavior = behaviorChooserGetter(Unit);
             }
 
             // play selected behavior

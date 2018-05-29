@@ -1,25 +1,24 @@
-﻿using PawnOfKings.Logic.Actor;
-using PawnOfKings.Logic.World;
+﻿using AIRogue.Logic.Actor;
 
-namespace PawnOfKings.Logic.GameState {
+namespace AIRogue.Logic.GameState
+{
 
-    /// <summary>
-    /// Inherits IGameState.  The state that controls the gameplay during a battle.
-    /// 
-    /// The BattleState contains two ArmyManagers, one for the AI's team, and one for the Player's team.
-    /// This state keeps track of the current turn and gives control the the correct Army's turn update.
-    /// 
-    /// DEPENDENCY:  GameStateManager has a dependancy for BattleState.
-    /// BattleState has a dependancy for ArmyManager, AIController, and PlayerController.
-    /// 
-    /// Temp dependncy on Grid for character spawning.  Will be handled by spawner or event system 
-    /// in future.
-    /// </summary>
-    class BattleState : IGameState {
+	/// <summary>
+	/// Inherits IGameState.  The state that controls the gameplay during a battle.
+	/// 
+	/// The BattleState contains two ArmyManagers, one for the AI's team, and one for the Player's team.
+	/// This state keeps track of the current turn and gives control the the correct Army's turn update.
+	/// 
+	/// DEPENDENCY:  GameStateManager has a dependancy for BattleState.
+	/// BattleState has a dependancy for ArmyManager, AIController, and PlayerController.
+	/// 
+	/// Temp dependncy on Grid for character spawning.  Will be handled by spawner or event system 
+	/// in future.
+	/// </summary>
+	class BattleState : IGameState {
 
         private readonly ArmyManager<AIController> aiArmy;
         private readonly ArmyManager<PlayerController> playerArmy;
-        private readonly Grid grid;
 
         private const int PLAYER = 0;
         private const int AI = 1;
@@ -29,11 +28,10 @@ namespace PawnOfKings.Logic.GameState {
 
         private delegate void armyStartTurn();
 
-        public BattleState(ArmyManager<AIController> aiArmy, ArmyManager<PlayerController> playerArmy, Grid grid)
+        public BattleState(ArmyManager<AIController> aiArmy, ArmyManager<PlayerController> playerArmy)
         {
             this.aiArmy = aiArmy;
             this.playerArmy = playerArmy;
-            this.grid = grid;
 
             addTestUnits(); // Temporary
 
@@ -98,8 +96,8 @@ namespace PawnOfKings.Logic.GameState {
         /// </summary>
         private void addTestUnits()
         {
-            aiArmy.AddUnit( UnitType.TestUnit, grid.AIStart );
-            playerArmy.AddUnit( UnitType.TestUnit, grid.PlayerStart );
+            aiArmy.AddUnit( UnitType.TestUnit );
+            playerArmy.AddUnit( UnitType.TestUnit );
         }
     }
 }

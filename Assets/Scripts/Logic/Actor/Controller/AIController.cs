@@ -1,15 +1,12 @@
-﻿
-using PawnOfKings.Logic.World;
-using UnityEngine;
+﻿namespace AIRogue.Logic.Actor
+{
 
-namespace PawnOfKings.Logic.Actor {
-
-    /// <summary>
-    /// Implements UnitController and used by ArmyManager as a possible Generic type.
-    /// This is a controller for AI units and its behaviors will not be choosen 
-    /// through the GUI, but through AI logic.
-    /// </summary>
-    class AIController : UnitController {
+	/// <summary>
+	/// Implements UnitController and used by ArmyManager as a possible Generic type.
+	/// This is a controller for AI units and its behaviors will not be choosen 
+	/// through the GUI, but through AI logic.
+	/// </summary>
+	class AIController : UnitController {
 
         /// <summary>
         /// Updates this controller's unit's behavior.  Returns true when 
@@ -25,9 +22,9 @@ namespace PawnOfKings.Logic.Actor {
         }
         public void FixedUpdate() { }
 
-        protected IUnitBehavior aiBehaviorChooser(Unit unit, Grid grid)
+        protected IUnitBehavior aiBehaviorChooser(Unit unit)
         {
-            AIBehaviorChooser action = new AIBehaviorChooser(unit, grid);
+            AIBehaviorChooser action = new AIBehaviorChooser(unit);
 
             return action;
         }
@@ -39,12 +36,10 @@ namespace PawnOfKings.Logic.Actor {
     class AIBehaviorChooser : IUnitBehavior {
 
         private readonly Unit unit;
-        private readonly Grid grid;
 
-        public AIBehaviorChooser(Unit unit, Grid grid)
+        public AIBehaviorChooser(Unit unit)
         {
             this.unit = unit;
-            this.grid = grid;
 
             // get number of enemy units in range
             // get closest enemy unit
@@ -52,8 +47,7 @@ namespace PawnOfKings.Logic.Actor {
         public bool Perform(out IUnitBehavior nextAction)
         {
             // if no units in range
-            Cell cell = new Cell( true, 16, 6, new UnityEngine.Vector3(), null, null );
-            nextAction = new Move( cell, unit.Transform );
+            nextAction = new Move( unit.Transform );
 
             return false ;
         }

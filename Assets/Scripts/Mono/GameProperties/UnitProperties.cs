@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-using PawnOfKings.Logic.Actor;
+using AIRogue.Logic.Actor;
 
-namespace PawnOfKings.Unity.Values {
+namespace AIRogue.Unity.Values {
 
     /// <summary>
     /// Contains all the properties needed to define a Unit in the Unity Editor.  Place this script 
@@ -21,13 +21,11 @@ namespace PawnOfKings.Unity.Values {
         public float Armour = 1;
 
         [Header( "Attack" )]
-        public AttackType AttackType = AttackType.Melee;
         public float AttackRange = 1;
         public float AttackDamage = 1;
         public float AttackCost = 1;
 
         [Header( "Movement" )]
-        public MoveType MoveType = MoveType.Ground;
         public float MoveSpeed = 1;
         public float MoveRange = 1;
         public float MoveCost = 1;

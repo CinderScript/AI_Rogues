@@ -1,15 +1,14 @@
-﻿
-using PawnOfKings.Logic.World;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace PawnOfKings.Logic.Actor {
+namespace AIRogue.Logic.Actor
+{
 
-    /// <summary>
-    /// Implements UnitController and used by ArmyManager as a possible Generic type.
-    /// This is a controller for Player units and its behaviors will be choosen through 
-    /// the GUI by the player.
-    /// </summary>
-    class PlayerController : UnitController {
+	/// <summary>
+	/// Implements UnitController and used by ArmyManager as a possible Generic type.
+	/// This is a controller for Player units and its behaviors will be choosen through 
+	/// the GUI by the player.
+	/// </summary>
+	class PlayerController : UnitController {
 
         /// <summary>
         /// Updates this controller's unit's behavior.  Returns true when 
@@ -25,9 +24,9 @@ namespace PawnOfKings.Logic.Actor {
         }
         public void FixedUpdate() { }
 
-        protected IUnitBehavior getAction(Unit unit, Grid grid)
+        protected IUnitBehavior getAction(Unit unit)
         {
-            PlayerBehaviorChooser action = new PlayerBehaviorChooser(unit, grid);
+            PlayerBehaviorChooser action = new PlayerBehaviorChooser(unit);
 
             return action;
         }
@@ -39,12 +38,10 @@ namespace PawnOfKings.Logic.Actor {
     class PlayerBehaviorChooser : IUnitBehavior {
 
         private readonly Unit unit;
-        private readonly Grid grid;
 
-        public PlayerBehaviorChooser(Unit unit, Grid grid)
+        public PlayerBehaviorChooser(Unit unit)
         {
             this.unit = unit;
-            this.grid = grid;
 
             // get number of enemy units in range
             // get closest enemy unit
@@ -56,10 +53,7 @@ namespace PawnOfKings.Logic.Actor {
         /// <returns></returns>
         public bool Perform(out IUnitBehavior nextAction)
         {
-            // if no units in range
-            Cell cell = new Cell( true, 16, 6, new Vector3(), null, null );
-
-            nextAction = new Move( cell, unit.Transform );
+            nextAction = new Move( unit.Transform );
 
             return false;
         }

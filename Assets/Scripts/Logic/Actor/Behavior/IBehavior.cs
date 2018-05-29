@@ -5,9 +5,7 @@
 
 using UnityEngine;
 
-using PawnOfKings.Logic.World;
-
-namespace PawnOfKings.Logic.Actor {
+namespace AIRogue.Logic.Actor {
 
     /// <summary>
     /// Interface for UnitBehavior classes.  Behavior classes are updated by a UnitController 
@@ -33,14 +31,14 @@ namespace PawnOfKings.Logic.Actor {
     /// </summary>
     class Move : IUnitBehavior {
 
-		private readonly Cell to;
+		//private readonly Cell to;
         private readonly Transform unit;
 
         private int count = 1;
 
-        public Move(Cell destination, Transform unit)
+        public Move(/*Cell destination,*/ Transform unit)
         {
-            this.to = destination;
+            //this.to = destination;
             this.unit = unit;
         }
 

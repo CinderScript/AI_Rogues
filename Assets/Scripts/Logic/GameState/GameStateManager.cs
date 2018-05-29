@@ -1,25 +1,25 @@
-﻿using PawnOfKings.Logic.Actor;
-using PawnOfKings.Logic.World;
+﻿using AIRogue.Logic.Actor;
 
-using PawnOfKings.Unity.Values;
+using AIRogue.Unity.Values;
 
 using Unity.Custom.EventSystem;
 
-namespace PawnOfKings.Logic.GameState {
+namespace AIRogue.Logic.GameState
+{
 
-    /// <summary>
-    /// GameStateManager is based on a state machine pattern that manages the current state of the game.  
-    /// GameStateManager is also a singleton - therefore it's instance will persist even when the 
-    /// GameObjects holding a reference to this GameStateManager are destroyed and reloaded.  The 
-    /// GameStateManager will not loose track of the current GameState or player data when loading levels.
-    /// 
-    /// Each IGameState (interface) inheriting class contains a method to be run in an Update and 
-    /// FixedUpdate loop, and the manager runs the current states inherited methods.
-    /// 
-    /// DEPENDENCY: The GameStateManager will only be seen by the entry object into the game (Driver classes) 
-    /// and no other classes have a GameStateManager dependancy.
-    /// </summary>
-    class GameStateManager {
+	/// <summary>
+	/// GameStateManager is based on a state machine pattern that manages the current state of the game.  
+	/// GameStateManager is also a singleton - therefore it's instance will persist even when the 
+	/// GameObjects holding a reference to this GameStateManager are destroyed and reloaded.  The 
+	/// GameStateManager will not loose track of the current GameState or player data when loading levels.
+	/// 
+	/// Each IGameState (interface) inheriting class contains a method to be run in an Update and 
+	/// FixedUpdate loop, and the manager runs the current states inherited methods.
+	/// 
+	/// DEPENDENCY: The GameStateManager will only be seen by the entry object into the game (Driver classes) 
+	/// and no other classes have a GameStateManager dependancy.
+	/// </summary>
+	class GameStateManager {
 
         private readonly EventManager events = new EventManager();
         private IGameState currentState = null;
@@ -61,16 +61,13 @@ namespace PawnOfKings.Logic.GameState {
         /// </summary>
         /// <param name="gridProps">Grid settings to be used for the current scene's world grid.</param>
         /// <param name="unitBank">Contains list of all units available for this battle.</param>
-        public void LoadBattleState(GridProperties gridProps, UnitBank unitBank)
+        public void LoadBattleState(UnitBank unitBank)
         {
-            Grid grid = new Grid( gridProps );
-            grid.InstantiateCellIcons();
-
-			ArmyManager<AIController> aiArmy = new ArmyManager<AIController>( unitBank, grid, "AI: " );
+			ArmyManager<AIController> aiArmy = new ArmyManager<AIController>( unitBank, "AI: " );
 			ArmyManager<PlayerController> playerArmy =
-									 new ArmyManager<PlayerController>( unitBank, grid, "Player: " );
+									 new ArmyManager<PlayerController>( unitBank, "Player: " );
 
-            BattleState battleState = new BattleState(aiArmy, playerArmy, grid);
+            BattleState battleState = new BattleState(aiArmy, playerArmy);
             currentState = battleState;
         }
     }
