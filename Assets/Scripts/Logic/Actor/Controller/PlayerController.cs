@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace AIRogue.Logic.Actor
+﻿namespace AIRogue.Logic.Actor
 {
 
 	/// <summary>
