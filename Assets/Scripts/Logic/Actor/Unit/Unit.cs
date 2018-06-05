@@ -2,10 +2,12 @@
 
 namespace AIRogue.Logic.Actor {
 
-    /// <summary>
-    /// A gameplay unit used in Pawn of Kings.
-    /// </summary>
-    class Unit {
+	/// <summary>
+	/// A gameplay unit used in Pawn of Kings.
+	/// </summary>
+	class Unit {
+
+		public IUnitController controller { get; }
 
 		/* * * Force Assignment on instance (readonly) so controller functions cannot 
 		* access these fields without them being initialized and set first.  * * */

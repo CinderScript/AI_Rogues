@@ -7,23 +7,16 @@ using UnityEngine;
 
 namespace AIRogue.Logic.Actor
 {
-
-	/// <summary>
-	/// ArmyManager holds a list of UnitControllers (of type T, generic) that will be used to control 
-	/// the units in the instanced army.  The ArmyManager keeps track of the correct unit's turn and 
-	/// runs that unit's update in the ArmyManager's update.  The ArmyManager also privides functions 
-	/// for adding and spawning units for that army.  Armys are created in the GameStateManager and 
-	/// these armys are updated in the BattleState.
-	/// 
-	/// DEPENDENCY: The BattleState and GameStateManager have dependency on ArmyManager.
-	/// ArmyManager uses the UnitController, UnitLoader, UnitBank, and Grid classes.
-	/// </summary>
-	/// <typeparam name="T">Type of UnitController each unit in army will be controlled by.</typeparam>
-	class ArmyManager<T> where T : UnitController, new() {
+	class Squad<T> where T : UnitController, new()
+	{
 
         public string Name { get; private set; }
 
-        private List<T> controllers;
+		private IUnitController c;
+
+		private List<UnitStencil> units = new List<UnitStencil>();
+
+        private List<UnitController> controllers;
         private T activeController;
 
         private readonly UnitLoader unitLoader;
@@ -34,12 +27,12 @@ namespace AIRogue.Logic.Actor
         /// <param name="unitBank"></param>
         /// <param name="grid"></param>
         /// <param name="name"></param>
-        public ArmyManager(UnitBank unitBank, string name)
+        public Squad(UnitBank unitBank, string name )
         {
-            controllers = new List<T>();
-
             unitLoader = new UnitLoader( unitBank );
             this.Name = name;
+
+
         }
 
         /// <summary>
@@ -134,7 +127,7 @@ namespace AIRogue.Logic.Actor
         /// <returns></returns>
         private T getNextUnit()
         {
-            T nextController = null;
+            T nextController = default(T);
 
             int index = activeController.Unit.Id;
 

@@ -63,9 +63,9 @@ namespace AIRogue.Logic.GameState
         /// <param name="unitBank">Contains list of all units available for this battle.</param>
         public void LoadBattleState(UnitBank unitBank)
         {
-			ArmyManager<AIController> aiArmy = new ArmyManager<AIController>( unitBank, "AI: " );
-			ArmyManager<PlayerController> playerArmy =
-									 new ArmyManager<PlayerController>( unitBank, "Player: " );
+			Squad<AIController> aiArmy = new Squad<AIController>( unitBank, "AI: " );
+			Squad<PlayerController> playerArmy =
+									 new Squad<PlayerController>( unitBank, "Player: " );
 
             BattleState battleState = new BattleState(aiArmy, playerArmy);
             currentState = battleState;

@@ -21,9 +21,11 @@
 	/// DEPENDENCY:  UnitController is a Generic Type used by the ArmyManager and is 
 	/// also used by the GameStateManager, BattleState.
 	/// </summary>
-	abstract class UnitController {
+	abstract class UnitController : IUnitController {
 
-        public Unit Unit { get; private set; }
+		public IUnitController controller { get; set; }
+
+        public Unit Unit { get; set; }
 
         /// <summary>
         /// Must be included so updateUnit(behaviorGetter) logic can be inherited by sub controllers and 
@@ -34,14 +36,18 @@
         protected delegate IUnitBehavior getBehaviorChooser(Unit unit);
         private IUnitBehavior behavior = null;  // behavior to be called every update
 
-        /// <summary>
-        /// The Initialization must be included because ArmyManager uses a UnitController as a 
-        /// Generic Type that is instanced.  Only the default constructor of a generic can be 
-        /// instanced ( new () ).
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <param name="id"></param>
-        public void Initialize(Unit unit, int id)
+		public UnitController()
+		{
+		}
+
+		/// <summary>
+		/// The Initialization must be included because ArmyManager uses a UnitController as a 
+		/// Generic Type that is instanced.  Only the default constructor of a generic can be 
+		/// instanced ( new () ).
+		/// </summary>
+		/// <param name="unit"></param>
+		/// <param name="id"></param>
+		public void Initialize(Unit unit, int id)
         {
             Unit = unit;
             Unit.Id = id;
@@ -86,4 +92,12 @@
             return turnEnd;
         }
     }
+
+	interface IUnitController
+	{
+		Unit Unit { get; set; }
+
+		void Initialize(Unit unit, int id);
+		bool Update();
+	}
 }

@@ -1,4 +1,5 @@
-﻿using AIRogue.Logic.Actor;
+﻿using System.Collections.Generic;
+using AIRogue.Logic.Actor;
 
 namespace AIRogue.Logic.GameState
 {
@@ -17,28 +18,18 @@ namespace AIRogue.Logic.GameState
 	/// </summary>
 	class BattleState : IGameState {
 
-        private readonly ArmyManager<AIController> aiArmy;
-        private readonly ArmyManager<PlayerController> playerArmy;
+		private readonly List<Squad> squads;
 
-        private const int PLAYER = 0;
-        private const int AI = 1;
-
-        private int turn = PLAYER;
-        private bool turnStarted = false;
-
-        private delegate void armyStartTurn();
-
-        public BattleState(ArmyManager<AIController> aiArmy, ArmyManager<PlayerController> playerArmy)
+        public BattleState(Squad<AIController> aiArmy, Squad<PlayerController> playerArmy)
         {
-            this.aiArmy = aiArmy;
-            this.playerArmy = playerArmy;
+			squads = new List<Squad>();
 
             addTestUnits(); // Temporary
 
-            aiArmy.InstanceUnits();
-            playerArmy.InstanceUnits();
-
-            playerArmy.StartTurn();
+			foreach (var squad in squads)
+			{
+				squad.InstanceUnits();
+			}
         }
 
         /// <summary>
@@ -46,27 +37,10 @@ namespace AIRogue.Logic.GameState
         /// </summary>
         public void Update()
         {
-            if ( turn == PLAYER )
-            {
-                bool endTurn = playerArmy.Update();  // update army, check for turn end
-
-                // if latest update player's turn is ended, settup AI for new turn
-                if ( endTurn )
-                {
-                    turn = AI; // next update AI will update
-                    aiArmy.StartTurn(); // controller[0] = active controller
-                }
-            }
-            else // turn == AI
-            {
-                bool endTurn = aiArmy.Update();
-
-                if ( endTurn )
-                {
-                    turn = PLAYER;
-                    playerArmy.StartTurn();
-                }
-            }
+			foreach (var squad in squads)
+			{
+				squad.Update();
+			}
         }
 
         public void FixedUpdate()
@@ -75,29 +49,11 @@ namespace AIRogue.Logic.GameState
         }
 
         /// <summary>
-        /// Possible multi army turn updator.  Not in current Use.
-        /// </summary>
-        /// <param name="nextArmy"></param>
-        /// <param name="nextArmySetup"></param>
-        private void performTurn(int nextArmy, armyStartTurn nextArmySetup)
-        {
-            bool endTurn = aiArmy.Update();
-
-            if ( endTurn )
-            {
-                turn = nextArmy;
-                nextArmySetup();
-            }
-        }
-
-        /// <summary>
         /// Temporary method for adding Units for testing.  In future, Units will be 
         /// added based on GUI selection.
         /// </summary>
         private void addTestUnits()
         {
-            aiArmy.AddUnit( UnitType.TestUnit );
-            playerArmy.AddUnit( UnitType.TestUnit );
         }
     }
 }
