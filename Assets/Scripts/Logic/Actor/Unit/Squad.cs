@@ -7,75 +7,23 @@ using UnityEngine;
 
 namespace AIRogue.Logic.Actor
 {
-	class Squad<T> where T : UnitController, new()
+	class Squad
 	{
-
         public string Name { get; private set; }
 
-		private IUnitController c;
-
-		private List<UnitStencil> units = new List<UnitStencil>();
-
-        private List<UnitController> controllers;
-        private T activeController;
+		private UnitController c;
 
         private readonly UnitLoader unitLoader;
 
-        /// <summary>
-        /// Instance a new ArmyManager
-        /// </summary>
-        /// <param name="unitBank"></param>
-        /// <param name="grid"></param>
-        /// <param name="name"></param>
-        public Squad(UnitBank unitBank, string name )
+        public Squad(UnitBank unitBank, string name, UnitController controller )
         {
             unitLoader = new UnitLoader( unitBank );
             this.Name = name;
-
-
         }
 
-        /// <summary>
-        /// Runs the update method of the UnitController for who's turn it is.
-        /// </summary>
-        /// <returns>True when army is finished with it's turn. i.e. all 
-        /// units have had a turn.</returns>
-        public bool Update()
+        public void Update()
         {
-            // update T (UnitController)
-            bool unitFinished = activeController.Update();
-
-            // next UnitController
-            if ( unitFinished )
-            {
-                activeController = getNextUnit();
-            }
-
-            // Army Finished
-            bool allUnitsFinished = (activeController == null) ? true : false;
-
-            return allUnitsFinished;
-        }
-
-        /// <summary>
-        /// Prepares the army for starting a new turn.  The active controller is 
-        /// set to the first in the list of unit controllers.
-        /// </summary>
-        /// <returns>True if the army has at least 1 controller left.</returns>
-        public bool StartTurn()
-        {
-            bool armyHasUnits = true;
-
-            if ( controllers.Count < 1 )
-            {
-                armyHasUnits = false;
-            }
-            else
-            {
-                activeController = controllers[0];
-            }
-
-            return armyHasUnits;
+			
         }
 
         /// <summary>

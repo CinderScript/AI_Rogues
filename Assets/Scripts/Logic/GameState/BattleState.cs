@@ -19,12 +19,17 @@ namespace AIRogue.Logic.GameState
 	class BattleState : IGameState {
 
 		private readonly List<Squad> squads;
+		private readonly UnitLoader unitLoader; 
 
-        public BattleState(Squad<AIController> aiArmy, Squad<PlayerController> playerArmy)
+        public BattleState(UnitLoader unitLoader)
         {
+			this.unitLoader = unitLoader;
 			squads = new List<Squad>();
 
+			/////////////////////////////
             addTestUnits(); // Temporary
+			/////////////////////////////
+
 
 			foreach (var squad in squads)
 			{

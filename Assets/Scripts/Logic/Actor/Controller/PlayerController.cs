@@ -2,9 +2,8 @@
 {
 
 	/// <summary>
-	/// Implements UnitController and used by ArmyManager as a possible Generic type.
-	/// This is a controller for Player units and its behaviors will be choosen through 
-	/// the GUI by the player.
+	/// Implements UnitController and used by Squad.  This is a controller for Player units.  
+	/// This controller will run listeners for player input in addition to running AI descision making.
 	/// </summary>
 	class PlayerController : UnitController {
 
