@@ -7,8 +7,6 @@ namespace AIRogue.Logic.Actor {
 	/// </summary>
 	class Unit {
 
-		public IUnitController controller { get; }
-
 		/* * * Force Assignment on instance (readonly) so controller functions cannot 
 		* access these fields without them being initialized and set first.  * * */
 		public UnitType Type { get; }

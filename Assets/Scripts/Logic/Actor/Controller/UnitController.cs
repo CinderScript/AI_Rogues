@@ -23,7 +23,7 @@
 	/// </summary>
 	abstract class UnitController {
 
-		protected Unit unit;
+		public Unit Unit { get; private set; }
 		protected UnitActionController actionController;
 
 		/// <summary>
@@ -46,10 +46,10 @@
 		/// <param name="id"></param>
 		public void Initialize(Unit unit, int id)
         {
-            this.unit = unit;
-            this.unit.Id = id;
+            this.Unit = unit;
+            this.Unit.Id = id;
 
-			actionController = new UnitActionController( this.unit );
+			actionController = new UnitActionController( this.Unit );
         }
 
         /// <summary>
@@ -80,7 +80,7 @@
             // if behavior == null, behavior picker has not yet run this turn.
             if ( behavior == null )
             {
-                behavior = behaviorChooserGetter(unit);
+                behavior = behaviorChooserGetter(Unit);
             }
 
             // play selected behavior

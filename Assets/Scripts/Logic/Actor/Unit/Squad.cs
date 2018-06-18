@@ -44,7 +44,7 @@ namespace AIRogue.Logic.Actor
         {
             for ( int i = 0; i < controllers.Count; i++ )
             {
-                Unit unit = controllers[i].unit;
+                Unit unit = controllers[i].Unit;
 
 				// spawn unit
 				Vector3 pos = new Vector3( startPosition.x, startPosition.y + SPAWN_SPACING, startPosition.z );
