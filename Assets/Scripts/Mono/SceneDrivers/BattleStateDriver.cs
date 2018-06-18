@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 using AIRogue.Logic.GameState;
-using AIRogue.Unity.Values;
+using AIRogue.Unity.GameProperties;
 
 namespace AIRogue.Unity.Drivers {
 
@@ -20,6 +20,7 @@ namespace AIRogue.Unity.Drivers {
 
         [Header( "Tuning Variables" )]
         public UnitBank UnitBank;
+		public LevelProperties LevelProperties;
 
         private GameStateManager game;
 
@@ -30,7 +31,7 @@ namespace AIRogue.Unity.Drivers {
 
         void Start()
         {
-            game.LoadBattleState( UnitBank );
+            game.LoadBattleState( UnitBank, LevelProperties );
         }
 
         void FixedUpdate()

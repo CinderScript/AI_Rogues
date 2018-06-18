@@ -10,9 +10,12 @@ namespace AIRogue.Unity.GameProperties {
     /// the different Units.  Unit Properties placed in this container, in the Unity Editor, 
     /// will be the units available during gameplay in that scene.
     /// </summary>
-    class UnitBank : MonoBehaviour {
+    class LevelProperties : MonoBehaviour {
 
-        [Header( "Game Object Resource" )]
-        public List<UnitProperties> Units;
-    }
+		public int NumberOfEnemySquads = 1;
+		public int LevelDifficulty = 1;
+		public Transform PlayerStart;
+		public Transform AIStart;
+
+	}
 }

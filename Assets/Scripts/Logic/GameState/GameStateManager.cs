@@ -1,6 +1,6 @@
 ﻿using AIRogue.Logic.Actor;
 
-using AIRogue.Unity.Values;
+using AIRogue.Unity.GameProperties;
 
 using Unity.Custom.EventSystem;
 
@@ -61,10 +61,10 @@ namespace AIRogue.Logic.GameState
         /// </summary>
         /// <param name="gridProps">Grid settings to be used for the current scene's world grid.</param>
         /// <param name="unitBank">Contains list of all units available for this battle.</param>
-        public void LoadBattleState(UnitBank unitBank)
+        public void LoadBattleState(UnitBank unitBank, LevelProperties levelProperties)
         {
 			UnitLoader unitLoader = new UnitLoader( unitBank );
-            BattleState battleState = new BattleState(unitLoader);
+            BattleState battleState = new BattleState(unitLoader, levelProperties);
             currentState = battleState;
         }
     }

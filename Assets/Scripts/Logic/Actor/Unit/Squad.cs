@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using AIRogue.Unity.Values;
+using AIRogue.Unity.GameProperties;
 
 using UnityEngine;
 
@@ -9,16 +9,26 @@ namespace AIRogue.Logic.Actor
 {
 	class Squad
 	{
-        public string Name { get; private set; }
-
-		private UnitController c;
-
+        public string Name { get; }
         private readonly UnitLoader unitLoader;
+		private readonly List<UnitController> controllers;
+		private readonly Vector3 startPosition;
 
-        public Squad(UnitBank unitBank, string name, UnitController controller )
+		private const int SPAWN_SPACING = 3;
+
+		/// <summary>
+		/// Instances a new Squad containing a List of UnitControllers.  A deep copy of controllerBlueprint is made for each 
+		/// UnitController in the list (AIController, PlayerController, etc... )
+		/// </summary>
+		/// <param name="unitLoader"></param>
+		/// <param name="controllerBlueprint"></param>
+		/// <param name="name"></param>
+		public Squad(UnitLoader unitLoader, Vector3 startPosition, string name )
         {
-            unitLoader = new UnitLoader( unitBank );
+			this.unitLoader = unitLoader;
+			this.startPosition = startPosition;
             this.Name = name;
+			controllers = new List<UnitController>();
         }
 
         public void Update()
@@ -34,11 +44,12 @@ namespace AIRogue.Logic.Actor
         {
             for ( int i = 0; i < controllers.Count; i++ )
             {
-                Unit unit = controllers[i].Unit;
+                Unit unit = controllers[i].unit;
 
-                // spawn unit at cell
-                unit.Transform = (Transform)Object.Instantiate(
-                        unit.Prefab, new Vector3( 528, 108, 122), Quaternion.identity );
+				// spawn unit
+				Vector3 pos = new Vector3( startPosition.x, startPosition.y + SPAWN_SPACING, startPosition.z );
+                unit.Transform = Object.Instantiate(
+                        unit.Prefab, startPosition, Quaternion.identity );
                 unit.Transform.name = Name + unit.Id + " " + unit.Type;
             }
         }
@@ -49,7 +60,7 @@ namespace AIRogue.Logic.Actor
         /// </summary>
         /// <param name="unitType"></param>
         /// <param name="spawnLocation"></param>
-        public void AddUnit(UnitType unitType)
+        public void AddUnit<T>(UnitType unitType) where T : UnitController, new()
         {
             int id = controllers.Count;
             Unit unit = unitLoader.LoadUnit( unitType );
@@ -67,30 +78,5 @@ namespace AIRogue.Logic.Actor
                 Debug.Log( "Unit type not found in loader:  " + unitType );
             }
         }
-
-        /// <summary>
-        /// Finds the unit that comes after the current active unit.  Returns null 
-        /// if the current unit is the last unit in the army.
-        /// </summary>
-        /// <returns></returns>
-        private T getNextUnit()
-        {
-            T nextController = default(T);
-
-            int index = activeController.Unit.Id;
-
-            // start the loop at the active unit's index
-            for ( int i = index + 1; i < controllers.Count; i++ )
-            {
-                if ( controllers[index].Unit.Condition.IsAlive )
-                {
-                    nextController = controllers[index];
-                    break;
-                }
-            }
-
-            return nextController;
-        }
-
     }
 }

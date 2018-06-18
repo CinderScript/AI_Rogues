@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AIRogue.Logic.Actor;
+using AIRogue.Unity.GameProperties;
 
 namespace AIRogue.Logic.GameState
 {
@@ -7,11 +8,11 @@ namespace AIRogue.Logic.GameState
 	/// <summary>
 	/// Inherits IGameState.  The state that controls the gameplay during a battle.
 	/// 
-	/// The BattleState contains two ArmyManagers, one for the AI's team, and one for the Player's team.
-	/// This state keeps track of the current turn and gives control the the correct Army's turn update.
+	/// Creates a list of Squads populating them with Units and UnitControllers then updates each squad
+	/// during gameplay.
 	/// 
 	/// DEPENDENCY:  GameStateManager has a dependancy for BattleState.
-	/// BattleState has a dependancy for ArmyManager, AIController, and PlayerController.
+	/// BattleState has a dependancy for Squad, AIController, and PlayerController.
 	/// 
 	/// Temp dependncy on Grid for character spawning.  Will be handled by spawner or event system 
 	/// in future.
@@ -19,15 +20,49 @@ namespace AIRogue.Logic.GameState
 	class BattleState : IGameState {
 
 		private readonly List<Squad> squads;
-		private readonly UnitLoader unitLoader; 
+		private readonly UnitLoader unitLoader;
+		private readonly LevelProperties levelProperties;
 
-        public BattleState(UnitLoader unitLoader)
+		/// <summary>
+		/// Instances a new BattleState creating a list of Squad objects for player and AI.
+		/// </summary>
+		/// <param name="unitLoader"></param>
+		/// <param name="levelProperties"></param>
+        public BattleState(UnitLoader unitLoader, LevelProperties levelProperties)
         {
+			/* Populate list of Squads
+			 * Initialize each Squad with the correct UnitController
+			 * Give each Squad a reference to...
+			 */
+
 			this.unitLoader = unitLoader;
+			this.levelProperties = levelProperties;
 			squads = new List<Squad>();
 
+
+			/* Add Squads to List
+			 * create a new Squad and then add units to that squad.
+			 * A UnitController Type is defined as the Generics value when 
+			 * a unit is added.  This controller instanced and run for the 
+			 * unit specified.
+			 */
+
+			Squad playerSquad = new Squad( unitLoader, levelProperties.PlayerStart.position, "Player" );
+			playerSquad.AddUnit<PlayerController>( UnitType.TestUnit );
+
+			squads.Add( playerSquad );
+
+			for (int i = 0; i < levelProperties.NumberOfEnemySquads; i++)
+			{
+				Squad aiSquad = new Squad( unitLoader, levelProperties.PlayerStart.position, "AISquad-" + i );
+				aiSquad.AddUnit<AIController>( UnitType.TestUnit );
+
+				squads.Add( aiSquad );
+			}
+
+
 			/////////////////////////////
-            addTestUnits(); // Temporary
+			addTestUnits(); // Temporary
 			/////////////////////////////
 
 

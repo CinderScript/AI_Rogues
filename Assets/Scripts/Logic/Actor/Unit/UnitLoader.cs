@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-using AIRogue.Unity.Values;
+using AIRogue.Unity.GameProperties;
 
 
 namespace AIRogue.Logic.Actor {

@@ -17,7 +17,7 @@ namespace AIRogue.Logic.Actor {
 		public Attack Attack { get; }
 		public Condition Condition { get; }
 
-		/* * * Assigned by ArmyManager * * */
+		/* * * Assigned by Squad * * */
 		public int Id { get; set; }
         public Transform Transform { get; set; }
         public Unit Target { get; set; }

@@ -21,27 +21,24 @@
 	/// DEPENDENCY:  UnitController is a Generic Type used by the ArmyManager and is 
 	/// also used by the GameStateManager, BattleState.
 	/// </summary>
-	abstract class UnitController : IUnitController {
+	abstract class UnitController {
 
-		public IUnitController controller { get; set; }
-
-        public Unit Unit { get; set; }
-
-        /// <summary>
-        /// Must be included so updateUnit(behaviorGetter) logic can be inherited by sub controllers and 
-        /// work universally.
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <returns></returns>
-        protected delegate IUnitBehavior getBehaviorChooser(Unit unit);
-        private IUnitBehavior behavior = null;  // behavior to be called every update
-
-		public UnitController()
-		{
-		}
+		protected Unit unit;
+		protected UnitActionController actionController;
 
 		/// <summary>
-		/// The Initialization must be included because ArmyManager uses a UnitController as a 
+		/// Must be included so updateUnit(behaviorGetter) logic can be inherited by sub controllers and 
+		/// work universally.
+		/// </summary>
+		/// <param name="unit"></param>
+		/// <returns></returns>
+		protected delegate IUnitBehavior getBehaviorChooser(Unit unit);
+        private IUnitBehavior behavior = null;  // behavior to be called every update
+
+		public UnitController() { }
+
+		/// <summary>
+		/// The Initialization must be included because Squad uses a UnitController as a 
 		/// Generic Type that is instanced.  Only the default constructor of a generic can be 
 		/// instanced ( new () ).
 		/// </summary>
@@ -49,8 +46,10 @@
 		/// <param name="id"></param>
 		public void Initialize(Unit unit, int id)
         {
-            Unit = unit;
-            Unit.Id = id;
+            this.unit = unit;
+            this.unit.Id = id;
+
+			actionController = new UnitActionController( this.unit );
         }
 
         /// <summary>
@@ -81,7 +80,7 @@
             // if behavior == null, behavior picker has not yet run this turn.
             if ( behavior == null )
             {
-                behavior = behaviorChooserGetter(Unit);
+                behavior = behaviorChooserGetter(unit);
             }
 
             // play selected behavior
@@ -92,12 +91,4 @@
             return turnEnd;
         }
     }
-
-	interface IUnitController
-	{
-		Unit Unit { get; set; }
-
-		void Initialize(Unit unit, int id);
-		bool Update();
-	}
 }
