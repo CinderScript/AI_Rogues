@@ -19,8 +19,8 @@ namespace AIRogue.Unity.Drivers {
     class BattleStateDriver : MonoBehaviour {
 
         [Header( "Tuning Variables" )]
-        public UnitBank UnitBank;
-		public LevelProperties LevelProperties;
+        public UnitBank UnitBank = null;
+		public LevelProperties LevelProperties = null;
 
         private GameStateManager game;
 

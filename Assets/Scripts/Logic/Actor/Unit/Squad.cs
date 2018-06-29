@@ -48,9 +48,9 @@ namespace AIRogue.Logic.Actor
 
 				// spawn unit
 				Vector3 pos = new Vector3( startPosition.x, startPosition.y + SPAWN_SPACING, startPosition.z );
-                unit.Transform = Object.Instantiate(
+                unit.GameObject = Object.Instantiate(
                         unit.Prefab, startPosition, Quaternion.identity );
-                unit.Transform.name = Name + unit.Id + " " + unit.Type;
+                unit.GameObject.name = Name + unit.Id + " " + unit.Type;
             }
         }
 

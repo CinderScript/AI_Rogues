@@ -11,7 +11,7 @@ namespace AIRogue.Unity.GameProperties {
     class UnitProperties : MonoBehaviour {
 
         [Header( "Game Object Resource" )]
-        public Transform Prefab = null;
+        public GameObject Prefab = null;
 
         [Header( "Unit Values" )]
         public UnitType UnitType = UnitType.Not_Found;
@@ -26,8 +26,8 @@ namespace AIRogue.Unity.GameProperties {
         public float AttackCost = 1;
 
         [Header( "Movement" )]
-        public float MoveSpeed = 1;
-        public float MoveRange = 1;
-        public float MoveCost = 1;
+        public float MaxVelocity = 1;
+        public float AccelerationForce = 1;
+        public float RotationSpeed = 1;
     }
 }

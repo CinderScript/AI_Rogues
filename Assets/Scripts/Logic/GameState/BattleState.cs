@@ -56,6 +56,7 @@ namespace AIRogue.Logic.GameState
 			{
 				Squad aiSquad = new Squad( unitLoader, levelProperties.PlayerStart.position, "AISquad-" + i );
 				aiSquad.AddUnit<AIController>( UnitType.TestUnit );
+				aiSquad.AddUnit<AIController>( UnitType.TestUnit );
 
 				squads.Add( aiSquad );
 			}

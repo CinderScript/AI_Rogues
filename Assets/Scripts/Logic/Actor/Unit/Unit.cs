@@ -10,14 +10,14 @@ namespace AIRogue.Logic.Actor {
 		/* * * Force Assignment on instance (readonly) so controller functions cannot 
 		* access these fields without them being initialized and set first.  * * */
 		public UnitType Type { get; }
-		public Transform Prefab { get; }
+		public GameObject Prefab { get; }
 		public Movement Movement { get; }
 		public Attack Attack { get; }
 		public Condition Condition { get; }
 
 		/* * * Assigned by Squad * * */
 		public int Id { get; set; }
-        public Transform Transform { get; set; }
+        public GameObject GameObject { get; set; }
         public Unit Target { get; set; }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace AIRogue.Logic.Actor {
         /// <param name="condition"></param>
         /// <param name="movement"></param>
         /// <param name="attack"></param>
-        public Unit(UnitType type, Transform prefab, 
+        public Unit(UnitType type, GameObject prefab, 
             Condition condition, Movement movement, Attack attack)
         {
             this.Type = type;
@@ -56,15 +56,15 @@ namespace AIRogue.Logic.Actor {
 
     public struct Movement {
 
-        public float Speed { get; private set; }
-        public float Range { get; private set; }
-        public float Cost { get; private set; }
+		public float VelocityMax { get; }
+        public float AccelerationForce { get; }
+		public float RotationSpeed { get; }
 
-        public Movement(float speed, float range, float cost) : this()
+        public Movement(float velocity, float acceleration, float rotation) : this()
         {
-            Speed = speed;
-            Range = range;
-            Cost = cost;
+			VelocityMax = velocity;
+			AccelerationForce = acceleration;
+			RotationSpeed = rotation;
         }
     }
 

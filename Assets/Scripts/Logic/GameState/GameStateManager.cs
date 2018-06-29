@@ -21,7 +21,7 @@ namespace AIRogue.Logic.GameState
 	/// </summary>
 	class GameStateManager {
 
-        private readonly EventManager events = new EventManager();
+        //private readonly EventManager events = new EventManager();
         private IGameState currentState = null;
 
         // Singleton

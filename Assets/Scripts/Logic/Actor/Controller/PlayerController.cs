@@ -1,6 +1,5 @@
 ﻿namespace AIRogue.Logic.Actor
 {
-
 	/// <summary>
 	/// Implements UnitController and used by Squad.  This is a controller for Player units.  
 	/// This controller will run listeners for player input in addition to running AI descision making.
@@ -50,7 +49,7 @@
         /// <returns></returns>
         public bool Perform(out IUnitBehavior nextAction)
         {
-            nextAction = new Move( unit.Transform );
+            nextAction = new Move(  );
 
             return false;
         }

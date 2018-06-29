@@ -36,7 +36,7 @@ namespace AIRogue.Logic.Actor {
 
         private int count = 1;
 
-        public Move(/*Cell destination,*/ Transform unit)
+        public Move( )
         {
             //this.to = destination;
             this.unit = unit;

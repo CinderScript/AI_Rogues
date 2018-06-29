@@ -39,9 +39,9 @@ namespace AIRogue.Logic.Actor {
 
             if ( isInUnitBank )
             {
-                Transform prefab = p.Prefab;
+                GameObject prefab = p.Prefab;
                 Condition cond = new Condition( p.MaxHealth, p.Armour );
-                Movement move = new Movement( p.MoveSpeed, p.MoveRange, p.MoveCost );
+                Movement move = new Movement( p.MaxVelocity, p.AccelerationForce, p.RotationSpeed );
                 Attack attack = new Attack( p.AttackRange, p.AttackDamage, p.AttackCost );
 
                 unit = new Unit( type, prefab, cond,  move, attack );

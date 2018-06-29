@@ -14,8 +14,8 @@ namespace AIRogue.Unity.GameProperties {
 
 		public int NumberOfEnemySquads = 1;
 		public int LevelDifficulty = 1;
-		public Transform PlayerStart;
-		public Transform AIStart;
+		public Transform PlayerStart = null;
+		public Transform AIStart = null;
 
 	}
 }
