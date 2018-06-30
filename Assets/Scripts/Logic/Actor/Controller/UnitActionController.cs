@@ -32,7 +32,7 @@ namespace AIRogue.Logic.Actor
 		/// Ship will not exceed it's maxVelocity.
 		/// Should be called in FixedUpdate().
 		/// </summary>
-		protected void ForwardThrust()
+		public void ForwardThrust()
 		{
 			rigidbody.AddRelativeForce( Vector3.forward * shipAccelerationForceVertical );
 
@@ -48,7 +48,7 @@ namespace AIRogue.Logic.Actor
 		/// Ship will not exceed it's maxVelocity.
 		/// Should be called in FixedUpdate().
 		/// </summary>
-		protected void SideThrust(float inputDirection)
+		public void SideThrust(float inputDirection)
 		{
 			rigidbody.AddRelativeForce( Vector3.right * shipAccelerationForceHorizontal * inputDirection );
 
@@ -63,7 +63,7 @@ namespace AIRogue.Logic.Actor
 		/// Rotates the Ship to face the opposite direction of travel.
 		/// Does not activate if ship velocity = 0;
 		/// </summary>
-		protected void ReverseTurn()
+		public void ReverseTurn()
 		{
 			if (rigidbody.velocity.sqrMagnitude != 0)
 			{
@@ -79,7 +79,7 @@ namespace AIRogue.Logic.Actor
 		/// <param name="ship">Object to rotate</param>
 		/// <param name="rotationVelocity">Velocity</param>
 		/// <param name="inputDirection">Positive values rotate right, negative left</param>
-		protected void Rotate(float inputDirection)
+		public void Rotate(float inputDirection)
 		{
 			transform.Rotate( 0, shipRotationSpeed * Time.deltaTime * inputDirection, 0 );
 		}

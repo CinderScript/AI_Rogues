@@ -33,7 +33,10 @@ namespace AIRogue.Logic.Actor
 
         public void Update()
         {
-			
+			foreach (var controller in controllers)
+			{
+				controller.Update();
+			}
         }
 
         /// <summary>

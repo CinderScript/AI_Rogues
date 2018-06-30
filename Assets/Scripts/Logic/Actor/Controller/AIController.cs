@@ -8,9 +8,9 @@
 	/// </summary>
 	class AIController : UnitController {
 
-		public override bool Update()
+		public override void Update()
 		{
-			throw new System.NotImplementedException();
+			
 		}
 	}
 }

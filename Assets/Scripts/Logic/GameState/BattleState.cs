@@ -47,14 +47,19 @@ namespace AIRogue.Logic.GameState
 			 * unit specified.
 			 */
 
+
+			/* ADD PLAYER SQUADS */
 			Squad playerSquad = new Squad( unitLoader, levelProperties.PlayerStart.position, "Player" );
 			playerSquad.AddUnit<PlayerController>( UnitType.TestUnit );
+			playerSquad.AddUnit<AIController>( UnitType.TestUnit );
 
 			squads.Add( playerSquad );
 
+
+			/* ADD ENEMY SQUADS */
 			for (int i = 0; i < levelProperties.NumberOfEnemySquads; i++)
-			{
-				Squad aiSquad = new Squad( unitLoader, levelProperties.PlayerStart.position, "AISquad-" + i );
+			{				
+				Squad aiSquad = new Squad( unitLoader, levelProperties.AIStart[i].position, "AISquad-" + i );
 				aiSquad.AddUnit<AIController>( UnitType.TestUnit );
 				aiSquad.AddUnit<AIController>( UnitType.TestUnit );
 
@@ -67,6 +72,7 @@ namespace AIRogue.Logic.GameState
 			/////////////////////////////
 
 
+			// Instance all units into the game
 			foreach (var squad in squads)
 			{
 				squad.InstanceUnits();
