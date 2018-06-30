@@ -46,6 +46,17 @@ namespace AIRogue.Logic.Actor {
 			{
 				actionController.Rotate( rotationInput );
 			}
+
+			if (primaryAttackInput)
+			{
+				actionController.PrimaryAttack();
+			}
+
+			if (secondaryAttackInput)
+			{
+				actionController.SecondaryAttack();
+
+			}
 		}
 	}
 }

@@ -83,5 +83,15 @@ namespace AIRogue.Logic.Actor
 		{
 			transform.Rotate( 0, shipRotationSpeed * Time.deltaTime * inputDirection, 0 );
 		}
+
+		internal void PrimaryAttack()
+		{
+			
+		}
+
+		internal void SecondaryAttack()
+		{
+			
+		}
 	}
 }

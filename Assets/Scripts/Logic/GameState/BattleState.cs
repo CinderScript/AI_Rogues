@@ -20,8 +20,6 @@ namespace AIRogue.Logic.GameState
 	class BattleState : IGameState {
 
 		private readonly List<Squad> squads;
-		private readonly UnitLoader unitLoader;
-		private readonly LevelProperties levelProperties;
 
 		/// <summary>
 		/// Instances a new BattleState creating a list of Squad objects for player and AI.
@@ -35,10 +33,7 @@ namespace AIRogue.Logic.GameState
 			 * Give each Squad a reference to...
 			 */
 
-			this.unitLoader = unitLoader;
-			this.levelProperties = levelProperties;
 			squads = new List<Squad>();
-
 
 			/* Add Squads to List
 			 * create a new Squad and then add units to that squad.
