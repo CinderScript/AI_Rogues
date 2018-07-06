@@ -1,4 +1,6 @@
-﻿namespace AIRogue.Logic.Actor
+﻿using UnityEngine;
+
+namespace AIRogue.Logic.Actor
 {
 	/// <summary>
 	/// The UnitController stores one Unit and applies/updates a behavior for that unit.
@@ -19,13 +21,19 @@
 		/// </summary>
 		/// <param name="unit"></param>
 		/// <param name="id"></param>
-		public void Initialize(Unit unit, int id)
+		public void AssignUnit(Unit unit, int id)
         {
             Unit = unit;
             Unit.Id = id;
+        }
+
+		public virtual void SpawnUnit(string squadName, Vector3 position)
+		{
+			Unit.GameObject = Object.Instantiate( Unit.Prefab, position, Quaternion.identity );
+			Unit.GameObject.name = squadName + Unit.Id + " " + Unit.Type;
 
 			actionController = new UnitActionController( Unit );
-        }
+		}
 
         public virtual void Update()
 		{

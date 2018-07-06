@@ -8,9 +8,11 @@ namespace AIRogue.Logic.Actor
 	/// </summary>
 	class PlayerController : UnitController {
 
-		public PlayerController()
+		public override void SpawnUnit(string squadName, Vector3 position)
 		{
+			base.SpawnUnit( squadName, position );
+
 			behavior = new InputListenerBehavior( actionController );
 		}
-    }
+	}
 }

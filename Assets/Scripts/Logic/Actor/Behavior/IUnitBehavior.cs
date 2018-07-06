@@ -29,8 +29,8 @@ namespace AIRogue.Logic.Actor {
 			int thrustInput = (int)Input.GetAxisRaw( "Vertical" );
 			float rotationInput = Input.GetAxis( "Horizontal" );
 
-			bool primaryAttackInput = Input.GetButton( "Attack1" );
-			bool secondaryAttackInput = Input.GetButton( "Attack2" );
+			bool primaryAttackInput = Input.GetButton( "Fire1" );
+			bool secondaryAttackInput = Input.GetButton( "Fire1" );
 
 			/// APPLY INPUT TO UnitActionController
 			if (thrustInput > 0)                                // If thrusting

@@ -70,7 +70,7 @@ namespace AIRogue.Logic.GameState
 			// Instance all units into the game
 			foreach (var squad in squads)
 			{
-				squad.InstanceUnits();
+				squad.SpawnUnits();
 			}
         }
 

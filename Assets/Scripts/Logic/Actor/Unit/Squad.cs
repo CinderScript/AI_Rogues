@@ -14,7 +14,7 @@ namespace AIRogue.Logic.Actor
 		private readonly List<UnitController> controllers;
 		private readonly Vector3 startPosition;
 
-		private const int SPAWN_SPACING = 3;
+		private const int SPAWN_SPACING = 10;
 
 		/// <summary>
 		/// Instances a new Squad containing a List of UnitControllers.  A deep copy of controllerBlueprint is made for each 
@@ -43,17 +43,14 @@ namespace AIRogue.Logic.Actor
         /// Loops through each UnitController and spawns that controller's Unit at it's assigned grid Cell.  
         /// The unit's Unity GameObject are named  The army's Name, + the unit's ID, + the unit's Type.
         /// </summary>
-        public void InstanceUnits()
+        public void SpawnUnits()
         {
-            for ( int i = 0; i < controllers.Count; i++ )
+			// foreach controller in controllers
+			for ( int i = 0; i < controllers.Count; i++ )
             {
-                Unit unit = controllers[i].Unit;
-
 				// spawn unit
-				Vector3 pos = new Vector3( startPosition.x, startPosition.y + SPAWN_SPACING, startPosition.z );
-                unit.GameObject = Object.Instantiate(
-                        unit.Prefab, pos, Quaternion.identity );
-                unit.GameObject.name = Name + unit.Id + " " + unit.Type;
+				Vector3 pos = new Vector3( startPosition.x + (SPAWN_SPACING * i), startPosition.y, startPosition.z );
+				controllers[i].SpawnUnit( Name, pos );
             }
         }
 
@@ -72,7 +69,7 @@ namespace AIRogue.Logic.Actor
             {
                 T controller = new T();
 
-                controller.Initialize( unit, id );
+                controller.AssignUnit( unit, id );
 
                 controllers.Add( controller );
             }
