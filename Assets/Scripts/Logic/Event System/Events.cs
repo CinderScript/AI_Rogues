@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AIRogue.Logic.Actor;
 
-namespace Unity.Custom.EventSystem {
+namespace AIRogue.Logic.Events {
 
-    class Events {
-    }
+    class UnitSelectedEvent : GameEvent
+	{
+		public Unit SelectedUnit { get; }
+
+		public UnitSelectedEvent(Unit selectedUnit)
+		{
+			SelectedUnit = selectedUnit;
+		}
+	}
 }

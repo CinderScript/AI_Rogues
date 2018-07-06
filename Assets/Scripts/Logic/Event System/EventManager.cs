@@ -2,21 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Unity.Custom.EventSystem {
+namespace AIRogue.Logic.Events {
 
-    /// <summary>
-    /// Taken from http://www.bendangelo.me/unity3d/2014/12/24/unity3d-event-manager.html
-    /// Written by Ben D'Angelo. Dec 24, 2014.
-    /// Free online resource / Blog
-    /// 
-    /// Which is based on http://www.willrmiller.com/?p=87
-    /// Written by Will Miller. May 2, 2012
-    /// Fraxis Games
-    /// Sparks, Maryland
-    /// 
-    /// Modified by Gregory Maynard to fit Pawn of Kings
-    /// </summary>
-    public class EventManager {
+	/// <summary>
+	/// ***Type-safe*** Event Manager
+	/// Taken from http://www.bendangelo.me/unity3d/2014/12/24/unity3d-event-manager.html
+	/// Written by Ben D'Angelo. Dec 24, 2014.
+	/// Free online resource / Blog
+	/// 
+	/// Which is based on http://www.willrmiller.com/?p=87
+	/// Written by Will Miller. May 2, 2012
+	/// Fraxis Games
+	/// Sparks, Maryland
+	/// 
+	/// Modified to fit AI_Rogue
+	/// </summary>
+	public class EventManager {
         public bool LimitQueueProcesing = false;
         public float QueueProcessTime = 0.0f;
         private static EventManager instance = null;

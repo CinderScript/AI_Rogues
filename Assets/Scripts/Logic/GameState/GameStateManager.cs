@@ -1,8 +1,5 @@
 ﻿using AIRogue.Logic.Actor;
-
 using AIRogue.Unity.GameProperties;
-
-using Unity.Custom.EventSystem;
 
 namespace AIRogue.Logic.GameState
 {
