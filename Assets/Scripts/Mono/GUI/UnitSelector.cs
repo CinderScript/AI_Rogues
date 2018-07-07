@@ -24,8 +24,9 @@ public class UnitSelector : MonoBehaviour {
 				{
 					// add unit properties to Unit prefab and add a squad ID  and unit ID variable
 					Unit unit = hit.transform.GetComponent<Unit>();
-					EventManager.Instance.QueueEvent( new UnitSelectedEvent( unit ) );
 
+					/* QUEUE GAME EVENT */
+					EventManager.Instance.QueueEvent( new UnitSelectedEvent( unit ) );
 				}
 			}
 		}

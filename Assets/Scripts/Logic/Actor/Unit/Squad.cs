@@ -45,10 +45,12 @@ namespace AIRogue.Logic.Actor
         /// </summary>
         /// <param name="unitType"></param>
         /// <param name="spawnLocation"></param>
-        public void SpawnUnit<T>(UnitType unitType) where T : UnitController, new()
+        public Unit SpawnUnit<T>(UnitType unitType) where T : UnitController, new()
         {
+			Unit unit = null;
+
 			// get prefab
-            GameObject prefab = unitBank.GetUnitPrefab( unitType );
+			GameObject prefab = unitBank.GetUnitPrefab( unitType );
 
 			if (prefab != null )
             {
@@ -56,7 +58,7 @@ namespace AIRogue.Logic.Actor
 				GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
 				unitSpawn.name = Name + " " + unitType + " " + controllers.Count;
 
-				Unit unit = unitSpawn.GetComponent<Unit>();
+				unit = unitSpawn.GetComponent<Unit>();
 
 				T controller = new T();
                 controller.AssignUnit( unit );
@@ -66,6 +68,8 @@ namespace AIRogue.Logic.Actor
             {
                 Debug.Log( "Unit type not found in loader:  " + unitType );
             }
+
+			return unit;
         }
 
 		/// <summary>

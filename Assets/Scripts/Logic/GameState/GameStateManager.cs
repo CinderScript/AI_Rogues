@@ -1,4 +1,5 @@
 ﻿using AIRogue.Logic.Actor;
+using AIRogue.Logic.Events;
 using AIRogue.Unity.ObjectProperties;
 
 namespace AIRogue.Logic.GameState
@@ -18,12 +19,12 @@ namespace AIRogue.Logic.GameState
 	/// </summary>
 	class GameStateManager {
 
-        //private readonly EventManager events = new EventManager();
+		private EventManager events;
         private IGameState currentState = null;
 
         // Singleton
         private static GameStateManager instance = null;
-        private GameStateManager() { }
+        private GameStateManager() { events = EventManager.Instance; }
         public static GameStateManager Instance()
         {
             if ( instance == null )
@@ -41,6 +42,7 @@ namespace AIRogue.Logic.GameState
         /// </summary>
         public void UpdateGame()
         {
+			events.Update();
             currentState.Update();
         }
         /// <summary>

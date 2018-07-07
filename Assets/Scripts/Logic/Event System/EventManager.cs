@@ -18,8 +18,10 @@ namespace AIRogue.Logic.Events {
 	/// Modified to fit AI_Rogue
 	/// </summary>
 	public class EventManager {
+
         public bool LimitQueueProcesing = false;
         public float QueueProcessTime = 0.0f;
+
         private static EventManager instance = null;
         private Queue m_eventQueue = new Queue();
 
@@ -190,8 +192,5 @@ namespace AIRogue.Logic.Events {
         }
     }
 
-    public interface GameEvent {
-
-    }
-
+    public interface GameEvent { }
 }

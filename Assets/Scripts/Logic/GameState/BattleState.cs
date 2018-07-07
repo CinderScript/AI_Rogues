@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AIRogue.Logic.Actor;
+using AIRogue.Logic.Events;
 using AIRogue.Unity.ObjectProperties;
 
 namespace AIRogue.Logic.GameState
@@ -42,13 +43,14 @@ namespace AIRogue.Logic.GameState
 			 * unit specified.
 			 */
 
-
 			/* ADD PLAYER SQUADS */
 			Squad playerSquad = new Squad( unitBank, levelProperties.PlayerStart.position, "Player" );
-			playerSquad.SpawnUnit<PlayerController>( UnitType.SimpleFighter );
+			Unit player = playerSquad.SpawnUnit<PlayerController>( UnitType.SimpleFighter );
 			playerSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 
 			squads.Add( playerSquad );
+
+			EventManager.Instance.QueueEvent( new UnitSelectedEvent( player ) );
 
 
 			/* ADD ENEMY SQUADS */
