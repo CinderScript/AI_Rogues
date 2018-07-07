@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using AIRogue.Logic.Actor;
-using AIRogue.Unity.GameProperties;
+using AIRogue.Unity.ObjectProperties;
 
 namespace AIRogue.Logic.GameState
 {
@@ -24,9 +24,9 @@ namespace AIRogue.Logic.GameState
 		/// <summary>
 		/// Instances a new BattleState creating a list of Squad objects for player and AI.
 		/// </summary>
-		/// <param name="unitLoader"></param>
+		/// <param name="unitBank"></param>
 		/// <param name="levelProperties"></param>
-        public BattleState(UnitLoader unitLoader, LevelProperties levelProperties)
+        public BattleState(UnitBank unitBank, LevelProperties levelProperties)
         {
 			/* Populate list of Squads
 			 * Initialize each Squad with the correct UnitController
@@ -44,9 +44,9 @@ namespace AIRogue.Logic.GameState
 
 
 			/* ADD PLAYER SQUADS */
-			Squad playerSquad = new Squad( unitLoader, levelProperties.PlayerStart.position, "Player" );
-			playerSquad.AddUnit<PlayerController>( UnitType.TestUnit );
-			playerSquad.AddUnit<AIController>( UnitType.TestUnit );
+			Squad playerSquad = new Squad( unitBank, levelProperties.PlayerStart.position, "Player" );
+			playerSquad.SpawnUnit<PlayerController>( UnitType.SimpleFighter );
+			playerSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 
 			squads.Add( playerSquad );
 
@@ -54,23 +54,11 @@ namespace AIRogue.Logic.GameState
 			/* ADD ENEMY SQUADS */
 			for (int i = 0; i < levelProperties.NumberOfEnemySquads; i++)
 			{				
-				Squad aiSquad = new Squad( unitLoader, levelProperties.AIStart[i].position, "AISquad-" + i );
-				aiSquad.AddUnit<AIController>( UnitType.TestUnit );
-				aiSquad.AddUnit<AIController>( UnitType.TestUnit );
+				Squad aiSquad = new Squad( unitBank, levelProperties.AIStart[i].position, "AISquad-" + i );
+				aiSquad.SpawnUnit<AIController>( UnitType.TestUnit );
+				aiSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 
 				squads.Add( aiSquad );
-			}
-
-
-			/////////////////////////////
-			addTestUnits(); // Temporary
-			/////////////////////////////
-
-
-			// Instance all units into the game
-			foreach (var squad in squads)
-			{
-				squad.SpawnUnits();
 			}
         }
 
@@ -88,14 +76,6 @@ namespace AIRogue.Logic.GameState
         public void FixedUpdate()
         {
             // NOT IMPLEMENTED
-        }
-
-        /// <summary>
-        /// Temporary method for adding Units for testing.  In future, Units will be 
-        /// added based on GUI selection.
-        /// </summary>
-        private void addTestUnits()
-        {
         }
     }
 }

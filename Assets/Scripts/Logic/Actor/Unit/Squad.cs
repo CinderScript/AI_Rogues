@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using AIRogue.Unity.GameProperties;
+using AIRogue.Unity.ObjectProperties;
 
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace AIRogue.Logic.Actor
 	class Squad
 	{
         public string Name { get; }
-        private readonly UnitLoader unitLoader;
+        private readonly UnitBank unitBank;
 		private readonly List<UnitController> controllers;
 		private readonly Vector3 startPosition;
 
@@ -23,9 +23,9 @@ namespace AIRogue.Logic.Actor
 		/// <param name="unitLoader"></param>
 		/// <param name="controllerBlueprint"></param>
 		/// <param name="name"></param>
-		public Squad(UnitLoader unitLoader, Vector3 startPosition, string name )
+		public Squad(UnitBank unitLoader, Vector3 startPosition, string name )
         {
-			this.unitLoader = unitLoader;
+			this.unitBank = unitLoader;
 			this.startPosition = startPosition;
             this.Name = name;
 			controllers = new List<UnitController>();
@@ -40,37 +40,26 @@ namespace AIRogue.Logic.Actor
         }
 
         /// <summary>
-        /// Loops through each UnitController and spawns that controller's Unit at it's assigned grid Cell.  
-        /// The unit's Unity GameObject are named  The army's Name, + the unit's ID, + the unit's Type.
-        /// </summary>
-        public void SpawnUnits()
-        {
-			// foreach controller in controllers
-			for ( int i = 0; i < controllers.Count; i++ )
-            {
-				// spawn unit
-				Vector3 pos = new Vector3( startPosition.x + (SPAWN_SPACING * i), startPosition.y, startPosition.z );
-				controllers[i].SpawnUnit( Name, pos );
-            }
-        }
-
-        /// <summary>
         /// Uses the UnitLoader to create a new unit with the properties defined in in the 
         /// properties list given to the UnitLoader.
         /// </summary>
         /// <param name="unitType"></param>
         /// <param name="spawnLocation"></param>
-        public void AddUnit<T>(UnitType unitType) where T : UnitController, new()
+        public void SpawnUnit<T>(UnitType unitType) where T : UnitController, new()
         {
-            int id = controllers.Count;
-            Unit unit = unitLoader.LoadUnit( unitType );
+			// get prefab
+            GameObject prefab = unitBank.GetUnitPrefab( unitType );
 
-            if ( unit != null )
+			if (prefab != null )
             {
-                T controller = new T();
+				// spawn unit
+				GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
+				unitSpawn.name = Name + " " + unitType + " " + controllers.Count;
 
-                controller.AssignUnit( unit, id );
+				Unit unit = unitSpawn.GetComponent<Unit>();
 
+				T controller = new T();
+                controller.AssignUnit( unit );
                 controllers.Add( controller );
             }
             else
@@ -78,5 +67,18 @@ namespace AIRogue.Logic.Actor
                 Debug.Log( "Unit type not found in loader:  " + unitType );
             }
         }
+
+		/// <summary>
+		/// Calculates the position a new unit should be spawned at.
+		/// </summary>
+		/// <returns></returns>
+		private Vector3 newUnitPos()
+		{
+			Vector3 pos = new Vector3(	startPosition.x + (SPAWN_SPACING * controllers.Count), 
+										startPosition.y, 
+										startPosition.z );
+
+			return pos;
+		}
     }
 }

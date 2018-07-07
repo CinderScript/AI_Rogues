@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 using AIRogue.Logic.GameState;
-using AIRogue.Unity.GameProperties;
+using AIRogue.Unity.ObjectProperties;
 
 namespace AIRogue.Unity.Drivers {
 

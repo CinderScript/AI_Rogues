@@ -1,7 +1,7 @@
 ﻿using AIRogue.Logic.Events;
 using UnityEngine;
 
-public class UnitCamera: MonoBehaviour
+public class UnitCamera : MonoBehaviour
 {
 	public GameObject Target;
 
@@ -19,6 +19,6 @@ public class UnitCamera: MonoBehaviour
 
 	void OnUnitSelected(UnitSelectedEvent e)
 	{
-		Target = e.SelectedUnit.GameObject;
+		//Target = e.SelectedUnit.GameObject;
 	}
 }

@@ -17,14 +17,14 @@ namespace AIRogue.Logic.Actor
 
 		public UnitActionController(Unit unit)
 		{
-			transform = unit.GameObject.transform;
-			rigidbody = unit.GameObject.GetComponent<Rigidbody>();
-			
-			shipAccelerationForceVertical = unit.Movement.AccelerationForce;
-			shipAccelerationForceHorizontal = unit.Movement.AccelerationForce * SIDETHRUST_SCALER;
-			shipVelocityMax = unit.Movement.VelocityMax;
-			shipVelocityMaxSqr = unit.Movement.VelocityMax * unit.Movement.VelocityMax;
-			shipRotationSpeed = unit.Movement.RotationSpeed;
+			transform = unit.gameObject.transform;
+			rigidbody = unit.gameObject.GetComponent<Rigidbody>();
+
+			shipAccelerationForceVertical = unit.AccelerationForce;
+			shipAccelerationForceHorizontal = unit.AccelerationForce * SIDETHRUST_SCALER;
+			shipVelocityMax = unit.MaxVelocity;
+			shipVelocityMaxSqr = unit.MaxVelocity * unit.MaxVelocity;
+			shipRotationSpeed = unit.RotationSpeed;
 		}
 
 		/// <summary>

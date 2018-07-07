@@ -21,19 +21,11 @@ namespace AIRogue.Logic.Actor
 		/// </summary>
 		/// <param name="unit"></param>
 		/// <param name="id"></param>
-		public void AssignUnit(Unit unit, int id)
+		public virtual void AssignUnit(Unit unit)
         {
             Unit = unit;
-            Unit.Id = id;
-        }
-
-		public virtual void SpawnUnit(string squadName, Vector3 position)
-		{
-			Unit.GameObject = Object.Instantiate( Unit.Prefab, position, Quaternion.identity );
-			Unit.GameObject.name = squadName + Unit.Id + " " + Unit.Type;
-
 			actionController = new UnitActionController( Unit );
-		}
+        }
 
         public virtual void Update()
 		{

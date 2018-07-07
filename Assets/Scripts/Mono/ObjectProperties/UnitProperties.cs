@@ -2,7 +2,7 @@
 
 using AIRogue.Logic.Actor;
 
-namespace AIRogue.Unity.GameProperties {
+namespace AIRogue.Unity.ObjectProperties {
 
     /// <summary>
     /// Contains all the properties needed to define a Unit in the Unity Editor.  Place this script 

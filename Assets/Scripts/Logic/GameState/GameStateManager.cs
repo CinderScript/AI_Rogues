@@ -1,5 +1,5 @@
 ﻿using AIRogue.Logic.Actor;
-using AIRogue.Unity.GameProperties;
+using AIRogue.Unity.ObjectProperties;
 
 namespace AIRogue.Logic.GameState
 {
@@ -60,8 +60,7 @@ namespace AIRogue.Logic.GameState
         /// <param name="unitBank">Contains list of all units available for this battle.</param>
         public void LoadBattleState(UnitBank unitBank, LevelProperties levelProperties)
         {
-			UnitLoader unitLoader = new UnitLoader( unitBank );
-            BattleState battleState = new BattleState(unitLoader, levelProperties);
+            BattleState battleState = new BattleState( unitBank, levelProperties);
             currentState = battleState;
         }
     }
