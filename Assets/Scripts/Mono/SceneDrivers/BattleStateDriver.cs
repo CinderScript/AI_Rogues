@@ -18,10 +18,6 @@ namespace AIRogue.Unity.Drivers {
     /// </summary>
     class BattleStateDriver : MonoBehaviour {
 
-        [Header( "Tuning Variables" )]
-        public UnitBank UnitBank = null;
-		public LevelProperties LevelProperties = null;
-
         private GameStateManager game;
 
         void Awake()
@@ -31,7 +27,11 @@ namespace AIRogue.Unity.Drivers {
 
         void Start()
         {
-            game.LoadBattleState( UnitBank, LevelProperties );
+			UnitBank units = GetComponentInChildren<UnitBank>();
+			WeaponBank weaponBank = GetComponentInChildren<WeaponBank>();
+			LevelProperties levelProperties = GetComponentInChildren<LevelProperties>();
+
+            game.LoadBattleState( units, weaponBank, levelProperties );
         }
 
         void FixedUpdate()

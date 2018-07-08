@@ -27,7 +27,7 @@ namespace AIRogue.Logic.GameState
 		/// </summary>
 		/// <param name="unitBank"></param>
 		/// <param name="levelProperties"></param>
-        public BattleState(UnitBank unitBank, LevelProperties levelProperties)
+        public BattleState(UnitBank unitBank, WeaponBank weaponBank, LevelProperties levelProperties)
         {
 			/* Populate list of Squads
 			 * Initialize each Squad with the correct UnitController
@@ -45,7 +45,11 @@ namespace AIRogue.Logic.GameState
 
 			/* ADD PLAYER SQUADS */
 			Squad playerSquad = new Squad( unitBank, levelProperties.PlayerStart.position, "Player" );
+
 			Unit player = playerSquad.SpawnUnit<PlayerController>( UnitType.SimpleFighter );
+			player.SpawnWeapon(weaponBank.GetPrefab(WeaponType.GreenLaser));
+			player.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ));
+
 			playerSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 
 			squads.Add( playerSquad );

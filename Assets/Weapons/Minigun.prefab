@@ -191,3 +191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 956064198a8572d4c84185289cbaf399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponType: 6
+  Damage: 1
+  RateOfFire: 1
+  Range: 10
+  Velocity: 10
+  AmmoPrefab: {fileID: 0}

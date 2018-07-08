@@ -463,7 +463,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1797386439}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &703347035
 MonoBehaviour:
@@ -526,6 +526,52 @@ MonoBehaviour:
   Target: {fileID: 0}
   HeightOffest: 25
   LengthOffest: 25
+--- !u!1 &754995687
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 754995688}
+  - component: {fileID: 754995689}
+  m_Layer: 0
+  m_Name: Weapon Bank
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &754995688
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754995687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1797386439}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &754995689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 754995687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0922fce456ccb04f89a70c71c56c31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WeaponPrefabs:
+  - {fileID: 1406134262938662, guid: 1ca0be0bf99c47546800719ab1244a46, type: 2}
+  - {fileID: 1290006123575380, guid: f34ff17af3e7ea74794ebc45352be6e7, type: 2}
+  - {fileID: 1248612026052168, guid: 731f9396352e2e74798458240805fdaa, type: 2}
+  - {fileID: 1358711505283484, guid: 6530728c270807a4295acb5c877cddd9, type: 2}
+  - {fileID: 1613013772259670, guid: d575d1e07f93900478bbbba0dcf55abc, type: 2}
 --- !u!1 &757125701
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,6 +987,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1981380246}
+  - {fileID: 754995688}
   - {fileID: 703347034}
   m_Father: {fileID: 791989426}
   m_RootOrder: 2
@@ -956,8 +1003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c35db011a9fd0544bef407f17669ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitBank: {fileID: 1981380247}
-  LevelProperties: {fileID: 703347035}
 --- !u!1 &1865359858
 GameObject:
   m_ObjectHideFlags: 0

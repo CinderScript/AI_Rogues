@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using AIRogue.Logic.Exceptions;
+using UnityEngine;
 
 namespace AIRogue.Logic.Actor {
 
@@ -14,18 +16,41 @@ namespace AIRogue.Logic.Actor {
 		public float Health = 1;
 		public float Shields = 1;
 
-		[Header( "Attack" )]
-		public float AttackRange = 1;
-		public float AttackDamage = 10;
-
 		[Header( "Movement" )]
 		public float MaxVelocity = 5;
 		public float AccelerationForce = 3;
 		public float RotationSpeed = 30;
 
-		/* * * Assigned by Squad * * */
-		public Unit Target { get; set; }
+		[Header( "Attack" )]
+		public int WeaponLevel = 1;
+		public List<Weapon> Weapons = new List<Weapon>();
+
+		/* * * Assigned during gameplay * * */
 		public Squad Squad { get; set; }
+		public Unit Target { get; set; }
+
+		public WeaponMount[] WeaponMounts { get; private set; }
+
+		void Awake()
+		{
+			WeaponMounts = gameObject.GetComponentsInChildren<WeaponMount>();
+		}
+
+		public void SpawnWeapon(GameObject weaponPrefab)
+		{
+			if (weaponPrefab.GetComponent<Weapon>() == null)
+			{
+				string msg = $"The Prefab named \"{weaponPrefab.name}\" does not have a Weapon component attached.";
+				throw new WeaponComponentNotAttachedException( msg );
+			}
+
+			int weaponNumber = Weapons.Count;
+			Transform mount = WeaponMounts[weaponNumber].transform;
+
+			// spawn unit
+			GameObject weaponSpawn = Instantiate( weaponPrefab, mount.position, Quaternion.identity, mount );
+			Weapons.Add( weaponSpawn.GetComponent<Weapon>() );
+		}
 	}
 
 

@@ -18,4 +18,21 @@ namespace AIRogue.Logic.Exceptions
 		{
 		}
 	}
+
+	public class WeaponComponentNotAttachedException : Exception
+	{
+		public WeaponComponentNotAttachedException()
+		{
+		}
+
+		public WeaponComponentNotAttachedException(string message)
+			: base( message )
+		{
+		}
+
+		public WeaponComponentNotAttachedException(string message, Exception inner)
+			: base( message, inner )
+		{
+		}
+	}
 }

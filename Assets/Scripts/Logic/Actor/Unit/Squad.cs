@@ -50,7 +50,7 @@ namespace AIRogue.Logic.Actor
 			Unit unit = null;
 
 			// get prefab
-			GameObject prefab = unitBank.GetUnitPrefab( unitType );
+			GameObject prefab = unitBank.GetPrefab( unitType );
 
 			if (prefab != null )
             {

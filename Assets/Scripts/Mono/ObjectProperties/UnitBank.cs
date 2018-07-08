@@ -20,7 +20,7 @@ namespace AIRogue.Unity.ObjectProperties {
 
 		// check to make sure all the prefabs have a Unit component so the UnitSpawner 
 		// doesn't have any trouble during its search for the correct UnitType
-		private void Start()
+		void Start()
 		{
 			foreach (var unit in UnitPrefabs)
 			{
@@ -39,7 +39,7 @@ namespace AIRogue.Unity.ObjectProperties {
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
-		public GameObject GetUnitPrefab(UnitType type)
+		public GameObject GetPrefab(UnitType type)
 		{
 			foreach (var prefab in UnitPrefabs)
 			{
