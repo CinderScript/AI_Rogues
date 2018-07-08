@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4203097727822880}
   - component: {fileID: 114654445464253722}
   m_Layer: 0
-  m_Name: Ammo-BlueLaser
+  m_Name: Ammo-BlueCannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

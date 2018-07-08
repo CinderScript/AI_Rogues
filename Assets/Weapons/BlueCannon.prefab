@@ -587,4 +587,4 @@ MonoBehaviour:
   RateOfFire: 1
   Range: 10
   Velocity: 10
-  AmmoPrefab: {fileID: 0}
+  AmmoPrefab: {fileID: 1557922754166998, guid: f471342c0328d024680fec39d4d4a74f, type: 2}
