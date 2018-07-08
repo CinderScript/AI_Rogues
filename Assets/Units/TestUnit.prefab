@@ -282,6 +282,6 @@ MonoBehaviour:
   Shields: 1
   AttackRange: 1
   AttackDamage: 10
-  MaxVelocity: 2.5
-  AccelerationForce: 2
-  RotationSpeed: 25
+  MaxVelocity: 8
+  AccelerationForce: 3
+  RotationSpeed: 100
