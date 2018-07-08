@@ -1,40 +1,44 @@
-﻿using AIRogue.Logic.Events;
+﻿using AIRogue.Events;
+
 using UnityEngine;
 
-public class UnitCamera : MonoBehaviour
+namespace AIRogue.GameObjects
 {
-	public GameObject Target = null;
-
-	[Header( "Offsets" )]
-	public int HeightOffest;
-	public int LengthOffest;
-
-	void Awake()
+	public class UnitCamera : MonoBehaviour
 	{
-		EventManager.Instance.AddListener<UnitSelectedEvent>( OnUnitSelected );
-	}
+		public GameObject Target = null;
 
-	// Use this for initialization
-	void Start()
-	{
+		[Header( "Offsets" )]
+		public int HeightOffest;
+		public int LengthOffest;
 
-	}
+		void Awake()
+		{
+			EventManager.Instance.AddListener<UnitSelectedEvent>( OnUnitSelected );
+		}
 
-	// Update is called once per frame
-	void LateUpdate()
-	{
-		Vector3 offset = new Vector3(
-			Target.transform.position.x,
-			Target.transform.position.y + HeightOffest,
-			Target.transform.position.z - LengthOffest );
+		// Use this for initialization
+		void Start()
+		{
 
-		transform.position = offset;
-	}
+		}
 
-	// Game Event Listener
-	void OnUnitSelected(UnitSelectedEvent e)
-	{
-		Target = e.SelectedUnit.gameObject;
-		// Debug.Log( "A unit was selected: " + Target.name );
+		// Update is called once per frame
+		void LateUpdate()
+		{
+			Vector3 offset = new Vector3(
+				Target.transform.position.x,
+				Target.transform.position.y + HeightOffest,
+				Target.transform.position.z - LengthOffest );
+
+			transform.position = offset;
+		}
+
+		// Game Event Listener
+		void OnUnitSelected(UnitSelectedEvent e)
+		{
+			Target = e.SelectedUnit.gameObject;
+			// Debug.Log( "A unit was selected: " + Target.name );
+		}
 	}
 }

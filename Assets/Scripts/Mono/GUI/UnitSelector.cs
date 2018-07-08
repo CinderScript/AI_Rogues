@@ -1,5 +1,6 @@
-﻿using AIRogue.Logic.Actor;
-using AIRogue.Logic.Events;
+﻿using AIRogue.Events;
+using AIRogue.GameObjects;
+
 using UnityEngine;
 
 public class UnitSelector : MonoBehaviour {
