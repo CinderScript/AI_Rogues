@@ -7,5 +7,6 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class Projectile : Damage
 	{
+
 	}
 }

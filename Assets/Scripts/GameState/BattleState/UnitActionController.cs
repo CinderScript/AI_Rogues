@@ -5,6 +5,7 @@ namespace AIRogue.GameState.Battle
 {
 	class UnitActionController
 	{
+		protected Unit unit;
 		protected Transform transform;
 		protected Rigidbody rigidbody;
 
@@ -18,6 +19,7 @@ namespace AIRogue.GameState.Battle
 
 		public UnitActionController(Unit unit)
 		{
+			this.unit = unit;
 			transform = unit.gameObject.transform;
 			rigidbody = unit.gameObject.GetComponent<Rigidbody>();
 
@@ -85,12 +87,12 @@ namespace AIRogue.GameState.Battle
 			transform.Rotate( 0, shipRotationSpeed * Time.deltaTime * inputDirection, 0 );
 		}
 
-		internal void PrimaryAttack()
+		public void PrimaryAttack()
 		{
-			
+			unit.FireWeapons();
 		}
 
-		internal void SecondaryAttack()
+		public void SecondaryAttack()
 		{
 			
 		}

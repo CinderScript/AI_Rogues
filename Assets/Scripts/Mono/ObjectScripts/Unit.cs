@@ -6,7 +6,7 @@ using UnityEngine;
 namespace AIRogue.GameObjects {
 
 	/// <summary>
-	/// A gameplay unit used in Pawn of Kings.
+	/// A gameplay unit used in AI Rogue.
 	/// </summary>
 	class Unit : MonoBehaviour
 	{
@@ -51,6 +51,14 @@ namespace AIRogue.GameObjects {
 			// spawn unit
 			GameObject weaponSpawn = Instantiate( weaponPrefab, mount.position, Quaternion.identity, mount );
 			Weapons.Add( weaponSpawn.GetComponent<Weapon>() );
+		}
+
+		public void FireWeapons()
+		{
+			foreach (var weapon in Weapons)
+			{
+				weapon.Fire();
+			}
 		}
 	}
 

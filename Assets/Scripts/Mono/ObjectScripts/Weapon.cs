@@ -18,11 +18,23 @@ namespace AIRogue.GameObjects
 		[Header( "Projectile, Laser, etc..." )]
 		public GameObject AmmoPrefab;
 
-		public Transform BulletSpawnPoint { get; private set; }
+		private Unit thisUnit;
+		private Transform damagerSpawnPoint;
+		private float lastShotTimestamp;
 
-		void Start()
+
+		void Awake()
 		{
-			BulletSpawnPoint = gameObject.GetComponentInChildren<BulletSpawnPoint>().transform;
+			thisUnit = GetComponentInParent<Unit>();
+			damagerSpawnPoint = GetComponentInChildren<BulletSpawnPoint>().transform;
+		}
+
+		public void Fire()
+		{
+			// calculate velocity: unit.ridgidbody + Velocity
+
+			GameObject projectile = Instantiate( AmmoPrefab, damagerSpawnPoint.position, Quaternion.identity );
+			projectile.name = $"Projectile from {thisUnit.name}.{WeaponType}";
 		}
 	}
 
