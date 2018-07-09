@@ -9,11 +9,13 @@ namespace AIRogue.GameObjects
 	{
 		public WeaponType WeaponType = WeaponType.Not_Found;
 
+		[Header( "Stats" )]
 		public float Damage = 1;
 		public float RateOfFire = 1;
 		public float Range = 10;
 		public float Velocity = 10;
 
+		[Header( "Projectile, Laser, etc..." )]
 		public GameObject AmmoPrefab;
 
 		public Transform BulletSpawnPoint { get; private set; }
