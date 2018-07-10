@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4735078726443558}
-  - component: {fileID: 114267387752300180}
+  - component: {fileID: 114670908454381332}
   m_Layer: 0
   m_Name: SlowGreenLaser
   m_TagString: Untagged
@@ -350,7 +350,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1333383565699238}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114267387752300180
+--- !u!114 &114670908454381332
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -358,15 +358,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1290006123575380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956064198a8572d4c84185289cbaf399, type: 3}
+  m_Script: {fileID: 11500000, guid: 6507355fcb6a30842a74d7f924831cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponType: 5
   Damage: 1
   RateOfFire: 1
   Range: 10
-  Velocity: 10
   AmmoPrefab: {fileID: 1465864507707826, guid: 467ed6afa9441ff4aac96fa20a073803, type: 2}
+  Velocity: 10
 --- !u!114 &114760377830380890
 MonoBehaviour:
   m_ObjectHideFlags: 1

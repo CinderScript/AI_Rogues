@@ -39,6 +39,11 @@ namespace AIRogue.GameObjects {
 
 		public void SpawnWeapon(GameObject weaponPrefab)
 		{
+			if (weaponPrefab == null)
+			{
+				Debug.LogError( $"The SpawnWeapon method on Unit {name} was passed a null value" );
+			}
+
 			if (weaponPrefab.GetComponent<Weapon>() == null)
 			{
 				string msg = $"The Prefab named \"{weaponPrefab.name}\" does not have a Weapon component attached.";

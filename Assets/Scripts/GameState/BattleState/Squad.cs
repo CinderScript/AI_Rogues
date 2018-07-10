@@ -56,7 +56,7 @@ namespace AIRogue.GameState.Battle
             {
 				// spawn unit
 				GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
-				unitSpawn.name = Name + " " + unitType + " " + controllers.Count;
+				unitSpawn.name = Name + " " + unitType + controllers.Count;
 
 				unit = unitSpawn.GetComponent<Unit>();
 

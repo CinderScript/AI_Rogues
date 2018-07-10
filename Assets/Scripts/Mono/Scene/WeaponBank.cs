@@ -43,6 +43,9 @@ namespace AIRogue.Scene
 				}
 			}
 
+			var msg = $"The Weapon prefab of type \"{type}\" could not be " +
+				"found in the WeaponBank.  A null value was returned";
+			Debug.LogWarning( msg );
 			return null;
 		}
 	}

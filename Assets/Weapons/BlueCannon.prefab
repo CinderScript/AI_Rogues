@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4973255145483166}
-  - component: {fileID: 114659037807067206}
+  - component: {fileID: 114760092349976426}
   m_Layer: 0
   m_Name: BlueCannon
   m_TagString: Untagged
@@ -571,7 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 017113697383b6848a1b1addb6812211, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114659037807067206
+--- !u!114 &114760092349976426
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -579,12 +579,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248612026052168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956064198a8572d4c84185289cbaf399, type: 3}
+  m_Script: {fileID: 11500000, guid: 6507355fcb6a30842a74d7f924831cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponType: 2
   Damage: 1
   RateOfFire: 1
   Range: 10
-  Velocity: 10
   AmmoPrefab: {fileID: 1557922754166998, guid: f471342c0328d024680fec39d4d4a74f, type: 2}
+  Velocity: 10

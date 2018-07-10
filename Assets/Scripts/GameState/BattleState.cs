@@ -48,8 +48,8 @@ namespace AIRogue.GameState
 			Squad playerSquad = new Squad( unitBank, levelProperties.PlayerStart.position, "Player" );
 
 			Unit player = playerSquad.SpawnUnit<PlayerController>( UnitType.SimpleFighter );
-			player.SpawnWeapon(weaponBank.GetPrefab(WeaponType.GreenLaser));
-			player.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ));
+			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.GreenLaser) );
+			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.RedLaser) );
 
 			playerSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 

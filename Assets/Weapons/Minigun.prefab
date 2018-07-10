@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4682453273269244}
-  - component: {fileID: 114156611395956106}
+  - component: {fileID: 114484839401835710}
   m_Layer: 0
   m_Name: Minigun
   m_TagString: Untagged
@@ -180,7 +180,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563122853146214}
   m_Mesh: {fileID: 4300000, guid: 03be80c2c70b3084283fefa105f7202c, type: 3}
---- !u!114 &114156611395956106
+--- !u!114 &114484839401835710
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -188,12 +188,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1613013772259670}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 956064198a8572d4c84185289cbaf399, type: 3}
+  m_Script: {fileID: 11500000, guid: 6507355fcb6a30842a74d7f924831cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponType: 6
   Damage: 1
   RateOfFire: 1
   Range: 10
-  Velocity: 10
   AmmoPrefab: {fileID: 1315191894800984, guid: 28e4538b28143934daa4a5c7cd66560e, type: 2}
+  Velocity: 10
