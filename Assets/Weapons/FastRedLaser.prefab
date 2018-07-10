@@ -378,4 +378,4 @@ MonoBehaviour:
   Range: 20
   DamagerPrefab: {fileID: 1315191894800984, guid: 28e4538b28143934daa4a5c7cd66560e,
     type: 2}
-  Velocity: 20
+  Velocity: 35

@@ -17,10 +17,12 @@ namespace AIRogue.GameObjects
 
 		public override void Fire()
 		{
-			// calculate velocity: unit.ridgidbody + Velocity
-
 			GameObject projectile = Instantiate( DamagerPrefab, damagerSpawnPoint.position, Quaternion.identity );
 			projectile.name = $"Projectile from {thisUnit.name}.{WeaponType}";
+
+			// set velocity
+			projectile.GetComponent<Rigidbody>().velocity = Velocity * thisUnit.transform.forward
+				+ thisUnit.GetComponent<Rigidbody>().velocity;
 		}
 	}
 }
