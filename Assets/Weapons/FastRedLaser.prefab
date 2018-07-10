@@ -372,9 +372,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6507355fcb6a30842a74d7f924831cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  Damage: 1
-  RateOfFire: 1
-  Range: 10
-  AmmoPrefab: {fileID: 1315191894800984, guid: 28e4538b28143934daa4a5c7cd66560e, type: 2}
-  Velocity: 10
+  WeaponType: 3
+  Damage: 0.5
+  RateOfFire: 3
+  Range: 20
+  DamagerPrefab: {fileID: 1315191894800984, guid: 28e4538b28143934daa4a5c7cd66560e,
+    type: 2}
+  Velocity: 20

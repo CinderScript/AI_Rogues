@@ -583,8 +583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponType: 1
-  Damage: 1
+  Damage: 10
   RateOfFire: 1
-  Range: 10
-  AmmoPrefab: {fileID: 1794260022970158, guid: ebc646e8c51da7c47865cda1f84396aa, type: 2}
+  Range: 30
+  DamagerPrefab: {fileID: 1794260022970158, guid: ebc646e8c51da7c47865cda1f84396aa,
+    type: 2}
   Velocity: 10

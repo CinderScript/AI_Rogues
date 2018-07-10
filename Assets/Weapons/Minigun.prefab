@@ -194,6 +194,7 @@ MonoBehaviour:
   WeaponType: 6
   Damage: 1
   RateOfFire: 1
-  Range: 10
-  AmmoPrefab: {fileID: 1315191894800984, guid: 28e4538b28143934daa4a5c7cd66560e, type: 2}
+  Range: 15
+  DamagerPrefab: {fileID: 1315191894800984, guid: 28e4538b28143934daa4a5c7cd66560e,
+    type: 2}
   Velocity: 10

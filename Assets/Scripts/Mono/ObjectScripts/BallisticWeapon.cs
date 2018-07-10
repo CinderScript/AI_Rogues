@@ -7,7 +7,7 @@ namespace AIRogue.GameObjects
 	/// </summary>
 	class BallisticWeapon : Weapon
 	{
-		[Header( "Stats" )]
+		[Header( "Ballistic Weapon Stats" )]
 		public float Velocity = 10;
 
 		protected override void Awake()
@@ -19,7 +19,7 @@ namespace AIRogue.GameObjects
 		{
 			// calculate velocity: unit.ridgidbody + Velocity
 
-			GameObject projectile = Instantiate( AmmoPrefab, damagerSpawnPoint.position, Quaternion.identity );
+			GameObject projectile = Instantiate( DamagerPrefab, damagerSpawnPoint.position, Quaternion.identity );
 			projectile.name = $"Projectile from {thisUnit.name}.{WeaponType}";
 		}
 	}

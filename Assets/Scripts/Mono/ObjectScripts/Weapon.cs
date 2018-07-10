@@ -5,7 +5,7 @@ namespace AIRogue.GameObjects
 	/// <summary>
 	/// A gameplay unit used in Pawn of Kings.
 	/// </summary>
-	class Weapon : MonoBehaviour
+	abstract class Weapon : MonoBehaviour
 	{
 		public WeaponType WeaponType = WeaponType.Not_Found;
 
@@ -15,7 +15,9 @@ namespace AIRogue.GameObjects
 		public float Range = 10;
 
 		[Header( "Projectile, Laser, etc..." )]
-		public GameObject AmmoPrefab;
+		public GameObject DamagerPrefab;  // keep here and not in inheriting class...  
+										  // The Damager should be Instantiated in an object pool or as a
+										  // single object (particle system) and passed a reference to this Unit
 
 		protected Unit thisUnit;
 		protected Transform damagerSpawnPoint;
@@ -28,10 +30,7 @@ namespace AIRogue.GameObjects
 			damagerSpawnPoint = GetComponentInChildren<BulletSpawnPoint>().transform;
 		}
 
-		public virtual void Fire()
-		{
-			
-		}
+		public abstract void Fire();
 	}
 
 	enum WeaponType {
