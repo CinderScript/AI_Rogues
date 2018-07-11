@@ -31,6 +31,7 @@ namespace AIRogue.GameObjects {
 		public Unit Target { get; set; }
 
 		public WeaponMount[] WeaponMounts { get; private set; }
+		public int SquadPosition { get; set; }
 
 		void Awake()
 		{
@@ -54,8 +55,11 @@ namespace AIRogue.GameObjects {
 			Transform mount = WeaponMounts[weaponNumber].transform;
 
 			// spawn unit
-			GameObject weaponSpawn = Instantiate( weaponPrefab, mount.position, Quaternion.identity, mount );
-			Weapons.Add( weaponSpawn.GetComponent<Weapon>() );
+			var weaponSpawn = Instantiate( weaponPrefab, mount.position, Quaternion.identity, mount );
+			var weapon = weaponSpawn.GetComponent<Weapon>();
+			weapon.WeaponPosition = Weapons.Count;
+
+			Weapons.Add( weapon );
 		}
 
 		public void FireWeapons()
@@ -64,6 +68,11 @@ namespace AIRogue.GameObjects {
 			{
 				weapon.FireWeapon();
 			}
+		}
+
+		public override string ToString()
+		{
+			return $"{Squad}.{SquadPosition}.{UnitType}";
 		}
 	}
 

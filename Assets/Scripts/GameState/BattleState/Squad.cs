@@ -56,9 +56,12 @@ namespace AIRogue.GameState.Battle
             {
 				// spawn unit
 				GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
-				unitSpawn.name = Name + " " + unitType + controllers.Count;
 
 				unit = unitSpawn.GetComponent<Unit>();
+				unit.SquadPosition = controllers.Count;
+				unit.Squad = this;
+
+				unitSpawn.name = unit.ToString();
 
 				T controller = new T();
                 controller.AssignUnit( unit );
@@ -71,6 +74,11 @@ namespace AIRogue.GameState.Battle
 
 			return unit;
         }
+
+		public override string ToString()
+		{
+			return Name;
+		}
 
 		/// <summary>
 		/// Calculates the position a new unit should be spawned at.

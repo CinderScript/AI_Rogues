@@ -35,4 +35,21 @@ namespace AIRogue.Exceptions
 		{
 		}
 	}
+
+	public class DamageComponentNotAttachedException : Exception
+	{
+		public DamageComponentNotAttachedException()
+		{
+		}
+
+		public DamageComponentNotAttachedException(string message)
+			: base( message )
+		{
+		}
+
+		public DamageComponentNotAttachedException(string message, Exception inner)
+			: base( message, inner )
+		{
+		}
+	}
 }

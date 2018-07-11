@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using AIRogue.Exceptions;
+using UnityEngine;
 
 namespace AIRogue.GameObjects
 {
@@ -20,6 +21,8 @@ namespace AIRogue.GameObjects
 										  // single object (particle system) and passed a reference to this Unit
 										  // in the Start method
 
+		public int WeaponPosition { get; set; }
+
 		protected Unit thisUnit;
 		protected Transform damagerSpawnPoint;
 		private float nextShotTimestamp;
@@ -28,20 +31,22 @@ namespace AIRogue.GameObjects
 		{
 			thisUnit = GetComponentInParent<Unit>();
 			damagerSpawnPoint = GetComponentInChildren<BulletSpawnPoint>().transform;
+
+			if (DamagerPrefab == null)
+			{
+				Debug.LogError( $"The DamagerPrefab on Weapon {this} was given a null value" );
+			}
+
+			if (DamagerPrefab.GetComponent<Damage>() == null)
+			{
+				string msg = $"The DamagerPrefab on Weapon {this} does not have a Damage component attached";
+				throw new DamageComponentNotAttachedException( msg );
+			}
 		}
 
 		protected virtual void Start()
 		{
-			//if (DamagerPrefab == null)
-			//{
-			//	Debug.LogError( $"The SpawnWeapon method on Unit {name} was passed a null value" );
-			//}
 
-			//if (weaponPrefab.GetComponent<Weapon>() == null)
-			//{
-			//	string msg = $"The Prefab named \"{weaponPrefab.name}\" does not have a Weapon component attached.";
-			//	throw new WeaponComponentNotAttachedException( msg );
-			//}
 		}
 
 		public void FireWeapon()
@@ -58,7 +63,7 @@ namespace AIRogue.GameObjects
 
 		public override string ToString()
 		{
-			return base.ToString();
+			return $"{thisUnit}.{WeaponPosition}.{WeaponType}";
 		}
 	}
 
