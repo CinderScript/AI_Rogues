@@ -13,9 +13,14 @@ namespace AIRogue.GameObjects
 		protected override void Awake()
 		{
 			base.Awake();
+
+
+
+			// spawn bullet pool
+				// set Damage properties like "MaxLifetime", "ThisUnit"
 		}
 
-		public override void Fire()
+		protected override void activateShot()
 		{
 			GameObject projectile = Instantiate( DamagerPrefab, damagerSpawnPoint.position, Quaternion.identity );
 			projectile.name = $"Projectile from {thisUnit.name}.{WeaponType}";

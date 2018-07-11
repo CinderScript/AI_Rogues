@@ -62,7 +62,7 @@ namespace AIRogue.GameObjects {
 		{
 			foreach (var weapon in Weapons)
 			{
-				weapon.Fire();
+				weapon.FireWeapon();
 			}
 		}
 	}

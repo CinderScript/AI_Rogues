@@ -7,5 +7,6 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class Damage : MonoBehaviour
 	{
+		public float MaxLifeTime = 1.5f;
 	}
 }
