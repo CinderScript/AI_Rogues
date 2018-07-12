@@ -29,13 +29,13 @@ namespace AIRogue.GameObjects
 
 		public int WeaponPosition { get; set; }
 
-		protected Unit thisUnit;
+		protected Unit unit;
 		protected Transform damagerSpawnPoint;
 		private float nextShotTimestamp;
 
 		protected virtual void Awake()
 		{
-			thisUnit = transform.root.GetComponent<Unit>();
+			unit = transform.root.GetComponent<Unit>();
 			damagerSpawnPoint = GetComponentInChildren<BulletSpawnPoint>().transform;
 
 			if (DamagerPrefab == null)
@@ -43,7 +43,7 @@ namespace AIRogue.GameObjects
 				Debug.LogError( $"The DamagerPrefab on Weapon {this} was given a null value" );
 			}
 
-			if (DamagerPrefab.GetComponent<Damage>() == null)
+			if (DamagerPrefab.GetComponent<Damager>() == null)
 			{
 				string msg = $"The DamagerPrefab on Weapon {this} does not have a Damage component attached";
 				throw new DamageComponentNotAttachedException( msg );
@@ -69,7 +69,7 @@ namespace AIRogue.GameObjects
 
 		public override string ToString()
 		{
-			return $"{thisUnit}.{WeaponPosition}.{WeaponType}";
+			return $"{unit}.{WeaponPosition}.{WeaponType}";
 		}
 	}
 

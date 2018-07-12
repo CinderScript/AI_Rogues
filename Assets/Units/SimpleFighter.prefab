@@ -422,11 +422,11 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 2
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &65916678582865732
 BoxCollider:
@@ -502,10 +502,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitType: 2
-  Health: 1
-  Shields: 1
-  MaxVelocity: 10
-  AccelerationForce: 4
+  Health: 10
+  Shields: 20
+  MaxVelocity: 20
+  AccelerationForce: 6
   RotationSpeed: 130
   WeaponLevel: 1
   Weapons: []

@@ -44,17 +44,19 @@ namespace AIRogue.GameObjects
 
 		protected override void activateShot()
 		{
-			GameObject projectile = Instantiate( DamagerPrefab, damagerSpawnPoint.position, thisUnit.transform.rotation );
-			projectile.name = $"Projectile from {thisUnit.name}.{WeaponType}";
+			GameObject projectile = Instantiate( DamagerPrefab, damagerSpawnPoint.position, unit.transform.rotation );
+			projectile.name = $"Projectile from {unit.name}.{WeaponType}";
 
 			// set velocity
-			projectile.GetComponent<Rigidbody>().velocity = Velocity * thisUnit.transform.forward
-				+ thisUnit.GetComponent<Rigidbody>().velocity;
+			projectile.GetComponent<Rigidbody>().velocity = Velocity * unit.transform.forward
+				+ unit.GetComponent<Rigidbody>().velocity;
 
-			// calculate timestamp for removal
-			Projectile bullet = DamagerPrefab.GetComponent<Projectile>();
+			// Initialize Bullet Properties
+			Projectile bullet = projectile.GetComponent<Projectile>();
 			float flightTime = Range / Velocity;
 			bullet.MaxFlightTime = flightTime;
+			bullet.Owner = unit;
+			bullet.Damage = Damage;
 		}
 	}
 }
