@@ -7,6 +7,14 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class Projectile : Damage
 	{
+		public float MaxFlightTime = 1.5f;
 
+		private float maxLifeTimestamp;
+
+		private void Start()
+		{
+			maxLifeTimestamp = Time.time + MaxFlightTime;
+			Destroy( gameObject, MaxFlightTime );
+		}
 	}
 }

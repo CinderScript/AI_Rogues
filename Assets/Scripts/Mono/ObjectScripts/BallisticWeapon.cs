@@ -9,6 +9,9 @@ namespace AIRogue.GameObjects
 	class BallisticWeapon : Weapon
 	{
 		[Header( "Ballistic Weapon Stats" )]
+		/// <summary>
+		/// Velocity in units/sec of the projectile
+		/// </summary>
 		public float Velocity = 10;
 
 		protected override void Awake()
@@ -50,6 +53,8 @@ namespace AIRogue.GameObjects
 
 			// calculate timestamp for removal
 			Projectile bullet = DamagerPrefab.GetComponent<Projectile>();
+			float flightTime = Range / Velocity;
+			bullet.MaxFlightTime = flightTime;
 		}
 	}
 }

@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 4751278902676442}
   - component: {fileID: 54586438374156368}
   - component: {fileID: 114779433811920316}
+  - component: {fileID: 65916678582865732}
   m_Layer: 0
   m_Name: SimpleFighter
   m_TagString: Untagged
@@ -218,7 +219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486090201975002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 528.36694, y: 109.13905, z: 120.38319}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4384977724655834}
@@ -427,6 +428,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!65 &65916678582865732
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1486090201975002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.6305604, y: 2.2431378, z: 5.9469604}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95223599296081390
 Animator:
   serializedVersion: 3
@@ -491,8 +504,8 @@ MonoBehaviour:
   UnitType: 2
   Health: 1
   Shields: 1
-  AttackRange: 1
-  AttackDamage: 10
   MaxVelocity: 10
   AccelerationForce: 4
   RotationSpeed: 130
+  WeaponLevel: 1
+  Weapons: []

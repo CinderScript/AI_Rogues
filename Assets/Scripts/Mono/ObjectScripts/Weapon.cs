@@ -12,7 +12,13 @@ namespace AIRogue.GameObjects
 
 		[Header( "Stats" )]
 		public float Damage = 1;
+		/// <summary>
+		/// Shots per second
+		/// </summary>
 		public float RateOfFire = 1; // shots per sec
+		/// <summary>
+		/// How far away the damager should reach before it despawns or stops
+		/// </summary>
 		public float Range = 20;
 
 		[Header( "Projectile, Laser, etc..." )]
@@ -29,7 +35,7 @@ namespace AIRogue.GameObjects
 
 		protected virtual void Awake()
 		{
-			thisUnit = GetComponentInParent<Unit>();
+			thisUnit = transform.root.GetComponent<Unit>();
 			damagerSpawnPoint = GetComponentInChildren<BulletSpawnPoint>().transform;
 
 			if (DamagerPrefab == null)
