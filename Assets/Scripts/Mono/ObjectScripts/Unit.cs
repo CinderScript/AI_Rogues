@@ -12,7 +12,8 @@ namespace AIRogue.GameObjects {
 	{
 		[Header( "Gameplay Properties" )]
 		public UnitType UnitType = UnitType.Not_Found;
-		public GameObject ExplosionParticleSystem;
+		public GameObject DeathExplosionEffect;
+		public GameObject ShieldImpactEffect;
 
 		[Header( "Condition" )]
 		public float Health = 1;
@@ -109,7 +110,7 @@ namespace AIRogue.GameObjects {
 		private void destroyShip()
 		{
 			GameObject explosionObj = Instantiate(
-				ExplosionParticleSystem, transform.position, transform.rotation );
+				DeathExplosionEffect, transform.position, transform.rotation );
 				
 			ParticleSystem particles = explosionObj.GetComponent<ParticleSystem>();
 
