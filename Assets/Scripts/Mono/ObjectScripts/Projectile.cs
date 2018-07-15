@@ -7,6 +7,9 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class Projectile : Damager
 	{
+		public GameObject ImpactEffect;
+
+
 		/// <summary>
 		/// The Unit that fired this Damage object
 		/// </summary>
