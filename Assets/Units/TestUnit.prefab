@@ -151,10 +151,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitType: 1
-  ExplosionParticleSystem: {fileID: 1957113391800994, guid: 104c8c7454010d14e9185578425d34ad,
+  DeathExplosionEffect: {fileID: 1957113391800994, guid: 104c8c7454010d14e9185578425d34ad,
     type: 2}
-  Health: 2
-  Shields: 2
+  ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
+    type: 2}
+  Health: 5
+  Shields: 10
   MaxVelocity: 12
   AccelerationForce: 6
   RotationSpeed: 100

@@ -502,7 +502,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitType: 2
-  ExplosionParticleSystem: {fileID: 1957113391800994, guid: 104c8c7454010d14e9185578425d34ad,
+  DeathExplosionEffect: {fileID: 1957113391800994, guid: 104c8c7454010d14e9185578425d34ad,
+    type: 2}
+  ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
     type: 2}
   Health: 10
   Shields: 20

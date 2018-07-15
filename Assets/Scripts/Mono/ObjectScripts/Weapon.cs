@@ -50,7 +50,6 @@ namespace AIRogue.GameObjects
 				throw new DamageComponentNotAttachedException( msg );
 			}
 		}
-
 		protected virtual void Start()
 		{
 

@@ -109,12 +109,12 @@ namespace AIRogue.GameObjects {
 
 		private void destroyShip()
 		{
-			GameObject explosionObj = Instantiate(
+			GameObject effect = Instantiate(
 				DeathExplosionEffect, transform.position, transform.rotation );
 				
-			ParticleSystem particles = explosionObj.GetComponent<ParticleSystem>();
+			ParticleSystem particles = effect.GetComponent<ParticleSystem>();
 
-			Destroy( explosionObj, particles.main.duration );
+			Destroy( effect, particles.main.duration );
 			Destroy( gameObject );
 		}
 
