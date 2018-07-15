@@ -8,7 +8,9 @@ namespace AIRogue.GameObjects
 	/// </summary>
 	abstract class Weapon : MonoBehaviour
 	{
+		[Header( "Gameplay Properties" )]
 		public WeaponType WeaponType = WeaponType.Not_Found;
+		public GameObject ImpactEffect;
 
 		[Header( "Stats" )]
 		public float Damage = 1;
