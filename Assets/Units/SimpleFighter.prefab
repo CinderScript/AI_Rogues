@@ -502,6 +502,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UnitType: 2
+  ExplosionParticleSystem: {fileID: 1957113391800994, guid: 104c8c7454010d14e9185578425d34ad,
+    type: 2}
   Health: 10
   Shields: 20
   MaxVelocity: 20

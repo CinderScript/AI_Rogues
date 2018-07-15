@@ -10,8 +10,9 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class Unit : MonoBehaviour
 	{
-		[Header( "Unit Values" )]
+		[Header( "Gameplay Properties" )]
 		public UnitType UnitType = UnitType.Not_Found;
+		public GameObject ExplosionParticleSystem;
 
 		[Header( "Condition" )]
 		public float Health = 1;
@@ -73,7 +74,7 @@ namespace AIRogue.GameObjects {
 			var breakThrough = damageShields( damage );
 			damageHull( breakThrough );
 
-			if (Health < 0)
+			if (Health <= 0)
 			{
 				destroyShip();
 			}
@@ -107,6 +108,12 @@ namespace AIRogue.GameObjects {
 
 		private void destroyShip()
 		{
+			GameObject explosionObj = Instantiate(
+				ExplosionParticleSystem, transform.position, transform.rotation );
+				
+			ParticleSystem particles = explosionObj.GetComponent<ParticleSystem>();
+
+			Destroy( explosionObj, particles.main.duration );
 			Destroy( gameObject );
 		}
 
