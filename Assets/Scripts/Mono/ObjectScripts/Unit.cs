@@ -17,7 +17,7 @@ namespace AIRogue.GameObjects {
 
 		[Header( "Condition" )]
 		public float Health = 1;
-		public float Shields = 1;
+		public float ShieldCapacity = 1;
 
 		[Header( "Movement" )]
 		public float MaxVelocity = 5;
@@ -26,18 +26,21 @@ namespace AIRogue.GameObjects {
 
 		[Header( "Attack" )]
 		public int WeaponLevel = 1;
-		public List<Weapon> Weapons = new List<Weapon>();
 
 		/* * * Assigned during gameplay * * */
 		public Squad Squad { get; set; }
 		public Unit Target { get; set; }
-
-		public WeaponMount[] WeaponMounts { get; private set; }
 		public int SquadPosition { get; set; }
+
+		public List<Weapon> Weapons = new List<Weapon>();
+		public WeaponMount[] WeaponMounts { get; private set; }
+		public Shield Shield { get; private set; }
 
 		void Awake()
 		{
-			WeaponMounts = gameObject.GetComponentsInChildren<WeaponMount>();
+			WeaponMounts = GetComponentsInChildren<WeaponMount>();
+			Shield = GetComponentInChildren<Shield>();
+			Shield.Initialize( ShieldCapacity );
 		}
 
 		public void SpawnWeapon(GameObject weaponPrefab)
@@ -72,41 +75,20 @@ namespace AIRogue.GameObjects {
 		}
 		public void TakeDamage(float damage)
 		{
-			var breakThrough = damageShields( damage );
+			var breakThrough = Shield.TakeDamage( damage );
 			damageHull( breakThrough );
 
 			if (Health <= 0)
 			{
 				destroyShip();
 			}
-			Debug.Log( $"{this} has Shields: {Shields}, Health: {Health}" );
+			Debug.Log( $"{this} has Shields: {Shield.HitPoints}, Health: {Health}" );
 		}
 
-		/// <summary>
-		/// Damages this Unit's shields and returns the amount of damage that 
-		/// could not be absorbed.
-		/// </summary>
-		/// <param name="damage"></param>
-		/// <returns>Through Damage</returns>
-		private float damageShields(float damage)
-		{
-			Shields -= damage;
-
-			var throughDamage = 0f;
-
-			if (Shields < 0)
-			{
-				throughDamage = Shields * -1f;
-				Shields = 0;
-			}
-
-			return throughDamage;
-		}
 		private void damageHull(float damage)
 		{
 			Health -= damage;
 		}
-
 		private void destroyShip()
 		{
 			GameObject effect = Instantiate(

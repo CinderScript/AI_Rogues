@@ -7,7 +7,8 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class Projectile : Damager
 	{
-		public GameObject ImpactEffectPrefab;
+		public GameObject shieldImpactPrefab;
+		public GameObject hullImpactPrefab;
 
 		/// <summary>
 		/// The Unit that fired this Damage object
@@ -35,7 +36,7 @@ namespace AIRogue.GameObjects {
 			Destroy( gameObject );
 
 			GameObject effect = Instantiate(
-								ImpactEffectPrefab, 
+								shieldImpactPrefab, 
 								collision.contacts[0].point, 
 								Quaternion.LookRotation(collision.contacts[0].normal) );
 			ParticleSystem particles = effect.GetComponent<ParticleSystem>();

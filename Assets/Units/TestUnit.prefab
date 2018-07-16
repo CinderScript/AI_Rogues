@@ -849,7 +849,7 @@ MonoBehaviour:
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
     type: 2}
   Health: 5
-  Shields: 10
+  ShieldCapacity: 1
   MaxVelocity: 12
   AccelerationForce: 6
   RotationSpeed: 100

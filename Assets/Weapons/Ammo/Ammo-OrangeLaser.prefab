@@ -150,5 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d68463d525ad2741835c18ed825a3c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ImpactEffectPrefab: {fileID: 1539836197541524, guid: 9395c704bcb0fb94c9fc4a4ed395a90b,
+  shieldImpactPrefab: {fileID: 1539836197541524, guid: 9395c704bcb0fb94c9fc4a4ed395a90b,
+    type: 2}
+  hullImpactPrefab: {fileID: 1513122459994994, guid: 7e0879a5b511e2146bd575d4a5d56be3,
     type: 2}
