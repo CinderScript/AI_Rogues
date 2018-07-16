@@ -19,7 +19,13 @@ namespace AIRogue.GameObjects {
 		protected override void Start()
 		{
 			Destroy( gameObject, MaxFlightTime );
-			Physics.IgnoreCollision( GetComponentInChildren<Collider>(), Owner.GetComponent<Collider>(), true );
+
+			Collider[] shipColliders = Owner.GetComponentsInChildren<Collider>();
+			Collider projectileCol = GetComponentInChildren<Collider>();
+			foreach (var shipCol in shipColliders)
+			{
+				Physics.IgnoreCollision( projectileCol, shipCol, true );
+			}
 		}
 
 		void OnCollisionEnter(Collision collision)
