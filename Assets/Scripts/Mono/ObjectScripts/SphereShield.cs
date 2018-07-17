@@ -10,8 +10,6 @@ namespace AIRogue.GameObjects {
 		public Gradient ShieldConditionColor;
 		public AnimationCurve ShieldFlashAnim;
 
-		private const float ALPHA_MAX = 0.6f;
-
 		private Collider shieldCollider;	// turns on and off
 		private Material shieldMaterial;    // color change on hit
 

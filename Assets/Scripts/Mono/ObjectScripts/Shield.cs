@@ -18,13 +18,8 @@ namespace AIRogue.GameObjects {
 
 		private float secSinceLastDamage; //updated each frame
 
-		protected virtual void Awake()
-		{
-		}
-		protected virtual void Start()
-		{
-
-		}
+		protected virtual void Awake(){}
+		protected virtual void Start(){}
 		protected virtual void Update()
 		{
 			secSinceLastDamage += Time.deltaTime;
