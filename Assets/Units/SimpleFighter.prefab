@@ -680,26 +680,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3ba52869831444fabd7c27565bf1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShieldConditionColor:
+    serializedVersion: 2
+    key0: {r: 1, g: 0.5172413, b: 0, a: 1}
+    key1: {r: 0.93668115, g: 0.97794116, b: 0.23010379, a: 1}
+    key2: {r: 0.92900616, g: 1, b: 0.2647059, a: 0}
+    key3: {r: 0.058823526, g: 0.68843836, b: 1, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 8674
+    ctime1: 20624
+    ctime2: 26985
+    ctime3: 58018
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
   ShieldFlashAnim:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 19.916128
-      outSlope: 19.916128
-      tangentMode: 0
+      time: 0.0031700134
+      value: 0.44932556
+      inSlope: -1.2349495
+      outSlope: 0.009781181
+      tangentMode: 1
     - serializedVersion: 2
-      time: 0.2
+      time: 0.34221998
+      value: 0.32098722
+      inSlope: -0.73192626
+      outSlope: -0.632364
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 1.0093758
+      value: 0.12851834
+      inSlope: -0.009983778
+      outSlope: -0.03496551
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 2.2362943
+      value: 0.07865493
+      inSlope: -0.05056827
+      outSlope: -0.10982192
+      tangentMode: 1
+    - serializedVersion: 2
+      time: 2.5
       value: 0
-      inSlope: -6.5136476
-      outSlope: -6.5136476
-      tangentMode: 0
+      inSlope: -0.020576587
+      outSlope: 0
+      tangentMode: 1
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  StrongShieldColor: {r: 0, g: 0.6275863, b: 1, a: 0.441}
-  WeakShieldColor: {r: 1, g: 0.43448275, b: 0, a: 0.341}
 --- !u!114 &114265498419239996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -739,7 +784,7 @@ MonoBehaviour:
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
     type: 2}
   Health: 10
-  ShieldCapacity: 1
+  ShieldCapacity: 12
   MaxVelocity: 20
   AccelerationForce: 6
   RotationSpeed: 130
