@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4275468782632558}
   - component: {fileID: 114438175742453776}
   - component: {fileID: 54077735775215378}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ammo-OrangeLaser
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,9 +39,9 @@ GameObject:
   - component: {fileID: 33811863568738550}
   - component: {fileID: 23605012728163626}
   - component: {fileID: 65545661095217432}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -33,14 +33,27 @@ namespace AIRogue.GameObjects {
 		{
 			Unit unit = collision.gameObject.GetComponent<Unit>();
 			unit.TakeDamage( Damage );
-			Destroy( gameObject );
+
+			var tag = collision.contacts[0].otherCollider.gameObject.tag;
+			GameObject impactPrefab;
+			if (tag == "Shield")
+			{
+				impactPrefab = shieldImpactPrefab;
+			}
+			else
+			{
+				impactPrefab = hullImpactPrefab;
+			}
 
 			GameObject effect = Instantiate(
-								shieldImpactPrefab, 
+								impactPrefab, 
 								collision.contacts[0].point, 
 								Quaternion.LookRotation(collision.contacts[0].normal) );
 			ParticleSystem particles = effect.GetComponent<ParticleSystem>();
+
 			Destroy( effect, particles.main.duration );
+			Destroy( gameObject );
+
 		}
 	}
 }

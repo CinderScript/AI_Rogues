@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33652177977548098}
   - component: {fileID: 65383729368768774}
   - component: {fileID: 23964468378266250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,9 +39,9 @@ GameObject:
   - component: {fileID: 4081937899769804}
   - component: {fileID: 114674654416508448}
   - component: {fileID: 54088826471077624}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ammo-GreenLaser
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
