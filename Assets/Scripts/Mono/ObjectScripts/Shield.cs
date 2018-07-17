@@ -16,9 +16,13 @@ namespace AIRogue.GameObjects {
 			}
 		}
 
+		private Unit unit;
 		private float secSinceLastDamage; //updated each frame
 
-		protected virtual void Awake(){}
+		protected virtual void Awake()
+		{
+			unit = transform.root.GetComponent<Unit>();
+		}
 		protected virtual void Start(){}
 		protected virtual void Update()
 		{
@@ -62,7 +66,7 @@ namespace AIRogue.GameObjects {
 
 			if (throughDamage > 0)
 			{
-				// damage the ship
+				unit.TakeDamage( damage, null );
 			}
 		}
 

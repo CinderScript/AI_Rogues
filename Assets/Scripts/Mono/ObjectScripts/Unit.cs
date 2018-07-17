@@ -75,6 +75,10 @@ namespace AIRogue.GameObjects {
 		}
 		public void TakeDamage(float damage, Collision collision)
 		{
+			TakeDamage( damage );
+		}
+		public void TakeDamage(float damage)
+		{
 			Health -= damage;
 
 			if (Health <= 0)
