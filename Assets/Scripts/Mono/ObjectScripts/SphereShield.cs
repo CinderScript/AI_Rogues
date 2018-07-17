@@ -7,11 +7,8 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class SphereShield : Shield
 	{
-		//public Gradient ShieldConditionColor;
+		public Gradient ShieldConditionColor;
 		public AnimationCurve ShieldFlashAnim;
-		
-		public Color StrongShieldColor;
-		public Color WeakShieldColor;
 
 		private const float ALPHA_MAX = 0.6f;
 
@@ -48,7 +45,7 @@ namespace AIRogue.GameObjects {
 
 		protected override void SetConditionApperance()
 		{
-			Color color = Color.Lerp( WeakShieldColor, StrongShieldColor, ShieldPercentage );
+			Color color = ShieldConditionColor.Evaluate( ShieldPercentage );
 			shieldMaterial.color = color;
 
 			startFlash();
