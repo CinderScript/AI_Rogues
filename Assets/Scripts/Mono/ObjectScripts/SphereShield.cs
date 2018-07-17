@@ -23,13 +23,15 @@ namespace AIRogue.GameObjects {
 
 			shieldCollider = GetComponentInChildren<Collider>();
 			shieldMaterial = GetComponentInChildren<Renderer>().material;
+
+			int lastKey = ShieldFlashAnim.length - 1;
+			flashTimeLength = ShieldFlashAnim[lastKey].time;
+
+			setShieldAlpha( 0 );
 		}
 		protected override void Start()
 		{
 			base.Start();
-
-			int lastKey = ShieldFlashAnim.length - 1;
-			flashTimeLength = ShieldFlashAnim[lastKey].time;
 		}
 		protected override void Update()
 		{
