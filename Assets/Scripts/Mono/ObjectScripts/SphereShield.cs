@@ -9,6 +9,7 @@ namespace AIRogue.GameObjects {
 	{
 		public Gradient ShieldConditionColor;
 		public AnimationCurve ShieldFlashAnim;
+		public GameObject ShieldFlashPrefab = null;
 
 		private Collider shieldCollider;	// turns on and off
 		private Material shieldMaterial;    // color change on hit
@@ -32,6 +33,8 @@ namespace AIRogue.GameObjects {
 		protected override void Start()
 		{
 			base.Start();
+
+			ShieldFlashPrefab = Unit.ShieldImpactEffect;
 		}
 		protected override void Update()
 		{
@@ -47,6 +50,17 @@ namespace AIRogue.GameObjects {
 			shieldMaterial.color = color;
 
 			startFlash();
+		}
+		protected override void collisionEffect(Collision collision)
+		{
+			GameObject effect = Instantiate(
+				ShieldFlashPrefab,
+				collision.contacts[0].point,
+				Quaternion.LookRotation( collision.contacts[0].normal ),
+				transform );
+
+			ParticleSystem particles = effect.GetComponent<ParticleSystem>();
+			Destroy( effect, particles.main.duration );
 		}
 
 		protected override void ShieldOff()

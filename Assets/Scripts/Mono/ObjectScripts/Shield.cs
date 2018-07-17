@@ -7,6 +7,7 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	abstract class Shield : MonoBehaviour, IDamageable
 	{
+		public float RechargeRate = 0.2f;
 		public float HitPointCapacity { get; private set; }
 		public float HitPoints { get; private set; }
 		public float ShieldPercentage
@@ -16,12 +17,13 @@ namespace AIRogue.GameObjects {
 			}
 		}
 
-		private Unit unit;
+		protected Unit Unit;
+
 		private float secSinceLastDamage; //updated each frame
 
 		protected virtual void Awake()
 		{
-			unit = transform.root.GetComponent<Unit>();
+			Unit = transform.root.GetComponent<Unit>();
 		}
 		protected virtual void Start(){}
 		protected virtual void Update()
@@ -45,10 +47,11 @@ namespace AIRogue.GameObjects {
 		/// <returns>Through Damage</returns>
 		public void TakeDamage(float damage, Collision collision)
 		{
-			var throughDamage = 0f;
+			collisionEffect( collision );
 
+			var throughDamage = 0f;
 			HitPoints -= damage;
-			secSinceLastDamage = 0; ////////////////////////fsdfasdfasdf
+			secSinceLastDamage = 0; //asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdff
 
 			if (HitPoints < 0)
 			{
@@ -66,10 +69,11 @@ namespace AIRogue.GameObjects {
 
 			if (throughDamage > 0)
 			{
-				unit.TakeDamage( damage, null );
+				Unit.TakeDamage( damage, null );
 			}
 		}
 
+		protected abstract void collisionEffect(Collision collision);
 		protected abstract void SetConditionApperance();
 		protected abstract void ShieldOff();
 		protected abstract void ShieldOn();

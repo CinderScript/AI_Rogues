@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponType: 5
-  Damage: 1
+  Damage: 1.2
   RateOfFire: 1
   Range: 30
   DamagerPrefab: {fileID: 1465864507707826, guid: 467ed6afa9441ff4aac96fa20a073803,

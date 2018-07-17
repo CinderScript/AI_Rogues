@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 1304209991632516}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.77}
-  m_LocalScale: {x: 7.5, y: 7.5, z: 7.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4207886851596154}
   m_Father: {fileID: 4041456709235830}
@@ -375,8 +375,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1009298652769918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.77}
+  m_LocalScale: {x: 7.5, y: 7.5, z: 7.5}
   m_Children: []
   m_Father: {fileID: 4193801243200698}
   m_RootOrder: 0
@@ -848,8 +848,8 @@ MonoBehaviour:
     type: 2}
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
     type: 2}
-  Health: 3
-  ShieldCapacity: 6
+  Health: 2
+  ShieldCapacity: 4
   MaxVelocity: 12
   AccelerationForce: 6
   RotationSpeed: 100
@@ -877,6 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3ba52869831444fabd7c27565bf1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RechargeRate: 0.2
   ShieldConditionColor:
     serializedVersion: 2
     key0: {r: 1, g: 0.5172413, b: 0, a: 1}
@@ -942,6 +943,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+  ShieldFlashPrefab: {fileID: 0}
 --- !u!135 &135668040906355664
 SphereCollider:
   m_ObjectHideFlags: 1
