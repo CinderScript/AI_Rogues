@@ -45,34 +45,35 @@ namespace AIRogue.GameObjects {
 		/// <returns>Through Damage</returns>
 		public float TakeDamage(float damage)
 		{
-			HitPoints -= damage;
-			secSinceLastDamage = 0;
 			var throughDamage = 0f;
-
-			if (HitPoints < 0)
+			if (HitPoints > 0)
 			{
-				throughDamage = HitPoints * -1f;
-				HitPoints = 0;
-			}
+				HitPoints -= damage;
+				secSinceLastDamage = 0;
 
-			if (HitPoints == 0 && isActive)
+				if (HitPoints < 0)
+				{
+					throughDamage = HitPoints * -1f;
+					HitPoints = 0;
+				}
+
+				SetConditionApperance();
+
+				if (HitPoints == 0)
+				{
+					ShieldOff();
+				}
+			}
+			else
 			{
-				ShieldOff();
-				isActive = false;
+				throughDamage = damage;
 			}
-
-			SetApperance( ShieldPercentage );
 
 			return throughDamage;
 		}
 
-		protected abstract void SetApperance(float percentage);
+		protected abstract void SetConditionApperance();
 		protected abstract void ShieldOff();
 		protected abstract void ShieldOn();
-
-		private void setShieldPercentage(float percent)
-		{
-			SetApperance(percent);
-		}
 	}
 }

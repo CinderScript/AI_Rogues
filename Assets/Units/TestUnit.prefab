@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4193801243200698}
   - component: {fileID: 114724116490647156}
+  - component: {fileID: 95415070419603680}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -821,6 +822,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.71, y: 1.31, z: 0.5037954}
   m_Center: {x: 0, y: 0, z: -0.6660365}
+--- !u!95 &95415070419603680
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304209991632516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5d8d0f0f84cd6b438bb6ace8d5f3785, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114121092057734190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -849,7 +867,7 @@ MonoBehaviour:
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
     type: 2}
   Health: 5
-  ShieldCapacity: 1
+  ShieldCapacity: 6
   MaxVelocity: 12
   AccelerationForce: 6
   RotationSpeed: 100
@@ -877,6 +895,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3ba52869831444fabd7c27565bf1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShieldFlashAnim:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 19.916128
+      outSlope: 19.916128
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2
+      value: 0
+      inSlope: -6.5136476
+      outSlope: -6.5136476
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  StrongShieldColor: {r: 0, g: 0.6275863, b: 1, a: 0.441}
+  WeakShieldColor: {r: 1, g: 0.43448275, b: 0, a: 0.341}
 --- !u!135 &135668040906355664
 SphereCollider:
   m_ObjectHideFlags: 1

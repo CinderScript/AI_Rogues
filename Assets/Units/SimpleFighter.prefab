@@ -680,6 +680,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3ba52869831444fabd7c27565bf1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShieldFlashAnim:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 19.916128
+      outSlope: 19.916128
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.2
+      value: 0
+      inSlope: -6.5136476
+      outSlope: -6.5136476
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  StrongShieldColor: {r: 0, g: 0.6275863, b: 1, a: 0.441}
+  WeakShieldColor: {r: 1, g: 0.43448275, b: 0, a: 0.341}
 --- !u!114 &114265498419239996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -719,7 +739,7 @@ MonoBehaviour:
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
     type: 2}
   Health: 10
-  Shields: 20
+  ShieldCapacity: 1
   MaxVelocity: 20
   AccelerationForce: 6
   RotationSpeed: 130

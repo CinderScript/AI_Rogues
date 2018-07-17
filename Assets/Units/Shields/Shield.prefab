@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed3ba52869831444fabd7c27565bf1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StrongShieldColor: {r: 0, g: 0.46206903, b: 1, a: 0}
+  WeakShieldColor: {r: 1, g: 0.43448275, b: 0, a: 0}
 --- !u!135 &135789212356032234
 SphereCollider:
   m_ObjectHideFlags: 1
