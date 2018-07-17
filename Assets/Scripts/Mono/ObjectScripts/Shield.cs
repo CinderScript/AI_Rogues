@@ -5,7 +5,7 @@ namespace AIRogue.GameObjects {
 	/// <summary>
 	/// A gameplay unit used in Pawn of Kings.
 	/// </summary>
-	abstract class Shield : MonoBehaviour
+	abstract class Shield : MonoBehaviour, IDamageable
 	{
 		public float HitPointCapacity { get; private set; }
 		public float HitPoints { get; private set; }
@@ -16,7 +16,6 @@ namespace AIRogue.GameObjects {
 			}
 		}
 
-		private bool isActive = true;
 		private float secSinceLastDamage; //updated each frame
 
 		protected virtual void Awake()
@@ -39,37 +38,37 @@ namespace AIRogue.GameObjects {
 
 		/// <summary>
 		/// Damages this Shields and returns the amount of damage that 
-		/// could not be absorbed.
+		/// could not be absorbed.  Should only be called via the IDamageable 
+		/// interface obtained on collision (so only called when this shield collider
+		/// is hit directly).
 		/// </summary>
 		/// <param name="damage"></param>
 		/// <returns>Through Damage</returns>
-		public float TakeDamage(float damage)
+		public void TakeDamage(float damage, Collision collision)
 		{
 			var throughDamage = 0f;
-			if (HitPoints > 0)
+
+			HitPoints -= damage;
+			secSinceLastDamage = 0; ////////////////////////fsdfasdfasdf
+
+			if (HitPoints < 0)
 			{
-				HitPoints -= damage;
-				secSinceLastDamage = 0;
-
-				if (HitPoints < 0)
-				{
-					throughDamage = HitPoints * -1f;
-					HitPoints = 0;
-				}
-
-				SetConditionApperance();
-
-				if (HitPoints == 0)
-				{
-					ShieldOff();
-				}
-			}
-			else
-			{
-				throughDamage = damage;
+				HitPoints = 0;
+				throughDamage = HitPoints * -1f;
 			}
 
-			return throughDamage;
+			SetConditionApperance();
+
+			// turn shield off *after* setting apperance
+			if (HitPoints == 0)
+			{
+				ShieldOff();
+			}
+
+			if (throughDamage > 0)
+			{
+				// damage the ship
+			}
 		}
 
 		protected abstract void SetConditionApperance();

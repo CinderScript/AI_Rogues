@@ -7,8 +7,8 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class Projectile : Damager
 	{
-		public GameObject shieldImpactPrefab;
-		public GameObject hullImpactPrefab;
+		public GameObject shieldImpactPrefab = null;
+		public GameObject hullImpactPrefab = null;
 
 		/// <summary>
 		/// The Unit that fired this Damage object
@@ -31,10 +31,17 @@ namespace AIRogue.GameObjects {
 
 		void OnCollisionEnter(Collision collision)
 		{
-			Unit unit = collision.gameObject.GetComponent<Unit>();
-			unit.TakeDamage( Damage );
+			IDamageable damageable = collision.collider.GetComponentInParent<IDamageable>();
+			damageable.TakeDamage( Damage, collision );
 
-			var tag = collision.contacts[0].otherCollider.gameObject.tag;
+			spawnEffect( collision );
+
+			Destroy( gameObject );
+		}
+
+		void spawnEffect(Collision collision)
+		{
+			var tag = collision.collider.gameObject.tag;
 			GameObject impactPrefab;
 			if (tag == "Shield")
 			{
@@ -46,14 +53,12 @@ namespace AIRogue.GameObjects {
 			}
 
 			GameObject effect = Instantiate(
-								impactPrefab, 
-								collision.contacts[0].point, 
-								Quaternion.LookRotation(collision.contacts[0].normal) );
+					impactPrefab,
+					collision.contacts[0].point,
+					Quaternion.LookRotation( collision.contacts[0].normal ) );
 			ParticleSystem particles = effect.GetComponent<ParticleSystem>();
 
 			Destroy( effect, particles.main.duration );
-			Destroy( gameObject );
-
 		}
 	}
 }

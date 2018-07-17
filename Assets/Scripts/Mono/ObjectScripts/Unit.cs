@@ -8,12 +8,12 @@ namespace AIRogue.GameObjects {
 	/// <summary>
 	/// A gameplay unit used in AI Rogue.
 	/// </summary>
-	class Unit : MonoBehaviour
+	class Unit : MonoBehaviour, IDamageable
 	{
 		[Header( "Gameplay Properties" )]
 		public UnitType UnitType = UnitType.Not_Found;
-		public GameObject DeathExplosionEffect;
-		public GameObject ShieldImpactEffect;
+		public GameObject DeathExplosionEffect = null;
+		public GameObject ShieldImpactEffect = null;
 
 		[Header( "Condition" )]
 		public float Health = 1;
@@ -73,22 +73,16 @@ namespace AIRogue.GameObjects {
 				weapon.FireWeapon();
 			}
 		}
-		public void TakeDamage(float damage)
+		public void TakeDamage(float damage, Collision collision)
 		{
-			var breakThrough = Shield.TakeDamage( damage );
-			damageHull( breakThrough );
+			Health -= damage;
 
 			if (Health <= 0)
 			{
 				destroyShip();
 			}
-			Debug.Log( $"{this} has Shields: {Shield.HitPoints}, Health: {Health}" );
 		}
 
-		private void damageHull(float damage)
-		{
-			Health -= damage;
-		}
 		private void destroyShip()
 		{
 			GameObject effect = Instantiate(
