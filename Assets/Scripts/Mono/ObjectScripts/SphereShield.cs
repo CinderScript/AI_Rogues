@@ -12,7 +12,7 @@ namespace AIRogue.GameObjects {
 
 		private const float ALPHA_MAX = 0.6f;
 
-		private Collider collider;			// turns on and off
+		private Collider shieldCollider;	// turns on and off
 		private Material shieldMaterial;    // color change on hit
 
 		private bool isFlashing = false;
@@ -23,7 +23,7 @@ namespace AIRogue.GameObjects {
 		{
 			base.Awake();
 
-			collider = GetComponentInChildren<Collider>();
+			shieldCollider = GetComponentInChildren<Collider>();
 			shieldMaterial = GetComponentInChildren<Renderer>().material;
 		}
 		protected override void Start()
@@ -37,10 +37,8 @@ namespace AIRogue.GameObjects {
 		{
 			base.Update();
 
-			if (isFlashing)
-			{
-				flashShields();
-			}
+
+			flashShields();
 		}
 
 		protected override void SetConditionApperance()
@@ -53,13 +51,13 @@ namespace AIRogue.GameObjects {
 
 		protected override void ShieldOff()
 		{
-			collider.enabled = false;
+			shieldCollider.enabled = false;
 			setShieldAlpha( 0 );
 			stopFlash();
 		}
 		protected override void ShieldOn()
 		{
-			collider.enabled = true;
+			shieldCollider.enabled = true;
 		}
 
 		private void startFlash()
@@ -75,15 +73,18 @@ namespace AIRogue.GameObjects {
 		}
 		private void flashShields()
 		{
-			float alpha = ShieldFlashAnim.Evaluate( flashTimestamp );
-			setShieldAlpha( alpha );
-
-			flashTimestamp += Time.deltaTime;
-
-			// if flash is finished
-			if (flashTimestamp > flashTimeLength)
+			if (isFlashing)
 			{
-				stopFlash();
+				float alpha = ShieldFlashAnim.Evaluate( flashTimestamp );
+				setShieldAlpha( alpha );
+
+				flashTimestamp += Time.deltaTime;
+
+				// if flash is finished
+				if (flashTimestamp > flashTimeLength)
+				{
+					stopFlash();
+				}
 			}
 		}
 		private void setShieldAlpha(float alpha)
