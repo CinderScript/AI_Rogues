@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33210858075126100}
   - component: {fileID: 135668040906355664}
   - component: {fileID: 23567512997361474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,9 +37,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4026594905117486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,9 +53,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4556006291550736}
   - component: {fileID: 65417219401260630}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (2)
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,9 +68,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4971916797620572}
-  m_Layer: 0
-  m_Name: Ship
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: Hull
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 4716493280969666}
   - component: {fileID: 33999393148834602}
   - component: {fileID: 23571989724588470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,9 +101,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4193801243200698}
   - component: {fileID: 114724116490647156}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,9 +117,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4722198484912064}
   - component: {fileID: 65626418379347798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (1)
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,9 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4216136375236348}
   - component: {fileID: 65251170906475664}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (5)
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,9 +149,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4149068435861012}
   - component: {fileID: 65578722825340094}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (4)
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 4698091412258320}
   - component: {fileID: 33182590261100860}
   - component: {fileID: 23439808101881446}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: _Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,9 +182,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4482601609589322}
   - component: {fileID: 65735964988571876}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (7)
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -198,9 +198,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4208287050296144}
   - component: {fileID: 65479176265459822}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (6)
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4339067123118258}
   - component: {fileID: 114121092057734190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hardpoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4707249107814656}
   - component: {fileID: 114447845094561122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hardpoint (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 4940892954856656}
   - component: {fileID: 33560709595408578}
   - component: {fileID: 23403342471176392}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,9 +263,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4972849846646784}
   - component: {fileID: 65787887025061882}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (3)
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 4041456709235830}
   - component: {fileID: 54726245284782074}
   - component: {fileID: 114204056032440802}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TestUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,9 +296,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4597323078262994}
   - component: {fileID: 65860930027099180}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider (0)
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

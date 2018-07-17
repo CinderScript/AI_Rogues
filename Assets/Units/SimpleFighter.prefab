@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4912909750530676}
   - component: {fileID: 114620420377809460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hardpoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,9 +36,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4368666810378906}
   - component: {fileID: 114087383385952742}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4893142733185670}
   - component: {fileID: 114265498419239996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hardpoint (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,9 +67,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4001350510887484}
-  m_Layer: 0
-  m_Name: BaseModel
-  m_TagString: Untagged
+  m_Layer: 8
+  m_Name: Hull
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,9 +85,9 @@ GameObject:
   - component: {fileID: 33828873202157102}
   - component: {fileID: 135514494108211168}
   - component: {fileID: 23857570384171816}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4448669880434190}
   - component: {fileID: 33413889687313912}
   - component: {fileID: 23892501948582892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 33969567497492456}
   - component: {fileID: 23526095664987954}
   - component: {fileID: 95223599296081390}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SciFi_Fighter_AK5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 54586438374156368}
   - component: {fileID: 114779433811920316}
   - component: {fileID: 65916678582865732}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SimpleFighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,9 +154,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4654230186279480}
   - component: {fileID: 65406897159003780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,9 +169,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4895862629486470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Hull
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 4354293840383490}
   - component: {fileID: 33833499225838792}
   - component: {fileID: 23012032621019344}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4460597663235600}
   - component: {fileID: 114057117459527102}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hardpoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 4686187527981612}
   - component: {fileID: 33571391401069678}
   - component: {fileID: 23974272799724580}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
