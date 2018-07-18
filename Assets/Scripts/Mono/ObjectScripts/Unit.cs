@@ -36,11 +36,96 @@ namespace AIRogue.GameObjects {
 		public WeaponMount[] WeaponMounts { get; private set; }
 		public Shield Shield { get; private set; }
 
+		/* * * movement vars * * */
+		private new Rigidbody rigidbody;
+		private float shipVelocityMaxSqr;
+		private const float SIDETHRUST_SCALER = 0.6f;
+		private float accelerationForceSideways;
+
 		void Awake()
 		{
 			WeaponMounts = GetComponentsInChildren<WeaponMount>();
 			Shield = GetComponentInChildren<Shield>();
 			Shield.Initialize( ShieldCapacity );
+
+			rigidbody = GetComponent<Rigidbody>();
+			accelerationForceSideways = AccelerationForce * SIDETHRUST_SCALER;
+			shipVelocityMaxSqr = MaxVelocity * MaxVelocity;
+		}
+
+		/// <summary>
+		/// Applies a force in the forward vector to the ridgidbody of the ship.
+		/// Ship will not exceed it's maxVelocity.
+		/// Should be called in FixedUpdate().
+		/// </summary>
+		public void ForwardThrust()
+		{
+			rigidbody.AddRelativeForce( Vector3.forward * AccelerationForce );
+
+			// Velocity Cap
+			if (rigidbody.velocity.sqrMagnitude >= shipVelocityMaxSqr)
+			{
+				rigidbody.velocity = rigidbody.velocity.normalized * MaxVelocity;  // preservs directional motion
+			}
+		}
+		/// <summary>
+		/// Applies a force in the horizonal vector to the ridgidbody of the ship.
+		/// Ship will not exceed it's maxVelocity.
+		/// Should be called in FixedUpdate().
+		/// </summary>
+		public void SideThrust(float inputDirection)
+		{
+			rigidbody.AddRelativeForce( Vector3.right * accelerationForceSideways * inputDirection );
+
+			// Velocity Cap
+			if (rigidbody.velocity.sqrMagnitude >= shipVelocityMaxSqr)
+			{
+				rigidbody.velocity = rigidbody.velocity.normalized * MaxVelocity;  // preservs directional motion
+			}
+		}
+		/// <summary>
+		/// Rotates the Ship to face the opposite direction of travel.
+		/// Does not activate if ship velocity = 0;
+		/// </summary>
+		public void ReverseTurn()
+		{
+			if (rigidbody.velocity.sqrMagnitude != 0)
+			{
+				transform.rotation = Quaternion.RotateTowards( transform.rotation,   // rotate from current ship rotation
+										 Quaternion.LookRotation( -rigidbody.velocity ),  // to rotation taken from -velocity
+										 RotationSpeed * Time.deltaTime );
+			}
+		}
+		/// <summary>
+		/// Rotates the ship around the y-axis.
+		/// </summary>
+		/// <param name="ship">Object to rotate</param>
+		/// <param name="rotationVelocity">Velocity</param>
+		/// <param name="inputDirection">Positive values rotate right, negative left</param>
+		public void Rotate(float inputDirection)
+		{
+			transform.Rotate( 0, RotationSpeed * Time.deltaTime * inputDirection, 0 );
+		}
+		public void FireWeapons()
+		{
+			foreach (var weapon in Weapons)
+			{
+				weapon.FireWeapon();
+			}
+		}
+
+		public void TakeDamage(float damage, Collision collision)
+		{
+			TakeDamage( damage );
+		}
+		public void TakeDamage(float damage)
+		{
+			Health -= damage;
+
+			if (Health <= 0)
+			{
+				destroyShip();
+			}
 		}
 
 		public void SpawnWeapon(GameObject weaponPrefab)
@@ -65,26 +150,6 @@ namespace AIRogue.GameObjects {
 			weapon.WeaponPosition = Weapons.Count;
 
 			Weapons.Add( weapon );
-		}
-		public void FireWeapons()
-		{
-			foreach (var weapon in Weapons)
-			{
-				weapon.FireWeapon();
-			}
-		}
-		public void TakeDamage(float damage, Collision collision)
-		{
-			TakeDamage( damage );
-		}
-		public void TakeDamage(float damage)
-		{
-			Health -= damage;
-
-			if (Health <= 0)
-			{
-				destroyShip();
-			}
 		}
 
 		private void destroyShip()

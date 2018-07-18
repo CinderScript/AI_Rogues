@@ -3,6 +3,7 @@
  * Copyright (C) - All Rights Reserved
  */
 
+using AIRogue.GameObjects;
 using UnityEngine;
 
 namespace AIRogue.GameState.Battle.Behavior
@@ -10,8 +11,8 @@ namespace AIRogue.GameState.Battle.Behavior
 
 	abstract class IUnitBehavior {
 
-		protected readonly UnitActionController actionController;
-		public IUnitBehavior(UnitActionController actionController)
+		protected readonly Unit actionController;
+		public IUnitBehavior(Unit actionController)
 		{
 			this.actionController = actionController;
 		}
@@ -21,7 +22,7 @@ namespace AIRogue.GameState.Battle.Behavior
 
 	class InputListenerBehavior : IUnitBehavior
 	{
-		public InputListenerBehavior(UnitActionController actionController) : base( actionController ) { }
+		public InputListenerBehavior(Unit actionController) : base( actionController ) { }
 
 		public override void Perform()
 		{
@@ -49,13 +50,12 @@ namespace AIRogue.GameState.Battle.Behavior
 
 			if (primaryAttackInput)
 			{
-				actionController.PrimaryAttack();
+				actionController.FireWeapons();
 			}
 
 			if (secondaryAttackInput)
 			{
-				actionController.SecondaryAttack();
-
+				actionController.FireWeapons();
 			}
 		}
 	}

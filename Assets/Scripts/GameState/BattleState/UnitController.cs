@@ -11,7 +11,6 @@ namespace AIRogue.GameState.Battle
 
 		public Unit Unit { get; private set; }
 
-		protected UnitActionController actionController { get; set; }
 		protected IUnitBehavior behavior { get; set; }
 
 		public UnitController() { }
@@ -22,11 +21,9 @@ namespace AIRogue.GameState.Battle
 		/// instanced ( new () ).
 		/// </summary>
 		/// <param name="unit"></param>
-		/// <param name="id"></param>
 		public virtual void AssignUnit(Unit unit)
         {
             Unit = unit;
-			actionController = new UnitActionController( Unit );
         }
 
         public virtual void Update()

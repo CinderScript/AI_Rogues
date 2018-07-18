@@ -14,7 +14,7 @@ namespace AIRogue.GameState.Battle
 		{
 			base.AssignUnit( unit );
 
-			behavior = new InputListenerBehavior( actionController );
+			behavior = new InputListenerBehavior( unit );
 		}
 	}
 }
