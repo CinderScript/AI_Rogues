@@ -32,7 +32,9 @@ namespace AIRogue.GameObjects
 
 		protected Unit unit;
 		protected Transform damagerSpawnPoint;
-		private float nextShotTimestamp;
+
+		private float shotCooldownTimer;
+		float secondsPerShot;
 
 		protected virtual void Awake()
 		{
@@ -49,18 +51,23 @@ namespace AIRogue.GameObjects
 				string msg = $"The DamagerPrefab on Weapon {this} does not have a Damage component attached";
 				throw new DamageComponentNotAttachedException( msg );
 			}
+
+			secondsPerShot = 1 / RateOfFire;
 		}
 		protected virtual void Start()
 		{
 
 		}
+		protected virtual void Update()
+		{
+			shotCooldownTimer += Time.deltaTime;
+		}
 
 		public void FireWeapon()
 		{
-			if ( nextShotTimestamp < Time.time )
+			if ( shotCooldownTimer < secondsPerShot)
 			{
-				var secondsPerShot = 1 / RateOfFire;
-				nextShotTimestamp = Time.time + secondsPerShot;
+				shotCooldownTimer = 0;
 				activateShot();
 			}
 		}
