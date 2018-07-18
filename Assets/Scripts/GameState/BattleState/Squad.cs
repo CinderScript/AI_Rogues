@@ -20,12 +20,12 @@ namespace AIRogue.GameState.Battle
 		/// Instances a new Squad containing a List of UnitControllers.  A deep copy of controllerBlueprint is made for each 
 		/// UnitController in the list (AIController, PlayerController, etc... )
 		/// </summary>
-		/// <param name="unitLoader"></param>
+		/// <param name="unitBank"></param>
 		/// <param name="controllerBlueprint"></param>
 		/// <param name="name"></param>
-		public Squad(UnitBank unitLoader, Vector3 startPosition, string name )
+		public Squad(UnitBank unitBank, Vector3 startPosition, string name )
         {
-			this.unitBank = unitLoader;
+			this.unitBank = unitBank;
 			this.startPosition = startPosition;
             this.Name = name;
 			controllers = new List<UnitController>();

@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debf77348484f1b46b72622bdd9380d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShaderPropertyName: _TintColor
   AlphaFadeCurve:
     serializedVersion: 2
     m_Curve:
@@ -133,7 +134,7 @@ MonoBehaviour:
       outSlope: -0.044164013
       tangentMode: 0
     - serializedVersion: 2
-      time: 1.5
+      time: 2.5
       value: 0
       inSlope: 0.037113298
       outSlope: 0.037113298
@@ -148,7 +149,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1158281429743150}
   serializedVersion: 5
-  lengthInSec: 2
+  lengthInSec: 3
   simulationSpeed: 1
   looping: 1
   prewarm: 0

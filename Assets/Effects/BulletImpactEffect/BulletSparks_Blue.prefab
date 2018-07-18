@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4589182449837678}
   - component: {fileID: 198175280697720452}
   - component: {fileID: 199058042815727502}
-  - component: {fileID: 114093826036170158}
   m_Layer: 0
   m_Name: BulletSparks_Blue
   m_TagString: Untagged
@@ -42,18 +41,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 38.46, y: 213.29, z: 0}
---- !u!114 &114093826036170158
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1539836197541524}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3cedb949dfc6b44aa88e1e82ba6471d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeTime: 5
 --- !u!198 &198175280697720452
 ParticleSystem:
   m_ObjectHideFlags: 1
