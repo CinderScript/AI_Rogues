@@ -14,6 +14,8 @@ namespace AIRogue.GameObjects {
 		private Collider shieldCollider;	// turns on and off
 		private Material shieldMaterial;    // color change on hit
 
+		private CollisionEffectsManager effectSpawner;
+
 		private bool isFlashing = false;
 		private float flashTimestamp = 0;
 		private float flashTimeLength;  // set by animation curve
@@ -29,6 +31,8 @@ namespace AIRogue.GameObjects {
 			flashTimeLength = ShieldFlashAnim[lastKey].time;
 
 			setShieldAlpha( 0 );
+
+			effectSpawner = gameObject.AddComponent<CollisionEffectsManager>();
 		}
 		protected override void Start()
 		{
@@ -53,14 +57,7 @@ namespace AIRogue.GameObjects {
 		}
 		protected override void collisionEffect(Collision collision)
 		{
-			GameObject effect = Instantiate(
-				ShieldFlashPrefab,
-				collision.contacts[0].point,
-				Quaternion.LookRotation( collision.contacts[0].normal ),
-				transform );
-
-			ParticleSystem particles = effect.GetComponent<ParticleSystem>();
-			Destroy( effect, particles.main.duration );
+			effectSpawner.SpawnEffect( ShieldFlashPrefab, collision );
 		}
 
 		protected override void ShieldOff()
@@ -68,6 +65,7 @@ namespace AIRogue.GameObjects {
 			shieldCollider.enabled = false;
 			setShieldAlpha( 0 );
 			stopFlash();
+			effectSpawner.DestroyEffects();
 		}
 		protected override void ShieldOn()
 		{

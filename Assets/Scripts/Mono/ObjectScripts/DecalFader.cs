@@ -7,14 +7,18 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class DecalFader : MonoBehaviour
 	{
+		public string ShaderPropertyName = "_TintColor";
 		public AnimationCurve AlphaFadeCurve;
 
-		private Material decalMat;    // color change on hit
+		private Material decalMat;		// color change on hit
 		private float fadeLength;		// set by animation curve
 		private float fadeTimestamp = 0;
 
-		protected void Start() {
+		public delegate void FaderDestroyed();
+		public FaderDestroyed OnFaderDestroy;
 
+		protected void Start()
+		{
 			decalMat = GetComponentInChildren<Renderer>().material;
 
 			int lastKey = AlphaFadeCurve.length - 1;
@@ -30,9 +34,14 @@ namespace AIRogue.GameObjects {
 
 		private void setAlpha(float alpha)
 		{
-			Color color = decalMat.GetColor( "_TintColor" );
+			Color color = decalMat.GetColor( ShaderPropertyName );
 			color.a = alpha;
-			decalMat.SetColor( "_TintColor", color);
+			decalMat.SetColor( ShaderPropertyName, color);
+		}
+
+		private void OnDestroy()
+		{
+			OnFaderDestroy?.Invoke();
 		}
 	}
 }
