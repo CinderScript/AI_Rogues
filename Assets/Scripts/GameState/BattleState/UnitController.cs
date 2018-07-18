@@ -24,11 +24,18 @@ namespace AIRogue.GameState.Battle
 		public virtual void AssignUnit(Unit unit)
         {
             Unit = unit;
-        }
 
-        public virtual void Update()
+			setInitialBehavior();
+        }
+		protected abstract void setInitialBehavior();
+
+		public virtual void Update()
 		{
-			behavior.Perform();
+			behavior.Update();
 		}
-    }
+		public virtual void FixedUpdate()
+		{
+			behavior.FixedUpdate();
+		}
+	}
 }

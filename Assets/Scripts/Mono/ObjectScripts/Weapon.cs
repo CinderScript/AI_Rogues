@@ -23,10 +23,7 @@ namespace AIRogue.GameObjects
 		public float Range = 20;
 
 		[Header( "Projectile, Laser, etc..." )]
-		public GameObject DamagerPrefab;  // keep here and not in inheriting class...  
-										  // The Damager should be Instantiated in an object pool or as a
-										  // single object (particle system) and passed a reference to this Unit
-										  // in the Start method
+		public GameObject DamagerPrefab;
 
 		public int WeaponPosition { get; set; }
 
@@ -65,7 +62,7 @@ namespace AIRogue.GameObjects
 
 		public void FireWeapon()
 		{
-			if ( shotCooldownTimer < secondsPerShot)
+			if ( shotCooldownTimer > secondsPerShot)
 			{
 				shotCooldownTimer = 0;
 				activateShot();

@@ -52,7 +52,7 @@ namespace AIRogue.GameState
         /// </summary>
         public void FixedUpdateGame()
         {
-            //currentState.FixedUpdate();
+            currentState.FixedUpdate();
         }
 
         /// <summary>

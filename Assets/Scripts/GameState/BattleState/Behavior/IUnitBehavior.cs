@@ -11,23 +11,41 @@ namespace AIRogue.GameState.Battle.Behavior
 
 	abstract class IUnitBehavior {
 
-		protected readonly Unit actionController;
-		public IUnitBehavior(Unit actionController)
+		protected readonly Unit unit;
+		public IUnitBehavior(Unit unit)
 		{
-			this.actionController = actionController;
+			this.unit = unit;
 		}
 
-        public abstract void Perform();
-    }
+        public abstract void Update();
+		public abstract void FixedUpdate();
+	}
+
+	class InitialBehavior : IUnitBehavior
+	{
+		public InitialBehavior(Unit unit) : base( unit ) { }
+
+		public override void FixedUpdate()
+		{
+			
+		}
+
+		public override void Update()
+		{
+			
+		}
+	}
 
 	class InputListenerBehavior : IUnitBehavior
 	{
-		public InputListenerBehavior(Unit actionController) : base( actionController ) { }
+		private int thrustInput;
 
-		public override void Perform()
+		public InputListenerBehavior(Unit unit) : base( unit ) { }
+
+		public override void Update()
 		{
 			/// GET PLAYER CONTROLLER INPUT
-			int thrustInput = (int)Input.GetAxisRaw( "Vertical" );
+			thrustInput = (int)Input.GetAxisRaw( "Vertical" );
 			float rotationInput = Input.GetAxis( "Horizontal" );
 
 			bool primaryAttackInput = Input.GetButton( "Fire1" );
@@ -36,27 +54,30 @@ namespace AIRogue.GameState.Battle.Behavior
 			/// APPLY INPUT TO UnitActionController
 			if (thrustInput > 0)                                // If thrusting
 			{
-				actionController.ForwardThrust();
+				unit.ForwardThrust();
 			}
 			else if (thrustInput < 0 && rotationInput == 0)     // If ReversTurning and not rotating
 			{
-				actionController.ReverseTurn();
+				unit.ReverseTurn();
 			}
 
 			if (rotationInput != 0)                             // If rotating
 			{
-				actionController.Rotate( rotationInput );
+				unit.Rotate( rotationInput );
 			}
 
 			if (primaryAttackInput)
 			{
-				actionController.FireWeapons();
+				unit.FireWeapons();
 			}
 
 			if (secondaryAttackInput)
 			{
-				actionController.FireWeapons();
+				unit.FireWeapons();
 			}
+		}
+		public override void FixedUpdate()
+		{
 		}
 	}
 }

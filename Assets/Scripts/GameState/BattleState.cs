@@ -79,10 +79,12 @@ namespace AIRogue.GameState
 				squad.Update();
 			}
         }
-
-        public void FixedUpdate()
-        {
-            // NOT IMPLEMENTED
-        }
+		public void FixedUpdate()
+		{
+			//foreach (var squad in squads)
+			//{
+			//	squad.FixedUpdate();
+			//}
+		}
     }
 }

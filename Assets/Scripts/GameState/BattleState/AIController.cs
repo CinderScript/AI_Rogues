@@ -1,4 +1,6 @@
-﻿namespace AIRogue.GameState.Battle
+﻿using AIRogue.GameState.Battle.Behavior;
+
+namespace AIRogue.GameState.Battle
 {
 	/// <summary>
 	/// Implements UnitController and used by ArmyManager as a possible Generic type.
@@ -7,9 +9,9 @@
 	/// </summary>
 	class AIController : UnitController {
 
-		public override void Update()
+		protected override void setInitialBehavior()
 		{
-			
+			behavior = new InitialBehavior( Unit );
 		}
 	}
 }

@@ -38,14 +38,21 @@ namespace AIRogue.GameState.Battle
 				controller.Update();
 			}
         }
+		public void FixedUpdate()
+		{
+			foreach (var controller in controllers)
+			{
+				controller.FixedUpdate();
+			}
+		}
 
-        /// <summary>
-        /// Uses the UnitLoader to create a new unit with the properties defined in in the 
-        /// properties list given to the UnitLoader.
-        /// </summary>
-        /// <param name="unitType"></param>
-        /// <param name="spawnLocation"></param>
-        public Unit SpawnUnit<T>(UnitType unitType) where T : UnitController, new()
+		/// <summary>
+		/// Uses the UnitLoader to create a new unit with the properties defined in in the 
+		/// properties list given to the UnitLoader.
+		/// </summary>
+		/// <param name="unitType"></param>
+		/// <param name="spawnLocation"></param>
+		public Unit SpawnUnit<T>(UnitType unitType) where T : UnitController, new()
         {
 			Unit unit = null;
 
