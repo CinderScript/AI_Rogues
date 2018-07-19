@@ -11,18 +11,11 @@ namespace AIRogue.GameObjects {
 		public AnimationCurve AlphaFadeCurve;
 
 		private Material decalMat;		// color change on hit
-		private float fadeLength;		// set by animation curve
 		private float fadeTimestamp = 0;
-
-		public delegate void FaderDestroyed();
-		public FaderDestroyed OnFaderDestroy;
 
 		protected void Start()
 		{
 			decalMat = GetComponentInChildren<Renderer>().material;
-
-			int lastKey = AlphaFadeCurve.length - 1;
-			fadeLength = AlphaFadeCurve[lastKey].time;
 		}
 		protected void Update()
 		{
@@ -37,11 +30,6 @@ namespace AIRogue.GameObjects {
 			Color color = decalMat.GetColor( ShaderPropertyName );
 			color.a = alpha;
 			decalMat.SetColor( ShaderPropertyName, color);
-		}
-
-		private void OnDestroy()
-		{
-			OnFaderDestroy?.Invoke();
 		}
 	}
 }

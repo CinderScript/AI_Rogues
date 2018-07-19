@@ -130,14 +130,20 @@ MonoBehaviour:
     - serializedVersion: 2
       time: -0.002090454
       value: 1
-      inSlope: -0.044164013
-      outSlope: -0.044164013
+      inSlope: -0.45640978
+      outSlope: -0.45640978
       tangentMode: 0
     - serializedVersion: 2
-      time: 2.5
+      time: 1.5706089
+      value: 0.13675289
+      inSlope: -0.25898218
+      outSlope: -0.25898218
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 3.5
       value: 0
-      inSlope: 0.037113298
-      outSlope: 0.037113298
+      inSlope: -0.17414649
+      outSlope: -0.17414649
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -149,9 +155,9 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1158281429743150}
   serializedVersion: 5
-  lengthInSec: 3
+  lengthInSec: 4
   simulationSpeed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

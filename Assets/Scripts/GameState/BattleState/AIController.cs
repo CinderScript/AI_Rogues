@@ -13,5 +13,17 @@ namespace AIRogue.GameState.Battle
 		{
 			behavior = new InitialBehavior( Unit );
 		}
+
+		protected void ChooseBehavior()
+		{
+			// if under attack, attack back
+			// else if squad member is under attack, attack back
+			// else if not under attack, look for enemies in range and attack if threat level is low enough
+		}
+
+		public override void Update()
+		{
+			base.Update();
+		}
 	}
 }

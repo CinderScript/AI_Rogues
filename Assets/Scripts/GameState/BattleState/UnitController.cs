@@ -11,7 +11,7 @@ namespace AIRogue.GameState.Battle
 
 		public Unit Unit { get; private set; }
 
-		protected IUnitBehavior behavior { get; set; }
+		protected IBehavior behavior { get; set; }
 
 		public UnitController() { }
 
