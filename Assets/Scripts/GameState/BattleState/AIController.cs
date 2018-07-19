@@ -1,4 +1,5 @@
-﻿using AIRogue.GameState.Battle.Behavior;
+﻿using AIRogue.GameObjects;
+using AIRogue.GameState.Battle.Behavior;
 
 namespace AIRogue.GameState.Battle
 {
@@ -13,7 +14,6 @@ namespace AIRogue.GameState.Battle
 		{
 			Behavior = new InitialBehavior( Unit );
 		}
-
 		protected void ChooseBehavior()
 		{
 			// if under attack

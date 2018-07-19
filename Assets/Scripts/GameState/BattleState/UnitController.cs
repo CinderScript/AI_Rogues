@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using AIRogue.GameObjects;
 using AIRogue.GameState.Battle.Behavior;
 
@@ -9,9 +10,11 @@ namespace AIRogue.GameState.Battle
 	/// </summary>
 	abstract class UnitController {
 
-		public Unit Unit { get; private set; }
+		protected Unit Unit { get; private set; }
 
-		protected IBehavior Behavior { get; set; }
+		protected IBehavior Behavior;
+		protected Dictionary<Unit, float> Attackers 
+			= new Dictionary<Unit, float>(new General.ReferenceEqualityComparer<Unit>());
 
 		public UnitController() { }
 
@@ -29,7 +32,20 @@ namespace AIRogue.GameState.Battle
 			SetInitialBehavior();
         }
 		protected abstract void SetInitialBehavior();
-		protected abstract void WasAttacked(Unit attacker, float damage);
+
+		protected virtual void WasAttacked(Unit attacker, float damage)
+		{
+			float totalDamage;
+			if (Attackers.TryGetValue(attacker, out totalDamage))
+			{
+				Attackers[attacker] = damage + totalDamage;
+			}
+			else
+			{
+				Attackers[attacker] = damage;
+			}
+
+		}
 
 		public virtual void Update()
 		{

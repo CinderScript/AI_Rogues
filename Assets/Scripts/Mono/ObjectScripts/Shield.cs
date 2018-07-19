@@ -47,6 +47,7 @@ namespace AIRogue.GameObjects {
 		/// <returns>Through Damage</returns>
 		public void TakeDamage(Unit attacker, float damage, Collision collision)
 		{
+			Unit.OnAttacked?.Invoke( attacker, damage );
 			collisionEffect( collision );
 
 			var throughDamage = 0f;
