@@ -9,16 +9,19 @@ namespace AIRogue.GameState.Battle
 	/// </summary>
 	class AIController : UnitController {
 
-		protected override void setInitialBehavior()
+		protected override void SetInitialBehavior()
 		{
-			behavior = new InitialBehavior( Unit );
+			Behavior = new InitialBehavior( Unit );
 		}
 
 		protected void ChooseBehavior()
 		{
-			// if under attack, attack back
-			// else if squad member is under attack, attack back
+			// if under attack
+			//		- attack or run (ship level, health, dps)
+			// else if squad member is attacking, help
 			// else if not under attack, look for enemies in range and attack if threat level is low enough
+			// else wander
+			//		- investigate neutral ships
 		}
 
 		public override void Update()

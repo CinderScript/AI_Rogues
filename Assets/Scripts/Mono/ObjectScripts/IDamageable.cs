@@ -9,6 +9,6 @@ namespace AIRogue.GameObjects
 	/// </summary>
 	interface IDamageable
 	{
-		void TakeDamage(float damage, Collision collision);
+		void TakeDamage(Unit attacker, float damage, Collision collision);
 	}
 }

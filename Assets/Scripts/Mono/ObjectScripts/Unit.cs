@@ -53,6 +53,9 @@ namespace AIRogue.GameObjects {
 			shipVelocityMaxSqr = MaxVelocity * MaxVelocity;
 		}
 
+		public delegate void AttackReporter(Unit attacker, float damage);
+		public AttackReporter OnAttacked;
+
 		/// <summary>
 		/// Applies a force in the forward vector to the ridgidbody of the ship.
 		/// Ship will not exceed it's maxVelocity.
@@ -114,10 +117,21 @@ namespace AIRogue.GameObjects {
 			}
 		}
 
-		public void TakeDamage(float damage, Collision collision)
+		/// <summary>
+		/// Called by Damage object on collision
+		/// </summary>
+		/// <param name="attacker"></param>
+		/// <param name="damage"></param>
+		/// <param name="collision"></param>
+		public void TakeDamage(Unit attacker, float damage, Collision collision)
 		{
+			OnAttacked?.Invoke( attacker, damage );
 			TakeDamage( damage );
 		}
+		/// <summary>
+		/// Used by shield to deliver pasthrough damage
+		/// </summary>
+		/// <param name="damage"></param>
 		public void TakeDamage(float damage)
 		{
 			Health -= damage;

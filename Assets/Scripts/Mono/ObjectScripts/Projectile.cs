@@ -32,7 +32,7 @@ namespace AIRogue.GameObjects {
 		void OnCollisionEnter(Collision collision)
 		{
 			IDamageable damageable = collision.collider.GetComponentInParent<IDamageable>();
-			damageable.TakeDamage( Damage, collision );
+			damageable.TakeDamage( Owner, Damage, collision );
 
 			spawnEffect( collision );
 

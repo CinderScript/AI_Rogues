@@ -10,9 +10,9 @@ namespace AIRogue.GameState.Battle
 	/// </summary>
 	class PlayerController : UnitController
 	{
-		protected override void setInitialBehavior()
+		protected override void SetInitialBehavior()
 		{
-			behavior = new InputListenerBehavior( Unit );
+			Behavior = new InputListenerBehavior( Unit );
 		}
 	}
 }

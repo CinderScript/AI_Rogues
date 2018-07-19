@@ -45,7 +45,7 @@ namespace AIRogue.GameObjects {
 		/// </summary>
 		/// <param name="damage"></param>
 		/// <returns>Through Damage</returns>
-		public void TakeDamage(float damage, Collision collision)
+		public void TakeDamage(Unit attacker, float damage, Collision collision)
 		{
 			collisionEffect( collision );
 
@@ -69,7 +69,7 @@ namespace AIRogue.GameObjects {
 
 			if (throughDamage > 0)
 			{
-				Unit.TakeDamage( damage, null );
+				Unit.TakeDamage( damage );
 			}
 		}
 

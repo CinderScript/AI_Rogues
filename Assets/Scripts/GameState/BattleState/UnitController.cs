@@ -11,7 +11,7 @@ namespace AIRogue.GameState.Battle
 
 		public Unit Unit { get; private set; }
 
-		protected IBehavior behavior { get; set; }
+		protected IBehavior Behavior { get; set; }
 
 		public UnitController() { }
 
@@ -24,18 +24,20 @@ namespace AIRogue.GameState.Battle
 		public virtual void AssignUnit(Unit unit)
         {
             Unit = unit;
+			Unit.OnAttacked += WasAttacked;
 
-			setInitialBehavior();
+			SetInitialBehavior();
         }
-		protected abstract void setInitialBehavior();
+		protected abstract void SetInitialBehavior();
+		protected abstract void WasAttacked(Unit attacker, float damage);
 
 		public virtual void Update()
 		{
-			behavior.Update();
+			Behavior.Update();
 		}
 		public virtual void FixedUpdate()
 		{
-			behavior.FixedUpdate();
+			Behavior.FixedUpdate();
 		}
 	}
 }
