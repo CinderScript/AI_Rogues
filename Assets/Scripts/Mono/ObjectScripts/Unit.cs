@@ -27,10 +27,14 @@ namespace AIRogue.GameObjects {
 		[Header( "Attack" )]
 		public int WeaponLevel = 1;
 
-		/* * * Assigned during gameplay * * */
-		public Squad Squad { get; set; }
-		public Unit Target { get; set; }
-		public int SquadPosition { get; set; }
+		/* * * Assigned when instanced by squad * * */
+		private string squadName;
+		private int squadPosition;
+		public void SetSquadID(string name, int pos)
+		{
+			squadName = name;
+			squadPosition = pos;
+		}
 
 		public List<Weapon> Weapons = new List<Weapon>();
 		public WeaponMount[] WeaponMounts { get; private set; }
@@ -165,7 +169,6 @@ namespace AIRogue.GameObjects {
 
 			Weapons.Add( weapon );
 		}
-
 		private void destroyShip()
 		{
 			GameObject effect = Instantiate(
@@ -176,10 +179,9 @@ namespace AIRogue.GameObjects {
 			Destroy( effect, particles.main.duration );
 			Destroy( gameObject );
 		}
-
 		public override string ToString()
 		{
-			return $"{Squad}.{SquadPosition}.{UnitType}";
+			return $"{squadName}.{squadPosition}.{UnitType}";
 		}
 	}
 

@@ -11,6 +11,7 @@ namespace AIRogue.GameState.Battle
 	abstract class UnitController {
 
 		protected Unit Unit { get; private set; }
+		protected List<UnitController> squadControllers;
 
 		protected IBehavior Behavior;
 		protected Dictionary<Unit, float> Attackers 
@@ -24,10 +25,11 @@ namespace AIRogue.GameState.Battle
 		/// instanced ( new () ).
 		/// </summary>
 		/// <param name="unit"></param>
-		public virtual void AssignUnit(Unit unit)
+		public virtual void Initialize(Unit unit, List<UnitController> squadControllers)
         {
             Unit = unit;
 			Unit.OnAttacked += WasAttacked;
+			this.squadControllers = squadControllers;
 
 			SetInitialBehavior();
         }

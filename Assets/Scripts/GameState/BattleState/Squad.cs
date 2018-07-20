@@ -65,13 +65,12 @@ namespace AIRogue.GameState.Battle
 				GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
 
 				unit = unitSpawn.GetComponent<Unit>();
-				unit.SquadPosition = controllers.Count;
-				unit.Squad = this;
+				unit.SetSquadID( Name, controllers.Count );
 
 				unitSpawn.name = unit.ToString();
 
 				T controller = new T();
-                controller.AssignUnit( unit );
+                controller.Initialize( unit, controllers );
                 controllers.Add( controller );
             }
             else
