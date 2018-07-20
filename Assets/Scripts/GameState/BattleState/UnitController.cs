@@ -14,15 +14,16 @@ namespace AIRogue.GameState.Battle
 		protected Unit Unit { get; private set; }
 		protected Squad Squad { get; private set; }
 
-		protected Behavior.Behavior Behavior;
+		protected UnitBehavior Behavior;
 		private HashSet<Unit> attackers
 			= new HashSet<Unit>( 
 				new General.ReferenceEqualityComparer<Unit>() );
 		protected Unit[] Attackers = new Unit[0];
 
-		protected HashSet<UnitController> AlliesWithTargets
+		protected HashSet<UnitController> alliesWithTargets
 			= new HashSet<UnitController>( 
 				new General.ReferenceEqualityComparer<UnitController>() );
+		protected UnitController[] AlliesWithTargets = new UnitController[0];
 
 		public delegate void TargetChosen(UnitController attacker);
 		public TargetChosen OnTargetChosen;
@@ -98,10 +99,10 @@ namespace AIRogue.GameState.Battle
 		}
 		protected virtual void AllyChoseTarget(UnitController ally)
 		{
-			UnityEngine.Debug.Log( $"{Unit}'s ally {ally.Unit} just selected target {ally.target}" );
-			if (!AlliesWithTargets.Contains( ally ))
+			if (!alliesWithTargets.Contains( ally ))
 			{
-				AlliesWithTargets.Add( ally );
+				alliesWithTargets.Add( ally );
+				AlliesWithTargets = alliesWithTargets.ToArray();
 			}
 		}
 

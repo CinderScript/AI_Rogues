@@ -1,15 +1,16 @@
 ﻿
 using AIRogue.GameObjects;
+using UnityEngine;
 
 namespace AIRogue.GameState.Battle.Behavior
 {
-	class AttackTargetBehavior : Behavior
+	class AttackTargetBehavior : UnitBehavior
 	{
-		private Unit target;
+		public Unit Target { get; set; }
 
 		public AttackTargetBehavior(Unit unit, Unit target) : base( unit )
 		{
-			this.target = target;
+			Target = target;
 		}
 
 		public override void FixedUpdate()

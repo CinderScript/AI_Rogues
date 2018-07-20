@@ -19,14 +19,20 @@ namespace AIRogue.GameState.Battle
 		{
 			if (Target != null)
 			{
-				// attack
+				// attack... use delegate instead?
+				if (Behavior.GetType() != typeof(AttackTargetBehavior))
+				{
+					Behavior = new AttackTargetBehavior( Unit, Target );
+				}
 			}
 			else if (HasAttacker)
 			{
 				Target = Attackers[0];
 			}
-			
-			// else if allies have attackers
+			else if (AlliesWithTargets.Length > 0)
+			{
+				Target = AlliesWithTargets[0].Target;
+			}
 
 
 			// if under attack

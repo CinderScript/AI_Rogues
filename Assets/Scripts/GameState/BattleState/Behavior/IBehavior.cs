@@ -9,10 +9,10 @@ using UnityEngine;
 namespace AIRogue.GameState.Battle.Behavior
 {
 
-	abstract class Behavior {
+	abstract class UnitBehavior {
 
 		protected readonly Unit unit;
-		public Behavior(Unit unit)
+		public UnitBehavior(Unit unit)
 		{
 			this.unit = unit;
 		}
@@ -21,7 +21,7 @@ namespace AIRogue.GameState.Battle.Behavior
 		public abstract void FixedUpdate();
 	}
 
-	class InitialBehavior : Behavior
+	class InitialBehavior : UnitBehavior
 	{
 		public InitialBehavior(Unit unit) : base( unit ) { }
 
@@ -36,7 +36,7 @@ namespace AIRogue.GameState.Battle.Behavior
 		}
 	}
 
-	class InputListenerBehavior : Behavior
+	class InputListenerBehavior : UnitBehavior
 	{
 		private int thrustInput;
 
