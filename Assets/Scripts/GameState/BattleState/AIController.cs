@@ -1,4 +1,5 @@
-﻿using AIRogue.GameObjects;
+﻿using System.Linq;
+using AIRogue.GameObjects;
 using AIRogue.GameState.Battle.Behavior;
 
 namespace AIRogue.GameState.Battle
@@ -16,6 +17,18 @@ namespace AIRogue.GameState.Battle
 		}
 		protected void ChooseBehavior()
 		{
+			if (Target != null)
+			{
+				// attack
+			}
+			else if (HasAttacker)
+			{
+				Target = Attackers[0];
+			}
+			
+			// else if allies have attackers
+
+
 			// if under attack
 			//		- attack or run (ship level, health, dps)
 			// else if squad member is attacking, help
@@ -26,7 +39,8 @@ namespace AIRogue.GameState.Battle
 
 		public override void Update()
 		{
-			base.Update();
+			ChooseBehavior();
+			base.Update(); // updates selected behavior
 		}
 	}
 }

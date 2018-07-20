@@ -28,12 +28,12 @@ namespace AIRogue.GameObjects {
 		public int WeaponLevel = 1;
 
 		/* * * Assigned when instanced by squad * * */
-		private string squadName;
-		private int squadPosition;
-		public void SetSquadID(string name, int pos)
+		public Squad Squad { get; private set; }
+		public int SquadPosition { get; private set; }
+		public void SetSquad(Squad squad, int pos)
 		{
-			squadName = name;
-			squadPosition = pos;
+			Squad = squad;
+			SquadPosition = pos;
 		}
 
 		public List<Weapon> Weapons = new List<Weapon>();
@@ -58,7 +58,7 @@ namespace AIRogue.GameObjects {
 		}
 
 		public delegate void AttackReporter(Unit attacker, float damage);
-		public AttackReporter OnAttacked;
+		public AttackReporter OnDamageTaken;
 
 		/// <summary>
 		/// Applies a force in the forward vector to the ridgidbody of the ship.
@@ -129,7 +129,7 @@ namespace AIRogue.GameObjects {
 		/// <param name="collision"></param>
 		public void TakeDamage(Unit attacker, float damage, Collision collision)
 		{
-			OnAttacked?.Invoke( attacker, damage );
+			OnDamageTaken?.Invoke( attacker, damage );
 			TakeDamage( damage );
 		}
 		/// <summary>
@@ -181,7 +181,7 @@ namespace AIRogue.GameObjects {
 		}
 		public override string ToString()
 		{
-			return $"{squadName}.{squadPosition}.{UnitType}";
+			return $"{Squad.Name}.{SquadPosition}.{UnitType}";
 		}
 	}
 

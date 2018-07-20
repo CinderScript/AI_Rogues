@@ -11,7 +11,7 @@ namespace AIRogue.GameState.Battle
 	{
         public string Name { get; }
         private readonly UnitBank unitBank;
-		private readonly List<UnitController> controllers;
+		public readonly List<UnitController> controllers;
 		private readonly Vector3 startPosition;
 
 		private const int SPAWN_SPACING = 10;
@@ -65,12 +65,12 @@ namespace AIRogue.GameState.Battle
 				GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
 
 				unit = unitSpawn.GetComponent<Unit>();
-				unit.SetSquadID( Name, controllers.Count );
+				unit.SetSquad( this, controllers.Count );
 
 				unitSpawn.name = unit.ToString();
 
 				T controller = new T();
-                controller.Initialize( unit, controllers );
+                controller.Initialize( unit, this );
                 controllers.Add( controller );
             }
             else
