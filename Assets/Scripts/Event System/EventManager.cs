@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace AIRogue.Events {
 
@@ -68,7 +69,12 @@ namespace AIRogue.Events {
             return internalDelegate;
         }
 
-        public void AddListener<T>(EventDelegate<T> del) where T : GameEvent
+		internal void AddListener<T>(object unitDestroyedHandler)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddListener<T>(EventDelegate<T> del) where T : GameEvent
         {
             AddDelegate<T>( del );
         }

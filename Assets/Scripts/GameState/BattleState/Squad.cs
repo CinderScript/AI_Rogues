@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AIRogue.Events;
 using AIRogue.GameObjects;
 using AIRogue.Scene;
 
@@ -29,7 +30,7 @@ namespace AIRogue.GameState.Battle
 			this.startPosition = startPosition;
             this.Name = name;
 			controllers = new List<UnitController>();
-        }
+		}
 
         public void Update()
         {
@@ -81,11 +82,6 @@ namespace AIRogue.GameState.Battle
 			return unit;
         }
 
-		public override string ToString()
-		{
-			return Name;
-		}
-
 		/// <summary>
 		/// Calculates the position a new unit should be spawned at.
 		/// </summary>
@@ -97,6 +93,11 @@ namespace AIRogue.GameState.Battle
 										startPosition.z );
 
 			return pos;
+		}
+
+		public override string ToString()
+		{
+			return Name;
 		}
     }
 }

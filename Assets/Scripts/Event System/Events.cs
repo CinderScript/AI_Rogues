@@ -11,4 +11,14 @@ namespace AIRogue.Events {
 			SelectedUnit = selectedUnit;
 		}
 	}
+
+	class UnitDestroyedEvent : GameEvent
+	{
+		public Unit Unit { get; }
+
+		public UnitDestroyedEvent(Unit destroyedUnit)
+		{
+			Unit = destroyedUnit;
+		}
+	}
 }

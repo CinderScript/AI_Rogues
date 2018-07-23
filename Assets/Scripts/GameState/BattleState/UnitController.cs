@@ -1,6 +1,8 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using AIRogue.Events;
 using AIRogue.GameObjects;
 using AIRogue.GameState.Battle.BehaviorTree;
 
@@ -70,7 +72,9 @@ namespace AIRogue.GameState.Battle
 			}
 
 			Behavior = GetUnitBehavior();
-        }
+
+			EventManager.Instance.AddListener<UnitDestroyedEvent>( UnitDestroyedHandler );
+		}
 
 		protected abstract Behavior GetUnitBehavior();
 
@@ -100,6 +104,13 @@ namespace AIRogue.GameState.Battle
 		{
 			alliesWithTargets.Add( ally );
 			AlliesWithTargets = alliesWithTargets.ToArray();
+		}
+		private void UnitDestroyedHandler(UnitDestroyedEvent gameEvent)
+		{
+			if ( ReferenceEquals( gameEvent.Unit, this.Unit ) )
+			{
+				Squad.controllers.Remove( this );
+			}
 		}
 
 		public virtual void Update()

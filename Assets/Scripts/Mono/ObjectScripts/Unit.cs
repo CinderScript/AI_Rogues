@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AIRogue.Events;
 using AIRogue.Exceptions;
 using AIRogue.GameState.Battle;
 using UnityEngine;
@@ -130,13 +131,13 @@ namespace AIRogue.GameObjects {
 		public void TakeDamage(Unit attacker, float damage, Collision collision)
 		{
 			OnDamageTaken?.Invoke( attacker, damage );
-			TakeDamage( damage );
+			PassthroughDamage( damage );
 		}
 		/// <summary>
 		/// Used by shield to deliver pasthrough damage
 		/// </summary>
 		/// <param name="damage"></param>
-		public void TakeDamage(float damage)
+		public void PassthroughDamage(float damage)
 		{
 			Health -= damage;
 
@@ -178,6 +179,8 @@ namespace AIRogue.GameObjects {
 
 			Destroy( effect, particles.main.duration );
 			Destroy( gameObject );
+
+			EventManager.Instance.QueueEvent( new UnitDestroyedEvent( this ) );
 		}
 		public override string ToString()
 		{
@@ -185,8 +188,8 @@ namespace AIRogue.GameObjects {
 		}
 	}
 
-
-    public enum UnitType {
+    public enum UnitType
+	{
         Not_Found, TestUnit, SimpleFighter, SpaceFighter
     }
 }
