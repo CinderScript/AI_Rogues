@@ -13,7 +13,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 
 		public override Behavior EvaluateTree()
 		{
-			return null;
+			return this;
 		}
 	}
 }

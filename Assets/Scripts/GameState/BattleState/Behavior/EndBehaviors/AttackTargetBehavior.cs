@@ -10,8 +10,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 
 		public override Behavior EvaluateTree()
 		{
-			Debug.Log( "attacking" );
-			return null;
+			return this;
 		}
 
 		public override UnitActions UpdateActions()
