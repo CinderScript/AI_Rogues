@@ -57,12 +57,10 @@ namespace AIRogue.GameState
 
 			EventManager.Instance.QueueEvent( new UnitSelectedEvent( player ) );
 
-
 			/* ADD ENEMY SQUADS */
 			for (int i = 0; i < levelProperties.NumberOfEnemySquads; i++)
 			{				
 				Squad aiSquad = new Squad( unitBank, levelProperties.AIStart[i].position, "AISquad-" + i );
-				aiSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 				aiSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 
 				squads.Add( aiSquad );

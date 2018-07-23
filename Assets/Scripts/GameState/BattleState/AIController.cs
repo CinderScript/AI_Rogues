@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using AIRogue.GameObjects;
-using AIRogue.GameState.Battle.Behavior;
+using AIRogue.GameState.Battle.BehaviorTree;
+using UnityEngine;
 
 namespace AIRogue.GameState.Battle
 {
@@ -11,41 +12,95 @@ namespace AIRogue.GameState.Battle
 	/// </summary>
 	class AIController : UnitController {
 
-		protected override void SetInitialBehavior()
+		protected bool NewTargetSelected { get; set; }
+		private void newTargetNotification(UnitController controller)
 		{
-			Behavior = new InitialBehavior( Unit );
+			NewTargetSelected = true;
 		}
-		protected void ChooseBehavior()
+
+		private Behavior behaviorTree;
+
+		public override void Initialize(Unit unit, Squad squad)
 		{
-			if (Target != null)
+			behaviorTree = new AIBehaviorRoot( this );
+			base.Initialize( unit, squad );
+
+			OnTargetChosen += newTargetNotification;
+		}
+
+		protected override Behavior GetUnitBehavior()
+		{
+			return behaviorTree.EvaluateTree();
+		}
+
+		public void UpdateTarget()
+		{
+			Target = closestAttacker();
+
+			// if attacker exists
+			if (Target == null)
 			{
-				// attack... use delegate instead?
-				if (Behavior.GetType() != typeof(AttackTargetBehavior))
+				Target = closestAllyTarget();
+			}
+		}
+
+		private float DistanceToUnit(Unit unit)
+		{
+			return Vector3.Distance( Unit.transform.position, unit.transform.position );
+		}
+		private Unit closestAttacker()
+		{
+			Unit attacker = null;
+
+			if (Attackers.Length > 0)
+			{
+				float shortest = DistanceToUnit( Attackers[0] );
+				attacker = Attackers[0];
+
+				for (int i = 1; i < Attackers.Length; i++)
 				{
-					Behavior = new AttackTargetBehavior( Unit, Target );
+					float dist = DistanceToUnit( Attackers[i] );
+					if (dist < shortest)
+					{
+						shortest = dist;
+						attacker = Attackers[i];
+					}
 				}
 			}
-			else if (HasAttacker)
+
+			return attacker;
+		}
+		// maybe change to closestAllyAttacker
+		private Unit closestAllyTarget()
+		{
+			Unit allyTarget = null;
+
+			if (AlliesWithTargets.Length > 0)
 			{
-				Target = Attackers[0];
-			}
-			else if (AlliesWithTargets.Length > 0)
-			{
-				Target = AlliesWithTargets[0].Target;
+				float shortest = DistanceToUnit( AlliesWithTargets[0].Target );
+				allyTarget = Attackers[0];
+
+				for (int i = 1; i < Attackers.Length; i++)
+				{
+					float dist = DistanceToUnit( AlliesWithTargets[i].Target );
+					if (dist < shortest)
+					{
+						shortest = dist;
+						allyTarget = AlliesWithTargets[i].Target;
+					}
+				}
 			}
 
-
-			// if under attack
-			//		- attack or run (ship level, health, dps)
-			// else if squad member is attacking, help
-			// else if not under attack, look for enemies in range and attack if threat level is low enough
-			// else wander
-			//		- investigate neutral ships
+			return allyTarget;
 		}
 
 		public override void Update()
 		{
-			ChooseBehavior();
+			if (Target == null)
+			{
+				UpdateTarget();
+			}
+
 			base.Update(); // updates selected behavior
 		}
 	}

@@ -476,12 +476,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214262b529a25f4449f4fee777c1a2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfEnemySquads: 2
+  NumberOfEnemySquads: 1
   LevelDifficulty: 1
   PlayerStart: {fileID: 757125702}
   AIStart:
   - {fileID: 1865359859}
-  - {fileID: 468598382}
 --- !u!1 &749783614
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AIRogue.GameObjects;
-using AIRogue.GameState.Battle.Behavior;
+using AIRogue.GameState.Battle.BehaviorTree;
 
 namespace AIRogue.GameState.Battle
 {
@@ -11,10 +11,12 @@ namespace AIRogue.GameState.Battle
 	/// </summary>
 	abstract class UnitController {
 
-		protected Unit Unit { get; private set; }
+		public Unit Unit { get; private set; }
 		protected Squad Squad { get; private set; }
 
-		protected UnitBehavior Behavior;
+		protected Behavior Behavior;
+		private UnitActions actions;
+
 		private HashSet<Unit> attackers
 			= new HashSet<Unit>( 
 				new General.ReferenceEqualityComparer<Unit>() );
@@ -25,24 +27,21 @@ namespace AIRogue.GameState.Battle
 				new General.ReferenceEqualityComparer<UnitController>() );
 		protected UnitController[] AlliesWithTargets = new UnitController[0];
 
-		public delegate void TargetChosen(UnitController attacker);
-		public TargetChosen OnTargetChosen;
-
 		/* * * Environment State * * */
-		public virtual bool HasAttacker
-		{
-			get {
-				return Attackers.Length > 0;
-			}
-		}
 		private Unit target;
 		public Unit Target {
 			get { return target; }
 			protected set {
 				target = value;
-				OnTargetChosen?.Invoke( this );
+				if (value != null)
+				{
+					OnTargetChosen?.Invoke( this );
+				}
 			}
 		}
+
+		public delegate void TargetChosen(UnitController targetChooser);
+		public TargetChosen OnTargetChosen;
 
 		public UnitController() { }
 
@@ -70,10 +69,10 @@ namespace AIRogue.GameState.Battle
 				}
 			}
 
-			SetInitialBehavior();
+			Behavior = GetUnitBehavior();
         }
 
-		protected abstract void SetInitialBehavior();
+		protected abstract Behavior GetUnitBehavior();
 
 		protected virtual void TookDamage(Unit attacker, float damage)
 		{
@@ -99,20 +98,42 @@ namespace AIRogue.GameState.Battle
 		}
 		protected virtual void AllyChoseTarget(UnitController ally)
 		{
-			if (!alliesWithTargets.Contains( ally ))
-			{
-				alliesWithTargets.Add( ally );
-				AlliesWithTargets = alliesWithTargets.ToArray();
-			}
+			alliesWithTargets.Add( ally );
+			AlliesWithTargets = alliesWithTargets.ToArray();
 		}
 
 		public virtual void Update()
 		{
-			Behavior.Update();
+			Behavior = GetUnitBehavior();
+			actions = Behavior.UpdateActions();
+
+			if (actions.Thrust > 0)                                // If thrusting
+			{
+				Unit.ForwardThrust();
+			}
+			else if (actions.Thrust < 0 && actions.Rotation == 0)     // If ReversTurning and not rotating
+			{
+				Unit.ReverseTurn();
+			}
+
+			if (actions.Rotation != 0)                             // If rotating
+			{
+				Unit.Rotate( actions.Rotation );
+			}
+
+			if (actions.PrimaryAttack)
+			{
+				Unit.FireWeapons();
+			}
+
+			if (actions.SecondaryAttack)
+			{
+				Unit.FireWeapons();
+			}
 		}
 		public virtual void FixedUpdate()
 		{
-			Behavior.FixedUpdate();
+
 		}
 	}
 }

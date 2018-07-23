@@ -1,4 +1,4 @@
-﻿using AIRogue.GameState.Battle.Behavior;
+﻿using AIRogue.GameState.Battle.BehaviorTree;
 using AIRogue.GameObjects;
 using UnityEngine;
 
@@ -10,9 +10,9 @@ namespace AIRogue.GameState.Battle
 	/// </summary>
 	class PlayerController : UnitController
 	{
-		protected override void SetInitialBehavior()
+		protected override Behavior GetUnitBehavior()
 		{
-			Behavior = new InputListenerBehavior( Unit );
+			return new InputListenerBehavior(this);
 		}
 	}
 }
