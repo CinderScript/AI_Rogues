@@ -16,7 +16,7 @@ namespace AIRogue.GameState.Battle
 		public Unit Unit { get; private set; }
 		protected Squad Squad { get; private set; }
 
-		protected Behavior Behavior;
+		protected RunnableBehavior Behavior;
 		private UnitActions actions;
 
 		private HashSet<Unit> attackers
@@ -71,12 +71,14 @@ namespace AIRogue.GameState.Battle
 				}
 			}
 
-			Behavior = GetUnitBehavior();
-
 			EventManager.Instance.AddListener<UnitDestroyedEvent>( UnitDestroyedHandler );
 		}
 
-		protected abstract Behavior GetUnitBehavior();
+		protected abstract RunnableBehavior SelectUnitBehavior();
+		protected virtual void UpdateBehaviorSelection()
+		{
+			Behavior = SelectUnitBehavior();
+		}
 
 		protected virtual void TookDamage(Unit attacker, float damage)
 		{
@@ -115,36 +117,14 @@ namespace AIRogue.GameState.Battle
 
 		public virtual void Update()
 		{
-			Behavior = GetUnitBehavior();
-			actions = Behavior.UpdateActions();
+			UpdateBehaviorSelection();
+			Behavior.CalculateActions();
 
-			if (actions.Thrust > 0)                                // If thrusting
-			{
-				Unit.ForwardThrust();
-			}
-			else if (actions.Thrust < 0 && actions.Rotation == 0)     // If ReversTurning and not rotating
-			{
-				Unit.ReverseTurn();
-			}
-
-			if (actions.Rotation != 0)                             // If rotating
-			{
-				Unit.Rotate( actions.Rotation );
-			}
-
-			if (actions.PrimaryAttack)
-			{
-				Unit.FireWeapons();
-			}
-
-			if (actions.SecondaryAttack)
-			{
-				Unit.FireWeapons();
-			}
+			Behavior.Run_Update();
 		}
 		public virtual void FixedUpdate()
 		{
-
+			Behavior.Run_FixedUpdate();
 		}
 	}
 }

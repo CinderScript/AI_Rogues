@@ -11,7 +11,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		{
 			wander = new WanderBehavior( controller );
 		}
-		public override Behavior EvaluateTree()
+		public override RunnableBehavior EvaluateTree()
 		{
 			return wander.EvaluateTree();
 		}

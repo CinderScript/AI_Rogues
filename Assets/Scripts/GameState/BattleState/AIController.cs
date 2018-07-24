@@ -19,18 +19,28 @@ namespace AIRogue.GameState.Battle
 		}
 
 		private Behavior behaviorTree;
+		private float updateBehaviorCooldownTimer = -1;
+		private const float BEHAVIOR_UPDATE_SECONDS = 4;
 
 		public override void Initialize(Unit unit, Squad squad)
 		{
-			behaviorTree = new AIBehaviorRoot( this );
 			base.Initialize( unit, squad );
 
+			behaviorTree = new AIBehaviorRoot( this );
 			OnTargetChosen += newTargetNotification;
 		}
 
-		protected override Behavior GetUnitBehavior()
+		protected override RunnableBehavior SelectUnitBehavior()
 		{
 			return behaviorTree.EvaluateTree();
+		}
+		protected override void UpdateBehaviorSelection()
+		{
+			if (updateBehaviorCooldownTimer < 0 )
+			{
+				base.UpdateBehaviorSelection();
+				updateBehaviorCooldownTimer = BEHAVIOR_UPDATE_SECONDS;
+			}
 		}
 
 		public void UpdateTarget()
@@ -96,6 +106,8 @@ namespace AIRogue.GameState.Battle
 
 		public override void Update()
 		{
+			updateBehaviorCooldownTimer -= Time.deltaTime;
+
 			if (Target == null)
 			{
 				UpdateTarget();

@@ -8,9 +8,9 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	{
 		public HelpAllyBehavior(UnitController controller) : base( controller ) { }
 
-		public override Behavior EvaluateTree()
+		public override RunnableBehavior EvaluateTree()
 		{
-			return this;
+			throw new System.NotImplementedException();
 		}
 	}
 }

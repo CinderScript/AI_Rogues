@@ -11,19 +11,13 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	abstract class Behavior {
 
 		protected readonly UnitController controller;
-		protected readonly Unit unit;
 
 		public Behavior(UnitController unitController)
 		{
 			controller = unitController;
-			unit = unitController.Unit;
 		}
 
-        public abstract Behavior EvaluateTree();
-		public virtual UnitActions UpdateActions()
-		{
-			return new UnitActions();
-		}
+        public abstract RunnableBehavior EvaluateTree();
 	}
 	
 		// CONDITION: was damaged, alli was damaged, finds enemy
@@ -57,7 +51,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			outBattle = new OutOfBattleBehavior( controller );
 		}
 
-		public override Behavior EvaluateTree()
+		public override RunnableBehavior EvaluateTree()
 		{
 			if (controller.Target != null)
 			{
@@ -71,15 +65,16 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	}
 
 
-	class InputListenerBehavior : Behavior {
+	class InputListenerBehavior : RunnableBehavior
+	{
 
 		public InputListenerBehavior(UnitController controller) : base( controller ) { }
 
-		public override Behavior EvaluateTree()
+		public override RunnableBehavior EvaluateTree()
 		{
 			return this;
 		}
-		public override UnitActions UpdateActions()
+		protected override UnitActions UpdateActions()
 		{
 			/// GET PLAYER CONTROLLER INPUT
 			int thrustInput = (int)Input.GetAxisRaw( "Vertical" );

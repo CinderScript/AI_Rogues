@@ -4,16 +4,19 @@ using UnityEngine;
 
 namespace AIRogue.GameState.Battle.BehaviorTree
 {
-	class AttackTargetBehavior : Behavior
+	class AttackTargetBehavior : RunnableBehavior
 	{
+		private Transform target;
+
 		public AttackTargetBehavior(UnitController controller) : base( controller ) { }
 
-		public override Behavior EvaluateTree()
+		public override RunnableBehavior EvaluateTree()
 		{
+			target = controller.Target.transform;
 			return this;
 		}
 
-		public override UnitActions UpdateActions()
+		protected override UnitActions UpdateActions()
 		{
 			/// GET PLAYER CONTROLLER INPUT
 			int thrustInput = (int)Input.GetAxisRaw( "Vertical" );

@@ -3,16 +3,21 @@ using UnityEngine;
 
 namespace AIRogue.GameState.Battle.BehaviorTree
 {
-	class WanderBehavior : Behavior
+	class WanderBehavior : RunnableBehavior
 	{
 		public WanderBehavior(UnitController controller) : base( controller )
 		{
 
 		}
 
-		public override Behavior EvaluateTree()
+		public override RunnableBehavior EvaluateTree()
 		{
 			return this;
+		}
+
+		protected override UnitActions UpdateActions()
+		{
+			return new UnitActions();
 		}
 	}
 }

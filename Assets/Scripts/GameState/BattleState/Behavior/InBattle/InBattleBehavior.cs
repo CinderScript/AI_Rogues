@@ -15,7 +15,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			helpAlly = new HelpAllyBehavior( controller );
 		}
 
-		public override Behavior EvaluateTree()
+		public override RunnableBehavior EvaluateTree()
 		{
 			return attackTarget.EvaluateTree();
 		}

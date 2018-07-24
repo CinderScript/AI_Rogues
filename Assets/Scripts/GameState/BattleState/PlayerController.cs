@@ -10,9 +10,19 @@ namespace AIRogue.GameState.Battle
 	/// </summary>
 	class PlayerController : UnitController
 	{
-		protected override Behavior GetUnitBehavior()
+		private bool behaviorSelected = false;
+
+		protected override RunnableBehavior SelectUnitBehavior()
 		{
 			return new InputListenerBehavior(this);
+		}
+		protected override void UpdateBehaviorSelection()
+		{
+			if (!behaviorSelected)
+			{
+				base.UpdateBehaviorSelection();
+				behaviorSelected = true;
+			}
 		}
 	}
 }

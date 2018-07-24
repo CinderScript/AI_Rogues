@@ -11,9 +11,9 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 
 		}
 
-		public override Behavior EvaluateTree()
+		public override RunnableBehavior EvaluateTree()
 		{
-			return null;
+			throw new System.NotImplementedException();
 		}
 	}
 }
