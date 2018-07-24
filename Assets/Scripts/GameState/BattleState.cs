@@ -79,10 +79,10 @@ namespace AIRogue.GameState
         }
 		public void FixedUpdate()
 		{
-			//foreach (var squad in squads)
-			//{
-			//	squad.FixedUpdate();
-			//}
+			foreach (var squad in squads)
+			{
+				squad.FixedUpdate();
+			}
 		}
     }
 }

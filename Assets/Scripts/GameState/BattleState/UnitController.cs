@@ -17,7 +17,6 @@ namespace AIRogue.GameState.Battle
 		protected Squad Squad { get; private set; }
 
 		protected RunnableBehavior Behavior;
-		private UnitActions actions;
 
 		private HashSet<Unit> attackers
 			= new HashSet<Unit>( 
@@ -58,6 +57,7 @@ namespace AIRogue.GameState.Battle
             Unit = unit;
 			Unit.OnDamageTaken += TookDamage;
 			Squad = squad;
+			Behavior = new StartupBehavior( this );  // needed so that a reference exists when FixedUpdate is called for the first time.
 
 			/// Set each OnTargetChosen delegate with each controller's <see cref="AllyChoseTarget"/> method
 			foreach (var controller in Squad.controllers)
