@@ -27,10 +27,19 @@ namespace AIRogue.GameObjects
 
 		public int WeaponPosition { get; set; }
 
+		// Used for targeting logic
+		public abstract float DamagerVelocity { get; }
+		public float WeaponDPS { get; private set; }
+		public bool InRangeOf(Vector3 position)
+		{
+			return Vector3.Distance( damagerSpawnPoint.position, position ) < Range;
+		}
+		public TargetingModule TargetingModule { get; set; }
+
 		protected Unit unit;
 		protected Transform damagerSpawnPoint;
 
-		private float shotCooldownTimer;
+		private float shotCooldownTimer = -1;
 		float secondsPerShot;
 
 		protected virtual void Awake()
@@ -50,6 +59,7 @@ namespace AIRogue.GameObjects
 			}
 
 			secondsPerShot = 1 / RateOfFire;
+			WeaponDPS = Damage * RateOfFire;
 		}
 		protected virtual void Start()
 		{
@@ -57,14 +67,14 @@ namespace AIRogue.GameObjects
 		}
 		protected virtual void Update()
 		{
-			shotCooldownTimer += Time.deltaTime;
+			shotCooldownTimer -= Time.deltaTime;
 		}
 
 		public void FireWeapon()
 		{
-			if ( shotCooldownTimer > secondsPerShot)
+			if ( shotCooldownTimer < 0)
 			{
-				shotCooldownTimer = 0;
+				shotCooldownTimer = secondsPerShot;
 				activateShot();
 			}
 		}

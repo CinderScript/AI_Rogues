@@ -14,6 +14,13 @@ namespace AIRogue.GameObjects
 		/// </summary>
 		public float Velocity = 10;
 
+		public override float DamagerVelocity
+		{
+			get {
+				return Velocity;
+			}
+		}
+
 		protected override void Awake()
 		{
 			base.Awake();
@@ -33,7 +40,6 @@ namespace AIRogue.GameObjects
 			// spawn bullet pool
 			// set Damage properties like "MaxLifetime", "ThisUnit"
 		}
-
 		protected override void Start()
 		{
 			base.Start();

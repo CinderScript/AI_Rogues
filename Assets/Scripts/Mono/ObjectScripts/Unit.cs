@@ -46,7 +46,7 @@ namespace AIRogue.GameObjects {
 		private float shipVelocityMaxSqr;
 		private const float SIDETHRUST_SCALER = 0.6f;
 		private float accelerationForceSideways;
-
+		
 		void Awake()
 		{
 			WeaponMounts = GetComponentsInChildren<WeaponMount>();

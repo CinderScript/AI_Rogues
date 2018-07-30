@@ -851,7 +851,7 @@ MonoBehaviour:
   Health: 2
   ShieldCapacity: 4
   MaxVelocity: 12
-  AccelerationForce: 6
+  AccelerationForce: 8
   RotationSpeed: 100
   WeaponLevel: 1
   Weapons: []

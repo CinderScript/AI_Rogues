@@ -3,6 +3,7 @@
  * Copyright (C) - All Rights Reserved
  */
 
+using System.Collections.Generic;
 using AIRogue.GameObjects;
 using UnityEngine;
 
@@ -11,13 +12,43 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	abstract class Behavior {
 
 		protected readonly UnitController controller;
+		protected readonly Unit unit;
 
 		public Behavior(UnitController unitController)
 		{
 			controller = unitController;
+			unit = controller.Unit;
 		}
-
         public abstract RunnableBehavior EvaluateTree();
+
+		protected float LookAngleToPosition(Vector3 position)
+		{
+			return Vector3.Angle( unit.transform.forward, position - unit.transform.position );
+		}
+		protected int DirectionToPosition(Vector3 position)
+		{
+			if (unit.transform.InverseTransformPoint( position ).x < 0)
+			{
+				return -1;
+			}
+			else
+			{
+				return 1;
+			}
+		}
+		protected List<Weapon> WeaponsInRange(Vector3 position)
+		{
+			List<Weapon> inRange = new List<Weapon>();
+			foreach (var weapon in unit.Weapons)
+			{
+				if (weapon.InRangeOf(position))
+				{
+					inRange.Add( weapon );
+				}
+			}
+
+			return inRange;
+		}
 	}
 	
 		// CONDITION: was damaged, alli was damaged, finds enemy
@@ -50,7 +81,6 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			inBattle = new InBattleBehavior( controller );
 			outBattle = new OutOfBattleBehavior( controller );
 		}
-
 		public override RunnableBehavior EvaluateTree()
 		{
 			if (controller.Target != null)
@@ -67,7 +97,6 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 
 	class InputListenerBehavior : RunnableBehavior
 	{
-
 		public InputListenerBehavior(UnitController controller) : base( controller ) { }
 
 		public override RunnableBehavior EvaluateTree()

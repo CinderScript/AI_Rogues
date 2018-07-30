@@ -1,16 +1,15 @@
 ﻿using AIRogue.GameObjects;
+using UnityEngine;
 
 namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	abstract class RunnableBehavior : Behavior
 	{
 		private UnitActions actions;
-		private Unit unit;
 
 		public RunnableBehavior(UnitController unitController) : base( unitController )
 		{
 			actions = new UnitActions();
-			unit = unitController.Unit;
 		}
 
 		public void CalculateActions()
@@ -50,8 +49,25 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 				unit.ForwardThrust();
 			}
 		}
-
 		protected abstract UnitActions UpdateActions();
+
+		protected int UnitRotationInput_LookAt(Vector3 position, float degreesOfAccuracy = 1)
+		{
+			int rotation = 0;
+			if (LookAngleToPosition( position ) > degreesOfAccuracy)
+			{
+				if (DirectionToPosition( position ) == 1)
+				{
+					rotation = 1;
+				}
+				else
+				{
+					rotation = -1;
+				}
+			}
+
+			return rotation;
+		}
 	}
 
 	/// <summary>

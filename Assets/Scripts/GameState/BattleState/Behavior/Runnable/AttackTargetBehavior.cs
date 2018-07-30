@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 using AIRogue.GameObjects;
 using UnityEngine;
 
@@ -6,26 +6,58 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	class AttackTargetBehavior : RunnableBehavior
 	{
-		private Transform target;
+		private Transform targetTrans;
+		private Rigidbody targetRigid;
 
 		public AttackTargetBehavior(UnitController controller) : base( controller ) { }
 
 		public override RunnableBehavior EvaluateTree()
 		{
-			target = controller.Target.transform;
+			targetTrans = controller.Target.transform;
+			targetRigid = controller.Target.GetComponent<Rigidbody>();
 			return this;
 		}
-
 		protected override UnitActions UpdateActions()
 		{
-			/// GET PLAYER CONTROLLER INPUT
-			int thrustInput = (int)Input.GetAxisRaw( "Vertical" );
-			float rotationInput = Input.GetAxis( "Horizontal" );
+			int rotation = rotateToWeaponIntercept();
+
+			// GET PLAYER CONTROLLER INPUT
+			int thrustInput = 0;
+			float rotationInput = rotation;
 
 			bool primaryAttackInput = Input.GetButton( "Fire1" );
 			bool secondaryAttackInput = Input.GetButton( "Fire1" );
 
 			return new UnitActions( thrustInput, rotationInput, primaryAttackInput, secondaryAttackInput );
+		}
+
+		private int rotateToWeaponIntercept()
+		{
+			Vector3 intercept = Vector3.zero;
+
+			List<Weapon> weapons = WeaponsInRange( targetTrans.position );
+			if (weapons.Count > 0)
+			{
+				List<Vector3> intercepts = new List<Vector3>();
+				foreach (var weapon in weapons)
+				{
+					intercepts.Add(
+						weapon.TargetingModule.GetIntercept( targetTrans.position, targetRigid.velocity ) );
+				}
+
+				foreach (var weapIntercept in intercepts)
+				{
+					intercept += weapIntercept;
+				}
+				intercept /= intercepts.Count;
+			}
+			else
+			{
+				intercept = targetTrans.position;
+			}
+
+			// turn towords target
+			return UnitRotationInput_LookAt( intercept );
 		}
 	}
 }

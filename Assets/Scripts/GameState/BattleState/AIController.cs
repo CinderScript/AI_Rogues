@@ -20,7 +20,7 @@ namespace AIRogue.GameState.Battle
 
 		private Behavior behaviorTree;
 		private float updateBehaviorCooldownTimer = -1;
-		private const float BEHAVIOR_UPDATE_SECONDS = 4;
+		private const float BEHAVIOR_UPDATE_SECONDS = 0.25f;
 
 		public override void Initialize(Unit unit, Squad squad)
 		{
