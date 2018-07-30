@@ -41,6 +41,8 @@ namespace AIRogue.GameObjects {
 		public WeaponMount[] WeaponMounts { get; private set; }
 		public Shield Shield { get; private set; }
 
+		public Weapon WeaponWithLongestRange { get; private set; }
+
 		/* * * movement vars * * */
 		private new Rigidbody rigidbody;
 		private float shipVelocityMaxSqr;
@@ -169,6 +171,28 @@ namespace AIRogue.GameObjects {
 			weapon.WeaponPosition = Weapons.Count;
 
 			Weapons.Add( weapon );
+
+			if (WeaponWithLongestRange == null)
+			{
+				WeaponWithLongestRange = weapon;
+			}
+
+			// set with weapon with longest range
+			foreach (var w in Weapons)
+			{
+				if (weapon.Range > w.Range)
+				{
+					WeaponWithLongestRange = weapon;
+				}
+				// if range is equal, set with weapon with higher dps
+				else if (weapon.Range == w.Range)
+				{
+					if (weapon.WeaponDPS > w.WeaponDPS)
+					{
+						WeaponWithLongestRange = weapon;
+					}
+				}
+			}
 		}
 		private void destroyShip()
 		{

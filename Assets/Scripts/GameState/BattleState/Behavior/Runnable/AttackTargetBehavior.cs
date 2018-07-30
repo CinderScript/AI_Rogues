@@ -42,7 +42,8 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 				foreach (var weapon in weapons)
 				{
 					intercepts.Add(
-						weapon.TargetingModule.GetIntercept( targetTrans.position, targetRigid.velocity ) );
+						weapon.TargetingModule.
+						GetIntercept( targetTrans.position, targetRigid.velocity ) );
 				}
 
 				foreach (var weapIntercept in intercepts)
@@ -53,7 +54,8 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			}
 			else
 			{
-				intercept = targetTrans.position;
+				intercept = unit.WeaponWithLongestRange.TargetingModule.
+					GetIntercept( targetTrans.position, targetRigid.velocity );
 			}
 
 			// turn towords target
