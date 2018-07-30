@@ -19,11 +19,15 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		}
 		protected override UnitActions UpdateActions()
 		{
-			int rotation = rotateToWeaponIntercept();
-
-			// GET PLAYER CONTROLLER INPUT
+			// rotate towords intercept
+			int rotationInput = rotateToWeaponIntercept();
+			// thrust when out of range
 			int thrustInput = 0;
-			float rotationInput = rotation;
+			float distanceToTarget = Vector3.Distance( unit.transform.position, targetTrans.position );
+			if ( distanceToTarget > unit.WeaponWithShortestRange.Range)
+			{
+				thrustInput = 1;
+			}
 
 			bool primaryAttackInput = Input.GetButton( "Fire1" );
 			bool secondaryAttackInput = Input.GetButton( "Fire1" );

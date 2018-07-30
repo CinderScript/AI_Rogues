@@ -42,6 +42,7 @@ namespace AIRogue.GameObjects {
 		public Shield Shield { get; private set; }
 
 		public Weapon WeaponWithLongestRange { get; private set; }
+		public Weapon WeaponWithShortestRange { get; private set; }
 
 		/* * * movement vars * * */
 		private new Rigidbody rigidbody;
@@ -176,20 +177,39 @@ namespace AIRogue.GameObjects {
 			{
 				WeaponWithLongestRange = weapon;
 			}
+			if (WeaponWithShortestRange == null)
+			{
+				WeaponWithShortestRange = weapon;
+			}
 
-			// set with weapon with longest range
+			// set with weapon with longest/shortest range
 			foreach (var w in Weapons)
 			{
-				if (weapon.Range > w.Range)
+				// find longest
+				if ( w.Range > WeaponWithLongestRange.Range)
 				{
-					WeaponWithLongestRange = weapon;
+					WeaponWithLongestRange = w;
 				}
 				// if range is equal, set with weapon with higher dps
-				else if (weapon.Range == w.Range)
+				else if (w.Range == WeaponWithLongestRange.Range)
 				{
-					if (weapon.WeaponDPS > w.WeaponDPS)
+					if (w.WeaponDPS > WeaponWithLongestRange.WeaponDPS)
 					{
-						WeaponWithLongestRange = weapon;
+						WeaponWithLongestRange = w;
+					}
+				}
+
+				// find shortest
+				if (w.Range < WeaponWithShortestRange.Range)
+				{
+					WeaponWithShortestRange = w;
+				}
+				// if range is equal, set with weapon with higher dps
+				else if (w.Range == WeaponWithShortestRange.Range)
+				{
+					if (w.WeaponDPS > WeaponWithShortestRange.WeaponDPS)
+					{
+						WeaponWithShortestRange = w;
 					}
 				}
 			}
