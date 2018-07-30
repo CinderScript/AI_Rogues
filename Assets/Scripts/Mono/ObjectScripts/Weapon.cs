@@ -60,6 +60,7 @@ namespace AIRogue.GameObjects
 
 			secondsPerShot = 1 / RateOfFire;
 			WeaponDPS = Damage * RateOfFire;
+			TargetingModule = new TargetingModule( damagerSpawnPoint, unit.GetComponent<Rigidbody>(), DamagerVelocity );
 		}
 		protected virtual void Start()
 		{
