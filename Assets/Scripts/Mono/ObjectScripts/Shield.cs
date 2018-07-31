@@ -70,7 +70,7 @@ namespace AIRogue.GameObjects {
 
 			if (throughDamage > 0)
 			{
-				Unit.PassthroughDamage( damage );
+				Unit.TakeDamage( damage );
 			}
 		}
 

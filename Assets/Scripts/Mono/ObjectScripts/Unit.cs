@@ -134,13 +134,14 @@ namespace AIRogue.GameObjects {
 		public void TakeDamage(Unit attacker, float damage, Collision collision)
 		{
 			OnDamageTaken?.Invoke( attacker, damage );
-			PassthroughDamage( damage );
+			TakeDamage( damage );
 		}
 		/// <summary>
+		/// Damages the ship without invoking damage reporter or causeing collision effect.
 		/// Used by shield to deliver pasthrough damage
 		/// </summary>
 		/// <param name="damage"></param>
-		public void PassthroughDamage(float damage)
+		public void TakeDamage(float damage)
 		{
 			Health -= damage;
 
