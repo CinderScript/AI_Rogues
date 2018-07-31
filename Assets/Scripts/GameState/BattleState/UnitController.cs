@@ -5,6 +5,7 @@ using System.Linq;
 using AIRogue.Events;
 using AIRogue.GameObjects;
 using AIRogue.GameState.Battle.BehaviorTree;
+using UnityEngine;
 
 namespace AIRogue.GameState.Battle
 {

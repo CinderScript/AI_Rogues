@@ -20,7 +20,7 @@ namespace AIRogue.GameObjects
 			this.speed = intercepterSpeed;
 		}
 
-		public Vector3 GetIntercept(Vector3 targetPos, Vector3 targetVelocity, int itterations = 2)
+		public Vector3 GetIntercept(Vector3 targetPos, Vector3 targetVelocity, int itterations = 3)
 		{
 			Vector3 intercept = targetPos;
 			float timeUntillIntercept;

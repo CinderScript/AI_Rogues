@@ -45,7 +45,7 @@ namespace AIRogue.GameObjects {
 		public Weapon WeaponWithShortestRange { get; private set; }
 
 		/* * * movement vars * * */
-		private new Rigidbody rigidbody;
+		public Rigidbody Rigidbody { get; private set; }
 		private float shipVelocityMaxSqr;
 		private const float SIDETHRUST_SCALER = 0.6f;
 		private float accelerationForceSideways;
@@ -56,7 +56,7 @@ namespace AIRogue.GameObjects {
 			Shield = GetComponentInChildren<Shield>();
 			Shield.Initialize( ShieldCapacity );
 
-			rigidbody = GetComponent<Rigidbody>();
+			Rigidbody = GetComponent<Rigidbody>();
 			accelerationForceSideways = AccelerationForce * SIDETHRUST_SCALER;
 			shipVelocityMaxSqr = MaxVelocity * MaxVelocity;
 		}
@@ -71,12 +71,12 @@ namespace AIRogue.GameObjects {
 		/// </summary>
 		public void ForwardThrust()
 		{
-			rigidbody.AddRelativeForce( Vector3.forward * AccelerationForce );
+			Rigidbody.AddRelativeForce( Vector3.forward * AccelerationForce );
 
 			// Velocity Cap
-			if (rigidbody.velocity.sqrMagnitude >= shipVelocityMaxSqr)
+			if (Rigidbody.velocity.sqrMagnitude >= shipVelocityMaxSqr)
 			{
-				rigidbody.velocity = rigidbody.velocity.normalized * MaxVelocity;  // preservs directional motion
+				Rigidbody.velocity = Rigidbody.velocity.normalized * MaxVelocity;  // preservs directional motion
 			}
 		}
 		/// <summary>
@@ -86,12 +86,12 @@ namespace AIRogue.GameObjects {
 		/// </summary>
 		public void SideThrust(float inputDirection)
 		{
-			rigidbody.AddRelativeForce( Vector3.right * accelerationForceSideways * inputDirection );
+			Rigidbody.AddRelativeForce( Vector3.right * accelerationForceSideways * inputDirection );
 
 			// Velocity Cap
-			if (rigidbody.velocity.sqrMagnitude >= shipVelocityMaxSqr)
+			if (Rigidbody.velocity.sqrMagnitude >= shipVelocityMaxSqr)
 			{
-				rigidbody.velocity = rigidbody.velocity.normalized * MaxVelocity;  // preservs directional motion
+				Rigidbody.velocity = Rigidbody.velocity.normalized * MaxVelocity;  // preservs directional motion
 			}
 		}
 		/// <summary>
@@ -100,10 +100,10 @@ namespace AIRogue.GameObjects {
 		/// </summary>
 		public void ReverseTurn()
 		{
-			if (rigidbody.velocity.sqrMagnitude != 0)
+			if (Rigidbody.velocity.sqrMagnitude != 0)
 			{
 				transform.rotation = Quaternion.RotateTowards( transform.rotation,   // rotate from current ship rotation
-										 Quaternion.LookRotation( -rigidbody.velocity ),  // to rotation taken from -velocity
+										 Quaternion.LookRotation( -Rigidbody.velocity ),  // to rotation taken from -velocity
 										 RotationSpeed * Time.deltaTime );
 			}
 		}

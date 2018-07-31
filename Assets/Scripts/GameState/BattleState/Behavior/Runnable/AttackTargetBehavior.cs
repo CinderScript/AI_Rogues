@@ -6,6 +6,9 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	class AttackTargetBehavior : RunnableBehavior
 	{
+		private const float THRUST_ON_ANGLE_BELLOW = 30;
+		private const float SHOOT_ON_ANGLE_BELLOW = 10;
+
 		private Transform targetTrans;
 		private Rigidbody targetRigid;
 
@@ -14,28 +17,42 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		public override RunnableBehavior EvaluateTree()
 		{
 			targetTrans = controller.Target.transform;
-			targetRigid = controller.Target.GetComponent<Rigidbody>();
+			targetRigid = controller.Target.Rigidbody;
 			return this;
 		}
 		protected override UnitActions UpdateActions()
 		{
+			Vector3 intercept = getIntercept();
+			float distanceToIntercept = Vector3.Distance( unit.transform.position, intercept );
+			float angleToIntercept = LookAngleToPosition( intercept );
+
 			// rotate towords intercept
-			int rotationInput = rotateToWeaponIntercept();
-			// thrust when out of range
+			int rotationInput = UnitRotationInput_LookAt( intercept );
+
+			// thrust when out of range, and on target with intercept
 			int thrustInput = 0;
-			float distanceToTarget = Vector3.Distance( unit.transform.position, targetTrans.position );
-			if ( distanceToTarget > unit.WeaponWithShortestRange.Range)
+			if (distanceToIntercept > unit.WeaponWithShortestRange.Range)
 			{
-				thrustInput = 1;
+				if ( angleToIntercept < THRUST_ON_ANGLE_BELLOW )
+				{
+					thrustInput = 1;
+				}
 			}
 
-			bool primaryAttackInput = Input.GetButton( "Fire1" );
-			bool secondaryAttackInput = Input.GetButton( "Fire1" );
+			// fire when in range, and on target
+			bool primaryAttackInput = false;
+			if (distanceToIntercept < unit.WeaponWithLongestRange.Range+5)
+			{
+				if (angleToIntercept < SHOOT_ON_ANGLE_BELLOW)
+				{
+					primaryAttackInput = true;
+				}
+			}
 
-			return new UnitActions( thrustInput, rotationInput, primaryAttackInput, secondaryAttackInput );
+			return new UnitActions( thrustInput, rotationInput, primaryAttackInput, primaryAttackInput );
 		}
 
-		private int rotateToWeaponIntercept()
+		private Vector3 getIntercept()
 		{
 			Vector3 intercept = Vector3.zero;
 
@@ -62,8 +79,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 					GetIntercept( targetTrans.position, targetRigid.velocity );
 			}
 
-			// turn towords target
-			return UnitRotationInput_LookAt( intercept );
+			return intercept;
 		}
 	}
 }

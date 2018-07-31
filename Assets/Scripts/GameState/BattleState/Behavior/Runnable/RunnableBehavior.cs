@@ -81,12 +81,10 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		public StartupBehavior(UnitController unitController) : base( unitController )
 		{
 		}
-
 		public override RunnableBehavior EvaluateTree()
 		{
 			return this;
 		}
-
 		protected override UnitActions UpdateActions()
 		{
 			return new UnitActions();

@@ -51,7 +51,8 @@ namespace AIRogue.GameState
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.GreenLaser) );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.RedLaser) );
 
-			playerSquad.SpawnUnit<AIController>( UnitType.TestUnit );
+			Unit player2 = playerSquad.SpawnUnit<AIController>( UnitType.TestUnit );
+			player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ) );
 
 			squads.Add( playerSquad );
 
@@ -63,6 +64,7 @@ namespace AIRogue.GameState
 				Squad aiSquad = new Squad( unitBank, levelProperties.AIStart[i].position, "AISquad-" + i );
 				Unit ai = aiSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 				ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.GreenLaser ) );
+				ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ) );
 
 				squads.Add( aiSquad );
 			}
