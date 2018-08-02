@@ -110,14 +110,18 @@ namespace AIRogue.GameState.Battle
 		}
 		private void UnitDestroyedHandler(UnitDestroyedEvent gameEvent)
 		{
+			// remove this UnitController if its unit was destroyed
 			if ( ReferenceEquals( gameEvent.Unit, this.Unit ) )
 			{
 				Squad.controllers.Remove( this );
 			}
+			// else, check for 
 		}
 
 		public virtual void Update()
 		{
+			UpdateTarget();
+
 			UpdateBehaviorSelection();
 			Behavior.CalculateActions();
 
@@ -126,6 +130,69 @@ namespace AIRogue.GameState.Battle
 		public virtual void FixedUpdate()
 		{
 			Behavior.Run_FixedUpdate();
+		}
+
+		public void UpdateTarget()
+		{
+			if (Target == null)
+			{
+				Target = closestAttacker();
+
+				// if attacker exists
+				if (Target == null)
+				{
+					Target = closestAllyTarget();
+				}
+			}
+		}
+		private float distanceToUnit(Unit unit)
+		{
+			return Vector3.Distance( Unit.transform.position, unit.transform.position );
+		}
+		private Unit closestAttacker()
+		{
+			Unit attacker = null;
+
+			if (Attackers.Length > 0)
+			{
+				float shortest = distanceToUnit( Attackers[0] );
+				attacker = Attackers[0];
+
+				for (int i = 1; i < Attackers.Length; i++)
+				{
+					float dist = distanceToUnit( Attackers[i] );
+					if (dist < shortest)
+					{
+						shortest = dist;
+						attacker = Attackers[i];
+					}
+				}
+			}
+
+			return attacker;
+		}
+		// maybe change to closestAllyAttacker
+		private Unit closestAllyTarget()
+		{
+			Unit allyTarget = null;
+
+			if (AlliesWithTargets.Length > 0)
+			{
+				float shortest = distanceToUnit( AlliesWithTargets[0].Target );
+				allyTarget = AlliesWithTargets[0].Target;
+
+				for (int i = 1; i < AlliesWithTargets.Length; i++)
+				{
+					float dist = distanceToUnit( AlliesWithTargets[i].Target );
+					if (dist < shortest)
+					{
+						shortest = dist;
+						allyTarget = AlliesWithTargets[i].Target;
+					}
+				}
+			}
+
+			return allyTarget;
 		}
 	}
 }

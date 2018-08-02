@@ -583,9 +583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponType: 2
-  Damage: 5
-  RateOfFire: 2
-  Range: 30
+  Damage: 3
+  RateOfFire: 1.5
+  Range: 15
   DamagerPrefab: {fileID: 1557922754166998, guid: f471342c0328d024680fec39d4d4a74f,
     type: 2}
-  Velocity: 10
+  Velocity: 8

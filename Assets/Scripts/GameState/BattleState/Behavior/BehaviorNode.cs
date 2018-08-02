@@ -94,7 +94,6 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		}
 	}
 
-
 	class InputListenerBehavior : RunnableBehavior
 	{
 		public InputListenerBehavior(UnitController controller) : base( controller ) { }

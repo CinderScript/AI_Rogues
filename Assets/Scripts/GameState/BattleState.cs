@@ -34,7 +34,7 @@ namespace AIRogue.GameState
 			 * Initialize each Squad with the correct UnitController
 			 * Give each Squad a reference to...
 			 */
-
+			
 			squads = new List<Squad>();
 
 			/* Add Squads to List
@@ -52,7 +52,8 @@ namespace AIRogue.GameState
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.RedLaser) );
 
 			Unit player2 = playerSquad.SpawnUnit<AIController>( UnitType.TestUnit );
-			player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ) );
+			player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.BlueCannon ) );
+			player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.GreenLaser ) );
 
 			squads.Add( playerSquad );
 
