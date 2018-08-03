@@ -19,6 +19,8 @@ namespace AIRogue.GameState.Battle
 
 		protected RunnableBehavior Behavior;
 
+		protected List<Unit> enemyUnits = new List<Unit>();
+
 		private HashSet<Unit> attackers
 			= new HashSet<Unit>( 
 				new General.ReferenceEqualityComparer<Unit>() );
@@ -61,7 +63,7 @@ namespace AIRogue.GameState.Battle
 			Behavior = new StartupBehavior( this );  // needed so that a reference exists when FixedUpdate is called for the first time.
 
 			/// Set each OnTargetChosen delegate with each controller's <see cref="AllyChoseTarget"/> method
-			foreach (var controller in Squad.controllers)
+			foreach (var controller in Squad.Controllers)
 			{
 				// should always be true if initialized before being added to squad
 				if (!ReferenceEquals(this, controller)) 
@@ -73,6 +75,7 @@ namespace AIRogue.GameState.Battle
 			}
 
 			EventManager.Instance.AddListener<UnitDestroyedEvent>( UnitDestroyedHandler );
+			EventManager.Instance.AddListener<BattleStartEvent>( SetEnemyUnitsHandler );
 		}
 
 		protected abstract RunnableBehavior SelectUnitBehavior();
@@ -113,9 +116,19 @@ namespace AIRogue.GameState.Battle
 			// remove this UnitController if its unit was destroyed
 			if ( ReferenceEquals( gameEvent.Unit, this.Unit ) )
 			{
-				Squad.controllers.Remove( this );
+				Squad.Controllers.Remove( this );
 			}
 			// else, check for 
+		}
+		private void SetEnemyUnitsHandler(BattleStartEvent gameEvent)
+		{
+			foreach (var unit in gameEvent.Units)
+			{
+				if (true)
+				{
+
+				}
+			}
 		}
 
 		public virtual void Update()

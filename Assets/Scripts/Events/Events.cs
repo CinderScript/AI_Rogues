@@ -1,4 +1,5 @@
-﻿using AIRogue.GameObjects;
+﻿using System.Collections.Generic;
+using AIRogue.GameObjects;
 
 namespace AIRogue.Events {
 
@@ -19,6 +20,16 @@ namespace AIRogue.Events {
 		public UnitDestroyedEvent(Unit destroyedUnit)
 		{
 			Unit = destroyedUnit;
+		}
+	}
+
+	class BattleStartEvent : GameEvent
+	{
+		public List<Unit> Units { get; }
+
+		public BattleStartEvent(List<Unit> units)
+		{
+			Units = units;
 		}
 	}
 }

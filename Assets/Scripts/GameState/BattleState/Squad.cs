@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using AIRogue.Events;
 using AIRogue.GameObjects;
 using AIRogue.Scene;
 
@@ -10,9 +10,12 @@ namespace AIRogue.GameState.Battle
 {
 	class Squad
 	{
-        public string Name { get; }
-        private readonly UnitBank unitBank;
-		public readonly List<UnitController> controllers;
+		public string Name { get; }
+		public SquadFaction Faction { get; }
+		public readonly List<UnitController> Controllers;
+		public List<Squad> EnemySquads { get; private set; }
+
+		private readonly UnitBank unitBank;
 		private readonly Vector3 startPosition;
 
 		private const int SPAWN_SPACING = 10;
@@ -24,24 +27,27 @@ namespace AIRogue.GameState.Battle
 		/// <param name="unitBank"></param>
 		/// <param name="controllerBlueprint"></param>
 		/// <param name="name"></param>
-		public Squad(UnitBank unitBank, Vector3 startPosition, string name )
+		public Squad(UnitBank unitBank, Vector3 startPosition, string name, SquadFaction faction )
         {
 			this.unitBank = unitBank;
 			this.startPosition = startPosition;
-            this.Name = name;
-			controllers = new List<UnitController>();
+            Name = name;
+			Faction = faction;
+
+			Controllers = new List<UnitController>();
+			EnemySquads = new List<Squad>();
 		}
 
-        public void Update()
+		public void Update()
         {
-			foreach (var controller in controllers)
+			foreach (var controller in Controllers)
 			{
 				controller.Update();
 			}
         }
 		public void FixedUpdate()
 		{
-			foreach (var controller in controllers)
+			foreach (var controller in Controllers)
 			{
 				controller.FixedUpdate();
 			}
@@ -66,13 +72,13 @@ namespace AIRogue.GameState.Battle
 				GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
 
 				unit = unitSpawn.GetComponent<Unit>();
-				unit.SetSquad( this, controllers.Count );
+				unit.SetSquad( this, Controllers.Count );
 
 				unitSpawn.name = unit.ToString();
 
 				T controller = new T();
                 controller.Initialize( unit, this );
-                controllers.Add( controller );
+                Controllers.Add( controller );
             }
             else
             {
@@ -88,7 +94,7 @@ namespace AIRogue.GameState.Battle
 		/// <returns></returns>
 		private Vector3 newUnitPos()
 		{
-			Vector3 pos = new Vector3(	startPosition.x + (SPAWN_SPACING * controllers.Count), 
+			Vector3 pos = new Vector3(	startPosition.x + (SPAWN_SPACING * Controllers.Count), 
 										startPosition.y, 
 										startPosition.z );
 
@@ -100,4 +106,9 @@ namespace AIRogue.GameState.Battle
 			return Name;
 		}
     }
+
+	enum SquadFaction
+	{
+		Player, AI_1, AI_2
+	}
 }

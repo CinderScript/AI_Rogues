@@ -6,7 +6,6 @@ using AIRogue.Scene;
 
 namespace AIRogue.GameState
 {
-
 	/// <summary>
 	/// Inherits IGameState.  The state that controls the gameplay during a battle.
 	/// 
@@ -45,7 +44,7 @@ namespace AIRogue.GameState
 			 */
 
 			/* ADD PLAYER SQUADS */
-			Squad playerSquad = new Squad( unitBank, levelProperties.PlayerStart.position, "Player" );
+			Squad playerSquad = new Squad( unitBank, levelProperties.PlayerStart.position, "Player", SquadFaction.Player );
 
 			Unit player = playerSquad.SpawnUnit<PlayerController>( UnitType.SimpleFighter );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.GreenLaser) );
@@ -62,19 +61,21 @@ namespace AIRogue.GameState
 			/* ADD ENEMY SQUADS */
 			for (int i = 0; i < levelProperties.NumberOfEnemySquads; i++)
 			{				
-				Squad aiSquad = new Squad( unitBank, levelProperties.AIStart[i].position, "AISquad-" + i );
+				Squad aiSquad = new Squad( unitBank, levelProperties.AIStart[i].position, "AISquad-" + i, SquadFaction.AI_1 );
 				Unit ai = aiSquad.SpawnUnit<AIController>( UnitType.TestUnit );
 				ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.GreenLaser ) );
 				ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ) );
 
 				squads.Add( aiSquad );
 			}
-        }
 
-        /// <summary>
-        /// Runs the correct Army's update loop and keeps track of turns.
-        /// </summary>
-        public void Update()
+			EventManager.Instance.QueueEvent( new BattleStartEvent( getAllUnits() ) );
+		}
+
+		/// <summary>
+		/// Runs the correct Army's update loop and keeps track of turns.
+		/// </summary>
+		public void Update()
         {
 			foreach (var squad in squads)
 			{
@@ -87,6 +88,21 @@ namespace AIRogue.GameState
 			{
 				squad.FixedUpdate();
 			}
+		}
+
+		private List<Unit> getAllUnits()
+		{
+			List<Unit> allUnits = new List<Unit>();
+
+			foreach (var squad in squads)
+			{
+				foreach (var controller in squad.Controllers)
+				{
+					allUnits.Add( controller.Unit );
+				}
+			}
+
+			return allUnits;
 		}
     }
 }
