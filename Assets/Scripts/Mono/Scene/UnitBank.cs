@@ -42,15 +42,21 @@ namespace AIRogue.Scene
 		/// <returns></returns>
 		public GameObject GetPrefab(UnitType type)
 		{
+			GameObject unitPrefab = null;
 			foreach (var prefab in UnitPrefabs)
 			{
 				if (prefab.GetComponent<Unit>().UnitType == type)
 				{
-					return prefab;
+					unitPrefab = prefab;
 				}
 			}
 
-			return null;
+			if (unitPrefab == null)
+			{
+				Debug.Log( "Unit type not found in loader:  " + type );
+			}
+
+			return unitPrefab;
 		}
 	}
 }

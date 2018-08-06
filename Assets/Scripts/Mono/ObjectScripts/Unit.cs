@@ -61,8 +61,11 @@ namespace AIRogue.GameObjects {
 			shipVelocityMaxSqr = MaxVelocity * MaxVelocity;
 		}
 
-		public delegate void AttackReporter(Unit attacker, float damage);
-		public AttackReporter OnDamageTaken;
+		public delegate void DamageTakenReporter(Unit damagedUnit, Unit attacker);
+		public DamageTakenReporter OnDamageTaken;
+
+		public delegate void DestroyedReporter(Unit unit);
+		public DestroyedReporter OnUnitDestroyed;
 
 		/// <summary>
 		/// Applies a force in the forward vector to the ridgidbody of the ship.
@@ -133,7 +136,7 @@ namespace AIRogue.GameObjects {
 		/// <param name="collision"></param>
 		public void TakeDamage(Unit attacker, float damage, Collision collision)
 		{
-			OnDamageTaken?.Invoke( attacker, damage );
+			OnDamageTaken?.Invoke( this, attacker );
 			TakeDamage( damage );
 		}
 		/// <summary>
@@ -225,8 +228,19 @@ namespace AIRogue.GameObjects {
 			Destroy( effect, particles.main.duration );
 			Destroy( gameObject );
 
-			EventManager.Instance.QueueEvent( new UnitDestroyedEvent( this ) );
+			//EventManager.Instance.QueueEvent( new UnitDestroyedEvent( this ) );
+			OnUnitDestroyed?.Invoke( this );
+
 		}
+		private void OnDestroy()
+		{
+		}
+
+		private void OnDisable()
+		{
+		}
+
+
 		public override string ToString()
 		{
 			return $"{Squad.Name}.{SquadPosition}.{UnitType}";

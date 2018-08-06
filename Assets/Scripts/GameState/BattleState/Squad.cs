@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AIRogue.Events;
 using AIRogue.GameObjects;
 using AIRogue.Scene;
@@ -13,7 +14,11 @@ namespace AIRogue.GameState.Battle
 		public string Name { get; }
 		public SquadFaction Faction { get; }
 		public readonly List<UnitController> Controllers;
-		public List<Squad> EnemySquads { get; private set; }
+		public List<Squad> AllSquads { get; private set; }
+
+		public Squad[] EngagedSquads = new Squad[0];
+		private HashSet<Squad> engagedSquads = new HashSet<Squad>(
+				new General.ReferenceEqualityComparer<Squad>() );
 
 		private readonly UnitBank unitBank;
 		private readonly Vector3 startPosition;
@@ -27,15 +32,14 @@ namespace AIRogue.GameState.Battle
 		/// <param name="unitBank"></param>
 		/// <param name="controllerBlueprint"></param>
 		/// <param name="name"></param>
-		public Squad(UnitBank unitBank, Vector3 startPosition, string name, SquadFaction faction )
+		public Squad(List<Squad> allSquads, Vector3 startPosition, string name, SquadFaction faction )
         {
-			this.unitBank = unitBank;
+			AllSquads = allSquads;
 			this.startPosition = startPosition;
             Name = name;
 			Faction = faction;
 
 			Controllers = new List<UnitController>();
-			EnemySquads = new List<Squad>();
 		}
 
 		public void Update()
@@ -59,34 +63,46 @@ namespace AIRogue.GameState.Battle
 		/// </summary>
 		/// <param name="unitType"></param>
 		/// <param name="spawnLocation"></param>
-		public Unit SpawnUnit<T>(UnitType unitType) where T : UnitController, new()
+		public Unit SpawnUnit<T>(GameObject prefab) where T : UnitController, new()
         {
-			Unit unit = null;
+			Unit unit;
 
-			// get prefab
-			GameObject prefab = unitBank.GetPrefab( unitType );
+			// spawn unit
+			GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
 
-			if (prefab != null )
-            {
-				// spawn unit
-				GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
+			unit = unitSpawn.GetComponent<Unit>();
+			unit.SetSquad( this, Controllers.Count );
+			unit.OnDamageTaken += memberTookDamage;
 
-				unit = unitSpawn.GetComponent<Unit>();
-				unit.SetSquad( this, Controllers.Count );
+			unitSpawn.name = unit.ToString();
 
-				unitSpawn.name = unit.ToString();
-
-				T controller = new T();
-                controller.Initialize( unit, this );
-                Controllers.Add( controller );
-            }
-            else
-            {
-                Debug.Log( "Unit type not found in loader:  " + unitType );
-            }
+			T controller = new T();
+            controller.Initialize( unit, this );
+            Controllers.Add( controller );
 
 			return unit;
         }
+		public void EngageSquad(Squad squad)
+		{
+			if (!engagedSquads.Contains( squad ))
+			{
+				engagedSquads.Add( squad );
+				EngagedSquads = engagedSquads.ToArray();
+
+				squad.EngageSquad( this );  // engage my squad back
+			}
+		}
+		
+		private void memberTookDamage(Unit squadMember, Unit attacker)
+		{
+			if (ReferenceEquals( attacker.Squad, this ))
+			{
+				// damaged by ally...
+			}
+			else {
+				EngageSquad( attacker.Squad );
+			}
+		}
 
 		/// <summary>
 		/// Calculates the position a new unit should be spawned at.

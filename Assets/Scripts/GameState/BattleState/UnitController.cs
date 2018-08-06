@@ -12,40 +12,36 @@ namespace AIRogue.GameState.Battle
 	/// <summary>
 	/// The UnitController stores one Unit and applies/updates a behavior for that unit.
 	/// </summary>
-	abstract class UnitController {
+	abstract class UnitController
+	{
 
 		public Unit Unit { get; private set; }
 		protected Squad Squad { get; private set; }
 
-		protected RunnableBehavior Behavior;
-
-		protected List<Unit> enemyUnits = new List<Unit>();
-
-		private HashSet<Unit> attackers
-			= new HashSet<Unit>( 
-				new General.ReferenceEqualityComparer<Unit>() );
-		protected Unit[] Attackers = new Unit[0];
-
-		protected HashSet<UnitController> alliesWithTargets
-			= new HashSet<UnitController>( 
-				new General.ReferenceEqualityComparer<UnitController>() );
-		protected UnitController[] AlliesWithTargets = new UnitController[0];
-
-		/* * * Environment State * * */
-		private Unit target;
-		public Unit Target {
-			get { return target; }
-			protected set {
-				target = value;
-				if (value != null)
+		private Unit _target;
+		public Unit Target
+		{
+			get {
+				return _target;
+			}
+			private set {
+				if (_target != null)
 				{
-					OnTargetChosen?.Invoke( this );
+					_target.OnUnitDestroyed -= targetDestroyedHandler;
+				}
+
+				_target = value;
+
+				if (_target != null)
+				{
+					_target.OnUnitDestroyed += targetDestroyedHandler;
 				}
 			}
 		}
 
-		public delegate void TargetChosen(UnitController targetChooser);
-		public TargetChosen OnTargetChosen;
+		protected RunnableBehavior Behavior;
+		private float updateBehaviorCooldownTimer = -1;
+		private const float BEHAVIOR_UPDATE_SECONDS = 0.25f;
 
 		public UnitController() { }
 
@@ -56,88 +52,60 @@ namespace AIRogue.GameState.Battle
 		/// </summary>
 		/// <param name="unit"></param>
 		public virtual void Initialize(Unit unit, Squad squad)
-        {
-            Unit = unit;
-			Unit.OnDamageTaken += TookDamage;
+		{
+			Unit = unit;
 			Squad = squad;
 			Behavior = new StartupBehavior( this );  // needed so that a reference exists when FixedUpdate is called for the first time.
 
-			/// Set each OnTargetChosen delegate with each controller's <see cref="AllyChoseTarget"/> method
-			foreach (var controller in Squad.Controllers)
-			{
-				// should always be true if initialized before being added to squad
-				if (!ReferenceEquals(this, controller)) 
-				{
-					// add other controller's events to this delegate
-					OnTargetChosen += controller.AllyChoseTarget;
-					controller.OnTargetChosen += AllyChoseTarget;
-				}
-			}
-
-			EventManager.Instance.AddListener<UnitDestroyedEvent>( UnitDestroyedHandler );
-			EventManager.Instance.AddListener<BattleStartEvent>( SetEnemyUnitsHandler );
-		}
-
-		protected abstract RunnableBehavior SelectUnitBehavior();
-		protected virtual void UpdateBehaviorSelection()
-		{
-			Behavior = SelectUnitBehavior();
-		}
-
-		protected virtual void TookDamage(Unit attacker, float damage)
-		{
-			//float totalDamage;
-			//if (Attackers.TryGetValue(attacker, out totalDamage))
+			///// Set each OnTargetChosen delegate with each controller's <see cref="AllyChoseTarget"/> method
+			//foreach (var controller in Squad.Controllers)
 			//{
-			//	Attackers[attacker] = damage + totalDamage;
-			//}
-			//else
-			//{
-			//	Attackers[attacker] = damage;
+			//	// should always be true if initialized before being added to squad
+			//	if (!ReferenceEquals( this, controller ))
+			//	{
+			//		// add other controller's events to this delegate
+			//		OnTargetChosen += controller.AllyChoseTarget;
+			//		controller.OnTargetChosen += AllyChoseTarget;
+			//	}
 			//}
 
-			if ( ReferenceEquals(attacker.Squad, Squad) )
-			{
-				// damaged by alli
-			}
-			else if (!attackers.Contains( attacker ))
-			{
-				attackers.Add( attacker );
-				Attackers = attackers.ToArray();
-			}
-		}
-		protected virtual void AllyChoseTarget(UnitController ally)
-		{
-			alliesWithTargets.Add( ally );
-			AlliesWithTargets = alliesWithTargets.ToArray();
-		}
-		private void UnitDestroyedHandler(UnitDestroyedEvent gameEvent)
-		{
-			// remove this UnitController if its unit was destroyed
-			if ( ReferenceEquals( gameEvent.Unit, this.Unit ) )
-			{
-				Squad.Controllers.Remove( this );
-			}
-			// else, check for 
-		}
-		private void SetEnemyUnitsHandler(BattleStartEvent gameEvent)
-		{
-			foreach (var unit in gameEvent.Units)
-			{
-				if (true)
-				{
 
-				}
-			}
+			//EventManager.Instance.AddListener<UnitDestroyedEvent>( UnitDestroyedHandler );
+			Unit.OnUnitDestroyed += thisUnitDestroyedHandler;
+		}
+
+		protected abstract RunnableBehavior SelectCurrentBehavior();
+		private void updateBehaviorSelection()
+		{
+			Behavior = SelectCurrentBehavior();
+		}
+
+		private void thisUnitDestroyedHandler(Unit unit)
+		{
+			Squad.Controllers.Remove( this );
+		}
+		private void targetDestroyedHandler(Unit unit)
+		{
+			Target = null;
+			updateBehaviorSelection();
 		}
 
 		public virtual void Update()
 		{
-			UpdateTarget();
+			updateBehaviorCooldownTimer -= Time.deltaTime;
 
-			UpdateBehaviorSelection();
+			if (updateBehaviorCooldownTimer < 0)
+			{
+				updateBehaviorSelection();
+				updateBehaviorCooldownTimer = BEHAVIOR_UPDATE_SECONDS;
+			}
+
+			if (Target == null)
+			{
+				UpdateTarget();
+			}
+
 			Behavior.CalculateActions();
-
 			Behavior.Run_Update();
 		}
 		public virtual void FixedUpdate()
@@ -147,65 +115,78 @@ namespace AIRogue.GameState.Battle
 
 		public void UpdateTarget()
 		{
-			if (Target == null)
-			{
-				Target = closestAttacker();
+			// check for engaged units
+			// check for unit attacking me
+			// check for closest
+			// check for hostile squads in range and engage
 
-				// if attacker exists
-				if (Target == null)
-				{
-					Target = closestAllyTarget();
-				}
-			}
+			Target = closestHostileUnit();
 		}
+
 		private float distanceToUnit(Unit unit)
 		{
 			return Vector3.Distance( Unit.transform.position, unit.transform.position );
 		}
-		private Unit closestAttacker()
+		private List<Unit> getUnitsTargetingMe()
+		{
+			List<Unit> targetingMe = new List<Unit>();
+
+			foreach (var squad in Squad.EngagedSquads)
+			{
+				foreach (var controller in squad.Controllers)
+				{
+					if (ReferenceEquals( controller.Target, Unit ))
+					{
+						targetingMe.Add( controller.Unit );
+					}
+				}
+			}
+
+			return targetingMe;
+		}
+		private Unit closestHostileUnit()
 		{
 			Unit attacker = null;
 
-			if (Attackers.Length > 0)
+			// find closest engaged unit
+			float shortest = float.MaxValue;
+			foreach (var squad in Squad.EngagedSquads)
 			{
-				float shortest = distanceToUnit( Attackers[0] );
-				attacker = Attackers[0];
-
-				for (int i = 1; i < Attackers.Length; i++)
+				foreach (var controller in squad.Controllers)
 				{
-					float dist = distanceToUnit( Attackers[i] );
-					if (dist < shortest)
+					float distance = distanceToUnit( controller.Unit );
+					if (distance < shortest)
 					{
-						shortest = dist;
-						attacker = Attackers[i];
+						shortest = distance;
+						attacker = controller.Unit;
 					}
 				}
 			}
 
 			return attacker;
 		}
-		// maybe change to closestAllyAttacker
-		private Unit closestAllyTarget()
-		{
-			Unit allyTarget = null;
+		//// maybe change to closestAllyAttacker
+		//private Unit closestAllyTarget()
+		//{
+		//	Unit allyTarget = null;
 
-			if (AlliesWithTargets.Length > 0)
-			{
-				float shortest = distanceToUnit( AlliesWithTargets[0].Target );
-				allyTarget = AlliesWithTargets[0].Target;
+		//	if (AlliesWithTargets.Length > 0)
+		//	{
+		//		float shortest = distanceToUnit( AlliesWithTargets[0].Target );
+		//		allyTarget = AlliesWithTargets[0].Target;
 
-				for (int i = 1; i < AlliesWithTargets.Length; i++)
-				{
-					float dist = distanceToUnit( AlliesWithTargets[i].Target );
-					if (dist < shortest)
-					{
-						shortest = dist;
-						allyTarget = AlliesWithTargets[i].Target;
-					}
-				}
-			}
+		//		for (int i = 1; i < AlliesWithTargets.Length; i++)
+		//		{
+		//			float dist = distanceToUnit( AlliesWithTargets[i].Target );
+		//			if (dist < shortest)
+		//			{
+		//				shortest = dist;
+		//				allyTarget = AlliesWithTargets[i].Target;
+		//			}
+		//		}
+		//	}
 
-			return allyTarget;
-		}
+		//	return allyTarget;
+		//}
 	}
 }

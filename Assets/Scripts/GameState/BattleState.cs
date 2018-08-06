@@ -3,6 +3,7 @@ using AIRogue.Events;
 using AIRogue.GameObjects;
 using AIRogue.GameState.Battle;
 using AIRogue.Scene;
+using UnityEngine;
 
 namespace AIRogue.GameState
 {
@@ -44,13 +45,16 @@ namespace AIRogue.GameState
 			 */
 
 			/* ADD PLAYER SQUADS */
-			Squad playerSquad = new Squad( unitBank, levelProperties.PlayerStart.position, "Player", SquadFaction.Player );
+			Squad playerSquad = new Squad( squads, levelProperties.PlayerStart.position, "Player", SquadFaction.Player );
 
-			Unit player = playerSquad.SpawnUnit<PlayerController>( UnitType.SimpleFighter );
+			GameObject unitPrefab;
+			unitPrefab = unitBank.GetPrefab( UnitType.SimpleFighter );
+			Unit player = playerSquad.SpawnUnit<PlayerController>( unitPrefab );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.GreenLaser) );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.RedLaser) );
 
-			Unit player2 = playerSquad.SpawnUnit<AIController>( UnitType.TestUnit );
+			unitPrefab = unitBank.GetPrefab( UnitType.TestUnit );
+			Unit player2 = playerSquad.SpawnUnit<AIController>( unitPrefab );
 			player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.BlueCannon ) );
 			player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.GreenLaser ) );
 
@@ -61,15 +65,16 @@ namespace AIRogue.GameState
 			/* ADD ENEMY SQUADS */
 			for (int i = 0; i < levelProperties.NumberOfEnemySquads; i++)
 			{				
-				Squad aiSquad = new Squad( unitBank, levelProperties.AIStart[i].position, "AISquad-" + i, SquadFaction.AI_1 );
-				Unit ai = aiSquad.SpawnUnit<AIController>( UnitType.TestUnit );
+				Squad aiSquad = new Squad( squads, levelProperties.AIStart[i].position, "AISquad-" + i, SquadFaction.AI_1 );
+				unitPrefab = unitBank.GetPrefab( UnitType.TestUnit );
+				Unit ai = aiSquad.SpawnUnit<AIController>( unitPrefab );
 				ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.GreenLaser ) );
 				ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ) );
 
 				squads.Add( aiSquad );
 			}
 
-			EventManager.Instance.QueueEvent( new BattleStartEvent( getAllUnits() ) );
+			//EventManager.Instance.QueueEvent( new BattleStartEvent( getAllUnits() ) );
 		}
 
 		/// <summary>
