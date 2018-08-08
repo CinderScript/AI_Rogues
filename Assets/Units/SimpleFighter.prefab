@@ -789,7 +789,7 @@ MonoBehaviour:
   ShieldCapacity: 200
   MaxVelocity: 15
   AccelerationForce: 15
-  RotationSpeed: 130
+  RotationSpeed: 200
   WeaponLevel: 1
   Weapons: []
 --- !u!135 &135514494108211168

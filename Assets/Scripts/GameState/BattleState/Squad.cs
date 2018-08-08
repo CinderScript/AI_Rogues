@@ -14,6 +14,7 @@ namespace AIRogue.GameState.Battle
 		public string Name { get; }
 		public SquadFaction Faction { get; }
 		public readonly List<UnitController> Controllers;
+		public Unit LeadUnit;
 		public List<Squad> AllSquads { get; private set; }
 
 		public Squad[] EngagedSquads = new Squad[0];
@@ -79,6 +80,11 @@ namespace AIRogue.GameState.Battle
 			T controller = new T();
             controller.Initialize( unit, this );
             Controllers.Add( controller );
+
+			if (Controllers.Count == 1)
+			{
+				LeadUnit = controller.Unit;
+			}
 
 			return unit;
         }

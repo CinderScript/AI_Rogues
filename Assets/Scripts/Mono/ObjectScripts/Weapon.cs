@@ -34,7 +34,7 @@ namespace AIRogue.GameObjects
 		{
 			return Vector3.Distance( damagerSpawnPoint.position, position ) < Range;
 		}
-		public TargetingModule TargetingModule { get; set; }
+		public TargetingModule TargetingModule { get; private set; }
 
 		protected Unit unit;
 		protected Transform damagerSpawnPoint;

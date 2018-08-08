@@ -16,7 +16,7 @@ namespace AIRogue.GameState.Battle
 	{
 
 		public Unit Unit { get; private set; }
-		protected Squad Squad { get; private set; }
+		public Squad Squad { get; private set; }
 
 		private Unit _target;
 		public Unit Target

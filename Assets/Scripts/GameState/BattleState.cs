@@ -46,36 +46,49 @@ namespace AIRogue.GameState
 
 			/* ADD PLAYER SQUADS */
 			Squad playerSquad = new Squad( squads, levelProperties.PlayerStart.position, "Player", SquadFaction.Player );
+			squads.Add( playerSquad );
 
 			GameObject unitPrefab;
+			Unit player;
 			unitPrefab = unitBank.GetPrefab( UnitType.SimpleFighter );
-			Unit player = playerSquad.SpawnUnit<PlayerController>( unitPrefab );
+			player = playerSquad.SpawnUnit<PlayerController>( unitPrefab );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.GreenLaser) );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponType.RedLaser) );
 
-			unitPrefab = unitBank.GetPrefab( UnitType.TestUnit );
-			Unit player2 = playerSquad.SpawnUnit<AIController>( unitPrefab );
-			player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.BlueCannon ) );
-			player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.GreenLaser ) );
-
-			squads.Add( playerSquad );
-
 			EventManager.Instance.QueueEvent( new UnitSelectedEvent( player ) );
 
+			for (int i = 0; i < 3; i++)
+			{
+				unitPrefab = unitBank.GetPrefab( UnitType.TestUnit );
+				player = playerSquad.SpawnUnit<AIController>( unitPrefab );
+				player.SpawnWeapon( weaponBank.GetPrefab( WeaponType.BlueCannon ) );
+				player.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedCannon ) );
+			}
+			for (int i = 0; i < 2; i++)
+			{
+				unitPrefab = unitBank.GetPrefab( UnitType.SimpleFighter );
+				Unit player2 = playerSquad.SpawnUnit<AIController>( unitPrefab );
+				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ) );
+				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponType.BlueCannon ) );
+			}
+
 			/* ADD ENEMY SQUADS */
-			for (int i = 0; i < levelProperties.NumberOfEnemySquads; i++)
+			for (int i = 0; i < levelProperties.AIStart.Count; i++)
 			{				
 				Squad aiSquad = new Squad( squads, levelProperties.AIStart[i].position, "AISquad-" + i, SquadFaction.AI_1 );
-				unitPrefab = unitBank.GetPrefab( UnitType.TestUnit );
-				Unit ai = aiSquad.SpawnUnit<AIController>( unitPrefab );
-				ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.GreenLaser ) );
-				ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ) );
-
 				squads.Add( aiSquad );
+
+				for (int ii = 0; ii < 3; ii++)
+				{
+					unitPrefab = unitBank.GetPrefab( UnitType.TestUnit );
+					Unit ai = aiSquad.SpawnUnit<AIController>( unitPrefab );
+					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.GreenLaser ) );
+					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponType.RedLaser ) );
+				}
 			}
 
 			//EventManager.Instance.QueueEvent( new BattleStartEvent( getAllUnits() ) );
-		}
+ 		}
 
 		/// <summary>
 		/// Runs the correct Army's update loop and keeps track of turns.

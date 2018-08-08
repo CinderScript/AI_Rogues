@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-
-using AIRogue.GameObjects;
-using AIRogue.Scene;
-
+﻿
 using UnityEngine;
 
 namespace AIRogue.GameObjects

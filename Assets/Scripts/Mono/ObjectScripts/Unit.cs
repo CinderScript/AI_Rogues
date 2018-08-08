@@ -28,7 +28,6 @@ namespace AIRogue.GameObjects {
 		[Header( "Attack" )]
 		public int WeaponLevel = 1;
 
-		/* * * Assigned when instanced by squad * * */
 		public Squad Squad { get; private set; }
 		public int SquadPosition { get; private set; }
 		public void SetSquad(Squad squad, int pos)
@@ -43,6 +42,8 @@ namespace AIRogue.GameObjects {
 
 		public Weapon WeaponWithLongestRange { get; private set; }
 		public Weapon WeaponWithShortestRange { get; private set; }
+
+		public TargetingModule FollowModule { get; private set; }
 
 		/* * * movement vars * * */
 		public Rigidbody Rigidbody { get; private set; }
@@ -59,6 +60,8 @@ namespace AIRogue.GameObjects {
 			Rigidbody = GetComponent<Rigidbody>();
 			accelerationForceSideways = AccelerationForce * SIDETHRUST_SCALER;
 			shipVelocityMaxSqr = MaxVelocity * MaxVelocity;
+
+			FollowModule = new TargetingModule( transform, Rigidbody, MaxVelocity );
 		}
 
 		public delegate void DamageTakenReporter(Unit damagedUnit, Unit attacker);

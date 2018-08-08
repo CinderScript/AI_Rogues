@@ -12,7 +12,6 @@ namespace AIRogue.Scene {
     /// </summary>
     class LevelProperties : MonoBehaviour {
 
-		public int NumberOfEnemySquads = 1;
 		public int LevelDifficulty = 1;
 		public Transform PlayerStart = null;
 		public List<Transform> AIStart = null;
