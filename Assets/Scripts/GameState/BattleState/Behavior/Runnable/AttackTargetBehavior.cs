@@ -9,15 +9,13 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		private const float THRUST_ON_ANGLE_BELLOW = 30;
 		private const float SHOOT_ON_ANGLE_BELLOW = 10;
 
-		private Transform targetTrans;
-		private Rigidbody targetRigid;
+		private Unit target;
 
 		public AttackTargetBehavior(UnitController controller) : base( controller ) { }
 
 		public override RunnableBehavior EvaluateTree()
 		{
-			targetTrans = controller.Target.transform;
-			targetRigid = controller.Target.Rigidbody;
+			target = controller.Target;
 			return this;
 		}
 		protected override UnitActions UpdateActions()
@@ -26,28 +24,14 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			float distanceToIntercept = Vector3.Distance( unit.transform.position, intercept );
 			float angleToIntercept = LookAngleToPosition( intercept );
 
+			// thrust when out of range, and on target with intercept
+			int thrustInput = thrust( distanceToIntercept, angleToIntercept );
+
 			// rotate towords intercept
 			int rotationInput = UnitRotationInput_LookAt( intercept );
 
-			// thrust when out of range, and on target with intercept
-			int thrustInput = 0;
-			if (distanceToIntercept > unit.WeaponWithShortestRange.Range)
-			{
-				if ( angleToIntercept < THRUST_ON_ANGLE_BELLOW )
-				{
-					thrustInput = 1;
-				}
-			}
-
 			// fire when in range, and on target
-			bool primaryAttackInput = false;
-			if (distanceToIntercept < unit.WeaponWithLongestRange.Range+5)
-			{
-				if (angleToIntercept < SHOOT_ON_ANGLE_BELLOW)
-				{
-					primaryAttackInput = true;
-				}
-			}
+			bool primaryAttackInput = attack(distanceToIntercept, angleToIntercept);
 
 			return new UnitActions( thrustInput, rotationInput, primaryAttackInput, primaryAttackInput );
 		}
@@ -55,8 +39,9 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		private Vector3 getIntercept()
 		{
 			Vector3 intercept = Vector3.zero;
+			float distanceToIntercept;
 
-			List<Weapon> weapons = WeaponsInRange( targetTrans.position );
+			List<Weapon> weapons = WeaponsInRange( target.transform.position );
 			if (weapons.Count > 0)
 			{
 				List<Vector3> intercepts = new List<Vector3>();
@@ -64,7 +49,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 				{
 					intercepts.Add(
 						weapon.TargetingModule.
-						GetIntercept( targetTrans.position, targetRigid.velocity ) );
+						GetIntercept( target, out distanceToIntercept ) );
 				}
 
 				foreach (var weapIntercept in intercepts)
@@ -76,10 +61,67 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			else
 			{
 				intercept = unit.WeaponWithLongestRange.TargetingModule.
-					GetIntercept( targetTrans.position, targetRigid.velocity );
+					GetIntercept( target, out distanceToIntercept );
 			}
 
 			return intercept;
+		}
+
+		private int thrust(float distanceToIntercept, float angleToIntercept)
+		{
+			int thrustInput = 0;
+			if (distanceToIntercept > unit.WeaponWithShortestRange.Range)
+			{
+				if (angleToIntercept < THRUST_ON_ANGLE_BELLOW)
+				{
+					thrustInput = 1;
+				}
+			}
+			return thrustInput;
+		}
+		private bool attack(float distanceToIntercept, float angleToIntercept)
+		{
+			bool primaryAttackInput = false;
+
+
+			// fire if within distance and angle
+			if (distanceToIntercept < unit.WeaponWithLongestRange.Range + 5)
+			{
+				if (angleToIntercept < SHOOT_ON_ANGLE_BELLOW)
+				{
+					primaryAttackInput = true;
+				}
+			}
+
+			// check if ally is in the way
+			List<Unit> allies = AlliesInWeaponRange();
+			float[] angles = new float[allies.Count];
+			float[] distance = new float[allies.Count];
+
+			Weapon wep = unit.WeaponWithLongestRange;
+
+			Vector3 intercept;
+			float dist;
+			for (int i = 0; i < allies.Count; i++)
+			{
+				intercept = wep.TargetingModule.GetIntercept( allies[i], out dist );
+				angles[i] = LookAngleToPosition( intercept );
+				distance[i] = dist;
+			}
+
+			// CANCEL fireing if angle to ally intercept is within shoot angle and in front of target
+			for (int i = 0; i < angles.Length; i++)
+			{
+				if (angles[i] < SHOOT_ON_ANGLE_BELLOW+20)
+				{
+					if (distance[i] < distanceToIntercept)
+					{
+						primaryAttackInput = false;
+					}
+				}
+			}
+
+			return primaryAttackInput;
 		}
 	}
 }

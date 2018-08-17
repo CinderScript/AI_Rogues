@@ -108,6 +108,94 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &260034492
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 473.31512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 195.4005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 45.859512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486090201975002, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_Name
+      value: SimpleFighter (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &300003315
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 487.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 179.68645
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 63.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751278902676442, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &756565037
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +259,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1233418108
 GameObject:

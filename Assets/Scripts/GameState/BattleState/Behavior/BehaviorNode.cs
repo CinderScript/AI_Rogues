@@ -3,6 +3,7 @@
  * Copyright (C) - All Rights Reserved
  */
 
+using System;
 using System.Collections.Generic;
 using AIRogue.GameObjects;
 using UnityEngine;
@@ -48,6 +49,22 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			}
 
 			return inRange;
+		}
+		protected List<Unit> AlliesInWeaponRange()
+		{
+			List<UnitController> allies = controller.Squad.Controllers;
+			List<Unit> alliesInRange = new List<Unit>();
+			Func<Vector3, bool> inRange = unit.WeaponWithLongestRange.InRangeOf;
+
+			for (int i = 0; i < allies.Count; i++)
+			{
+				if (inRange( allies[i].Unit.transform.position ))
+				{
+					alliesInRange.Add( allies[i].Unit );
+				}
+			}
+
+			return alliesInRange;
 		}
 	}
 	

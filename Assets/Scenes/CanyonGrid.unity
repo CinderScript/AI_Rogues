@@ -522,8 +522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  HeightOffest: 100
-  LengthOffest: 80
+  HeightOffest: 50
+  LengthOffest: 40
 --- !u!1 &754995687
 GameObject:
   m_ObjectHideFlags: 0

@@ -45,6 +45,8 @@ namespace AIRogue.GameObjects {
 
 		public TargetingModule FollowModule { get; private set; }
 
+		public Engine Engine { get; private set; }
+
 		/* * * movement vars * * */
 		public Rigidbody Rigidbody { get; private set; }
 		private float shipVelocityMaxSqr;
@@ -62,6 +64,7 @@ namespace AIRogue.GameObjects {
 			shipVelocityMaxSqr = MaxVelocity * MaxVelocity;
 
 			FollowModule = new TargetingModule( transform, Rigidbody, MaxVelocity );
+			Engine = GetComponentInChildren<Engine>();
 		}
 
 		public delegate void DamageTakenReporter(Unit damagedUnit, Unit attacker);

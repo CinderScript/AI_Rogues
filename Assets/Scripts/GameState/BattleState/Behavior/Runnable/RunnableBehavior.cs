@@ -47,11 +47,16 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			if (actions.Thrust > 0)                                // If thrusting
 			{
 				unit.ForwardThrust();
+				unit.Engine.EngineOn();
+			}
+			else
+			{
+				unit.Engine.EngineOff();
 			}
 		}
 		protected abstract UnitActions UpdateActions();
 
-		protected int UnitRotationInput_LookAt(Vector3 position, float degreesOfAccuracy = 1)
+		protected int UnitRotationInput_LookAt(Vector3 position, float degreesOfAccuracy = 6)
 		{
 			int rotation = 0;
 			if (LookAngleToPosition( position ) > degreesOfAccuracy)

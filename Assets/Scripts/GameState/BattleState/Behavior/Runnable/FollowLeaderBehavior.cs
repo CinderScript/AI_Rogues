@@ -6,7 +6,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	class FollowLeaderBehavior : RunnableBehavior
 	{
 		private const float THRUST_ON_ANGLE_BELLOW = 30;
-		private const float THRUST_ON_DISTANCE_ABOVE = 20;
+		private const float THRUST_ON_DISTANCE_ABOVE = 35;
 		private const float DISTANCE_BEHIND_LEADER = 10;
 
 		private Unit leader;
@@ -20,7 +20,8 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 
 		protected override UnitActions UpdateActions()
 		{
-			Vector3 intercept = unit.FollowModule.GetIntercept( leader.transform.position, leader.Rigidbody.velocity, 1 );
+			float dist;
+			Vector3 intercept = unit.FollowModule.GetIntercept( leader, out dist, 1 );
 			intercept = intercept - leader.transform.forward * DISTANCE_BEHIND_LEADER;
 			int rotationInput = UnitRotationInput_LookAt( intercept );
 
