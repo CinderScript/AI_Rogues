@@ -1,8 +1,4 @@
-﻿
-using AIRogue.GameObjects;
-using UnityEngine;
-
-namespace AIRogue.GameState.Battle.BehaviorTree
+﻿namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	class InBattleBehavior : Behavior
 	{
