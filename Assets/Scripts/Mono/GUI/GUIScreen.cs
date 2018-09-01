@@ -20,10 +20,12 @@ namespace IronGrimoire.GuiBase
 
 		private Animator animator;
 
-		void Start()
+		void Awake()
 		{
 			animator = GetComponent<Animator>();
-
+		}
+		void Start()
+		{
 			if (SelectOnStartup)
 			{
 				EventSystem.current.SetSelectedGameObject( SelectOnStartup.gameObject );
@@ -32,15 +34,12 @@ namespace IronGrimoire.GuiBase
 
 		public void Close()
 		{
-			Debug.Log( "closed: " + gameObject );
 			OnClosed?.Invoke();
 			animator.SetTrigger( "hide" );
 		}
 
 		public void Open()
 		{
-			Debug.Log( "opened: "+gameObject );
-
 			OnOpened?.Invoke();
 			animator.SetTrigger( "show" );
 		}

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -24,6 +26,11 @@ namespace IronGrimoire.GuiBase
 		private void Start()
 		{
 			screens = GetComponentsInChildren<GUIScreen>(true);
+
+			foreach (var screen in screens)
+			{
+				screen.gameObject.SetActive( true );
+			}
 
 			SwitchScreens( StartScreen );
 
@@ -52,22 +59,32 @@ namespace IronGrimoire.GuiBase
 			}
 		}
 
-		public void FadeIn()
-		{
-			Fader?.CrossFadeAlpha( 0, FadeDuration / 2, true );
-		}
-		public void FadeOut()
-		{
-			Fader?.CrossFadeAlpha( 1, FadeDuration / 2, true );
-
-		}
-
-		public void GoToPrevious(GUIScreen screen)
+		public void SwitchScreenToPrevious()
 		{
 			if (PreviousScreen)
 			{
 				SwitchScreens( PreviousScreen );
 			}
+		}
+
+		public void LoadScene(int sceneIndex)
+		{
+			StartCoroutine( WaitToLoadScene( sceneIndex ) );
+		}
+
+		IEnumerator WaitToLoadScene(int sceneIndex)
+		{
+			yield return null;
+		}
+
+		public void FadeIn()
+		{
+			Fader?.CrossFadeAlpha( 0, FadeDuration / 2, false );
+		}
+		public void FadeOut()
+		{
+			Fader?.CrossFadeAlpha( 1, FadeDuration / 2, false );
+
 		}
 	}
 }
