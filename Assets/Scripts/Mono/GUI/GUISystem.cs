@@ -14,7 +14,7 @@ namespace IronGrimoire.GuiBase
 		[Header( "GUI System Events" )]
 		public UnityEvent OnSwitchedScreens = new UnityEvent();
 
-		[Header( "Screen Transition Fader" )]
+		[Header( "Scene Transition Fader" )]
 		public Image Fader;
 		public float FadeDuration = 1;
 
@@ -29,7 +29,7 @@ namespace IronGrimoire.GuiBase
 
 			foreach (var screen in screens)
 			{
-				screen.gameObject.SetActive( true );
+				screen.gameObject.SetActive( false );
 			}
 
 			SwitchScreens( StartScreen );
@@ -47,13 +47,12 @@ namespace IronGrimoire.GuiBase
 			{
 				if (CurrentScreen)
 				{
-					CurrentScreen.Close();
+					CurrentScreen.CloseScreen();
 					PreviousScreen = CurrentScreen;
 				}
 
 				CurrentScreen = newScreen;
-				CurrentScreen.gameObject.SetActive( true );
-				CurrentScreen.Open();
+				CurrentScreen.OpenScreen();
 
 				OnSwitchedScreens?.Invoke();
 			}

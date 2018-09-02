@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -12,36 +11,54 @@ namespace IronGrimoire.GuiBase
 	public class GUIScreen : MonoBehaviour
 	{
 		[Header( "Main Properties" )]
-		public Selectable SelectOnStartup;
+		public Selectable FirstSelectedSelectable;
 
 		[Header( "Events" )]
 		public UnityEvent OnClosed = new UnityEvent();
 		public UnityEvent OnOpened = new UnityEvent();
 
-		private Animator animator;
+		private CanvasGroup canvasGroup;
+		private Animator animator; 
 
 		void Awake()
 		{
 			animator = GetComponent<Animator>();
-		}
-		void Start()
-		{
-			if (SelectOnStartup)
-			{
-				EventSystem.current.SetSelectedGameObject( SelectOnStartup.gameObject );
-			}
+			canvasGroup = GetComponent<CanvasGroup>();
 		}
 
-		public void Close()
+		public void CloseScreen()
 		{
+			// this is done via animation controller
+			//canvasGroup.interactable = false;
+			//canvasGroup.blocksRaycasts = false;
+
 			OnClosed?.Invoke();
 			animator.SetTrigger( "hide" );
 		}
-
-		public void Open()
+		public void OpenScreen()
 		{
+			gameObject.SetActive( true );
+
 			OnOpened?.Invoke();
 			animator.SetTrigger( "show" );
+		}
+
+		public void OnHideAnimation_Finished()
+		{
+			gameObject.SetActive( false );
+		}
+		public void OnShowAnimation_Finished()
+		{
+			SelectFirstSelectable();
+		}
+
+		void SelectFirstSelectable()
+		{
+			if (FirstSelectedSelectable)
+			{
+				EventSystem.current.SetSelectedGameObject( FirstSelectedSelectable.gameObject );
+				//SelectOnStartup.OnSelect(null);
+			}
 		}
 	}
 }
