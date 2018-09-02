@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -18,21 +19,26 @@ namespace IronGrimoire.GuiBase
 		public Image Fader;
 		public float FadeDuration = 1;
 
-		public GUIScreen PreviousScreen { get; private set; }
+		public Stack<GUIScreen> ScreenHistory { get; private set; }
 		public GUIScreen CurrentScreen { get; private set; }
 
 		private GUIScreen[] screens = new GUIScreen[0];
 
-		private void Start()
+		void Awake()
 		{
-			screens = GetComponentsInChildren<GUIScreen>(true);
+			ScreenHistory = new Stack<GUIScreen>();
+		}
+		void Start()
+		{
+			screens = GetComponentsInChildren<GUIScreen>( true );
 
 			foreach (var screen in screens)
 			{
 				screen.gameObject.SetActive( false );
 			}
 
-			SwitchScreens( StartScreen );
+			StartScreen.OpenScreen();
+			CurrentScreen = StartScreen;
 
 			if (Fader)
 			{
@@ -43,34 +49,26 @@ namespace IronGrimoire.GuiBase
 
 		public void SwitchScreens(GUIScreen newScreen)
 		{
-			if (newScreen)
-			{
-				if (CurrentScreen)
-				{
-					CurrentScreen.CloseScreen();
-					PreviousScreen = CurrentScreen;
-				}
-
-				CurrentScreen = newScreen;
-				CurrentScreen.OpenScreen();
-
-				OnSwitchedScreens?.Invoke();
-			}
+			ScreenHistory.Push( CurrentScreen );
+			switchScreen( newScreen );
 		}
-
 		public void SwitchScreenToPrevious()
 		{
-			if (PreviousScreen)
-			{
-				SwitchScreens( PreviousScreen );
-			}
+			switchScreen( ScreenHistory.Pop() );
+		}
+		void switchScreen(GUIScreen nextScreen)
+		{
+			CurrentScreen.CloseScreen();
+			CurrentScreen = nextScreen;
+			CurrentScreen.OpenScreen();
+
+			OnSwitchedScreens?.Invoke();
 		}
 
 		public void LoadScene(int sceneIndex)
 		{
 			StartCoroutine( WaitToLoadScene( sceneIndex ) );
 		}
-
 		IEnumerator WaitToLoadScene(int sceneIndex)
 		{
 			yield return null;

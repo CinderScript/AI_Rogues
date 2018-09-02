@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,13 +16,13 @@ namespace IronGrimoire.GuiBase
 		public UnityEvent OnClosed = new UnityEvent();
 		public UnityEvent OnOpened = new UnityEvent();
 
-		private CanvasGroup canvasGroup;
+		//private CanvasGroup canvasGroup;
 		private Animator animator; 
 
 		void Awake()
 		{
 			animator = GetComponent<Animator>();
-			canvasGroup = GetComponent<CanvasGroup>();
+			//canvasGroup = GetComponent<CanvasGroup>();
 		}
 
 		public void CloseScreen()
