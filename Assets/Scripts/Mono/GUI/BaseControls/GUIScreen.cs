@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace IronGrimoire.GuiBase
+namespace IronGrimoire.Gui
 {
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(CanvasGroup))]
@@ -16,14 +16,17 @@ namespace IronGrimoire.GuiBase
 		public UnityEvent OnClosed = new UnityEvent();
 		public UnityEvent OnOpened = new UnityEvent();
 
+		public GUISystem GUISystem { get; private set; }
 		//private CanvasGroup canvasGroup;
 		private Animator animator; 
 
-		void Awake()
+		protected virtual void Awake()
 		{
+			GUISystem = GetComponentInParent<GUISystem>();
 			animator = GetComponent<Animator>();
 			//canvasGroup = GetComponent<CanvasGroup>();
 		}
+		protected virtual void Start() { }
 
 		public void CloseScreen()
 		{

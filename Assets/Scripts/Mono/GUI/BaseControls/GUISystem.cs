@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace IronGrimoire.GuiBase
+namespace IronGrimoire.Gui
 {
 	public class GUISystem : MonoBehaviour
 	{
@@ -24,11 +23,11 @@ namespace IronGrimoire.GuiBase
 
 		private GUIScreen[] screens = new GUIScreen[0];
 
-		void Awake()
+		private void Awake()
 		{
 			ScreenHistory = new Stack<GUIScreen>();
 		}
-		void Start()
+		private void Start()
 		{
 			screens = GetComponentsInChildren<GUIScreen>( true );
 

@@ -11,10 +11,12 @@ namespace AIRogue.GameObjects {
 	/// </summary>
 	class Unit : MonoBehaviour, IDamageable
 	{
-		[Header( "Gameplay Properties" )]
+		[Header( "GUI Display" )]
 		public UnitType UnitType = UnitType.Not_Found;
-		public GameObject DeathExplosionEffect = null;
-		public GameObject ShieldImpactEffect = null;
+		public Sprite Icon = null;
+		public int Value = 1000;
+		public int WeaponMountCount = 1;
+		public int WeaponMountsUsedCount = 1;
 
 		[Header( "Condition" )]
 		public float Health = 1;
@@ -27,6 +29,11 @@ namespace AIRogue.GameObjects {
 
 		[Header( "Attack" )]
 		public int WeaponLevel = 1;
+
+		[Header( "Particle Effects" )]
+		public GameObject DeathExplosionEffect = null;
+		public GameObject ShieldImpactEffect = null;
+
 
 		public Squad Squad { get; private set; }
 		public int SquadPosition { get; private set; }
