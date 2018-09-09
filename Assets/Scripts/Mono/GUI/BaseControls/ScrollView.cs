@@ -34,15 +34,17 @@ namespace IronGrimoire.Gui
 			contentPanel = GetComponentInChildren<ContentSizeFitter>().transform;
 
 			toggleGroup = GetComponent<ToggleGroup>();
+		}
+		void Start()
+		{
+			SetDependantSelectablesInteractivity();
+
+			// add existing items here so that SelectableListItem.Awake() has time to run. (needs toggle property)
 			SelectableListItem[] existingItems = contentPanel.GetComponentsInChildren<SelectableListItem>();
 			foreach (var item in existingItems)
 			{
 				Add( item );
 			}
-		}
-		void Start()
-		{
-			SetDependantSelectablesInteractivity();
 
 			//for (int i = 0; i < 10; i++)
 			//{

@@ -21,6 +21,13 @@ namespace AIRogue.GameObjects
 			}
 		}
 
+		public override string WeaponType_GUI
+		{
+			get {
+				return "Projectile";
+			}
+		}
+
 		protected override void Awake()
 		{
 			base.Awake();
@@ -51,7 +58,7 @@ namespace AIRogue.GameObjects
 		protected override void activateShot()
 		{
 			GameObject projectile = Instantiate( DamagerPrefab, damagerSpawnPoint.position, unit.transform.rotation );
-			projectile.name = $"Projectile from {unit.name}.{WeaponType}";
+			projectile.name = $"Projectile from {unit.name}.{WeaponName}";
 
 			// set velocity
 			projectile.GetComponent<Rigidbody>().velocity = Velocity * unit.transform.forward

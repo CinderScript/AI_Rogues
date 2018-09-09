@@ -33,11 +33,11 @@ namespace AIRogue.Scene
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
-		public GameObject GetPrefab(WeaponType type)
+		public GameObject GetPrefab(WeaponName type)
 		{
 			foreach (var prefab in WeaponPrefabs)
 			{
-				if (prefab.GetComponent<Weapon>().WeaponType == type)
+				if (prefab.GetComponent<Weapon>().WeaponName == type)
 				{
 					return prefab;
 				}

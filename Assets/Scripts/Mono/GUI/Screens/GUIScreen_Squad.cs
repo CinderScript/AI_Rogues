@@ -21,7 +21,7 @@ namespace IronGrimoire.Gui.Game
 
 			foreach (var ship in ShipsInMarket)
 			{
-				ShipListItem item = (ShipListItem)ShipMarketScrollview.AddTemplatedItem();
+				ListItem_Ship item = (ListItem_Ship)ShipMarketScrollview.AddTemplatedItem();
 				item.Initialize( ship );
 			}
 		}

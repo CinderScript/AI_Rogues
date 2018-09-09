@@ -9,7 +9,12 @@ namespace AIRogue.GameObjects
 	abstract class Weapon : MonoBehaviour
 	{
 		[Header( "Gameplay Properties" )]
-		public WeaponType WeaponType = WeaponType.Not_Found;
+		public WeaponName WeaponName = WeaponName.Not_Found;
+
+		[Header( "GUI Representation" )]
+		public Sprite Icon;
+		public int Value;
+		public abstract string WeaponType_GUI { get; }
 
 		[Header( "Stats" )]
 		public float Damage = 1;
@@ -84,11 +89,11 @@ namespace AIRogue.GameObjects
 
 		public override string ToString()
 		{
-			return $"{unit}.{WeaponPosition}.{WeaponType}";
+			return $"{unit}.{WeaponPosition}.{WeaponName}";
 		}
 	}
 
-	enum WeaponType {
+	enum WeaponName {
 		Not_Found, RedCannon, BlueCannon, RedLaser, BlueLaser, GreenLaser, Minigun
 	}
 }

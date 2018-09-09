@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace IronGrimoire.Gui.Game
 {
-	class ShipListItem : SelectableListItem
+	class ListItem_Ship : SelectableListItem
 	{
 		public Image Icon = null;
 		public Text Name = null;
