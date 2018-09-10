@@ -220,7 +220,6 @@ MonoBehaviour:
   Name: {fileID: 114305651304723232}
   Guns: {fileID: 114875725097350390}
   Value: {fileID: 114791199144537872}
-  Unit: {fileID: 0}
 --- !u!114 &114536004078537082
 MonoBehaviour:
   m_ObjectHideFlags: 1
