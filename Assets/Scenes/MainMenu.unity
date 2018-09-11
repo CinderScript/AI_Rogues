@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
+  m_Color: {r: 0.08926664, g: 0.14928205, b: 0.3207547, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1908,7 +1908,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2066,7 +2066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.87235785, g: 0.8602941, b: 1, a: 1}
+  m_Color: {r: 0.4481132, g: 0.8033254, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4354,7 +4354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.87235785, g: 0.8602941, b: 1, a: 1}
+  m_Color: {r: 0.4481132, g: 0.8033254, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4686,7 +4686,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 294, y: -287.27}
-  m_SizeDelta: {x: 240, y: 38}
+  m_SizeDelta: {x: 265, y: 38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580731678
 MonoBehaviour:
@@ -4707,9 +4707,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0, g: 0.74509805, b: 0.57254905, a: 1}
-    m_PressedColor: {r: 0, g: 0.38431373, b: 0.7294118, a: 1}
+    m_NormalColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+    m_HighlightedColor: {r: 0.4669811, g: 0.77422947, b: 1, a: 1}
+    m_PressedColor: {r: 0, g: 0.5229883, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.08
@@ -4752,7 +4752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2761659, g: 0.33402058, b: 0.5471698, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7736,7 +7736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7047e82258130b94c8a17bf8ff1d0b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartScreen: {fileID: 0}
+  StartScreen: {fileID: 1288639115}
   OnSwitchedScreens:
     m_PersistentCalls:
       m_Calls: []
@@ -10171,7 +10171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.87235785, g: 0.8602941, b: 1, a: 1}
+  m_Color: {r: 0.4481132, g: 0.8033254, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11244,7 +11244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.87235785, g: 0.8602941, b: 1, a: 1}
+  m_Color: {r: 0.4481132, g: 0.8033254, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
