@@ -82,5 +82,10 @@ namespace IronGrimoire.Gui
 			Fader?.CrossFadeAlpha( 1, FadeDuration / 2, false );
 
 		}
+
+		public void ExitApplication()
+		{
+			Application.Quit();
+		}
 	}
 }

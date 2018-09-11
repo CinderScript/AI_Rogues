@@ -1,5 +1,5 @@
 ﻿using AIRogue.GameObjects;
-
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace IronGrimoire.Gui.Game
@@ -11,7 +11,7 @@ namespace IronGrimoire.Gui.Game
 		public Text Enemies = null;
 		public Text Winnings = null;
 
-		public void Initialize(Weapon weapon)
+		public void Initialize(GameObject weapon)
 		{
 			//Icon.sprite = weapon.Icon;
 			//Name.text = weapon.WeaponName.ToString();
