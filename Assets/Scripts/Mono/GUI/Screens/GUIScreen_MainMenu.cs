@@ -1,5 +1,6 @@
 ﻿
 using System.IO;
+using IronGrimoire.Persistence;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,12 +25,14 @@ namespace IronGrimoire.Gui.Game
 		}
 		public void ResetSavedInfo()
 		{
-			string savePath = Application.persistentDataPath;
+			string savePath = Path.Combine( Application.persistentDataPath, "GameSave.ser" );
 			Debug.Log( $"Save Path: {savePath}" );
-			savePath = Path.Combine( savePath, "GregSaveData" );
-			Debug.Log( $"Save Path: {savePath}" );
-			savePath = Path.ChangeExtension( savePath, "ser" );
-			Debug.Log( $"Save Path: {savePath}" );
+
+			//PlayerInfo info = new PlayerInfo() { MyString = "First Test!" };
+
+			//ProtoUtility.SaveToFile( savePath, info );
+			PlayerInfo info = ProtoUtility.LoadFromFile<PlayerInfo>( savePath );
+			Debug.Log( $"PlayerInfo: {info.MyString}" );
 		}
 	}
 }

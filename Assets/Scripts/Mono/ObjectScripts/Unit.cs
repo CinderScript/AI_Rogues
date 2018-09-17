@@ -2,6 +2,7 @@
 using AIRogue.Events;
 using AIRogue.Exceptions;
 using AIRogue.GameState.Battle;
+using ProtoBuf;
 using UnityEngine;
 
 namespace AIRogue.GameObjects {

@@ -93,6 +93,12 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 				}
 			}
 
+			// early out if not going to attack
+			if (!primaryAttackInput)
+			{
+				return false;
+			}
+
 			// check if ally is in the way
 			List<Unit> allies = AlliesInWeaponRange();
 			float[] angles = new float[allies.Count];

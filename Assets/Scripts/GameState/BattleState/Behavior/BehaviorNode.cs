@@ -56,11 +56,17 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 			List<Unit> alliesInRange = new List<Unit>();
 			Func<Vector3, bool> inRange = unit.WeaponWithLongestRange.InRangeOf;
 
+			// for each controller in this squad
 			for (int i = 0; i < allies.Count; i++)
 			{
+				// if unit is in range of this unit's longest range weap
 				if (inRange( allies[i].Unit.transform.position ))
 				{
-					alliesInRange.Add( allies[i].Unit );
+					// if unit is not self
+					if ( allies[i].Unit != unit )
+					{
+						alliesInRange.Add( allies[i].Unit );
+					}
 				}
 			}
 

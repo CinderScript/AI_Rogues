@@ -6,10 +6,8 @@ namespace IronGrimoire.Persistence
 {
 	class ProtoUtility
 	{
-		public static Exception SaveToFile<Object>(string filePath, Object serializable)
+		public static void SaveToFile<Object>(string filePath, Object serializable)
 		{
-			Exception ex = null;
-
 			try
 			{
 				FileInfo fileInfo = new FileInfo( filePath );
@@ -20,16 +18,14 @@ namespace IronGrimoire.Persistence
 					Serializer.Serialize( stream, serializable );
 				}
 			}
-			catch (Exception e)
+			catch
 			{
-				ex = e;
+				throw;
 			}
-
-			return ex;
 		}
-		public static Exception LoadFromFile<Object>(string filePath, out Object deserializable)
+		public static Object LoadFromFile<Object>(string filePath)
 		{
-			Exception ex = null;
+			Object deserializable;
 
 			try
 			{
@@ -41,13 +37,13 @@ namespace IronGrimoire.Persistence
 					deserializable = Serializer.Deserialize<Object>( stream );
 				}
 			}
-			catch (Exception e)
+			catch
 			{
 				deserializable = default( Object );
-				ex = e;
+				throw;
 			}
 
-			return ex;
+			return deserializable;
 		}
 	}
 }
