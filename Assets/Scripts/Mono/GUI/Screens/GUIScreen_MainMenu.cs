@@ -1,4 +1,5 @@
 ﻿
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +24,12 @@ namespace IronGrimoire.Gui.Game
 		}
 		public void ResetSavedInfo()
 		{
-
+			string savePath = Application.persistentDataPath;
+			Debug.Log( $"Save Path: {savePath}" );
+			savePath = Path.Combine( savePath, "GregSaveData" );
+			Debug.Log( $"Save Path: {savePath}" );
+			savePath = Path.ChangeExtension( savePath, "ser" );
+			Debug.Log( $"Save Path: {savePath}" );
 		}
 	}
 }
