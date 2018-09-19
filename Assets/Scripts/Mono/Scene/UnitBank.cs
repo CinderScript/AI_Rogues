@@ -2,7 +2,7 @@
 
 using AIRogue.Exceptions;
 using AIRogue.GameObjects;
-
+using IronGrimoire.Persistence;
 using UnityEngine;
 
 namespace AIRogue.Scene

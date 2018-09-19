@@ -1,4 +1,5 @@
 ﻿using AIRogue.Exceptions;
+
 using UnityEngine;
 
 namespace AIRogue.GameObjects
@@ -93,7 +94,14 @@ namespace AIRogue.GameObjects
 		}
 	}
 
-	enum WeaponName {
-		Not_Found, RedCannon, BlueCannon, RedLaser, BlueLaser, GreenLaser, Minigun
+	enum WeaponName
+	{
+		Not_Found = 0,
+		RedCannon = 2,
+		BlueCannon = 3,
+		RedLaser = 4,
+		BlueLaser = 5,
+		GreenLaser = 6,
+		Minigun = 7
 	}
 }

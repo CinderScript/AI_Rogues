@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using AIRogue.Events;
 using AIRogue.GameObjects;
 using AIRogue.GameState.Battle;
 using AIRogue.Scene;
+using IronGrimoire.Persistence;
 using UnityEngine;
 
 namespace AIRogue.GameState
@@ -56,6 +58,15 @@ namespace AIRogue.GameState
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponName.RedLaser) );
 
 			EventManager.Instance.QueueEvent( new UnitSelectedEvent( player ) );
+
+			string savePath = Path.Combine( Application.persistentDataPath, "GameSave.ser" );
+			//Debug.Log( $"Save Path: {savePath}" );
+
+			//PlayerInfo info = new PlayerInfo() { MyString = "First Test!", PlayerShip = new UnitPersistenceData( player ) };
+			//ProtoUtility.SaveToFile( savePath, info );
+
+			PlayerInfo info = ProtoUtility.LoadFromFile<PlayerInfo>( savePath );
+			Debug.Log( $"PlayerInfo: {info.MyString}    PlayerShip: {info.PlayerShip.UnitType}    Weapons: {info.PlayerShip.Weapons.Count}" );
 
 			for (int i = 0; i < 3; i++)
 			{

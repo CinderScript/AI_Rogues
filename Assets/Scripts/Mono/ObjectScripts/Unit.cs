@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using AIRogue.Events;
+
 using AIRogue.Exceptions;
 using AIRogue.GameState.Battle;
-using ProtoBuf;
+using IronGrimoire.Persistence;
 using UnityEngine;
 
-namespace AIRogue.GameObjects {
+namespace AIRogue.GameObjects
+{
 
 	/// <summary>
 	/// A gameplay unit used in AI Rogue.
@@ -261,8 +262,11 @@ namespace AIRogue.GameObjects {
 		}
 	}
 
-    public enum UnitType
+	public enum UnitType
 	{
-        Not_Found, TestUnit, SimpleFighter, SpaceFighter
-    }
+		Not_Found = 0,
+		TestUnit = 1,
+		SimpleFighter = 2,
+		SpaceFighter = 3
+	}
 }

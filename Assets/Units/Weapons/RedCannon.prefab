@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6507355fcb6a30842a74d7f924831cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponName: 1
+  WeaponName: 2
   Icon: {fileID: 21300000, guid: 36dd6b54f3406de4587e96d63810a0ec, type: 3}
   Value: 0
   Damage: 3
