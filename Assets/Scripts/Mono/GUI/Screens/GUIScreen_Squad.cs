@@ -12,20 +12,20 @@ namespace IronGrimoire.Gui.Game
 		public ScrollView MySquadScrollview;
 		public ScrollView ShipMarketScrollview;
 
-		public List<Unit> ShipsInMarket = null;
 
 		[Header( "Squad Screen Properties - data" )]
 		public SaveGame SaveGame;
-
+		public UnitBank ShipsInMarket = null;
 
 		protected override void Start()
 		{
 			base.Start();
 
-			foreach (var ship in ShipsInMarket)
+			List<Unit> units = ShipsInMarket.GetAllUnits();
+			foreach (var unit in units)
 			{
 				ListItem_Ship item = (ListItem_Ship)ShipMarketScrollview.AddTemplatedItem();
-				item.Initialize( ship );
+				item.Initialize( unit );
 			}
 		}
 		public void OpenSelectedShipHanger(GUIScreen_Hanger screen)

@@ -34,6 +34,18 @@ namespace AIRogue.Scene
 			}
 		}
 
+		public List<Unit> GetAllUnits()
+		{
+			List<Unit> units = new List<Unit>();
+			var gos = UnitPrefabs;
+			for (int i = 0; i < gos.Count; i++)
+			{
+				units.Add( gos[i].GetComponent<Unit>() );
+			}
+
+			return units;
+		}
+
 		/// <summary>
 		/// Returns the Unit prefab in the bank matching the given UnitType.  
 		/// Returns null if no prefab is found.
