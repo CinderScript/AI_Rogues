@@ -1,6 +1,7 @@
 ﻿
 using AIRogue.Events;
 using AIRogue.Scene;
+using IronGrimoire.Persistence;
 
 namespace AIRogue.GameState
 {
@@ -21,6 +22,8 @@ namespace AIRogue.GameState
 
 		private EventManager events;
         private IGameState currentState = null;
+
+		private PreGameMenuState preGameState;
 
         // Singleton
         private static GameStateManager instance = null;
@@ -65,5 +68,10 @@ namespace AIRogue.GameState
             BattleState battleState = new BattleState( unitBank, weaponBank, levelProperties);
             currentState = battleState;
         }
+
+		public void LoadPreGameMenuState()
+		{
+			currentState = new PreGameMenuState( );
+		}
     }
 }

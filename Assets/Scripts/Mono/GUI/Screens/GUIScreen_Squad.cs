@@ -1,18 +1,21 @@
 ﻿using System.Collections.Generic;
 
 using AIRogue.GameObjects;
-
+using AIRogue.Scene;
 using UnityEngine;
 
 namespace IronGrimoire.Gui.Game
 {
 	class GUIScreen_Squad : GUIScreen
 	{
-		[Header( "Squad Screen Properties" )]
+		[Header( "Squad Screen Properties - controls" )]
 		public ScrollView MySquadScrollview;
 		public ScrollView ShipMarketScrollview;
 
 		public List<Unit> ShipsInMarket = null;
+
+		[Header( "Squad Screen Properties - data" )]
+		public SaveGame SaveGame;
 
 
 		protected override void Start()

@@ -10,11 +10,6 @@ namespace AIRogue.Scene
 	/// The driver classes get the current instance of the GameStateManager and run that state 
 	/// manager's current state in Unity's Update loop.
 	/// 
-	/// The BattleStateDriver runs the GameStateManager's LoadBattleState method and Update method.
-	/// 
-	/// DEPENDENCY:  No classes are depenent on the driver classes.  BattleStateDriver has dependancies 
-	/// on the PrefabBanks and LevelProperties componants.
-	/// 
 	/// </summary>
 	class BattleStateDriver : MonoBehaviour {
 

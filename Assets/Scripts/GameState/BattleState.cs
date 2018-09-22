@@ -59,15 +59,6 @@ namespace AIRogue.GameState
 
 			EventManager.Instance.QueueEvent( new UnitSelectedEvent( player ) );
 
-			string savePath = Path.Combine( Application.persistentDataPath, "GameSave.ser" );
-			//Debug.Log( $"Save Path: {savePath}" );
-
-			//PlayerInfo info = new PlayerInfo() { MyString = "First Test!", PlayerShip = new UnitPersistenceData( player ) };
-			//ProtoUtility.SaveToFile( savePath, info );
-
-			PlayerInfo info = ProtoUtility.LoadFromFile<PlayerInfo>( savePath );
-			Debug.Log( $"PlayerInfo: {info.MyString}    PlayerShip: {info.PlayerShip.UnitType}    Weapons: {info.PlayerShip.Weapons.Count}" );
-
 			for (int i = 0; i < 3; i++)
 			{
 				unitPrefab = unitBank.GetPrefab( UnitType.TestUnit );
