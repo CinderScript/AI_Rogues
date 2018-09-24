@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using AIRogue.GameObjects;
+using AIRogue.Persistence;
 using AIRogue.Scene;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ namespace IronGrimoire.Gui.Game
 		}
 		public void OpenSelectedShipHanger(GUIScreen_Hanger screen)
 		{
-			Unit selectedUnit = (Unit)MySquadScrollview.SelectedItem_Last.TaggedObject;
+			UnitPersistence selectedUnit = (UnitPersistence)MySquadScrollview.SelectedItem_Last.TaggedObject;
 			GUISystem.SwitchScreens( screen );
 			screen.Setup( selectedUnit );
 		}
@@ -55,7 +56,7 @@ namespace IronGrimoire.Gui.Game
 		{
 			MySquadScrollview.ClearScrollview();
 
-			var playerDataUnits = GameSave.PlayerData.Squad;
+			var playerDataUnits = GameSave.Squad;
 
 			foreach (var unitPersistence in playerDataUnits)
 			{

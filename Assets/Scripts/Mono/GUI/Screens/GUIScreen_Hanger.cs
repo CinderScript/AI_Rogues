@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using AIRogue.GameObjects;
-
+using AIRogue.Persistence;
 using UnityEngine;
 
 namespace IronGrimoire.Gui.Game
@@ -15,7 +15,7 @@ namespace IronGrimoire.Gui.Game
 		{
 			base.Start();
 		}
-		public void Setup(Unit unit)
+		public void Setup(UnitPersistence unit)
 		{
 			
 		}

@@ -1,10 +1,4 @@
-﻿
-using System.IO;
-
-using AIRogue.Persistence;
-using AIRogue.Scene;
-
-using IronGrimoire.Persistence;
+﻿using AIRogue.Scene;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -41,13 +35,13 @@ namespace IronGrimoire.Gui.Game
 		public void ResetSavedInfo()
 		{
 			GameSave.NewGame();
-			Debug.Log( GameSave.PlayerData.ToString() );
+			Debug.Log( GameSave.ToString() );
 		}
 
 		private void SetText()
 		{
-			var funds = GameSave.PlayerData.Funds;
-			var shipCount = GameSave.PlayerData.Squad.Count;
+			var funds = GameSave.Funds;
+			var shipCount = GameSave.Squad.Count;
 			var level = "Sector 7";
 			var earnings = 750;
 

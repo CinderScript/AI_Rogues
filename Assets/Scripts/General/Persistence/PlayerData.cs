@@ -33,7 +33,6 @@ namespace AIRogue.Persistence
 		{
 			ProtoUtility.SaveToFile( SAVE_PATH, this );
 		}
-
 		public void LoadDataFromFile()
 		{
 			PlayerData data = ProtoUtility.LoadFromFile<PlayerData>( SAVE_PATH );
