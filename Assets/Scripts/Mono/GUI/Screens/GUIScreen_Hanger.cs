@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using AIRogue.GameObjects;
+using AIRogue.Gui;
 using AIRogue.Persistence;
 using AIRogue.Scene;
 using UnityEngine;
@@ -21,13 +23,7 @@ namespace IronGrimoire.Gui.Game
 		public Text Weapon4;
 
 		public ControlGroup_WeaponInfo WeaponInfo;
-
-		public Text Shield;
-		public Text Hull;
-		public Text Velocity;
-		public Text Accel;
-		public Text Turn;
-		public Text Value;
+		public ControlGroup_ShipInfo ShipInfo;
 
 		[Header( "Hanger Screen - screens" )]
 		public GUIScreen_WeaponsMarket WeaponsMarketScreen;
@@ -49,13 +45,27 @@ namespace IronGrimoire.Gui.Game
 		private void UpdateScreenText()
 		{
 			UpdateWeaponInfo();
+			UpdateShipInfo();
 
 			ShipIcon.sprite = UnitStats.Icon;
+			ShipName.text = UnitStats.UnitType.ToString();
+			ShipValue.text = GetTotalShipValue();
 		}
+
 		private void UpdateWeaponInfo()
 		{
 			Weapon weap = WeaponLibrary.GetPrefab( Unit_PlayerData.Weapons[0] ).GetComponent<Weapon>();
 			WeaponInfo.SetText( weap );
+		}
+		private void UpdateShipInfo()
+		{
+			ShipInfo.SetText( UnitStats );
+		}
+
+		private string GetTotalShipValue()
+		{
+			float tValue = UnitStats.Value;
+			return tValue.ToString("$0");
 		}
 	}
 }

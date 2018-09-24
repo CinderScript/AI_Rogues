@@ -605,7 +605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponName: 2
   Icon: {fileID: 21300000, guid: 36dd6b54f3406de4587e96d63810a0ec, type: 3}
-  Value: 0
+  Value: 250
   Damage: 3
   RateOfFire: 1
   Range: 20
