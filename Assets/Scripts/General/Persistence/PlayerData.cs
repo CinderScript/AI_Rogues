@@ -40,5 +40,18 @@ namespace AIRogue.Persistence
 			Squad = data.Squad;
 			Funds = data.Funds;
 		}
+
+		public override string ToString()
+		{
+			List<string> s = new List<string>();
+			s.Add( $"Player Funds: {Funds}, Ship Count: {Squad.Count}" );
+
+			foreach (var unit in Squad)
+			{
+				s.Add( $"Ship: {unit.UnitType}, Weapons: {unit.Weapons.Count}" );
+			}
+			
+			return string.Join( "\n", s );
+		}
 	}
 }
