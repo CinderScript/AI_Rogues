@@ -32,7 +32,6 @@ namespace IronGrimoire.Gui
 		void Awake()
 		{
 			contentPanel = GetComponentInChildren<ContentSizeFitter>().transform;
-
 			toggleGroup = GetComponent<ToggleGroup>();
 		}
 		void Start()
@@ -67,6 +66,12 @@ namespace IronGrimoire.Gui
 			{
 				Destroy( item.gameObject );
 			}
+
+			Items.Clear();
+			SelectedItems.Clear();
+			SelectedItem_Last = null;
+
+			SetDependantSelectablesInteractivity();
 		}
 
 		private void Add(SelectableListItem item)

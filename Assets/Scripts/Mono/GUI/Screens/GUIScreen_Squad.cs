@@ -12,6 +12,7 @@ namespace IronGrimoire.Gui.Game
 		[Header( "Squad Screen Properties - controls" )]
 		public ScrollView MySquadScrollview;
 		public ScrollView ShipMarketScrollview;
+		public GUIScreen_Hanger HangerScreen;
 
 
 		[Header( "Squad Screen Properties - data" )]
@@ -33,11 +34,10 @@ namespace IronGrimoire.Gui.Game
 			// populate ship market scrollview
 			populateMarket();
 		}
-		public void OpenSelectedShipHanger(GUIScreen_Hanger screen)
+		public void OpenSelectedShipHanger()
 		{
-			UnitPersistence selectedUnit = (UnitPersistence)MySquadScrollview.SelectedItem_Last.TaggedObject;
-			GUISystem.SwitchScreens( screen );
-			screen.Setup( selectedUnit );
+			HangerScreen.Unit = (UnitPersistence)MySquadScrollview.SelectedItem_Last.TaggedObject;
+			GUISystem.SwitchScreens( HangerScreen );
 		}
 
 		private void populateMarket()

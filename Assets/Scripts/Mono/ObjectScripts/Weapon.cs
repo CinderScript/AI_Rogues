@@ -22,7 +22,7 @@ namespace AIRogue.GameObjects
 		/// <summary>
 		/// Shots per second
 		/// </summary>
-		public float RateOfFire = 1; // shots per sec
+		public float RateOfFire = 1;
 		/// <summary>
 		/// How far away the damager should reach before it despawns or stops
 		/// </summary>
