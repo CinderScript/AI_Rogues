@@ -61,10 +61,17 @@ namespace IronGrimoire.Gui
 			Add( newItem );
 			return newItem;
 		}
+		public void ClearScrollview()
+		{
+			foreach (Transform item in contentPanel)
+			{
+				Destroy( item.gameObject );
+			}
+		}
 
 		private void Add(SelectableListItem item)
 		{
-			item.transform.SetParent( contentPanel,false );
+			item.transform.SetParent( contentPanel, false );
 			item.OnSelectionChanged += Item_OnSelectionChanged;
 			item.gameObject.name = $"ListItem ({Items.Count})";
 

@@ -17,8 +17,6 @@ namespace IronGrimoire.Gui.Game
 			Name.text = unit.UnitType.ToString();
 			Guns.text = $"{unit.WeaponMountsUsedCount} of {unit.WeaponMountCount}";
 			Value.text = unit.Value.ToString();
-
-			TaggedObject = unit;
 		}
 	}
 }

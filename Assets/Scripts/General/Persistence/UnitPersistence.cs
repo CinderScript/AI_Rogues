@@ -4,10 +4,10 @@ using AIRogue.GameObjects;
 
 using ProtoBuf;
 
-namespace IronGrimoire.Persistence
+namespace AIRogue.Persistence
 {
 	[ProtoContract]
-	class UnitPersistenceData
+	class UnitPersistence
 	{
 		[ProtoMember( 10 )]
 		public UnitType UnitType;
@@ -15,12 +15,12 @@ namespace IronGrimoire.Persistence
 		[ProtoMember( 20 )]
 		public List<WeaponName> Weapons { get; }
 
-		public UnitPersistenceData()
+		public UnitPersistence()
 		{
 			UnitType = UnitType.Not_Found;
 			Weapons = new List<WeaponName>();
 		}
-		public UnitPersistenceData(Unit unit)
+		public UnitPersistence(Unit unit)
 		{
 			UnitType = unit.UnitType;
 			Weapons = new List<WeaponName>();
@@ -28,6 +28,11 @@ namespace IronGrimoire.Persistence
 			{
 				Weapons.Add( weap.WeaponName );
 			}
+		}
+		public UnitPersistence(UnitType unitType, List<WeaponName> weapons)
+		{
+			UnitType = unitType;
+			Weapons = weapons;
 		}
 	}
 }

@@ -70,5 +70,9 @@ namespace AIRogue.Scene
 
 			return unitPrefab;
 		}
+		public Unit GetUnit(UnitType type)
+		{
+			return GetPrefab( type ).GetComponent<Unit>();
+		}
 	}
 }

@@ -1,6 +1,7 @@
 ﻿
 using System.IO;
 
+using AIRogue.Persistence;
 using AIRogue.Scene;
 
 using IronGrimoire.Persistence;
@@ -19,7 +20,7 @@ namespace IronGrimoire.Gui.Game
 		public Text Earnings = null;
 
 		[Header( "Main Menu Screen Properties - Data" )]
-		public SaveGame SaveGame;
+		public GameSave GameSave;
 
 		protected override void Start()
 		{
@@ -32,14 +33,7 @@ namespace IronGrimoire.Gui.Game
 		}
 		public void ResetSavedInfo()
 		{
-			string savePath = Path.Combine( Application.persistentDataPath, "GameSave.ser" );
-			Debug.Log( $"Save Path: {savePath}" );
-
-			//PlayerInfo info = new PlayerInfo() { MyString = "First Test!" };
-
-			//ProtoUtility.SaveToFile( savePath, info );
-			PlayerData info = ProtoUtility.LoadFromFile<PlayerData>( savePath );
-			Debug.Log( $"PlayerInfo: {info.Funds}" );
+			GameSave.NewGame();
 		}
 	}
 }

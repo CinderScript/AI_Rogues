@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using AIRogue.GameObjects;
+using IronGrimoire.Persistence;
 using ProtoBuf;
 using UnityEngine;
 
-namespace IronGrimoire.Persistence
+namespace AIRogue.Persistence
 {
 	[ProtoContract]
 	class PlayerData
@@ -17,14 +19,14 @@ namespace IronGrimoire.Persistence
 		public const string FILE_NAME = "GameSave.ser";
 
 		[ProtoMember( 10 )]
-		public List<UnitPersistenceData> Squad { get; private set; }
+		public List<UnitPersistence> Squad { get; set; }
 
 		[ProtoMember(20)]
 		public int Funds { get; set; }
 
 		public PlayerData()
 		{
-			Squad = new List<UnitPersistenceData>();
+			Squad = new List<UnitPersistence>();
 		}
 
 		public void SaveDataToFile()
