@@ -37,7 +37,8 @@ namespace IronGrimoire.Gui.Game
 
 
 		//[Header( "Hanger Screen - data" )]
-		public UnitPersistence Unit { get; set; }
+		public Unit UnitStats { get;  set; }
+		public UnitPersistence Unit_PlayerData { get; set; }
 
 		protected override void Awake()
 		{
@@ -48,10 +49,12 @@ namespace IronGrimoire.Gui.Game
 		private void UpdateScreenText()
 		{
 			UpdateWeaponInfo();
+
+			ShipIcon.sprite = UnitStats.Icon;
 		}
 		private void UpdateWeaponInfo()
 		{
-			Weapon weap = WeaponLibrary.GetPrefab( Unit.Weapons[0] ).GetComponent<Weapon>();
+			Weapon weap = WeaponLibrary.GetPrefab( Unit_PlayerData.Weapons[0] ).GetComponent<Weapon>();
 			WeaponInfo.SetText( weap );
 		}
 	}

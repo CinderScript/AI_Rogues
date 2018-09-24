@@ -378,10 +378,10 @@ MonoBehaviour:
   Value: 0
   Damage: 1.2
   RateOfFire: 1
-  Range: 35
+  Range: 36
   DamagerPrefab: {fileID: 1465864507707826, guid: 467ed6afa9441ff4aac96fa20a073803,
     type: 2}
-  Velocity: 20
+  Velocity: 22
 --- !u!114 &114760377830380890
 MonoBehaviour:
   m_ObjectHideFlags: 1

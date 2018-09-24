@@ -36,7 +36,11 @@ namespace IronGrimoire.Gui.Game
 		}
 		public void OpenSelectedShipHanger()
 		{
-			HangerScreen.Unit = (UnitPersistence)MySquadScrollview.SelectedItem_Last.TaggedObject;
+			var unit_playerData = (UnitPersistence)MySquadScrollview.SelectedItem_Last.TaggedObject;
+			var unit = ShipLibrary.GetUnit( unit_playerData.UnitType );
+
+			HangerScreen.Unit_PlayerData = unit_playerData;
+			HangerScreen.UnitStats = unit;
 			GUISystem.SwitchScreens( HangerScreen );
 		}
 
