@@ -10,9 +10,9 @@ namespace IronGrimoire.Gui.Game
 	class GUIScreen_Squad : GUIScreen
 	{
 		[Header( "Squad Screen Properties - controls" )]
-		public ScrollView MySquadScrollview;
-		public ScrollView ShipMarketScrollview;
-		public GUIScreen_Hanger HangerScreen;
+		public ScrollView MySquadScrollview = null;
+		public ScrollView ShipMarketScrollview = null;
+		public GUIScreen_Hanger HangerScreen = null;
 
 
 		[Header( "Squad Screen Properties - data" )]

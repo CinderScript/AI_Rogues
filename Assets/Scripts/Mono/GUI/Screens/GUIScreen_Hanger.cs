@@ -13,14 +13,14 @@ namespace IronGrimoire.Gui.Game
 	class GUIScreen_Hanger : GUIScreen
 	{
 		[Header( "Hanger Screen - controls" )]
-		public Image ShipIcon;
-		public Text ShipName;
-		public Text ShipValue;
+		public Image ShipIcon = null;
+		public Text ShipName = null;
+		public Text ShipValue = null;
 
-		public Text Weapon1;
-		public Text Weapon2;
-		public Text Weapon3;
-		public Text Weapon4;
+		public Text Weapon1 = null;
+		public Text Weapon2 = null;
+		public Text Weapon3 = null;
+		public Text Weapon4 = null;
 
 		public ControlGroup_WeaponInfo WeaponInfo;
 		public ControlGroup_ShipInfo ShipInfo;

@@ -9,12 +9,12 @@ namespace AIRogue.Gui
 	class ControlGroup_ShipInfo : ControlGroup
 	{
 		public Text Name = null;
-		public Text Shield;
-		public Text Hull;
-		public Text Velocity;
-		public Text Accel;
-		public Text Turn;
-		public Text Value;
+		public Text Shield = null;
+		public Text Hull = null;
+		public Text Velocity = null;
+		public Text Accel = null;
+		public Text Turn = null;
+		public Text Value = null;
 
 		public void SetText(Unit ship)
 		{
