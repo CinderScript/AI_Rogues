@@ -24,6 +24,7 @@ namespace IronGrimoire.Gui.Game
 
 		public ControlGroup_WeaponInfo WeaponInfo;
 		public ControlGroup_ShipInfo ShipInfo;
+		public ScrollView WeaponSlots;
 
 		[Header( "Hanger Screen - screens" )]
 		public GUIScreen_WeaponsMarket WeaponsMarketScreen;
@@ -44,6 +45,7 @@ namespace IronGrimoire.Gui.Game
 
 		private void UpdateScreenText()
 		{
+			UpdateWeaponSlots();
 			UpdateWeaponInfo();
 			UpdateShipInfo();
 
@@ -52,6 +54,10 @@ namespace IronGrimoire.Gui.Game
 			ShipValue.text = GetTotalShipValue();
 		}
 
+		private void UpdateWeaponSlots()
+		{
+
+		}
 		private void UpdateWeaponInfo()
 		{
 			Weapon weap = WeaponLibrary.GetPrefab( Unit_PlayerData.Weapons[0] ).GetComponent<Weapon>();

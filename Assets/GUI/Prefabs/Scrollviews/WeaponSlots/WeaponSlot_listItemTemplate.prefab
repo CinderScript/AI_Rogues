@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 114757594418257270}
   - component: {fileID: 114353563957095686}
   m_Layer: 5
-  m_Name: EquippedWeapon_listItemTemplate
+  m_Name: WeaponSlot_listItemTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
