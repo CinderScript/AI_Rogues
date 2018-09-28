@@ -904,13 +904,9 @@ MonoBehaviour:
   ShipIcon: {fileID: 422758598}
   ShipName: {fileID: 1001840714}
   ShipValue: {fileID: 1634615255}
-  Weapon1: {fileID: 0}
-  Weapon2: {fileID: 0}
-  Weapon3: {fileID: 0}
-  Weapon4: {fileID: 0}
   WeaponInfo: {fileID: 404453042}
   ShipInfo: {fileID: 654544123}
-  WeaponSlots: {fileID: 0}
+  WeaponSlots: {fileID: 905661723}
   WeaponsMarketScreen: {fileID: 534288160}
   WeaponLibrary: {fileID: 1509463568}
 --- !u!225 &95502453
@@ -7429,6 +7425,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 899248472}
   m_CullTransparentMesh: 0
+--- !u!114 &905661723 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114380157430360804, guid: 241292b2d89c5694e81f6090c1c27a2c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1450277440}
+  m_Script: {fileID: 11500000, guid: bd182a82664982d499dfaa5b499f5191, type: 3}
 --- !u!1 &910654478
 GameObject:
   m_ObjectHideFlags: 0
@@ -10549,7 +10551,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 9, y: -5.07}
-  m_SizeDelta: {x: 135.6, y: 37.3}
+  m_SizeDelta: {x: 117.92, y: 37.3}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1416300301
 MonoBehaviour:
@@ -10572,7 +10574,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 21
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -10841,12 +10843,17 @@ Prefab:
     - target: {fileID: 224378073727458150, guid: 241292b2d89c5694e81f6090c1c27a2c,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.000000059604645
       objectReference: {fileID: 0}
     - target: {fileID: 224002950127600500, guid: 241292b2d89c5694e81f6090c1c27a2c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224032628910539426, guid: 241292b2d89c5694e81f6090c1c27a2c,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 241292b2d89c5694e81f6090c1c27a2c, type: 2}
@@ -11847,8 +11854,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 126.3, y: 0}
-  m_SizeDelta: {x: 125.5, y: 37.3}
+  m_AnchoredPosition: {x: 135.31, y: 0}
+  m_SizeDelta: {x: 134.51, y: 37.3}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1827464094
 MonoBehaviour:
@@ -11871,7 +11878,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 21
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

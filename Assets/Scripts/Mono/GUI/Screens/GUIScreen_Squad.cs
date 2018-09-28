@@ -24,7 +24,7 @@ namespace IronGrimoire.Gui.Game
 		{
 			base.Awake();
 
-			// update squad scrollview each this screen is shown
+			// update squad scrollview each time this screen is shown
 			OnOpened.AddListener( populateSquad );
 		}
 		protected override void Start()
@@ -36,11 +36,12 @@ namespace IronGrimoire.Gui.Game
 		}
 		public void OpenSelectedShipHanger()
 		{
-			var unit_playerData = (UnitPersistence)MySquadScrollview.SelectedItem_Last.TaggedObject;
-			var unit = ShipLibrary.GetUnit( unit_playerData.UnitType );
+			var unit_saved = (UnitPersistence)MySquadScrollview.SelectedItem_Last.TaggedObject;
+			var unit_specs = ShipLibrary.GetUnit( unit_saved.UnitType );
 
-			HangerScreen.Unit_PlayerData = unit_playerData;
-			HangerScreen.UnitStats = unit;
+			HangerScreen.Unit_Save = unit_saved;
+			HangerScreen.Unit_Specs = unit_specs;
+
 			GUISystem.SwitchScreens( HangerScreen );
 		}
 
@@ -60,14 +61,13 @@ namespace IronGrimoire.Gui.Game
 		{
 			MySquadScrollview.ClearScrollview();
 
-			var playerDataUnits = GameSave.Squad;
-
-			foreach (var unitPersistence in playerDataUnits)
+			foreach (var unitPersistence in GameSave.Squad)
 			{
 				var unit = ShipLibrary.GetUnit( unitPersistence.UnitType );
 
 				ListItem_Ship item = (ListItem_Ship)MySquadScrollview.AddTemplatedItem();
 				item.Initialize( unit );
+				item.Guns.text = $"{unitPersistence.Weapons.Count} of {unit.WeaponMountCount}";
 				item.TaggedObject = unitPersistence;
 			}
 		}

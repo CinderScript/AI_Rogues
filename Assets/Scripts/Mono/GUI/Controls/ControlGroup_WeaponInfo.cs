@@ -16,21 +16,34 @@ namespace IronGrimoire.Gui.Game
 
 		public void SetText(Weapon weapon)
 		{
-			var name = weapon.WeaponName			.ToString();
-			var type = weapon.WeaponType_GUI;
-			var damage = weapon.Damage				.ToString("0.###");
-			var range = weapon.Range				.ToString("0.###");
-			var velocity = weapon.DamagerVelocity	.ToString( "0.###" );
-			var rateOfFire = weapon.RateOfFire		.ToString( "0.###" );
-			var value = weapon.Value				.ToString( "$0" );
+			if (weapon)
+			{
+				var name = weapon.WeaponName			.ToString();
+				var type = weapon.WeaponType_GUI;
+				var damage = weapon.Damage				.ToString("0.###");
+				var range = weapon.Range				.ToString("0.###");
+				var velocity = weapon.DamagerVelocity	.ToString( "0.###" );
+				var rateOfFire = weapon.RateOfFire		.ToString( "0.###" );
+				var value = weapon.Value				.ToString( "$0" );
 
-			SetFieldValue( Name, name );
-			SetFieldValue( Type, type );
-			SetFieldValue( Damage, damage );
-			SetFieldValue( Range, range );
-			SetFieldValue( Velocity, velocity );
-			SetFieldValue( RateOfFire, rateOfFire );
-			SetFieldValue( Value, value );
+				SetFieldValue( Name, name );
+				SetFieldValue( Type, type );
+				SetFieldValue( Damage, damage );
+				SetFieldValue( Range, range );
+				SetFieldValue( Velocity, velocity );
+				SetFieldValue( RateOfFire, rateOfFire );
+				SetFieldValue( Value, value );
+			}
+			else
+			{
+				SetFieldValue( Name, "none selected" );
+				SetFieldValue( Type, "" );
+				SetFieldValue( Damage, "" );
+				SetFieldValue( Range, "" );
+				SetFieldValue( Velocity, "" );
+				SetFieldValue( RateOfFire, "" );
+				SetFieldValue( Value, "" );
+			}
 		}
 	}
 }
