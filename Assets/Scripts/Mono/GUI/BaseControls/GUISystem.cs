@@ -29,21 +29,7 @@ namespace IronGrimoire.Gui
 		}
 		private void Start()
 		{
-			screens = GetComponentsInChildren<GUIScreen>( true );
-
-			foreach (var screen in screens)
-			{
-				screen.gameObject.SetActive( false );
-			}
-
-			StartScreen.OpenScreen();
-			CurrentScreen = StartScreen;
-
-			if (Fader)
-			{
-				Fader.gameObject.SetActive( true );
-			}
-			FadeIn();
+			StartCoroutine( StartSequence() );
 		}
 
 		public void SwitchScreens(GUIScreen newScreen)
@@ -62,6 +48,42 @@ namespace IronGrimoire.Gui
 			CurrentScreen.OpenScreen();
 
 			OnSwitchedScreens?.Invoke();
+		}
+		IEnumerator StartSequence()
+		{
+			screens = GetComponentsInChildren<GUIScreen>( true );
+
+			// trigger each screen (and it's controls) Start()
+			foreach (var screen in screens)
+			{
+				screen.gameObject.SetActive( true );
+			}
+
+			// make sure fader is active
+			if (Fader)
+			{
+				Fader.gameObject.SetActive( true );
+			}
+
+			// wait a few frames (Start() will run)
+			int frameCount = 2;
+			while (frameCount > 0)
+			{
+				frameCount--;
+				yield return null;
+			}
+
+			// hide each screen after they run their Start
+			foreach (var screen in screens)
+			{
+				screen.gameObject.SetActive( false );
+			}
+
+			// open the first screen
+			StartScreen.OpenScreen();
+			CurrentScreen = StartScreen;
+
+			FadeIn();
 		}
 
 		public void LoadScene(int sceneIndex)
