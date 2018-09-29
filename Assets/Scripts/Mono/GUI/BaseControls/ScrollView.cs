@@ -91,10 +91,16 @@ namespace IronGrimoire.Gui
 		{
 			if (selected)
 			{
-				SelectedItem_Last = item;
-				SelectedItems.Add( item );
-				SelectedItems = SelectedItems.OrderBy( listItem => listItem.gameObject.name ).ToList();
-				OnItemSelected?.Invoke();
+				// if item is already selected, don't reselect.  
+				// (happens when part of toggle group (!Multiselect) and AllowSwitchOff is false)
+				// (i.e. clicking the same item when only one item can be selected)
+				if ( !SelectedItems.Contains(item) )
+				{
+					SelectedItem_Last = item;
+					SelectedItems.Add( item );
+					SelectedItems = SelectedItems.OrderBy( listItem => listItem.gameObject.name ).ToList();
+					OnItemSelected?.Invoke();
+				}
 			}
 			else
 			{
@@ -112,7 +118,7 @@ namespace IronGrimoire.Gui
 		/// Makes any ugui Selectable in <see cref="EnableOnSelected"/> interactive when 
 		/// items are selected in this ScrollView.
 		/// </summary>
-		private void SetDependantSelectablesInteractivity()
+		void SetDependantSelectablesInteractivity()
 		{
 			if (SelectedItems.Count < 1)
 			{
@@ -124,6 +130,18 @@ namespace IronGrimoire.Gui
 				foreach (var selectable in EnableOnSelected)
 					selectable.interactable = true;
 			}
+		}
+		bool IsItemInSelection(SelectableListItem item)
+		{
+			foreach (var selected in SelectedItems)
+			{
+				if (ReferenceEquals(item, selected))
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 }

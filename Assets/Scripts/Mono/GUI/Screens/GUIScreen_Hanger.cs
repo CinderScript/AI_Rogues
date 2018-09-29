@@ -44,7 +44,7 @@ namespace IronGrimoire.Gui.Game
 			UpdateWeaponSlots();
 			UpdateShipInfo();
 
-			WeaponSlots.Items[0].Toggle.onValueChanged.Invoke(true);
+			WeaponSlots.Items[0].Toggle.isOn = true;
 
 			ShipIcon.sprite = Unit_Specs.Icon;
 			ShipName.text = Unit_Specs.UnitType.ToString();
@@ -58,7 +58,7 @@ namespace IronGrimoire.Gui.Game
 				var item = (ListItem_WeaponSlot)WeaponSlots.Items[i];
 
 				// if ship has slot, then list weapon if found
-				if ( i < Unit_Specs.WeaponMountCount)
+				if (i < Unit_Specs.WeaponMountCount)
 				{
 					item.gameObject.SetActive( true );
 					var equippedCount = Unit_Save.Weapons.Count;
