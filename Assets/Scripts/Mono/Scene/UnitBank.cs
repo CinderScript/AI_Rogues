@@ -18,7 +18,6 @@ namespace AIRogue.Scene
         [Header( "Game Object Resource" )]
 		public List<GameObject> UnitPrefabs;
 
-
 		// check to make sure all the prefabs have a Unit component so the UnitSpawner 
 		// doesn't have any trouble during its search for the correct UnitType
 		void Start()

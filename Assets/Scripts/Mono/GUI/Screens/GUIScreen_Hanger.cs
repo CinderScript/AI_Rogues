@@ -65,7 +65,7 @@ namespace IronGrimoire.Gui.Game
 
 					if (i < equippedCount)
 					{
-						var weap = WeaponLibrary.GetPrefab( Unit_Save.Weapons[i] ).GetComponent<Weapon>();
+						var weap = WeaponLibrary.GetWeapon( Unit_Save.Weapons[i] );
 						item.Name.text = weap.WeaponName.ToString();
 						item.TaggedObject = weap;
 					}

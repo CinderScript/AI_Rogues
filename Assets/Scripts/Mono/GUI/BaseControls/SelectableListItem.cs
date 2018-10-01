@@ -19,7 +19,26 @@ namespace IronGrimoire.Gui
 			Toggle.onValueChanged.AddListener( OnValueChanged );
 		}
 
-		private void OnValueChanged(bool isSelected)
+		/// <summary>
+		/// Call this initialization if this ListItem is added to a list in an Awake() cycle before this
+		/// item's Awake() has time to run.  Returns true if the toggle is assigned and false if
+		/// the toggle has already been asigned;
+		/// </summary>
+		/// <returns>Toggle was set</returns>
+		public bool InitializeToggle()
+		{
+			if (Toggle)
+			{
+				return false;
+			}
+			else
+			{
+				Toggle = GetComponent<Toggle>();
+				return true;
+			}
+		}
+
+		void OnValueChanged(bool isSelected)
 		{
 			OnSelectionChanged?.Invoke( this, isSelected );
 		}

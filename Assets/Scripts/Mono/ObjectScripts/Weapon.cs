@@ -10,7 +10,7 @@ namespace AIRogue.GameObjects
 	abstract class Weapon : MonoBehaviour
 	{
 		[Header( "Gameplay Properties" )]
-		public WeaponName WeaponName = WeaponName.Not_Found;
+		public WeaponID WeaponName = WeaponID.Not_Found;
 
 		[Header( "GUI Representation" )]
 		public Sprite Icon;
@@ -94,7 +94,7 @@ namespace AIRogue.GameObjects
 		}
 	}
 
-	enum WeaponName
+	enum WeaponID
 	{
 		Not_Found = 0,
 		RedCannon = 2,

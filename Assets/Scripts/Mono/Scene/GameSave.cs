@@ -46,20 +46,20 @@ namespace AIRogue.Scene
 		{
 			Squad = new List<UnitPersistence>();
 
-			var weaps = new List<WeaponName>();
-			weaps.Add( WeaponName.GreenLaser );
-			weaps.Add( WeaponName.RedLaser );
+			var weaps = new List<WeaponID>();
+			weaps.Add( WeaponID.GreenLaser );
+			weaps.Add( WeaponID.RedLaser );
 			var unit = new UnitPersistence( UnitType.SimpleFighter, weaps );
 			Squad.Add( unit );
 
-			weaps = new List<WeaponName>();
-			weaps.Add( WeaponName.RedLaser );
+			weaps = new List<WeaponID>();
+			weaps.Add( WeaponID.RedLaser );
 			unit = new UnitPersistence( UnitType.TestUnit, weaps );
 			Squad.Add( unit );
 
-			weaps = new List<WeaponName>();
-			weaps.Add( WeaponName.GreenLaser );
-			weaps.Add( WeaponName.RedLaser );
+			weaps = new List<WeaponID>();
+			weaps.Add( WeaponID.GreenLaser );
+			weaps.Add( WeaponID.RedLaser );
 			unit = new UnitPersistence( UnitType.TestUnit, weaps );
 			Squad.Add( unit );
 

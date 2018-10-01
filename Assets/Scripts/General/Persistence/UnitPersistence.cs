@@ -13,23 +13,23 @@ namespace AIRogue.Persistence
 		public UnitType UnitType;
 
 		[ProtoMember( 20 )]
-		public List<WeaponName> Weapons { get; }
+		public List<WeaponID> Weapons { get; }
 
 		public UnitPersistence()
 		{
 			UnitType = UnitType.Not_Found;
-			Weapons = new List<WeaponName>();
+			Weapons = new List<WeaponID>();
 		}
 		public UnitPersistence(Unit unit)
 		{
 			UnitType = unit.UnitType;
-			Weapons = new List<WeaponName>();
+			Weapons = new List<WeaponID>();
 			foreach (var weap in unit.Weapons)
 			{
 				Weapons.Add( weap.WeaponName );
 			}
 		}
-		public UnitPersistence(UnitType unitType, List<WeaponName> weapons)
+		public UnitPersistence(UnitType unitType, List<WeaponID> weapons)
 		{
 			UnitType = unitType;
 			Weapons = weapons;

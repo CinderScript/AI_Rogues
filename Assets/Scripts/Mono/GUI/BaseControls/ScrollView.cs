@@ -13,7 +13,9 @@ namespace IronGrimoire.Gui
 		[Header( "Scroll View Setup" )]
 		public SelectableListItem ListItemTemplatePrefab;
 		public bool MultiSelect = false;
-		[Tooltip( "Only enable these buttons when items have been selected." )]
+		[Tooltip( "Searches Scrollview's Content for ListItems added via the editor." )]
+		public bool AddItemsFoundOnStartup = false;
+		[Tooltip( "Only enables these buttons when items have been selected." )]
 		public List<Selectable> EnableOnSelected;
 
 		[Header( "GUI Events" )]
@@ -33,22 +35,14 @@ namespace IronGrimoire.Gui
 		{
 			contentPanel = GetComponentInChildren<ContentSizeFitter>().transform;
 			toggleGroup = GetComponent<ToggleGroup>();
+
+			// needs to be called in Awake() so that items added on a screens Start() happen after this 
+			// search for existing items.
+			AddExistingItems( AddItemsFoundOnStartup );
 		}
 		void Start()
 		{
 			SetDependantSelectablesInteractivity();
-
-			// add existing items here so that SelectableListItem.Awake() has time to run. (needs toggle property)
-			SelectableListItem[] existingItems = contentPanel.GetComponentsInChildren<SelectableListItem>();
-			foreach (var item in existingItems)
-			{
-				Add( item );
-			}
-
-			//for (int i = 0; i < 10; i++)
-			//{
-			//	AddTemplatedItem();
-			//}
 		}
 
 		public SelectableListItem AddTemplatedItem()
@@ -131,17 +125,21 @@ namespace IronGrimoire.Gui
 					selectable.interactable = true;
 			}
 		}
-		bool IsItemInSelection(SelectableListItem item)
+		void AddExistingItems(bool add)
 		{
-			foreach (var selected in SelectedItems)
+			if (add)
 			{
-				if (ReferenceEquals(item, selected))
+				var existingItems = contentPanel.GetComponentsInChildren<SelectableListItem>();
+				foreach (var item in existingItems)
 				{
-					return true;
+					item.InitializeToggle();
+					Add( item );
 				}
 			}
-
-			return false;
+			else
+			{
+				ClearScrollview();
+			}
 		}
 	}
 }
