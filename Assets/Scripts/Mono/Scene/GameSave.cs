@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace AIRogue.Scene
 {
-	[ProtoContract]
+	[ProtoContract( SkipConstructor = true )]
 	class GameSave : MonoBehaviour {
 
 		public static string SAVE_PATH
@@ -38,10 +38,6 @@ namespace AIRogue.Scene
 			SaveDataToFile();
 		}
 
-		public GameSave()
-		{
-			Squad = new List<UnitSave>();
-		}
 		public void NewGame()
 		{
 			Squad = new List<UnitSave>();
@@ -74,7 +70,13 @@ namespace AIRogue.Scene
 		}
 		public void LoadDataFromFile()
 		{
-			PlayerData data = ProtoUtility.LoadFromFile<PlayerData>( SAVE_PATH );
+			GameSave data = ProtoUtility.LoadFromFile<GameSave>( SAVE_PATH );
+
+			if (data.Squad == null)
+			{
+				data.Squad = new List<UnitSave>();
+			}
+
 			Squad = data.Squad;
 			Funds = data.Funds;
 		}
