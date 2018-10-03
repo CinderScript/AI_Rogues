@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace IronGrimoire.Gui
 {
-	class ControlGroup : MonoBehaviour
+	public class ControlGroup : MonoBehaviour
 	{
 		protected void SetFieldValue(Text field, string value)
 		{

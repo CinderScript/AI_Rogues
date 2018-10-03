@@ -24,7 +24,7 @@ namespace IronGrimoire.Gui
 		public UnityEvent OnItemDeselected = new UnityEvent();
 
 		[Header( "Runtime Properties" )]
-		public List<SelectableListItem> SelectedItems;
+		public List<SelectableListItem> Selected;
 		public SelectableListItem SelectedItem_Last;
 		public List<SelectableListItem> Items;
 
@@ -62,7 +62,7 @@ namespace IronGrimoire.Gui
 			}
 
 			Items.Clear();
-			SelectedItems.Clear();
+			Selected.Clear();
 			SelectedItem_Last = null;
 
 			SetDependantSelectablesInteractivity();
@@ -88,17 +88,17 @@ namespace IronGrimoire.Gui
 				// if item is already selected, don't reselect.  
 				// (happens when part of toggle group (!Multiselect) and AllowSwitchOff is false)
 				// (i.e. clicking the same item when only one item can be selected)
-				if ( !SelectedItems.Contains(item) )
+				if ( !Selected.Contains(item) )
 				{
 					SelectedItem_Last = item;
-					SelectedItems.Add( item );
-					SelectedItems = SelectedItems.OrderBy( listItem => listItem.gameObject.name ).ToList();
+					Selected.Add( item );
+					Selected = Selected.OrderBy( listItem => listItem.gameObject.name ).ToList();
 					OnItemSelected?.Invoke();
 				}
 			}
 			else
 			{
-				SelectedItems.Remove( item );
+				Selected.Remove( item );
 				if (MultiSelect)
 				{
 					OnItemDeselected?.Invoke();
@@ -114,7 +114,7 @@ namespace IronGrimoire.Gui
 		/// </summary>
 		void SetDependantSelectablesInteractivity()
 		{
-			if (SelectedItems.Count < 1)
+			if (Selected.Count < 1)
 			{
 				foreach (var selectable in EnableOnSelected)
 					selectable.interactable = false;

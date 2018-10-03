@@ -10,6 +10,7 @@ namespace IronGrimoire.Gui
 	{
 		[Header( "GUI System Properties" )]
 		public GUIScreen StartScreen;
+		public DialogBox Dialog;
 
 		[Header( "GUI System Events" )]
 		public UnityEvent OnSwitchedScreens = new UnityEvent();
@@ -31,29 +32,12 @@ namespace IronGrimoire.Gui
 		{
 			StartCoroutine( StartSequence() );
 		}
-
-		public void SwitchScreens(GUIScreen newScreen)
-		{
-			ScreenHistory.Push( CurrentScreen );
-			switchScreen( newScreen );
-		}
-		public void SwitchScreenToPrevious()
-		{
-			switchScreen( ScreenHistory.Pop() );
-		}
-		void switchScreen(GUIScreen nextScreen)
-		{
-			CurrentScreen.CloseScreen();
-			CurrentScreen = nextScreen;
-			CurrentScreen.OpenScreen();
-
-			OnSwitchedScreens?.Invoke();
-		}
 		IEnumerator StartSequence()
 		{
 			screens = GetComponentsInChildren<GUIScreen>( true );
 
 			// trigger each screen (and it's controls) Start()
+			Dialog.gameObject.SetActive( true );
 			foreach (var screen in screens)
 			{
 				screen.gameObject.SetActive( true );
@@ -74,6 +58,7 @@ namespace IronGrimoire.Gui
 			}
 
 			// hide each screen after they run their Start
+			Dialog.gameObject.SetActive( false );
 			foreach (var screen in screens)
 			{
 				screen.gameObject.SetActive( false );
@@ -84,6 +69,24 @@ namespace IronGrimoire.Gui
 			CurrentScreen = StartScreen;
 
 			FadeIn();
+		}
+
+		public void SwitchScreens(GUIScreen newScreen)
+		{
+			ScreenHistory.Push( CurrentScreen );
+			switchScreen( newScreen );
+		}
+		public void SwitchScreenToPrevious()
+		{
+			switchScreen( ScreenHistory.Pop() );
+		}
+		void switchScreen(GUIScreen nextScreen)
+		{
+			CurrentScreen.CloseScreen();
+			CurrentScreen = nextScreen;
+			CurrentScreen.OpenScreen();
+
+			OnSwitchedScreens?.Invoke();
 		}
 
 		public void LoadScene(int sceneIndex)

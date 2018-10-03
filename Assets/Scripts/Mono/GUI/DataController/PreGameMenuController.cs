@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+
 using AIRogue.GameObjects;
 using AIRogue.Persistence;
 using AIRogue.Scene;
+
 using UnityEngine;
 
 namespace IronGrimoire.Gui.Game
@@ -42,6 +44,64 @@ namespace IronGrimoire.Gui.Game
 		public Weapon GetWeaponStats(WeaponModel weaponID)
 		{
 			return WeaponLibrary.GetWeapon( weaponID );
+		}
+
+		public bool CanAffordEquippable(Weapon weapon)
+		{
+			if (weapon.Value > GameSave.Funds)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		public bool CanAffordEquippable(Unit unit)
+		{
+			if ( unit.Value > GameSave.Funds )
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		public void BuyUnit(Unit unit)
+		{
+			UnitSave unitSave = new UnitSave( unit );
+			unitSave.Weapons.Add( WeaponModel.RedLaser );
+
+			GameSave.Squad.Add( unitSave );
+			GameSave.Funds -= unit.Value;
+		}
+		public void SellShip(UnitSave unit)
+		{
+			GameSave.Funds += GetShipValueTotal( unit );
+			GameSave.Squad.Remove( unit );
+		}
+
+		public void BuyWeapon(Weapon weapon)
+		{
+			SelectedUnit_Save.Weapons.Add( weapon.WeaponModel );
+			GameSave.Funds -= weapon.Value;
+		}
+		public void SellWeapon(WeaponModel weapon)
+		{
+			SelectedUnit_Save.Weapons.Remove( weapon );
+			GameSave.Funds += WeaponLibrary.GetWeapon( weapon ).Value;
+		}
+
+		public int GetShipValueTotal(UnitSave unit)
+		{
+			var total = ShipLibrary.GetUnit( unit.UnitModel ).Value;
+			foreach (var weap in unit.Weapons)
+			{
+				total += WeaponLibrary.GetWeapon( weap ).Value;
+			}
+
+			return total;
 		}
 	}
 }

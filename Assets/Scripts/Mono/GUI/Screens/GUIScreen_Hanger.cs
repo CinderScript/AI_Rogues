@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿
 using AIRogue.GameObjects;
 using AIRogue.Gui;
-using AIRogue.Persistence;
-using AIRogue.Scene;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,12 +18,12 @@ namespace IronGrimoire.Gui.Game
 		public ControlGroup_ShipInfo ShipInfo = null;
 		public ScrollView WeaponSlots = null;
 
-		private PreGameMenuController gui;
+		private PreGameMenuController game;
 
 		protected override void Awake()
 		{
 			base.Awake();
-			gui = GetComponentInParent<PreGameMenuController>();
+			game = GetComponentInParent<PreGameMenuController>();
 
 			OnOpened.AddListener( ShowScreen );
 			WeaponSlots.OnItemSelected.AddListener( UpdateWeaponInfo );
@@ -38,8 +35,9 @@ namespace IronGrimoire.Gui.Game
 			UpdateShipInfo();
 
 			WeaponSlots.Items[0].Toggle.isOn = true;
+			UpdateWeaponInfo();
 
-			var unitStats = gui.SelectedUnit_Stats;
+			var unitStats = game.SelectedUnit_Stats;
 
 			ShipIcon.sprite = unitStats.Icon;
 			ShipName.text = unitStats.UnitModel.ToString();
@@ -51,8 +49,8 @@ namespace IronGrimoire.Gui.Game
 			for (int i = 0; i < WeaponSlots.Items.Count; i++)
 			{
 				var item = (ListItem_WeaponSlot)WeaponSlots.Items[i];
-				var unit_Stats = gui.SelectedUnit_Stats;
-				var unit_Save = gui.SelectedUnit_Save;
+				var unit_Stats = game.SelectedUnit_Stats;
+				var unit_Save = game.SelectedUnit_Save;
 
 				// if ship has slot, then list weapon if found
 				if (i < unit_Stats.WeaponMountCount)
@@ -62,15 +60,15 @@ namespace IronGrimoire.Gui.Game
 
 					if (i < equippedCount)
 					{
-						var weap = gui.GetWeaponStats( unit_Save.Weapons[i] );
+						var weap = game.GetWeaponStats( unit_Save.Weapons[i] );
 
 						item.Name.text = weap.WeaponModel.ToString();
-						item.TaggedObject = weap;
+						item.Tagged = weap;
 					}
 					else
 					{
 						item.Name.text = "empty";
-						item.TaggedObject = null;
+						item.Tagged = null;
 					}
 
 				}
@@ -78,23 +76,23 @@ namespace IronGrimoire.Gui.Game
 				{
 					item.gameObject.SetActive( false );
 					item.Name.text = "";
-					item.TaggedObject = null;
+					item.Tagged = null;
 				}
 			}
 		}
 		private void UpdateWeaponInfo()
 		{
-			Weapon weap = (Weapon)WeaponSlots.SelectedItems[0].TaggedObject;
+			Weapon weap = (Weapon)WeaponSlots.Selected[0].Tagged;
 			WeaponInfo.SetText( weap );
 		}
 		private void UpdateShipInfo()
 		{
-			ShipInfo.SetText( gui.SelectedUnit_Stats );
+			ShipInfo.SetText( game.SelectedUnit_Stats );
 		}
 
 		private string GetTotalShipValue()
 		{
-			float tValue = gui.SelectedUnit_Stats.Value;
+			float tValue = game.GetShipValueTotal( game.SelectedUnit_Save );
 			return tValue.ToString("$0");
 		}
 	}

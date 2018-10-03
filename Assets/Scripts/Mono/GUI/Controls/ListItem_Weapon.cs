@@ -11,14 +11,12 @@ namespace IronGrimoire.Gui.Game
 		public Text Type = null;
 		public Text Value = null;
 
-		public void Initialize(Weapon weapon)
+		public void SetText(Weapon weapon)
 		{
 			Icon.sprite = weapon.Icon;
 			Name.text = weapon.WeaponModel.ToString();
 			Type.text = weapon.WeaponType_GUI;
 			Value.text = weapon.Value.ToString();
-
-			TaggedObject = weapon;
 		}
 	}
 }

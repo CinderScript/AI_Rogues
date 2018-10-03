@@ -36,6 +36,7 @@ namespace IronGrimoire.Gui.Game
 		{
 			gui.GameSave.NewGame();
 			Debug.Log( gui.GameSave.ToString() );
+			SetText();
 		}
 
 		private void SetText()

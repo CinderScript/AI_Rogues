@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-
-using AIRogue.GameObjects;
-using AIRogue.Scene;
+﻿using AIRogue.GameObjects;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace IronGrimoire.Gui.Game
 {
 	class GUIScreen_WeaponsMarket : GUIScreen
 	{
 		[Header( "Weapons Market - controls" )]
+		public Image ShipIcon = null;
+		public Text Funds = null;
+
 		public ScrollView EquippedScrollview;
 		public ScrollView MarketScrollview;
 
-
-		private PreGameMenuController gui;
+		private PreGameMenuController game;
 
 		protected override void Awake()
 		{
 			base.Awake();
-			gui = GetComponentInParent<PreGameMenuController>();
+			game = GetComponentInParent<PreGameMenuController>();
 
-			OnOpened.AddListener( ShowScreen );
+			OnOpened.AddListener( UpdateScreen );
 		}
 
 		protected override void Start()
@@ -29,36 +28,48 @@ namespace IronGrimoire.Gui.Game
 			base.Start();
 			PopulateMarket();
 		}
-		void ShowScreen()
+		void UpdateScreen()
 		{
+			ShipIcon.sprite = game.SelectedUnit_Stats.Icon;
+			Funds.text = game.GameSave.Funds.ToString( "Funds: $0" );
+
 			PopulateEquipped();
 		}
 		void PopulateEquipped()
 		{
 			EquippedScrollview.ClearScrollview();
-			foreach (var weapModel in gui.SelectedUnit_Save.Weapons)
+			foreach (var weapModel in game.SelectedUnit_Save.Weapons)
 			{
 				ListItem_Weapon item = (ListItem_Weapon)EquippedScrollview.AddTemplatedItem();
-				item.Initialize( gui.GetWeaponStats( weapModel ) );
+				Weapon weapon = game.GetWeaponStats( weapModel );
+				item.SetText( weapon );
+				item.Tagged = weapon;
 			}
 		}
 		void PopulateMarket()
 		{
 			MarketScrollview.ClearScrollview();
-			foreach ( var weapon in gui.GetWeaponsForSale() )
+			foreach ( var weapon in game.GetWeaponsForSale() )
 			{
 				ListItem_Weapon item = (ListItem_Weapon)MarketScrollview.AddTemplatedItem();
-				item.Initialize( weapon );
+				item.SetText( weapon );
+				item.Tagged = weapon;
 			}
 		}
 
 		public void Buy()
 		{
+			var weapon = MarketScrollview.Selected[0].Tagged as Weapon;
+			game.BuyWeapon( weapon );
 
+			UpdateScreen();
 		}
 		public void Sell()
 		{
+			var equipped = EquippedScrollview.Selected[0].Tagged as Weapon;
+			game.SellWeapon( equipped.WeaponModel );
 
+			UpdateScreen();
 		}
 	}
 }

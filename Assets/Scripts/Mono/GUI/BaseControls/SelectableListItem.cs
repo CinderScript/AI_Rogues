@@ -8,7 +8,7 @@ namespace IronGrimoire.Gui
 	[RequireComponent( typeof( Toggle ) )]
 	public class SelectableListItem : MonoBehaviour
 	{
-		public object TaggedObject { get; set; }
+		public object Tagged { get; set; }
 		public Action<SelectableListItem, bool> OnSelectionChanged { get; set; }
 		public Toggle Toggle { get; private set; }
 
