@@ -7,31 +7,32 @@ using ProtoBuf;
 namespace AIRogue.Persistence
 {
 	[ProtoContract]
-	class UnitPersistence
+	[System.Serializable]
+	class UnitSave
 	{
 		[ProtoMember( 10 )]
-		public UnitType UnitType;
+		public UnitModel UnitModel;
 
 		[ProtoMember( 20 )]
-		public List<WeaponID> Weapons { get; }
+		public List<WeaponModel> Weapons { get; }
 
-		public UnitPersistence()
+		public UnitSave()
 		{
-			UnitType = UnitType.Not_Found;
-			Weapons = new List<WeaponID>();
+			UnitModel = UnitModel.Not_Found;
+			Weapons = new List<WeaponModel>();
 		}
-		public UnitPersistence(Unit unit)
+		public UnitSave(Unit unit)
 		{
-			UnitType = unit.UnitType;
-			Weapons = new List<WeaponID>();
+			UnitModel = unit.UnitModel;
+			Weapons = new List<WeaponModel>();
 			foreach (var weap in unit.Weapons)
 			{
-				Weapons.Add( weap.WeaponName );
+				Weapons.Add( weap.WeaponModel );
 			}
 		}
-		public UnitPersistence(UnitType unitType, List<WeaponID> weapons)
+		public UnitSave(UnitModel unitType, List<WeaponModel> weapons)
 		{
-			UnitType = unitType;
+			UnitModel = unitType;
 			Weapons = weapons;
 		}
 	}

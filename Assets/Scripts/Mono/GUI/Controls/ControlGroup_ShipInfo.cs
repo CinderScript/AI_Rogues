@@ -18,7 +18,7 @@ namespace AIRogue.Gui
 
 		public void SetText(Unit ship)
 		{
-			var name = ship.UnitType			.ToString();
+			var name = ship.UnitModel			.ToString();
 			var shield = ship.ShieldCapacity	.ToString( "0.#" );
 			var hull = ship.Health				.ToString("0.#");
 			var velocity = ship.MaxVelocity		.ToString("0.#");

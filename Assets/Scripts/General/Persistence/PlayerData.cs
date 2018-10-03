@@ -19,14 +19,14 @@ namespace AIRogue.Persistence
 		public const string FILE_NAME = "GameSave.ser";
 
 		[ProtoMember( 10 )]
-		public List<UnitPersistence> Squad { get; set; }
+		public List<UnitSave> Squad { get; set; }
 
 		[ProtoMember(20)]
 		public int Funds { get; set; }
 
 		public PlayerData()
 		{
-			Squad = new List<UnitPersistence>();
+			Squad = new List<UnitSave>();
 		}
 
 		public void SaveDataToFile()
@@ -47,7 +47,7 @@ namespace AIRogue.Persistence
 
 			foreach (var unit in Squad)
 			{
-				s.Add( $"Ship: {unit.UnitType}, Weapons: {unit.Weapons.Count}" );
+				s.Add( $"Ship: {unit.UnitModel}, Weapons: {unit.Weapons.Count}" );
 			}
 			
 			return string.Join( "\n", s );

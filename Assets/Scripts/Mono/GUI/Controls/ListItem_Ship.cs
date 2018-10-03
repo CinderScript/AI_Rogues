@@ -14,7 +14,7 @@ namespace IronGrimoire.Gui.Game
 		public void Initialize(Unit unit)
 		{
 			Icon.sprite = unit.Icon;
-			Name.text = unit.UnitType.ToString();
+			Name.text = unit.UnitModel.ToString();
 			Guns.text = $"{unit.WeaponMountsUsedCount} of {unit.WeaponMountCount}";
 			Value.text = unit.Value.ToString();
 		}

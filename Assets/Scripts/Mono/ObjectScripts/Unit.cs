@@ -14,7 +14,7 @@ namespace AIRogue.GameObjects
 	class Unit : MonoBehaviour, IDamageable
 	{
 		[Header( "GUI Display" )]
-		public UnitType UnitType = UnitType.Not_Found;
+		public UnitModel UnitModel = UnitModel.Not_Found;
 		public Sprite Icon = null;
 		public int Value = 1000;
 		public int WeaponMountCount = 1;
@@ -258,11 +258,11 @@ namespace AIRogue.GameObjects
 
 		public override string ToString()
 		{
-			return $"{Squad.Name}.{SquadPosition}.{UnitType}";
+			return $"{Squad.Name}.{SquadPosition}.{UnitModel}";
 		}
 	}
 
-	public enum UnitType
+	public enum UnitModel
 	{
 		Not_Found = 0,
 		TestUnit = 1,

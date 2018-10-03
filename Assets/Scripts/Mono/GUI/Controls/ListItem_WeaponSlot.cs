@@ -10,7 +10,7 @@ namespace IronGrimoire.Gui.Game
 
 		public void Initialize(Weapon weapon)
 		{
-			Name.text = weapon.WeaponName.ToString();
+			Name.text = weapon.WeaponModel.ToString();
 		}
 	}
 }

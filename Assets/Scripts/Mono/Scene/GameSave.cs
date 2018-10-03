@@ -24,7 +24,7 @@ namespace AIRogue.Scene
 		public const string FILE_NAME = "GameSave.ser";
 
 		[ProtoMember( 10 )]
-		public List<UnitPersistence> Squad;
+		public List<UnitSave> Squad;
 
 		[ProtoMember( 20 )]
 		public int Funds;
@@ -40,27 +40,27 @@ namespace AIRogue.Scene
 
 		public GameSave()
 		{
-			Squad = new List<UnitPersistence>();
+			Squad = new List<UnitSave>();
 		}
 		public void NewGame()
 		{
-			Squad = new List<UnitPersistence>();
+			Squad = new List<UnitSave>();
 
-			var weaps = new List<WeaponID>();
-			weaps.Add( WeaponID.GreenLaser );
-			weaps.Add( WeaponID.RedLaser );
-			var unit = new UnitPersistence( UnitType.SimpleFighter, weaps );
+			var weaps = new List<WeaponModel>();
+			weaps.Add( WeaponModel.GreenLaser );
+			weaps.Add( WeaponModel.RedLaser );
+			var unit = new UnitSave( UnitModel.SimpleFighter, weaps );
 			Squad.Add( unit );
 
-			weaps = new List<WeaponID>();
-			weaps.Add( WeaponID.RedLaser );
-			unit = new UnitPersistence( UnitType.TestUnit, weaps );
+			weaps = new List<WeaponModel>();
+			weaps.Add( WeaponModel.RedLaser );
+			unit = new UnitSave( UnitModel.TestUnit, weaps );
 			Squad.Add( unit );
 
-			weaps = new List<WeaponID>();
-			weaps.Add( WeaponID.GreenLaser );
-			weaps.Add( WeaponID.RedLaser );
-			unit = new UnitPersistence( UnitType.TestUnit, weaps );
+			weaps = new List<WeaponModel>();
+			weaps.Add( WeaponModel.GreenLaser );
+			weaps.Add( WeaponModel.RedLaser );
+			unit = new UnitSave( UnitModel.TestUnit, weaps );
 			Squad.Add( unit );
 
 			Funds = 2000;
@@ -86,7 +86,7 @@ namespace AIRogue.Scene
 
 			foreach (var unit in Squad)
 			{
-				s.Add( $"Ship: {unit.UnitType}, Weapons: {unit.Weapons.Count}" );
+				s.Add( $"Ship: {unit.UnitModel}, Weapons: {unit.Weapons.Count}" );
 			}
 
 			return string.Join( "\n", s );

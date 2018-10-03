@@ -51,12 +51,13 @@ namespace AIRogue.Scene
 		/// </summary>
 		/// <param name="type"></param>
 		/// <returns></returns>
-		public GameObject GetPrefab(UnitType type)
+		public GameObject GetPrefab(UnitModel type)
 		{
 			GameObject unitPrefab = null;
 			foreach (var prefab in UnitPrefabs)
 			{
-				if (prefab.GetComponent<Unit>().UnitType == type)
+				Unit unit = prefab.GetComponent<Unit>();
+				if (unit.UnitModel == type)
 				{
 					unitPrefab = prefab;
 				}
@@ -69,7 +70,7 @@ namespace AIRogue.Scene
 
 			return unitPrefab;
 		}
-		public Unit GetUnit(UnitType type)
+		public Unit GetUnit(UnitModel type)
 		{
 			return GetPrefab( type ).GetComponent<Unit>();
 		}

@@ -15,60 +15,65 @@ namespace IronGrimoire.Gui.Game
 		public GUIScreen_Hanger HangerScreen = null;
 
 
-		[Header( "Squad Screen Properties - data" )]
-		public GameSave GameSave;
-		public UnitBank ShipLibrary;
-		public UnitBank ShipsInMarket;
+		private PreGameMenuController gui;
 
 		protected override void Awake()
 		{
 			base.Awake();
+			gui = GetComponentInParent<PreGameMenuController>();
 
 			// update squad scrollview each time this screen is shown
-			OnOpened.AddListener( populateSquad );
+			OnOpened.AddListener( ShowScreen );
 		}
 		protected override void Start()
 		{
 			base.Start();
 
 			// populate ship market scrollview
-			populateMarket();
+			PopulateMarket();
 		}
 		public void OpenSelectedShipHanger()
 		{
-			var unit_saved = (UnitPersistence)MySquadScrollview.SelectedItem_Last.TaggedObject;
-			var unit_specs = ShipLibrary.GetUnit( unit_saved.UnitType );
-
-			HangerScreen.Unit_Save = unit_saved;
-			HangerScreen.Unit_Specs = unit_specs;
+			var unit_saved = (UnitSave)MySquadScrollview.SelectedItem_Last.TaggedObject;
+			gui.SetSelectedUnit( unit_saved );
 
 			GUISystem.SwitchScreens( HangerScreen );
 		}
+		public void Buy()
+		{
 
-		private void populateMarket()
+		}
+		public void Sell()
+		{
+
+		}
+
+		void ShowScreen()
+		{
+			// populate Squad Scrollview
+
+			MySquadScrollview.ClearScrollview();
+
+			foreach (var unitSave in gui.GetPlayerShips())
+			{
+				var unit = gui.GetShipStats( unitSave );
+
+				ListItem_Ship item = (ListItem_Ship)MySquadScrollview.AddTemplatedItem();
+				item.Initialize( unit );
+				item.Guns.text = $"{unitSave.Weapons.Count} of {unit.WeaponMountCount}";
+				item.TaggedObject = unitSave;
+			}
+		}
+		void PopulateMarket()
 		{
 			ShipMarketScrollview.ClearScrollview();
 
-			List<Unit> units = ShipsInMarket.GetAllUnits();
+			List<Unit> units = gui.GetShipsForSale();
 			foreach (var unit in units)
 			{
 				ListItem_Ship item = (ListItem_Ship)ShipMarketScrollview.AddTemplatedItem();
 				item.Initialize( unit );
 				item.TaggedObject = unit;
-			}
-		}
-		private void populateSquad()
-		{
-			MySquadScrollview.ClearScrollview();
-
-			foreach (var unitPersistence in GameSave.Squad)
-			{
-				var unit = ShipLibrary.GetUnit( unitPersistence.UnitType );
-
-				ListItem_Ship item = (ListItem_Ship)MySquadScrollview.AddTemplatedItem();
-				item.Initialize( unit );
-				item.Guns.text = $"{unitPersistence.Weapons.Count} of {unit.WeaponMountCount}";
-				item.TaggedObject = unitPersistence;
 			}
 		}
 	}

@@ -10,7 +10,7 @@ namespace AIRogue.GameObjects
 	abstract class Weapon : MonoBehaviour
 	{
 		[Header( "Gameplay Properties" )]
-		public WeaponID WeaponName = WeaponID.Not_Found;
+		public WeaponModel WeaponModel = WeaponModel.Not_Found;
 
 		[Header( "GUI Representation" )]
 		public Sprite Icon;
@@ -90,11 +90,11 @@ namespace AIRogue.GameObjects
 
 		public override string ToString()
 		{
-			return $"{unit}.{WeaponPosition}.{WeaponName}";
+			return $"{unit}.{WeaponPosition}.{WeaponModel}";
 		}
 	}
 
-	enum WeaponID
+	enum WeaponModel
 	{
 		Not_Found = 0,
 		RedCannon = 2,

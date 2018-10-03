@@ -13,13 +13,13 @@ namespace IronGrimoire.Gui.Game
 		public Text Location = null;
 		public Text Earnings = null;
 
-		[Header( "Main Menu Screen Properties - Data" )]
-		public GameSave GameSave;
+		private PreGameMenuController gui;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
+			gui = GetComponentInParent<PreGameMenuController>();
 			OnOpened.AddListener( SetText );
 		}
 
@@ -34,14 +34,14 @@ namespace IronGrimoire.Gui.Game
 		}
 		public void ResetSavedInfo()
 		{
-			GameSave.NewGame();
-			Debug.Log( GameSave.ToString() );
+			gui.GameSave.NewGame();
+			Debug.Log( gui.GameSave.ToString() );
 		}
 
 		private void SetText()
 		{
-			var funds = GameSave.Funds;
-			var shipCount = GameSave.Squad.Count;
+			var funds = gui.GameSave.Funds;
+			var shipCount = gui.GameSave.Squad.Count;
 			var level = "Sector 7";
 			var earnings = 750;
 

@@ -44,11 +44,11 @@ namespace AIRogue.Scene
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public GameObject GetPrefab(WeaponID id)
+		public GameObject GetPrefab(WeaponModel id)
 		{
 			foreach (var prefab in WeaponPrefabs)
 			{
-				if (prefab.GetComponent<Weapon>().WeaponName == id)
+				if (prefab.GetComponent<Weapon>().WeaponModel == id)
 				{
 					return prefab;
 				}
@@ -59,7 +59,7 @@ namespace AIRogue.Scene
 			Debug.LogWarning( msg );
 			return null;
 		}
-		public Weapon GetWeapon(WeaponID weapon)
+		public Weapon GetWeapon(WeaponModel weapon)
 		{
 			return GetPrefab( weapon ).GetComponent<Weapon>();
 		}

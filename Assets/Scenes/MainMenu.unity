@@ -951,7 +951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &95502449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2528,6 +2528,7 @@ MonoBehaviour:
   ListItemTemplatePrefab: {fileID: 114311190185133300, guid: 80faf8560caaf9b41ab15fd9b2f7bd62,
     type: 2}
   MultiSelect: 0
+  AddItemsFoundOnStartup: 0
   EnableOnSelected:
   - {fileID: 829694022}
   OnItemSelected:
@@ -3344,7 +3345,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1058197627356130, guid: ed4bf3d1d307b774786103cdcd40050d, type: 2}
       propertyPath: m_Name
-      value: Market_scrollview
+      value: ShipMarket_scrollview
       objectReference: {fileID: 0}
     - target: {fileID: 114557524685536274, guid: ed4bf3d1d307b774786103cdcd40050d,
         type: 2}
@@ -3798,12 +3799,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   EquippedScrollview: {fileID: 1240051983}
   MarketScrollview: {fileID: 320665932}
-  WeaponsInMarket:
-  - {fileID: 114760092349976426, guid: 731f9396352e2e74798458240805fdaa, type: 2}
-  - {fileID: 114944074337580200, guid: 1ca0be0bf99c47546800719ab1244a46, type: 2}
-  - {fileID: 114484839401835710, guid: d575d1e07f93900478bbbba0dcf55abc, type: 2}
-  - {fileID: 114490033695425794, guid: 6530728c270807a4295acb5c877cddd9, type: 2}
-  - {fileID: 114670908454381332, guid: f34ff17af3e7ea74794ebc45352be6e7, type: 2}
+  WeaponLibrary: {fileID: 1509463568}
 --- !u!225 &534288161
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4662,7 +4658,7 @@ RectTransform:
   m_Father: {fileID: 974211610}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.000000059604645, y: 0}
+  m_AnchorMin: {x: 0.00000011920929, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
@@ -5807,7 +5803,7 @@ RectTransform:
   m_Father: {fileID: 386667154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.000000059604645}
   m_AnchorMax: {x: 1, y: 0.99999994}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
@@ -6105,8 +6101,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 715550277}
   m_HandleRect: {fileID: 715550276}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.9999998
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6221,6 +6217,7 @@ MonoBehaviour:
   ListItemTemplatePrefab: {fileID: 114196419934212790, guid: 7ed8625a6ebf3a6499c3be85ca38ba24,
     type: 2}
   MultiSelect: 0
+  AddItemsFoundOnStartup: 0
   EnableOnSelected:
   - {fileID: 523913618}
   - {fileID: 1054679740}
@@ -6418,7 +6415,7 @@ Prefab:
     - target: {fileID: 224071483499429976, guid: 51795526a0160d14abac47bc1bb88a34,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000061035156
       objectReference: {fileID: 0}
     - target: {fileID: 114225852730057288, guid: 51795526a0160d14abac47bc1bb88a34,
         type: 2}
@@ -6444,6 +6441,21 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: -366.08997
+      objectReference: {fileID: 0}
+    - target: {fileID: 114791883084431854, guid: 51795526a0160d14abac47bc1bb88a34,
+        type: 2}
+      propertyPath: m_AllowSwitchOff
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224872080376472126, guid: 51795526a0160d14abac47bc1bb88a34,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.00000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 114225852730057288, guid: 51795526a0160d14abac47bc1bb88a34,
+        type: 2}
+      propertyPath: AddItemsFoundOnStartup
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51795526a0160d14abac47bc1bb88a34, type: 2}
@@ -8704,6 +8716,7 @@ MonoBehaviour:
   ListItemTemplatePrefab: {fileID: 114593664488230752, guid: 9b49cb919def3484686483b7b51fe4a1,
     type: 2}
   MultiSelect: 0
+  AddItemsFoundOnStartup: 0
   EnableOnSelected:
   - {fileID: 701821969}
   OnItemSelected:
@@ -8960,7 +8973,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 593296456}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9459,7 +9472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000030517578}
+  m_AnchoredPosition: {x: -0.000030517578, y: -0.000091552734}
   m_SizeDelta: {x: 0, y: -366.08997}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1347349136
@@ -9767,12 +9780,12 @@ Prefab:
     - target: {fileID: 224419987047303734, guid: 241292b2d89c5694e81f6090c1c27a2c,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0.000000059604645
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224922747812575732, guid: 241292b2d89c5694e81f6090c1c27a2c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000030517578
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 224694613821724428, guid: 241292b2d89c5694e81f6090c1c27a2c,
         type: 2}
@@ -9793,6 +9806,11 @@ Prefab:
         type: 2}
       propertyPath: m_Size
       value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 114942356110493810, guid: 241292b2d89c5694e81f6090c1c27a2c,
+        type: 2}
+      propertyPath: AddItemsFoundOnStartup
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 241292b2d89c5694e81f6090c1c27a2c, type: 2}
@@ -10405,7 +10423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1638193089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10856,7 +10874,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1884341726}
   m_HandleRect: {fileID: 1884341725}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11372,7 +11390,7 @@ Prefab:
     - target: {fileID: 224069211182234948, guid: a3888f51e5c5a3d49a5000ae42826097,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224069211182234948, guid: a3888f51e5c5a3d49a5000ae42826097,
         type: 2}
@@ -11847,7 +11865,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2082200510}
   m_HandleRect: {fileID: 2082200509}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

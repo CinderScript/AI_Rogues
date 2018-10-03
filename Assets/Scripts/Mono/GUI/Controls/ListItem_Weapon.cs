@@ -14,7 +14,7 @@ namespace IronGrimoire.Gui.Game
 		public void Initialize(Weapon weapon)
 		{
 			Icon.sprite = weapon.Icon;
-			Name.text = weapon.WeaponName.ToString();
+			Name.text = weapon.WeaponModel.ToString();
 			Type.text = weapon.WeaponType_GUI;
 			Value.text = weapon.Value.ToString();
 

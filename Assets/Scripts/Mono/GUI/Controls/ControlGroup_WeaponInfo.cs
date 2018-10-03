@@ -18,7 +18,7 @@ namespace IronGrimoire.Gui.Game
 		{
 			if (weapon)
 			{
-				var name = weapon.WeaponName			.ToString();
+				var name = weapon.WeaponModel			.ToString();
 				var type = weapon.WeaponType_GUI;
 				var damage = weapon.Damage				.ToString("0.###");
 				var range = weapon.Range				.ToString("0.###");
