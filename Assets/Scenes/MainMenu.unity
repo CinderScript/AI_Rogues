@@ -9788,12 +9788,12 @@ Prefab:
     - target: {fileID: 224419987047303734, guid: 241292b2d89c5694e81f6090c1c27a2c,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.000000059604645
       objectReference: {fileID: 0}
     - target: {fileID: 224922747812575732, guid: 241292b2d89c5694e81f6090c1c27a2c,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 224694613821724428, guid: 241292b2d89c5694e81f6090c1c27a2c,
         type: 2}
