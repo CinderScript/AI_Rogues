@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f2a1e2d660aa74a859e4620e70842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitType: 2
+  UnitModel: 2
   Icon: {fileID: 21300000, guid: 0bbf811f95b4d074ca3c8d7fcf195805, type: 3}
   Value: 1200
   WeaponMountCount: 3

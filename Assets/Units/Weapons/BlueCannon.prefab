@@ -603,8 +603,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6507355fcb6a30842a74d7f924831cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponName: 3
-  Icon: {fileID: 21300000, guid: ddcac1fac1f5c8943a30c2ef6b724062, type: 3}
+  WeaponModel: 3
+  Icon: {fileID: 21300000, guid: babe91c07d9123a4b90941ac4a837d3f, type: 3}
   Value: 300
   Damage: 3
   RateOfFire: 1.5

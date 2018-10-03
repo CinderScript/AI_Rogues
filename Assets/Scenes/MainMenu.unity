@@ -343,7 +343,7 @@ RectTransform:
   m_Father: {fileID: 704715988}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.00000011920929, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
@@ -1007,8 +1007,6 @@ MonoBehaviour:
   WeaponInfo: {fileID: 404453042}
   ShipInfo: {fileID: 654544123}
   WeaponSlots: {fileID: 905661723}
-  WeaponsMarketScreen: {fileID: 534288160}
-  WeaponLibrary: {fileID: 1509463568}
 --- !u!225 &95502453
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1460,7 +1458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000030517578}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: -373.39}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &188965977
@@ -3360,7 +3358,7 @@ Prefab:
     - target: {fileID: 224690540665708552, guid: ed4bf3d1d307b774786103cdcd40050d,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 0.000000059604645
       objectReference: {fileID: 0}
     - target: {fileID: 224540311748568224, guid: ed4bf3d1d307b774786103cdcd40050d,
         type: 2}
@@ -3370,7 +3368,7 @@ Prefab:
     - target: {fileID: 224364099226711670, guid: ed4bf3d1d307b774786103cdcd40050d,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.00000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114496071438233334, guid: ed4bf3d1d307b774786103cdcd40050d,
         type: 2}
@@ -3749,7 +3747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &534288157
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3799,7 +3797,6 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   EquippedScrollview: {fileID: 1240051983}
   MarketScrollview: {fileID: 320665932}
-  WeaponLibrary: {fileID: 1509463568}
 --- !u!225 &534288161
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4658,7 +4655,7 @@ RectTransform:
   m_Father: {fileID: 974211610}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.00000011920929, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
@@ -5803,7 +5800,7 @@ RectTransform:
   m_Father: {fileID: 386667154}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.000000059604645}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.99999994}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 10}
@@ -6101,8 +6098,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 715550277}
   m_HandleRect: {fileID: 715550276}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.99999994
+  m_Value: 0
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6415,7 +6412,7 @@ Prefab:
     - target: {fileID: 224071483499429976, guid: 51795526a0160d14abac47bc1bb88a34,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000061035156
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114225852730057288, guid: 51795526a0160d14abac47bc1bb88a34,
         type: 2}
@@ -6450,7 +6447,7 @@ Prefab:
     - target: {fileID: 224872080376472126, guid: 51795526a0160d14abac47bc1bb88a34,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.00000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114225852730057288, guid: 51795526a0160d14abac47bc1bb88a34,
         type: 2}
@@ -7049,6 +7046,7 @@ GameObject:
   m_Component:
   - component: {fileID: 910654479}
   - component: {fileID: 910654480}
+  - component: {fileID: 910654481}
   m_Layer: 0
   m_Name: GUI
   m_TagString: Untagged
@@ -7089,6 +7087,20 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Fader: {fileID: 1891493827}
   FadeDuration: 1
+--- !u!114 &910654481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 910654478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bcd74847bc51e244874bc4384867cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameSave: {fileID: 1569738991}
+  ShipLibrary: {fileID: 1107555668}
+  WeaponLibrary: {fileID: 1509463568}
 --- !u!1 &912265878
 GameObject:
   m_ObjectHideFlags: 0
@@ -8864,7 +8876,6 @@ MonoBehaviour:
   Ships: {fileID: 328978545}
   Location: {fileID: 1316750820}
   Earnings: {fileID: 547141028}
-  GameSave: {fileID: 1569738991}
 --- !u!225 &1288639118
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8973,7 +8984,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 593296456}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9235,7 +9246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000030517578}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: -373.39}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1327227561
@@ -9472,7 +9483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -0.000091552734}
+  m_AnchoredPosition: {x: -0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: -366.08997}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1347349136
@@ -9648,9 +9659,6 @@ MonoBehaviour:
   MySquadScrollview: {fileID: 769644549}
   ShipMarketScrollview: {fileID: 1824564721}
   HangerScreen: {fileID: 95502452}
-  GameSave: {fileID: 1569738991}
-  ShipLibrary: {fileID: 1107555668}
-  ShipsInMarket: {fileID: 1107555668}
 --- !u!225 &1374383061
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10423,7 +10431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1638193089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10874,8 +10882,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1884341726}
   m_HandleRect: {fileID: 1884341725}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12066,7 +12074,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 32830017}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -947,7 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f2a1e2d660aa74a859e4620e70842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitType: 1
+  UnitModel: 1
   Icon: {fileID: 21300000, guid: e13c033d441db3946b4c7c6b007ebd26, type: 3}
   Value: 900
   WeaponMountCount: 2
