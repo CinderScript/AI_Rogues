@@ -8,8 +8,8 @@ namespace IronGrimoire.Gui
 	{
 		[Header( "Tooltip Properties" )]
 		public float ActivationDelay = 0.5f;
-		public bool UseTooltipPivotAsOffset = true;
-		public Vector2 TooltipMouseFollowOffset = new Vector2( 50, -50 );
+		//public bool UseTooltipPivotAsOffset = true;
+		//public Vector2 TooltipMouseFollowOffset = new Vector2( 50, -50 );
 
 		private ITooltipParent tooltipParent;
 		private RectTransform tooltip;
@@ -64,6 +64,10 @@ namespace IronGrimoire.Gui
 			tooltip.SetAsLastSibling();
 			tooltip.gameObject.SetActive( false );
 
+			var cg = tooltip.gameObject.AddComponent<CanvasGroup>();
+			cg.blocksRaycasts = false;
+			cg.ignoreParentGroups = true;
+
 			haveTooltip = true;
 		}
 
@@ -82,7 +86,7 @@ namespace IronGrimoire.Gui
 			while (isHovering)
 			{
 				//set pos
-				tooltip.localPosition = GetTooltipPosition();
+				tooltip.anchoredPosition = GetTooltipPosition();
 
 				// wait for next frame
 				yield return null;
@@ -91,21 +95,11 @@ namespace IronGrimoire.Gui
 		Vector2 GetTooltipPosition()
 		{
 			Vector2 mousePos = Input.mousePosition;
-			Vector2 offsetPos;
-
-			if (UseTooltipPivotAsOffset)
-			{
-				offsetPos = mousePos;
-			}
-			else
-			{
-				offsetPos = mousePos + TooltipMouseFollowOffset;
-			}
 
 			Vector2 localPoint;
 			RectTransformUtility.ScreenPointToLocalPointInRectangle(
 				canvasRect,
-				offsetPos, 
+				mousePos, 
 				canvas.worldCamera,
 				out localPoint );
 
