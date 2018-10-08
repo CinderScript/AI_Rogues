@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 224917511375678072}
   - component: {fileID: 114325362146018070}
   - component: {fileID: 114230531499192396}
+  - component: {fileID: 114549873668425822}
   m_Layer: 5
   m_Name: MarketWeapon_listItemTemplate
   m_TagString: Untagged
@@ -220,6 +221,8 @@ MonoBehaviour:
   Name: {fileID: 114133217330067744}
   Type: {fileID: 114884265455624106}
   Value: {fileID: 114303151932868858}
+  TooltipPrefab: {fileID: 114101687163681246, guid: ddddd225645181a4fab7e745139c4aef,
+    type: 2}
 --- !u!114 &114303151932868858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -352,6 +355,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114549873668425822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188270517161196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f863f76b69c6ce4d8d73ad48493d43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivationDelay: 0.5
+  UseTooltipPivotAsOffset: 1
+  TooltipMouseFollowOffset: {x: 50, y: -50}
 --- !u!114 &114884265455624106
 MonoBehaviour:
   m_ObjectHideFlags: 1

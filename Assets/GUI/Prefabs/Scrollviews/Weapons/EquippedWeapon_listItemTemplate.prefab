@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 224596471969435014}
   - component: {fileID: 114472397425063598}
   - component: {fileID: 114593664488230752}
+  - component: {fileID: 114747412571023496}
   m_Layer: 5
   m_Name: EquippedWeapon_listItemTemplate
   m_TagString: Untagged
@@ -358,6 +359,22 @@ MonoBehaviour:
   Name: {fileID: 114236844496206822}
   Type: {fileID: 114498459474040768}
   Value: {fileID: 114313823993548222}
+  TooltipPrefab: {fileID: 114101687163681246, guid: ddddd225645181a4fab7e745139c4aef,
+    type: 2}
+--- !u!114 &114747412571023496
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714087404186242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f863f76b69c6ce4d8d73ad48493d43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActivationDelay: 0.5
+  UseTooltipPivotAsOffset: 1
+  TooltipMouseFollowOffset: {x: 50, y: -50}
 --- !u!114 &114956879814099756
 MonoBehaviour:
   m_ObjectHideFlags: 1
