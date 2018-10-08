@@ -71,7 +71,7 @@ namespace IronGrimoire.Gui.Game
 				}
 				else
 				{
-					GUISystem.Dialog.Show( $"Could not afford to buy: {weapon.WeaponModel}\n\n" +
+					GUISystem.Dialog.Show( $"Could not afford to buy: {weapon.DisplayName}\n\n" +
 						$"Selected weapon cost: { weapon.Value}\n" +
 						$"Available funds: {game.GameSave.Funds.ToString( "$0" )}" );
 				}

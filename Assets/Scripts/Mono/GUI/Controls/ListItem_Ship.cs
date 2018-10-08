@@ -30,11 +30,11 @@ namespace IronGrimoire.Gui.Game
 			}
 		}
 
-		public void Initialize(Unit unit)
+		public void SetText(Unit unit)
 		{
 			Icon.sprite = unit.Icon;
-			Name.text = unit.UnitModel.ToString();
-			Value.text = unit.Value.ToString();
+			Name.text = unit.DisplayName;
+			Value.text = unit.Value.ToString("$0");
 
 			tooltipUnit = unit;
 		}

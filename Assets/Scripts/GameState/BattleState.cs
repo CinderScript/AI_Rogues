@@ -52,26 +52,26 @@ namespace AIRogue.GameState
 
 			GameObject unitPrefab;
 			Unit player;
-			unitPrefab = unitBank.GetPrefab( UnitModel.SimpleFighter );
+			unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
 			player = playerSquad.SpawnUnit<PlayerController>( unitPrefab );
-			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.GreenLaser) );
-			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.RedLaser) );
+			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.Green_Laser) );
+			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.Red_Laser) );
 
 			EventManager.Instance.QueueEvent( new UnitSelectedEvent( player ) );
 
 			for (int i = 0; i < 3; i++)
 			{
-				unitPrefab = unitBank.GetPrefab( UnitModel.TestUnit );
+				unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
 				player = playerSquad.SpawnUnit<AIController>( unitPrefab );
-				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.BlueCannon ) );
-				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.RedCannon ) );
+				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
+				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Cannon ) );
 			}
 			for (int i = 0; i < 2; i++)
 			{
-				unitPrefab = unitBank.GetPrefab( UnitModel.SimpleFighter );
+				unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
 				Unit player2 = playerSquad.SpawnUnit<AIController>( unitPrefab );
-				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.RedLaser ) );
-				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.BlueCannon ) );
+				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Laser ) );
+				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
 			}
 
 			/* ADD ENEMY SQUADS */
@@ -82,10 +82,10 @@ namespace AIRogue.GameState
 
 				for (int ii = 0; ii < 3; ii++)
 				{
-					unitPrefab = unitBank.GetPrefab( UnitModel.TestUnit );
+					unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
 					Unit ai = aiSquad.SpawnUnit<AIController>( unitPrefab );
-					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.GreenLaser ) );
-					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.RedLaser ) );
+					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Green_Laser ) );
+					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Laser ) );
 				}
 			}
 

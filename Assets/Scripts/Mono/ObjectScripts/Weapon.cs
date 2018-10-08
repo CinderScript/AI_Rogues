@@ -7,15 +7,16 @@ namespace AIRogue.GameObjects
 	/// <summary>
 	/// A gameplay unit used in Pawn of Kings.
 	/// </summary>
-	abstract class Weapon : MonoBehaviour
+	abstract class Weapon : Purchasable
 	{
 		[Header( "Gameplay Properties" )]
 		public WeaponModel WeaponModel = WeaponModel.Not_Found;
+		public override string DisplayName => WeaponModel.ToString().Replace( '_', ' ' );
 
-		[Header( "GUI Representation" )]
-		public Sprite Icon;
-		public int Value;
-		public abstract string WeaponType_GUI { get; }
+		/// <summary>
+		/// Weapon Type (projectile, laser) to be used when displaying the item in the GUI.
+		/// </summary>
+		public abstract string WeaponType { get; }
 
 		[Header( "Stats" )]
 		public float Damage = 1;
@@ -97,11 +98,11 @@ namespace AIRogue.GameObjects
 	enum WeaponModel
 	{
 		Not_Found = 0,
-		RedCannon = 2,
-		BlueCannon = 3,
-		RedLaser = 4,
-		BlueLaser = 5,
-		GreenLaser = 6,
+		Red_Cannon = 2,
+		Blue_Cannon = 3,
+		Red_Laser = 4,
+		Blue_Laser = 5,
+		Green_Laser = 6,
 		Minigun = 7
 	}
 }

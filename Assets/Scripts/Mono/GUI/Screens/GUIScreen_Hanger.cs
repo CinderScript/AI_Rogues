@@ -40,7 +40,7 @@ namespace IronGrimoire.Gui.Game
 			var unitStats = game.SelectedUnit_Stats;
 
 			ShipIcon.sprite = unitStats.Icon;
-			ShipName.text = unitStats.UnitModel.ToString();
+			ShipName.text = unitStats.DisplayName;
 			ShipValue.text = GetTotalShipValue();
 		}
 
@@ -62,7 +62,7 @@ namespace IronGrimoire.Gui.Game
 					{
 						var weap = game.GetWeaponStats( unit_Save.Weapons[i] );
 
-						item.Name.text = weap.WeaponModel.ToString();
+						item.Name.text = weap.DisplayName;
 						item.Tagged = weap;
 					}
 					else

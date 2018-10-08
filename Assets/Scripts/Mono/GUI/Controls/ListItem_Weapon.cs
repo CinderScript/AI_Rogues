@@ -32,9 +32,9 @@ namespace IronGrimoire.Gui.Game
 		public void SetText(Weapon weapon)
 		{
 			Icon.sprite = weapon.Icon;
-			Name.text = weapon.WeaponModel.ToString();
-			Type.text = weapon.WeaponType_GUI;
-			Value.text = weapon.Value.ToString();
+			Name.text = weapon.DisplayName;
+			Type.text = weapon.WeaponType;
+			Value.text = weapon.Value.ToString( "$0" );
 
 			tooltipData = weapon;
 		}

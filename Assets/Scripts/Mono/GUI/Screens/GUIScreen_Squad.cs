@@ -76,7 +76,7 @@ namespace IronGrimoire.Gui.Game
 			foreach (var unit in units)
 			{
 				ListItem_Ship item = (ListItem_Ship)ShipMarketScrollview.AddTemplatedItem();
-				item.Initialize( unit );
+				item.SetText( unit );
 				item.Tagged = unit;
 			}
 		}
@@ -89,7 +89,7 @@ namespace IronGrimoire.Gui.Game
 				var unit = game.GetUnitStats( unitSave );
 
 				ListItem_Ship item = (ListItem_Ship)MySquadScrollview.AddTemplatedItem();
-				item.Initialize( unit );
+				item.SetText( unit );
 				item.Guns.text = $"{unitSave.Weapons.Count} of {unit.WeaponMountCount}";
 				item.Tagged = unitSave;
 			}

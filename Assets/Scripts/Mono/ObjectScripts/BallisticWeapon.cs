@@ -21,12 +21,7 @@ namespace AIRogue.GameObjects
 			}
 		}
 
-		public override string WeaponType_GUI
-		{
-			get {
-				return "Projectile";
-			}
-		}
+		public override string WeaponType => "Projectile";
 
 		protected override void Awake()
 		{

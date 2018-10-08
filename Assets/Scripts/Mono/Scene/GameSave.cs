@@ -43,20 +43,20 @@ namespace AIRogue.Scene
 			Squad = new List<UnitSave>();
 
 			var weaps = new List<WeaponModel>();
-			weaps.Add( WeaponModel.GreenLaser );
-			weaps.Add( WeaponModel.RedLaser );
-			var unit = new UnitSave( UnitModel.SimpleFighter, weaps );
+			weaps.Add( WeaponModel.Green_Laser );
+			weaps.Add( WeaponModel.Red_Laser );
+			var unit = new UnitSave( UnitModel.Simple_Fighter, weaps );
 			Squad.Add( unit );
 
 			weaps = new List<WeaponModel>();
-			weaps.Add( WeaponModel.RedLaser );
-			unit = new UnitSave( UnitModel.TestUnit, weaps );
+			weaps.Add( WeaponModel.Red_Laser );
+			unit = new UnitSave( UnitModel.Test_Unit, weaps );
 			Squad.Add( unit );
 
 			weaps = new List<WeaponModel>();
-			weaps.Add( WeaponModel.GreenLaser );
-			weaps.Add( WeaponModel.RedLaser );
-			unit = new UnitSave( UnitModel.TestUnit, weaps );
+			weaps.Add( WeaponModel.Green_Laser );
+			weaps.Add( WeaponModel.Red_Laser );
+			unit = new UnitSave( UnitModel.Test_Unit, weaps );
 			Squad.Add( unit );
 
 			Funds = 2000;

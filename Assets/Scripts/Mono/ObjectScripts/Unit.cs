@@ -11,12 +11,12 @@ namespace AIRogue.GameObjects
 	/// <summary>
 	/// A gameplay unit used in AI Rogue.
 	/// </summary>
-	class Unit : MonoBehaviour, IDamageable
+	class Unit : Purchasable, IDamageable
 	{
-		[Header( "GUI Display" )]
+		[Header( "Unit - Properties" )]
 		public UnitModel UnitModel = UnitModel.Not_Found;
-		public Sprite Icon = null;
-		public int Value = 1000;
+		public override string DisplayName => UnitModel.ToString().Replace( '_', ' ' );
+
 		public int WeaponMountCount = 1;
 
 		[Header( "Condition" )]
@@ -264,8 +264,8 @@ namespace AIRogue.GameObjects
 	public enum UnitModel
 	{
 		Not_Found = 0,
-		TestUnit = 1,
-		SimpleFighter = 2,
-		SpaceFighter = 3
+		Test_Unit = 1,
+		Simple_Fighter = 2,
+		Space_Fighter = 3
 	}
 }

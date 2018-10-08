@@ -71,7 +71,7 @@ namespace IronGrimoire.Gui.Game
 		public void BuyUnit(Unit unit)
 		{
 			UnitSave unitSave = new UnitSave( unit );
-			unitSave.Weapons.Add( WeaponModel.RedLaser );
+			unitSave.Weapons.Add( WeaponModel.Red_Laser );
 
 			GameSave.Squad.Add( unitSave );
 			GameSave.Funds -= unit.Value;

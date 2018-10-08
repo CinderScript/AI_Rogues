@@ -7,10 +7,5 @@ namespace IronGrimoire.Gui.Game
 	class ListItem_WeaponSlot : SelectableListItem
 	{
 		public Text Name = null;
-
-		public void Initialize(Weapon weapon)
-		{
-			Name.text = weapon.WeaponModel.ToString();
-		}
 	}
 }
