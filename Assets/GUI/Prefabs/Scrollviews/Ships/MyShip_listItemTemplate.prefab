@@ -191,8 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActivationDelay: 0.27
-  UseTooltipPivotAsOffset: 1
-  TooltipMouseFollowOffset: {x: 100, y: -100}
 --- !u!114 &114196419934212790
 MonoBehaviour:
   m_ObjectHideFlags: 1
