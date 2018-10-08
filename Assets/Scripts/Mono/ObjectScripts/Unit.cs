@@ -18,7 +18,6 @@ namespace AIRogue.GameObjects
 		public Sprite Icon = null;
 		public int Value = 1000;
 		public int WeaponMountCount = 1;
-		public int WeaponMountsUsedCount = 1;
 
 		[Header( "Condition" )]
 		public float Health = 1;

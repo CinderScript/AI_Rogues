@@ -58,7 +58,7 @@ namespace IronGrimoire.Gui.Game
 		public void Sell()
 		{
 			var unit = MySquadScrollview.Selected[0].Tagged as UnitSave;
-			game.SellShip( unit );
+			game.SellUnit( unit );
 
 			UpdateScreen();
 		}
@@ -72,7 +72,7 @@ namespace IronGrimoire.Gui.Game
 		{
 			ShipMarketScrollview.ClearScrollview();
 
-			List<Unit> units = game.GetShipsForSale();
+			List<Unit> units = game.GetUnitsForSale();
 			foreach (var unit in units)
 			{
 				ListItem_Ship item = (ListItem_Ship)ShipMarketScrollview.AddTemplatedItem();
@@ -84,9 +84,9 @@ namespace IronGrimoire.Gui.Game
 		{
 			MySquadScrollview.ClearScrollview();
 
-			foreach (var unitSave in game.GetPlayerShips())
+			foreach (var unitSave in game.GetPlayerUnits())
 			{
-				var unit = game.GetShipStats( unitSave );
+				var unit = game.GetUnitStats( unitSave );
 
 				ListItem_Ship item = (ListItem_Ship)MySquadScrollview.AddTemplatedItem();
 				item.Initialize( unit );

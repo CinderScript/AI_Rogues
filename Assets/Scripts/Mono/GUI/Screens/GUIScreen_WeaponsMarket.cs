@@ -9,6 +9,7 @@ namespace IronGrimoire.Gui.Game
 		[Header( "Weapons Market - controls" )]
 		public Image ShipIcon = null;
 		public Text Funds = null;
+		public Text AvailableMounts = null;
 
 		public ScrollView EquippedScrollview;
 		public ScrollView MarketScrollview;
@@ -22,16 +23,17 @@ namespace IronGrimoire.Gui.Game
 
 			OnOpened.AddListener( UpdateScreen );
 		}
-
 		protected override void Start()
 		{
 			base.Start();
 			PopulateMarket();
 		}
+
 		void UpdateScreen()
 		{
 			ShipIcon.sprite = game.SelectedUnit_Stats.Icon;
 			Funds.text = game.GameSave.Funds.ToString( "Funds: $0" );
+			AvailableMounts.text = AvailableWeaponSlots().ToString();
 
 			PopulateEquipped();
 		}
@@ -60,7 +62,24 @@ namespace IronGrimoire.Gui.Game
 		public void Buy()
 		{
 			var weapon = MarketScrollview.Selected[0].Tagged as Weapon;
-			game.BuyWeapon( weapon );
+
+			if (AvailableWeaponSlots() > 0)
+			{
+				if (game.CanAffordEquippable( weapon ))
+				{
+					game.BuyWeapon( weapon );
+				}
+				else
+				{
+					GUISystem.Dialog.Show( $"Could not afford to buy: {weapon.WeaponModel}\n\n" +
+						$"Selected weapon cost: { weapon.Value}\n" +
+						$"Available funds: {game.GameSave.Funds.ToString( "$0" )}" );
+				}
+			}
+			else
+			{
+				GUISystem.Dialog.Show( "There are no more weapon mounting positions available.  Sell an equipped weapon to make room for another." );
+			}
 
 			UpdateScreen();
 		}
@@ -70,6 +89,11 @@ namespace IronGrimoire.Gui.Game
 			game.SellWeapon( equipped.WeaponModel );
 
 			UpdateScreen();
+		}
+
+		int AvailableWeaponSlots()
+		{
+			return game.SelectedUnit_Stats.WeaponMountCount - game.SelectedUnit_Save.Weapons.Count;
 		}
 	}
 }

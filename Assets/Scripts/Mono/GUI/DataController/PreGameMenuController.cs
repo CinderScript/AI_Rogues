@@ -24,11 +24,11 @@ namespace IronGrimoire.Gui.Game
 			SelectedUnit_Stats = ShipLibrary.GetUnit( unit.UnitModel );
 		}
 
-		public List<UnitSave> GetPlayerShips()
+		public List<UnitSave> GetPlayerUnits()
 		{
 			return GameSave.Squad;
 		}
-		public List<Unit> GetShipsForSale()
+		public List<Unit> GetUnitsForSale()
 		{
 			return ShipLibrary.GetAllUnits();
 		}
@@ -37,7 +37,7 @@ namespace IronGrimoire.Gui.Game
 			return WeaponLibrary.GetAllWeapons();
 		}
 
-		public Unit GetShipStats(UnitSave unit)
+		public Unit GetUnitStats(UnitSave unit)
 		{
 			return ShipLibrary.GetUnit( unit.UnitModel );
 		}
@@ -76,7 +76,7 @@ namespace IronGrimoire.Gui.Game
 			GameSave.Squad.Add( unitSave );
 			GameSave.Funds -= unit.Value;
 		}
-		public void SellShip(UnitSave unit)
+		public void SellUnit(UnitSave unit)
 		{
 			GameSave.Funds += GetShipValueTotal( unit );
 			GameSave.Squad.Remove( unit );
