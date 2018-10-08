@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4205165950805178}
   - component: {fileID: 114944074337580200}
   m_Layer: 0
-  m_Name: FastRedLaser
+  m_Name: RedBlaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,9 +384,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6507355fcb6a30842a74d7f924831cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponModel: 4
-  Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  Icon: {fileID: 21300000, guid: f1fa9635e12241e44bfd8e440fd5c10e, type: 3}
   Value: 100
+  WeaponModel: 4
   Damage: 0.15
   RateOfFire: 6
   Range: 20
