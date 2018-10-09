@@ -29,11 +29,10 @@ namespace AIRogue.Events {
         public delegate void EventDelegate<T>(T gameEvent) where T : GameEvent;
         private delegate void EventDelegate(GameEvent gameEvent);
 
-        private Dictionary<System.Type, EventDelegate> delegates = new Dictionary<System.Type, EventDelegate>();
-        private Dictionary<System.Delegate, EventDelegate> delegateLookup = new Dictionary<System.Delegate, EventDelegate>();
-        private Dictionary<System.Delegate, System.Delegate> onceLookups = new Dictionary<System.Delegate, System.Delegate>();
+        private Dictionary<Type, EventDelegate> delegates = new Dictionary<Type, EventDelegate>();
+        private Dictionary<Delegate, EventDelegate> delegateLookup = new Dictionary<Delegate, EventDelegate>();
+        private Dictionary<Delegate, Delegate> onceLookups = new Dictionary<Delegate, Delegate>();
 
-        // override so we don't have the typecast the object
         public static EventManager Instance
         {
             get {

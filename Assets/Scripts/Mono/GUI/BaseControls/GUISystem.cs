@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace IronGrimoire.Gui
@@ -15,9 +16,10 @@ namespace IronGrimoire.Gui
 		[Header( "GUI System Events" )]
 		public UnityEvent OnSwitchedScreens = new UnityEvent();
 
-		[Header( "Scene Transition Fader" )]
+		[Header( "Scene Transitions" )]
 		public Image Fader;
 		public float FadeDuration = 1;
+		public Text TransitionPercentText;
 
 		public Stack<GUIScreen> ScreenHistory { get; private set; }
 		public GUIScreen CurrentScreen { get; private set; }
@@ -34,6 +36,8 @@ namespace IronGrimoire.Gui
 		}
 		IEnumerator StartSequence()
 		{
+			TransitionPercentText.gameObject.SetActive( false );
+
 			screens = GetComponentsInChildren<GUIScreen>( true );
 
 			// trigger each screen (and it's controls) Start()
@@ -89,11 +93,45 @@ namespace IronGrimoire.Gui
 			OnSwitchedScreens?.Invoke();
 		}
 
-		public void LoadScene(int sceneIndex)
+		public void LoadScene(string scene)
 		{
-			StartCoroutine( WaitToLoadScene( sceneIndex ) );
+			StartCoroutine( LoadSceneAsync( scene ) );
 		}
-		IEnumerator WaitToLoadScene(int sceneIndex)
+		IEnumerator LoadSceneAsync(string scene)
+		{
+			FadeOut();
+
+			TransitionPercentText.text = "Loading: 0%";
+			TransitionPercentText.gameObject.SetActive( true );
+
+			yield return new WaitForSecondsRealtime( 0.3f );
+
+			var asyncOperation = SceneManager.LoadSceneAsync( scene );
+
+			// this value stops the scene from displaying when it's finished loading
+			asyncOperation.allowSceneActivation = false;
+
+			while (!asyncOperation.isDone)
+			{
+				// loading bar progress
+				var loadingProgress = Mathf.Clamp01( asyncOperation.progress / 0.9f ) * 100;
+				TransitionPercentText.text = $"Loading: {loadingProgress}%";
+
+				// scene has loaded as much as possible, the last 10% can't be multi-threaded
+				if (asyncOperation.progress >= 0.9f)
+				{
+					//Change the Text to show the Scene is ready
+					TransitionPercentText.text = "Press the space bar to continue...";
+					//Wait to you press the space key to activate the Scene
+					if (Input.GetKeyDown( KeyCode.Space ))
+						//Activate the Scene
+						asyncOperation.allowSceneActivation = true;
+				}
+
+				yield return null;
+			}
+		}
+		IEnumerator wait()
 		{
 			yield return null;
 		}
@@ -105,7 +143,6 @@ namespace IronGrimoire.Gui
 		public void FadeOut()
 		{
 			Fader?.CrossFadeAlpha( 1, FadeDuration / 2, false );
-
 		}
 
 		public void ExitApplication()

@@ -6,8 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Canyon Grid.unity
-  - enabled: 0
-    path: Assets/Scenes/Map 2.unity
-  - enabled: 0
-    path: Assets/Scenes/Map 3.unity
+    path: Assets/Scenes/PreGameMenu.unity
+    guid: 21599a190bfd048459310d03a7ff623c
+  - enabled: 1
+    path: Assets/Scenes/RedCanyon.unity
+    guid: 17c3a28a2b1ad5b4587eb55d150791ec
+  m_configObjects: {}
