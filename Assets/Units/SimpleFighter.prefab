@@ -154,7 +154,6 @@ GameObject:
   - component: {fileID: 4751278902676442}
   - component: {fileID: 54586438374156368}
   - component: {fileID: 114779433811920316}
-  - component: {fileID: 65916678582865732}
   m_Layer: 8
   m_Name: SimpleFighter
   m_TagString: Untagged
@@ -525,7 +524,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486090201975002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 494.18, y: 179.68645, z: 63.12}
+  m_LocalPosition: {x: 494.18, y: 184.28, z: 56.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4001350510887484}
@@ -823,19 +822,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1534189340378776}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.6305604, y: 2.2431378, z: 5.9469604}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &65916678582865732
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1486090201975002}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1007,11 +994,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f2a1e2d660aa74a859e4620e70842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitModel: 2
   Icon: {fileID: 21300000, guid: 0bbf811f95b4d074ca3c8d7fcf195805, type: 3}
   Value: 1200
+  UnitModel: 2
   WeaponMountCount: 3
-  WeaponMountsUsedCount: 1
   Health: 50
   ShieldCapacity: 200
   MaxVelocity: 15

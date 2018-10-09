@@ -381,7 +381,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1955995641078418}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 487.72, y: 179.68645, z: 63.12}
+  m_LocalPosition: {x: 1342.5673, y: 813.7963, z: -1602.0872}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4971916797620572}
@@ -835,7 +835,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1413171376146458}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -847,7 +847,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1164690451544638}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -859,7 +859,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635150369295544}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -871,7 +871,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1536875183334100}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -883,7 +883,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1363258168177648}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -895,7 +895,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1560658494380200}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -907,7 +907,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1919304838643458}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -919,7 +919,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1957408276239700}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: cd76480ab0bf1a242b584d267f537790, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -947,11 +947,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f2a1e2d660aa74a859e4620e70842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitModel: 1
   Icon: {fileID: 21300000, guid: e13c033d441db3946b4c7c6b007ebd26, type: 3}
   Value: 800
+  UnitModel: 1
   WeaponMountCount: 2
-  WeaponMountsUsedCount: 1
   Health: 10
   ShieldCapacity: 15
   MaxVelocity: 12
