@@ -69,8 +69,11 @@ namespace IronGrimoire.Gui
 			}
 
 			// open the first screen
-			StartScreen.OpenScreen();
-			CurrentScreen = StartScreen;
+			if (StartScreen)
+			{
+				StartScreen.OpenScreen();
+				CurrentScreen = StartScreen;
+			}
 
 			FadeIn();
 		}

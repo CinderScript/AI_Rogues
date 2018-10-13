@@ -7,7 +7,7 @@ namespace IronGrimoire.Gui.Game
 {
 	class GUIScreen_MainMenu : GUIScreen
 	{
-		[Header( "Main Menu Screen Properties - Text" )]
+		[Header( "Main Menu Screen Properties - controls" )]
 		public Text Funds = null;
 		public Text Ships = null;
 		public Text Location = null;
