@@ -30,15 +30,24 @@ namespace IronGrimoire.Gui.Game
 
 		public void SetText(Unit unit)
 		{
-			var hull = unit.Health.ToString( "0" );
-			var shield = unit.Shield.HitPoints.ToString( "0" );
+			// if ship is still alive
+			if (unit.Health > 0)
+			{
+				var hull = unit.Health.ToString( "0" );
+				var shield = unit.Shield.HitPoints.ToString( "0" );
 
-			var hullMax = 50;
-			var shieldMax = unit.Shield.HitPointCapacity.ToString( "0" );
+				var hullMax = 50;
+				var shieldMax = unit.Shield.HitPointCapacity.ToString( "0" );
 
-			Icon.sprite = unit.Icon;
-			Hitpoints.text = $"Hull:   {hull}/{hullMax}\n" +
-							 $"Shield:    {shield}/{shieldMax}";
+				Icon.sprite = unit.Icon;
+				Hitpoints.text = $"Hull:   {hull}/{hullMax}\n" +
+								 $"Shield:    {shield}/{shieldMax}";
+			}
+			else
+			{
+				Hitpoints.text = "Destroyed";
+				fader.gameObject.SetActive( true );
+			}
 
 			tooltipUnit = unit;
 		}

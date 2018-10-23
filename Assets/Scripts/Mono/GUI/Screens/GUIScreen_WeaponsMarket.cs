@@ -39,7 +39,7 @@ namespace IronGrimoire.Gui.Game
 		}
 		void PopulateEquipped()
 		{
-			EquippedScrollview.ClearScrollview();
+			EquippedScrollview.Clear();
 			foreach (var weapModel in game.SelectedUnit_Save.Weapons)
 			{
 				ListItem_Weapon item = (ListItem_Weapon)EquippedScrollview.AddTemplatedItem();
@@ -50,7 +50,7 @@ namespace IronGrimoire.Gui.Game
 		}
 		void PopulateMarket()
 		{
-			MarketScrollview.ClearScrollview();
+			MarketScrollview.Clear();
 			foreach ( var weapon in game.GetWeaponsForSale() )
 			{
 				ListItem_Weapon item = (ListItem_Weapon)MarketScrollview.AddTemplatedItem();

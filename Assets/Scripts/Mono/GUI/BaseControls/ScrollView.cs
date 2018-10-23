@@ -54,7 +54,7 @@ namespace IronGrimoire.Gui
 			Add( newItem );
 			return newItem;
 		}
-		public void ClearScrollview()
+		public void Clear()
 		{
 			foreach (Transform item in contentPanel)
 			{
@@ -138,7 +138,7 @@ namespace IronGrimoire.Gui
 			}
 			else
 			{
-				ClearScrollview();
+				Clear();
 			}
 		}
 	}

@@ -109,20 +109,5 @@ namespace AIRogue.GameState
 				squad.FixedUpdate();
 			}
 		}
-
-		private List<Unit> getAllUnits()
-		{
-			List<Unit> allUnits = new List<Unit>();
-
-			foreach (var squad in squads)
-			{
-				foreach (var controller in squad.Controllers)
-				{
-					allUnits.Add( controller.Unit );
-				}
-			}
-
-			return allUnits;
-		}
     }
 }

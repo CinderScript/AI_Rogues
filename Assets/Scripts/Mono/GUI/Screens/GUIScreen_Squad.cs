@@ -70,7 +70,7 @@ namespace IronGrimoire.Gui.Game
 		}
 		void PopulateMarket()
 		{
-			ShipMarketScrollview.ClearScrollview();
+			ShipMarketScrollview.Clear();
 
 			List<Unit> units = game.GetUnitsForSale();
 			foreach (var unit in units)
@@ -82,7 +82,7 @@ namespace IronGrimoire.Gui.Game
 		}
 		void PopulateSquad()
 		{
-			MySquadScrollview.ClearScrollview();
+			MySquadScrollview.Clear();
 
 			foreach (var unitSave in game.GetPlayerUnits())
 			{
