@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 namespace IronGrimoire.Gui.Game
 {
-	class InGameMenu : ViewController
+	class InGameHud : ViewController
 	{
 		[Header( "Controls" )]
-		public ScrollView EnemyShipsScrollview = null;
+		public ScrollView PlayerShipsScrollview = null;
 
 		[Header( "Transition Screens" )]
-		public GUIScreen InGameHUD = null;
+		public GUIScreen InGameMenu = null;
 
 		private InGameMenuController game;
 
@@ -22,40 +22,26 @@ namespace IronGrimoire.Gui.Game
 			base.Awake();
 
 			game = GetComponentInParent<InGameMenuController>();
-
-			GUIScreen.OnOpened.AddListener( PauseGame );
-			GUIScreen.OnClosed.AddListener( UnPauseGame );
 		}
-
 		public override void UpdateView()
 		{
 			PopulateEnemyShips();
 		}
-
 		void PopulateEnemyShips()
 		{
-			EnemyShipsScrollview.Clear();
+			PlayerShipsScrollview.Clear();
 
-			foreach (var enemyUnit in game.EnemyUnits)
+			foreach (var enemyUnit in game.PlayerUnits)
 			{
-				ListItem_InGameShip item = (ListItem_InGameShip)EnemyShipsScrollview.AddTemplatedItem();
+				ListItem_InGameShip item = (ListItem_InGameShip)PlayerShipsScrollview.AddTemplatedItem();
 				item.SetText( enemyUnit );
 				item.Tagged = enemyUnit;
 			}
 		}
 
-		public void EndGame()
+		public void OpenMenu()
 		{
-
-		}
-
-		void PauseGame()
-		{
-			Time.timeScale = 0;
-		}
-		void UnPauseGame()
-		{
-			Time.timeScale = 1;
+			GUISystem.SwitchScreens( InGameMenu );
 		}
 	}
 }

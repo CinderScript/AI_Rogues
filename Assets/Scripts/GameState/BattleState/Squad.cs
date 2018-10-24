@@ -90,11 +90,13 @@ namespace AIRogue.GameState.Battle
         }
 		public void EngageSquad(Squad squad)
 		{
+			// if not already engaged, add
 			if (!engagedSquads.Contains( squad ))
 			{
 				engagedSquads.Add( squad );
 				EngagedSquads = engagedSquads.ToArray();
-
+				
+				// recipricate engagement by other squad
 				squad.EngageSquad( this );  // engage my squad back
 			}
 		}
@@ -106,6 +108,7 @@ namespace AIRogue.GameState.Battle
 				// damaged by ally...
 			}
 			else {
+				// if the attacker is not in this squad, engage
 				EngageSquad( attacker.Squad );
 			}
 		}

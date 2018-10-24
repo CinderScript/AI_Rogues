@@ -89,7 +89,7 @@ namespace AIRogue.GameState
 				}
 			}
 
-			//EventManager.Instance.QueueEvent( new BattleStartEvent( getAllUnits() ) );
+			EventManager.Instance.QueueEvent( new UnitsSpawnedEvent( squads ) );
  		}
 
 		/// <summary>

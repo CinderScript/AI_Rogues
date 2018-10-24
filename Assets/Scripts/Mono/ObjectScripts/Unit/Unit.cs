@@ -239,7 +239,9 @@ namespace AIRogue.GameObjects
 				
 			ParticleSystem particles = effect.GetComponent<ParticleSystem>();
 
+			// destroy explosion particles after duration
 			Destroy( effect, particles.main.duration );
+			// destroy this ship object
 			Destroy( gameObject );
 
 			//EventManager.Instance.QueueEvent( new UnitDestroyedEvent( this ) );

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
+using AIRogue.Events;
 using AIRogue.GameObjects;
-using AIRogue.Persistence;
 using AIRogue.Scene;
 
 using UnityEngine;
@@ -16,7 +16,20 @@ namespace IronGrimoire.Gui.Game
 		public WeaponBank WeaponLibrary = null;
 
 		public List<Unit> EnemyUnits { get; private set; }
+		public List<Unit> PlayerUnits { get; private set; }
 
-		
+		void Awake()
+		{
+			EventManager.Instance.AddListener<UnitsSpawnedEvent>( OnUnitsSpawned );
+
+			EnemyUnits = new List<Unit>();
+			PlayerUnits = new List<Unit>();
+		}
+
+		void OnUnitsSpawned(UnitsSpawnedEvent gameEvent)
+		{
+			EnemyUnits = gameEvent.EnemyUnits;
+			PlayerUnits = gameEvent.PlayerUnits;
+		}
 	}
 }

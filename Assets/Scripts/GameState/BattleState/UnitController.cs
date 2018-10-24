@@ -127,23 +127,23 @@ namespace AIRogue.GameState.Battle
 		{
 			return Vector3.Distance( Unit.transform.position, unit.transform.position );
 		}
-		private List<Unit> getUnitsTargetingMe()
-		{
-			List<Unit> targetingMe = new List<Unit>();
+		//private List<Unit> getUnitsTargetingMe()
+		//{
+		//	List<Unit> targetingMe = new List<Unit>();
 
-			foreach (var squad in Squad.EngagedSquads)
-			{
-				foreach (var controller in squad.Controllers)
-				{
-					if (ReferenceEquals( controller.Target, Unit ))
-					{
-						targetingMe.Add( controller.Unit );
-					}
-				}
-			}
+		//	foreach (var squad in Squad.EngagedSquads)
+		//	{
+		//		foreach (var controller in squad.Controllers)
+		//		{
+		//			if (ReferenceEquals( controller.Target, Unit ))
+		//			{
+		//				targetingMe.Add( controller.Unit );
+		//			}
+		//		}
+		//	}
 
-			return targetingMe;
-		}
+		//	return targetingMe;
+		//}
 		private Unit closestHostileUnit()
 		{
 			Unit attacker = null;
