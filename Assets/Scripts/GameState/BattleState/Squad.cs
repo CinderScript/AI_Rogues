@@ -103,6 +103,8 @@ namespace AIRogue.GameState.Battle
 		
 		private void memberTookDamage(Unit squadMember, Unit attacker)
 		{
+			EventManager.Instance.QueueEvent( new UnitDamagedEvent( squadMember ) );
+
 			if (ReferenceEquals( attacker.Squad, this ))
 			{
 				// damaged by ally...

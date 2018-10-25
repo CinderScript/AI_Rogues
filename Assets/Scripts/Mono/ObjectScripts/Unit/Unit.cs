@@ -246,16 +246,7 @@ namespace AIRogue.GameObjects
 
 			//EventManager.Instance.QueueEvent( new UnitDestroyedEvent( this ) );
 			OnUnitDestroyed?.Invoke( this );
-
 		}
-		private void OnDestroy()
-		{
-		}
-
-		private void OnDisable()
-		{
-		}
-
 
 		public override string ToString()
 		{

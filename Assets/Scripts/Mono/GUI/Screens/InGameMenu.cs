@@ -26,12 +26,19 @@ namespace IronGrimoire.Gui.Game
 			GUIScreen.OnOpened.AddListener( PauseGame );
 			GUIScreen.OnClosed.AddListener( UnPauseGame );
 		}
+		void PauseGame()
+		{
+			TimeManager.Instance.SetGameplaySpeed( 0.1f );
+		}
+		void UnPauseGame()
+		{
+			TimeManager.Instance.SetGameplaySpeed( 1 );
+		}
 
 		public override void UpdateView()
 		{
 			PopulateEnemyShips();
 		}
-
 		void PopulateEnemyShips()
 		{
 			EnemyShipsScrollview.Clear();
@@ -47,15 +54,6 @@ namespace IronGrimoire.Gui.Game
 		public void EndGame()
 		{
 
-		}
-
-		void PauseGame()
-		{
-			Time.timeScale = 0;
-		}
-		void UnPauseGame()
-		{
-			Time.timeScale = 1;
 		}
 	}
 }

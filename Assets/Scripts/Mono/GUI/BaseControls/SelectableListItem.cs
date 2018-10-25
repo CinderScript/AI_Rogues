@@ -13,7 +13,7 @@ namespace IronGrimoire.Gui
 		public Toggle Toggle { get; private set; }
 
 
-		void Awake()
+		protected virtual void Awake()
 		{
 			Toggle = GetComponent<Toggle>();
 			Toggle.onValueChanged.AddListener( OnValueChanged );

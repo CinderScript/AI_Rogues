@@ -1,4 +1,5 @@
-﻿using AIRogue.GameObjects;
+﻿using AIRogue.Events;
+using AIRogue.GameObjects;
 using AIRogue.Gui;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ namespace IronGrimoire.Gui.Game
 
 		[Header( "Tooltip" )]
 		public ControlGroup_ShipInfo TooltipPrefab;
-		private Unit tooltipUnit;
+		private Unit Unit;
 
 		RectTransform ITooltipParent.InstantiatedTooltip
 		{
@@ -22,9 +23,25 @@ namespace IronGrimoire.Gui.Game
 				var tooltip = Instantiate( TooltipPrefab.gameObject ).GetComponent<RectTransform>();
 
 				var shipInfo = tooltip.GetComponentInChildren<ControlGroup_ShipInfo>();
-				shipInfo.SetText( tooltipUnit );
+				shipInfo.SetText( Unit );
 
 				return tooltip;
+			}
+		}
+
+		protected override void Awake()
+		{
+			base.Awake();
+
+			EventManager.Instance.AddListener<UnitDamagedEvent>( AShipTookDamage );
+
+		}
+		void AShipTookDamage(UnitDamagedEvent gameEvent)
+		{
+			// if this ship took damage
+			if (ReferenceEquals( Unit, gameEvent.Unit ))
+			{
+				SetText( Unit );
 			}
 		}
 
@@ -50,7 +67,12 @@ namespace IronGrimoire.Gui.Game
 				fader.gameObject.SetActive( true );
 			}
 
-			tooltipUnit = unit;
+			Unit = unit;
+		}
+
+		void OnDestroy()
+		{
+			EventManager.Instance.RemoveListener<UnitDamagedEvent>( AShipTookDamage );
 		}
 	}
 }

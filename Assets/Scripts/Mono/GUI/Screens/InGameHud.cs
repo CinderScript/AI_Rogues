@@ -26,13 +26,13 @@ namespace IronGrimoire.Gui.Game
 		}
 		public override void UpdateView()
 		{
-			PopulateEnemyShips();
+			PopulatePlayerShips();
 
 			// Clear selected object so that if button was pressed, the event
 			// system's "Submit" trigger (also button "Fire1") does not keep pressing it.
 			EventSystem.current.SetSelectedGameObject( null );
 		}
-		void PopulateEnemyShips()
+		void PopulatePlayerShips()
 		{
 			PlayerShipsScrollview.Clear();
 
