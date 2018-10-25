@@ -40,8 +40,9 @@ namespace IronGrimoire.Gui.Game
 				var shieldMax = unit.Shield.HitPointCapacity.ToString( "0" );
 
 				Icon.sprite = unit.Icon;
-				Hitpoints.text = $"Hull:   {hull}/{hullMax}\n" +
-								 $"Shield:    {shield}/{shieldMax}";
+				Hitpoints.text = $"Shield: {shield}/{shieldMax}\n" +
+								 $"    Hull: {hull}/{hullMax}";
+								 
 			}
 			else
 			{
