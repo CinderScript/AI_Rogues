@@ -13,13 +13,13 @@ namespace IronGrimoire.Gui.Game
 		public Text Location = null;
 		public Text Earnings = null;
 
-		private PreGameMenuController game;
+		private PreGameGUIController game;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
-			game = GetComponentInParent<PreGameMenuController>();
+			game = GetComponentInParent<PreGameGUIController>();
 			OnOpened.AddListener( SetText );
 		}
 		protected override void Start()

@@ -14,12 +14,12 @@ namespace IronGrimoire.Gui.Game
 		public ScrollView EquippedScrollview;
 		public ScrollView MarketScrollview;
 
-		private PreGameMenuController game;
+		private PreGameGUIController game;
 
 		protected override void Awake()
 		{
 			base.Awake();
-			game = GetComponentInParent<PreGameMenuController>();
+			game = GetComponentInParent<PreGameGUIController>();
 
 			OnOpened.AddListener( UpdateScreen );
 		}

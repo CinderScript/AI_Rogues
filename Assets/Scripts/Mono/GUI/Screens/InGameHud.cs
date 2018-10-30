@@ -16,13 +16,13 @@ namespace IronGrimoire.Gui.Game
 		[Header( "Transition Screens" )]
 		public GUIScreen InGameMenu = null;
 
-		private InGameMenuController game;
+		private InGameGUIController game;
 
 		protected override void Awake()
 		{
 			base.Awake();
 
-			game = GetComponentInParent<InGameMenuController>();
+			game = GetComponentInParent<InGameGUIController>();
 		}
 		public override void UpdateView()
 		{

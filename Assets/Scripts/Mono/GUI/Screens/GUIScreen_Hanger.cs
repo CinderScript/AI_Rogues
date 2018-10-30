@@ -18,12 +18,12 @@ namespace IronGrimoire.Gui.Game
 		public ControlGroup_ShipInfo ShipInfo = null;
 		public ScrollView WeaponSlots = null;
 
-		private PreGameMenuController game;
+		private PreGameGUIController game;
 
 		protected override void Awake()
 		{
 			base.Awake();
-			game = GetComponentInParent<PreGameMenuController>();
+			game = GetComponentInParent<PreGameGUIController>();
 
 			OnOpened.AddListener( ShowScreen );
 			WeaponSlots.OnItemSelected.AddListener( UpdateWeaponInfo );

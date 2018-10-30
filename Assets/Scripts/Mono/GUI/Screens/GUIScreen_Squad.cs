@@ -17,12 +17,12 @@ namespace IronGrimoire.Gui.Game
 		public GUIScreen_Hanger HangerScreen = null;
 
 
-		private PreGameMenuController game;
+		private PreGameGUIController game;
 
 		protected override void Awake()
 		{
 			base.Awake();
-			game = GetComponentInParent<PreGameMenuController>();
+			game = GetComponentInParent<PreGameGUIController>();
 
 			// update squad scrollview each time this screen is shown
 			OnOpened.AddListener( UpdateScreen );

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using AIRogue.Events;
 using AIRogue.Exceptions;
 using AIRogue.GameState.Battle;
 using IronGrimoire.Persistence;
@@ -35,6 +35,7 @@ namespace AIRogue.GameObjects
 		public GameObject DeathExplosionEffect = null;
 		public GameObject ShieldImpactEffect = null;
 
+		public bool IsDestroyed { get; private set; }
 
 		public Squad Squad { get; private set; }
 		public int SquadPosition { get; private set; }
@@ -63,6 +64,8 @@ namespace AIRogue.GameObjects
 		
 		void Awake()
 		{
+			IsDestroyed = false;
+
 			WeaponMounts = GetComponentsInChildren<WeaponMount>();
 			Shield = GetComponentInChildren<Shield>();
 			Shield.Initialize( ShieldCapacity );
@@ -234,6 +237,8 @@ namespace AIRogue.GameObjects
 		}
 		private void destroyShip()
 		{
+			IsDestroyed = true;
+
 			GameObject effect = Instantiate(
 				DeathExplosionEffect, transform.position, transform.rotation );
 				
@@ -244,7 +249,7 @@ namespace AIRogue.GameObjects
 			// destroy this ship object
 			Destroy( gameObject );
 
-			//EventManager.Instance.QueueEvent( new UnitDestroyedEvent( this ) );
+			EventManager.Instance.QueueEvent( new UnitDestroyedEvent( this ) );
 			OnUnitDestroyed?.Invoke( this );
 		}
 

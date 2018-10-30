@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace IronGrimoire.Gui.Game
 {
-	class PreGameMenuController : MonoBehaviour
+	class PreGameGUIController : MonoBehaviour
 	{
 		[Header( "Controller Properties" )]
 		public GameSave GameSave;
