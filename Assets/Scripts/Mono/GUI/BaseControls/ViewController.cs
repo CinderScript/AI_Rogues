@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -13,6 +14,12 @@ namespace IronGrimoire.Gui
 		public List<KeyDownEvent> OnKeyDownHandlers;
 		public List<ButtonDownEvent> OnButtonDownHandlers;
 
+		[Header( "Time Manager Settings" )]
+		public bool ChangeSpeedOnOpen = false;
+		public float GameSpeedOnOpen = 1;
+		public bool ChangeSpeedOnClose = false;
+		public float GameSpeedOnClose = 1;
+
 		public GUISystem GUISystem { get; private set; }
 		public GUIScreen GUIScreen { get; private set; }
 
@@ -22,6 +29,15 @@ namespace IronGrimoire.Gui
 			GUIScreen = GetComponent<GUIScreen>();
 
 			GUIScreen.OnOpened.AddListener( UpdateView );
+
+			if (ChangeSpeedOnOpen)
+			{
+				GUIScreen.OnOpened.AddListener( ChangeOpenedSpeed );
+			}
+			if (ChangeSpeedOnClose)
+			{
+				GUIScreen.OnClosed.AddListener( ChangeClosedSpeed );
+			}
 		}
 		protected virtual void Start() { }
 
@@ -38,6 +54,14 @@ namespace IronGrimoire.Gui
 			{
 				OnKeyDownHandlers[i].InvokeIfKeyDown();
 			}
+		}
+		void ChangeOpenedSpeed()
+		{
+			TimeManager.Instance.SetGameplaySpeed( GameSpeedOnOpen );
+		}
+		void ChangeClosedSpeed()
+		{
+			TimeManager.Instance.SetGameplaySpeed( GameSpeedOnClose );
 		}
 	}
 
