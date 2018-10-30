@@ -24,10 +24,7 @@ namespace IronGrimoire.Gui.Game
 			base.Awake();
 
 			game = GetComponentInParent<InGameGUIController>();
-
-			GUIScreen.OnOpened.AddListener( PauseGame );
 		}
-
 		public override void UpdateView()
 		{
 			if (game.GameProgress == LevelProgress.Win)
@@ -44,10 +41,6 @@ namespace IronGrimoire.Gui.Game
 			ShipsDestroyed.text = "Enemy Ships Destroyed: " + game.GetEnemyDestroyedCount();
 			ShipsLost.text = "Enemy Ships Destroyed: " + game.GetPlayerDestroyedCount();
 			Level.text = "Location: " + game.LevelProperties.LevelName;
-		}
-		void PauseGame()
-		{
-			TimeManager.Instance.SetGameplaySpeed( 0.1f );
 		}
 
 		public void EndGame()

@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace IronGrimoire.Gui
 {
-	[RequireComponent(typeof(Animator))]
-	[RequireComponent(typeof(CanvasGroup))]
+	[RequireComponent( typeof( Animator ) )]
+	[RequireComponent( typeof( CanvasGroup ) )]
 	public class GUIScreen : MonoBehaviour
 	{
 		[Header( "Main Properties" )]
@@ -16,9 +17,15 @@ namespace IronGrimoire.Gui
 		public UnityEvent OnClosed = new UnityEvent();
 		public UnityEvent OnOpened = new UnityEvent();
 
+		[Header( "Time Manager Settings" )]
+		public bool ChangeSpeedOnOpen = false;
+		public float GameSpeedOnOpen = 1;
+		public bool ChangeSpeedOnClose = false;
+		public float GameSpeedOnClose = 1;
+
 		public GUISystem GUISystem { get; private set; }
 		//private CanvasGroup canvasGroup;
-		private Animator animator; 
+		private Animator animator;
 
 		protected virtual void Awake()
 		{
@@ -36,6 +43,11 @@ namespace IronGrimoire.Gui
 
 			OnClosed?.Invoke();
 			animator.SetTrigger( "hide" );
+
+			if (ChangeSpeedOnClose)
+			{
+				TimeManager.Instance.SetGameplaySpeed( GameSpeedOnClose );
+			}
 		}
 		public virtual void OpenScreen()
 		{
@@ -43,6 +55,11 @@ namespace IronGrimoire.Gui
 
 			OnOpened?.Invoke();
 			animator.SetTrigger( "show" );
+
+			if (ChangeSpeedOnOpen)
+			{
+				TimeManager.Instance.SetGameplaySpeed( GameSpeedOnOpen );
+			}
 		}
 
 		public void OnHideAnimation_Finished()
