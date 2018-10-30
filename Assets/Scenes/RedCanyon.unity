@@ -7427,6 +7427,7 @@ MonoBehaviour:
   GameSave: {fileID: 476489177}
   ShipLibrary: {fileID: 348670225}
   WeaponLibrary: {fileID: 1508055403}
+  LevelFinishedScreen: {fileID: 208405366}
 --- !u!114 &2107208113
 MonoBehaviour:
   m_ObjectHideFlags: 0
