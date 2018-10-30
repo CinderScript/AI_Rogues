@@ -33,7 +33,7 @@ namespace AIRogue.Scene
 		{
 			LoadDataFromFile();
 		}
-		void OnApplicationQuit()
+		void OnDestroy()
 		{
 			SaveDataToFile();
 		}

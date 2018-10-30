@@ -26,7 +26,6 @@ namespace IronGrimoire.Gui.Game
 			game = GetComponentInParent<InGameGUIController>();
 
 			GUIScreen.OnOpened.AddListener( PauseGame );
-			GUIScreen.OnClosed.AddListener( UnPauseGame );
 		}
 
 		public override void UpdateView()
@@ -49,10 +48,6 @@ namespace IronGrimoire.Gui.Game
 		void PauseGame()
 		{
 			TimeManager.Instance.SetGameplaySpeed( 0.1f );
-		}
-		void UnPauseGame()
-		{
-			TimeManager.Instance.SetGameplaySpeed( 1f );
 		}
 
 		public void EndGame()

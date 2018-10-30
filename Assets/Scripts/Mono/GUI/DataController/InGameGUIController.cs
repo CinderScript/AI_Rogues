@@ -75,6 +75,11 @@ namespace IronGrimoire.Gui.Game
 			GameProgress = result;
 			TimeManager.Instance.SetGameplaySpeed( 0.25f );
 			guiSystem.SwitchScreens( MatchEndedScreen );
+
+			if (result == LevelProgress.Win)
+			{
+				GameSave.Funds += LevelProperties.Payout;
+			}
 		}
 
 		bool AllEnemyDestroyed()
@@ -137,7 +142,8 @@ namespace IronGrimoire.Gui.Game
 
 		public void EndGame()
 		{
-
+			TimeManager.Instance.SetGameplaySpeed( 1f );
+			guiSystem.LoadScene( "MainMenu" );
 		}
 
 		void OnDestroy()

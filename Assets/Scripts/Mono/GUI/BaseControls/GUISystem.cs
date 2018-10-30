@@ -100,18 +100,24 @@ namespace IronGrimoire.Gui
 			ScreenHistory.Clear();
 		}
 
-		public void LoadScene(string scene)
+		public void LoadScene(string scene, bool showProgress = true)
 		{
-			StartCoroutine( LoadSceneAsync( scene ) );
+			StartCoroutine( LoadSceneAsync( scene, showProgress ) );
 		}
-		IEnumerator LoadSceneAsync(string scene)
+		IEnumerator LoadSceneAsync(string scene, bool showProgress)
 		{
 			FadeOut();
 
-			TransitionPercentText.text = "Loading: 0%";
 			TransitionPercentText.gameObject.SetActive( true );
 
-			yield return new WaitForSecondsRealtime( 0.3f );
+			TransitionPercentText.text = "Loading...";
+
+			if (showProgress)
+			{
+				TransitionPercentText.text = "Loading: 0%";
+			}
+
+			yield return new WaitForSecondsRealtime( 0.4f );
 
 			var asyncOperation = SceneManager.LoadSceneAsync( scene );
 
@@ -120,36 +126,42 @@ namespace IronGrimoire.Gui
 
 			while (!asyncOperation.isDone)
 			{
-				// loading bar progress
-				var loadingProgress = Mathf.Clamp01( asyncOperation.progress / 0.9f ) * 100;
-				TransitionPercentText.text = $"Loading: {loadingProgress}%";
+				if (showProgress)
+				{
+					// loading bar progress
+					var loadingProgress = Mathf.Clamp01( asyncOperation.progress / 0.9f ) * 100;
+					TransitionPercentText.text = $"Loading: {loadingProgress}%";
+				}
 
 				// scene has loaded as much as possible, the last 10% can't be multi-threaded
 				if (asyncOperation.progress >= 0.9f)
 				{
-					//Change the Text to show the Scene is ready
-					TransitionPercentText.text = "Press the space bar to continue...";
-					//Wait to you press the space key to activate the Scene
-					if (Input.GetKeyDown( KeyCode.Space ))
-						//Activate the Scene
-						asyncOperation.allowSceneActivation = true;
+					if (showProgress)
+					{
+						//Change the Text to show the Scene is ready
+						TransitionPercentText.text = "Loading Finished";
+
+						////Wait to you press the space key to activate the Scene
+						//if (Input.anyKey)
+
+						yield return new WaitForSecondsRealtime( 0.75f );
+					}
+
+					//Activate the Scene
+					asyncOperation.allowSceneActivation = true;
 				}
 
 				yield return null;
 			}
 		}
-		IEnumerator wait()
-		{
-			yield return null;
-		}
 
 		public void FadeIn()
 		{
-			Fader?.CrossFadeAlpha( 0, FadeDuration / 2, false );
+			Fader?.CrossFadeAlpha( 0, FadeDuration / 2, true );
 		}
 		public void FadeOut()
 		{
-			Fader?.CrossFadeAlpha( 1, FadeDuration / 2, false );
+			Fader?.CrossFadeAlpha( 1, FadeDuration / 2, true );
 		}
 
 		public void ExitApplication()
@@ -157,4 +169,9 @@ namespace IronGrimoire.Gui
 			Application.Quit();
 		}
 	}
+
+	public enum LoadLevelMode
+	{
+		Simple, Progress_Plus_Any_Key
+	} 
 }
