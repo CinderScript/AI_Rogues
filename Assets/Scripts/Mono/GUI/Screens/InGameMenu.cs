@@ -22,17 +22,6 @@ namespace IronGrimoire.Gui.Game
 			base.Awake();
 
 			game = GetComponentInParent<InGameGUIController>();
-
-			GUIScreen.OnOpened.AddListener( PauseGame );
-			GUIScreen.OnClosed.AddListener( UnPauseGame );
-		}
-		void PauseGame()
-		{
-			TimeManager.Instance.SetGameplaySpeed( 0.1f );
-		}
-		void UnPauseGame()
-		{
-			TimeManager.Instance.SetGameplaySpeed( 1 );
 		}
 
 		public override void UpdateView()
