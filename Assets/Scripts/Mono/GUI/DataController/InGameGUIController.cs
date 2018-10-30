@@ -17,15 +17,20 @@ namespace IronGrimoire.Gui.Game
 		public UnitBank ShipLibrary = null;
 		public WeaponBank WeaponLibrary = null;
 
+		[Header( "GameEvent Triggered Screens" )]
+		public InGameLevelFinished LevelFinishedScreen = null;
+
 		public List<Unit> EnemyUnits { get; private set; }
 		public List<Unit> PlayerUnits { get; private set; }
 
 		public GUISystem guiSystem { get; private set; }
 
-		private bool isGameWon = false;
+		public LevelProgress GameProgress { get; private set; }
 
 		void Awake()
 		{
+			GameProgress = LevelProgress.In_Progress;
+
 			EventManager.Instance.AddListener<UnitsSpawnedEvent>( OnUnitsSpawned );
 			EventManager.Instance.AddListener<UnitDestroyedEvent>( OnUnitDestroyed );
 
@@ -42,30 +47,37 @@ namespace IronGrimoire.Gui.Game
 		}
 		void OnUnitDestroyed(UnitDestroyedEvent gameEvent)
 		{
-			// if the destroyed unit was a player unit, check for loss
-			if (gameEvent.Unit.Squad.Faction == SquadFaction.Player)
+			// if a win/loss has not already been triggered
+			if ( GameProgress == LevelProgress.In_Progress)
 			{
-				if ( AllPlayerDestroyed() )
+				// if the destroyed unit was a player unit, check for loss
+				if (gameEvent.Unit.Squad.Faction == SquadFaction.Player)
 				{
-					TriggerLoss();
+					if (AllPlayerDestroyed())
+					{
+						TriggerLoss();
+					}
 				}
-			}
-			// if the destroyed unit was an Enemy unit, check for win
-			else
-			{
-				if ( AllEnemyDestroyed() )
+				// if the destroyed unit was an Enemy unit, check for win
+				else
 				{
-					TriggerWin();
+					if (AllEnemyDestroyed())
+					{
+						TriggerWin();
+					}
 				}
 			}
 		}
 
 		void TriggerWin()
 		{
-			isGameWon = true;
+			GameProgress = LevelProgress.Win;
+			guiSystem.SwitchScreens( LevelFinishedScreen.GUIScreen );
 		}
 		void TriggerLoss()
 		{
+			GameProgress = LevelProgress.Loss;
+			guiSystem.SwitchScreens( LevelFinishedScreen.GUIScreen );
 		}
 		bool AllEnemyDestroyed()
 		{
@@ -102,5 +114,16 @@ namespace IronGrimoire.Gui.Game
 		{
 
 		}
+
+		void OnDestroy()
+		{
+			EventManager.Instance.RemoveListener<UnitsSpawnedEvent>( OnUnitsSpawned );
+			EventManager.Instance.RemoveListener<UnitDestroyedEvent>( OnUnitDestroyed );
+		}
+	}
+
+	enum LevelProgress
+	{
+		In_Progress, Win, Loss
 	}
 }

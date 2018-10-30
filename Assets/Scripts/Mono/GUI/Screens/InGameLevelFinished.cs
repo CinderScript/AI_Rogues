@@ -31,7 +31,14 @@ namespace IronGrimoire.Gui.Game
 
 		public override void UpdateView()
 		{
-			TimeManager.Instance.SetGameplaySpeed( 0.1f );
+			if (game.GameProgress == LevelProgress.Win)
+			{
+				WinLoss.text = "You Win!";
+			}
+			else
+			{
+				WinLoss.text = "Match Lost.";
+			}
 		}
 		void PauseGame()
 		{
@@ -44,7 +51,7 @@ namespace IronGrimoire.Gui.Game
 
 		public void EndGame()
 		{
-
+			game.EndGame();
 		}
 	}
 }
