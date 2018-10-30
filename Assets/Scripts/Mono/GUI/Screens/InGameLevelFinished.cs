@@ -14,7 +14,7 @@ namespace IronGrimoire.Gui.Game
 		public Text ShipsDestroyed = null;
 		public Text ShipsLost = null;
 		public Text Level = null;
-		public Text Earnings = null;
+		public Text Payout = null;
 
 
 		private InGameGUIController game;
@@ -33,16 +33,22 @@ namespace IronGrimoire.Gui.Game
 		{
 			if (game.GameProgress == LevelProgress.Win)
 			{
-				WinLoss.text = "You Win!";
+				WinLoss.text = "Victory!";
+				Payout.text = "Payout: $" + game.LevelProperties.Payout;
 			}
 			else
 			{
-				WinLoss.text = "Match Lost.";
+				WinLoss.text = "Match Lost";
+				Payout.text = "Payout: $0";
 			}
+
+			ShipsDestroyed.text = "Enemy Ships Destroyed: " + game.GetEnemyDestroyedCount();
+			ShipsLost.text = "Enemy Ships Destroyed: " + game.GetPlayerDestroyedCount();
+			Level.text = "Location: " + game.LevelProperties.LevelName;
 		}
 		void PauseGame()
 		{
-			TimeManager.Instance.SetGameplaySpeed( 0.2f );
+			TimeManager.Instance.SetGameplaySpeed( 0.1f );
 		}
 		void UnPauseGame()
 		{

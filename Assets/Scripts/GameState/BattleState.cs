@@ -80,7 +80,7 @@ namespace AIRogue.GameState
 				Squad aiSquad = new Squad( squads, levelProperties.AIStart[i].position, "AISquad-" + i, SquadFaction.AI_1 );
 				squads.Add( aiSquad );
 
-				for (int ii = 0; ii < 3; ii++)
+				for (int ii = 0; ii < 1; ii++)
 				{
 					unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
 					Unit ai = aiSquad.SpawnUnit<AIController>( unitPrefab );

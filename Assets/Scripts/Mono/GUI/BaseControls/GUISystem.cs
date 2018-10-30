@@ -81,19 +81,23 @@ namespace IronGrimoire.Gui
 		public void SwitchScreens(GUIScreen newScreen)
 		{
 			ScreenHistory.Push( CurrentScreen );
-			switchScreen( newScreen );
+			OpenScreen( newScreen );
 		}
 		public void SwitchScreenToPrevious()
 		{
-			switchScreen( ScreenHistory.Pop() );
+			OpenScreen( ScreenHistory.Pop() );
 		}
-		void switchScreen(GUIScreen nextScreen)
+		public void OpenScreen(GUIScreen nextScreen)
 		{
 			CurrentScreen.CloseScreen();
 			CurrentScreen = nextScreen;
 			CurrentScreen.OpenScreen();
 
 			OnSwitchedScreens?.Invoke();
+		}
+		public void ResetHistory()
+		{
+			ScreenHistory.Clear();
 		}
 
 		public void LoadScene(string scene)

@@ -28,7 +28,7 @@ namespace IronGrimoire.Gui
 		}
 		protected virtual void Start() { }
 
-		public void CloseScreen()
+		public virtual void CloseScreen()
 		{
 			// this is done via animation controller
 			//canvasGroup.interactable = false;
@@ -37,7 +37,7 @@ namespace IronGrimoire.Gui
 			OnClosed?.Invoke();
 			animator.SetTrigger( "hide" );
 		}
-		public void OpenScreen()
+		public virtual void OpenScreen()
 		{
 			gameObject.SetActive( true );
 

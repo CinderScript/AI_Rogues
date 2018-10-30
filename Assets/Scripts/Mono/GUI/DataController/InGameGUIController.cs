@@ -16,9 +16,10 @@ namespace IronGrimoire.Gui.Game
 		public GameSave GameSave = null;
 		public UnitBank ShipLibrary = null;
 		public WeaponBank WeaponLibrary = null;
+		public LevelProperties LevelProperties = null;
 
 		[Header( "GameEvent Triggered Screens" )]
-		public InGameLevelFinished LevelFinishedScreen = null;
+		public GUIScreen MatchEndedScreen = null;
 
 		public List<Unit> EnemyUnits { get; private set; }
 		public List<Unit> PlayerUnits { get; private set; }
@@ -55,7 +56,7 @@ namespace IronGrimoire.Gui.Game
 				{
 					if (AllPlayerDestroyed())
 					{
-						TriggerLoss();
+						TriggerRoundEnding( LevelProgress.Loss );
 					}
 				}
 				// if the destroyed unit was an Enemy unit, check for win
@@ -63,22 +64,19 @@ namespace IronGrimoire.Gui.Game
 				{
 					if (AllEnemyDestroyed())
 					{
-						TriggerWin();
+						TriggerRoundEnding( LevelProgress.Win );
 					}
 				}
 			}
 		}
 
-		void TriggerWin()
+		void TriggerRoundEnding(LevelProgress result)
 		{
-			GameProgress = LevelProgress.Win;
-			guiSystem.SwitchScreens( LevelFinishedScreen.GUIScreen );
+			GameProgress = result;
+			TimeManager.Instance.SetGameplaySpeed( 0.25f );
+			guiSystem.SwitchScreens( MatchEndedScreen );
 		}
-		void TriggerLoss()
-		{
-			GameProgress = LevelProgress.Loss;
-			guiSystem.SwitchScreens( LevelFinishedScreen.GUIScreen );
-		}
+
 		bool AllEnemyDestroyed()
 		{
 			bool allDestroyed = true;
@@ -108,6 +106,33 @@ namespace IronGrimoire.Gui.Game
 			}
 
 			return allDestroyed;
+		}
+
+		public int GetEnemyDestroyedCount()
+		{
+			int destroyed = 0;
+			foreach (var unit in EnemyUnits)
+			{
+				if (unit.IsDestroyed)
+				{
+					destroyed++;
+				}
+			}
+
+			return destroyed;
+		}
+		public int GetPlayerDestroyedCount()
+		{
+			int destroyed = 0;
+			foreach (var unit in PlayerUnits)
+			{
+				if (unit.IsDestroyed)
+				{
+					destroyed++;
+				}
+			}
+
+			return destroyed;
 		}
 
 		public void EndGame()
