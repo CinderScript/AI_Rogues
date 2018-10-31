@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace IronGrimoire.Gui.Game
 {
-	class InGameLevelFinished : ViewController
+	class RoundSummary_View : ViewController
 	{
 		[Header( "Controls" )]
 		public Text WinLoss = null;

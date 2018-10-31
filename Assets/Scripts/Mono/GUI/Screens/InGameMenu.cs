@@ -42,7 +42,7 @@ namespace IronGrimoire.Gui.Game
 
 		public void EndGame()
 		{
-
+			game.EndGame();
 		}
 	}
 }
