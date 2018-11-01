@@ -23,7 +23,7 @@ namespace AIRogue.GameState
 		private EventManager events;
         private IGameState currentState = null;
 
-		private PreGameMenuState preGameState;
+		private MainMenuState MainMenuState;
 
         // Singleton
         private static GameStateManager instance = null;
@@ -69,9 +69,9 @@ namespace AIRogue.GameState
             currentState = battleState;
         }
 
-		public void LoadPreGameMenuState()
+		public void LoadMainMenuState()
 		{
-			currentState = new PreGameMenuState( );
+			currentState = new MainMenuState( );
 		}
     }
 }

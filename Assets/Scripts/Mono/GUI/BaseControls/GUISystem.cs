@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using IronGrimoire.Audio;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 
 namespace IronGrimoire.Gui
 {
+	[RequireComponent( typeof( AudioFader ) )]
 	public class GUISystem : MonoBehaviour
 	{
 		[Header( "GUI System Properties" )]
@@ -21,14 +23,30 @@ namespace IronGrimoire.Gui
 		public float FadeDuration = 1;
 		public Text TransitionPercentText;
 
+		[Header( "Background Music" )]
+		public float MusicFadeInDuration = 2f;
+		public float MusicFadeOutDuration = 1f;
+
 		public Stack<GUIScreen> ScreenHistory { get; private set; }
 		public GUIScreen CurrentScreen { get; private set; }
 
 		private GUIScreen[] screens = new GUIScreen[0];
+		private AudioSource music;
+		private AudioFader musicFader;
 
 		private void Awake()
 		{
 			ScreenHistory = new Stack<GUIScreen>();
+			music = GetComponent<AudioSource>();
+			if (music)
+			{
+				music.playOnAwake = false;
+				if (music.isPlaying)
+				{
+					music.Stop();
+				}
+			}
+			musicFader = GetComponent<AudioFader>();
 		}
 		private void Start()
 		{
@@ -54,7 +72,7 @@ namespace IronGrimoire.Gui
 			}
 
 			// wait a few frames (Start() will run)
-			int frameCount = 2;
+			int frameCount = 3;
 			while (frameCount > 0)
 			{
 				frameCount--;
@@ -75,6 +93,8 @@ namespace IronGrimoire.Gui
 				CurrentScreen = StartScreen;
 			}
 
+
+			musicFader?.FadeIn(MusicFadeInDuration);
 			FadeIn();
 		}
 
@@ -130,7 +150,7 @@ namespace IronGrimoire.Gui
 				{
 					// loading bar progress
 					var loadingProgress = Mathf.Clamp01( asyncOperation.progress / 0.9f ) * 100;
-					TransitionPercentText.text = $"Loading: {loadingProgress}%";
+					TransitionPercentText.text = $"Loading: {loadingProgress.ToString("0%")}";
 				}
 
 				// scene has loaded as much as possible, the last 10% can't be multi-threaded

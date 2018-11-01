@@ -12,11 +12,11 @@ namespace IronGrimoire.Gui.Game
 {
 	class InGameGUIController : MonoBehaviour
 	{
-		[Header( "Controller Properties" )]
-		public GameSave GameSave = null;
-		public UnitBank ShipLibrary = null;
-		public WeaponBank WeaponLibrary = null;
-		public LevelProperties LevelProperties = null;
+		//[Header( "Controller Properties" )]
+		public GameSave GameSave { get; private set; }
+		public UnitBank ShipLibrary { get; private set; }
+		public WeaponBank WeaponLibrary { get; private set; }
+		public LevelProperties LevelProperties { get; private set; }
 
 		[Header( "GameEvent Triggered Screens" )]
 		public GUIScreen MatchEndedScreen = null;
@@ -39,6 +39,13 @@ namespace IronGrimoire.Gui.Game
 			PlayerUnits = new List<Unit>();
 
 			guiSystem = GetComponent<GUISystem>();
+
+			var sceneDriver = GameObject.Find( "SceneDriver" );
+
+			GameSave = sceneDriver.GetComponentInChildren<GameSave>();
+			ShipLibrary = sceneDriver.GetComponentInChildren<UnitBank>();
+			WeaponLibrary = sceneDriver.GetComponentInChildren<WeaponBank>();
+			LevelProperties = sceneDriver.GetComponentInChildren<LevelProperties>();
 		}
 
 		void OnUnitsSpawned(UnitsSpawnedEvent gameEvent)
