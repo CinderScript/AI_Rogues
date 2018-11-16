@@ -70,7 +70,7 @@ namespace AIRogue.GameState.Battle
 			Unit unit;
 
 			// spawn unit
-			GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(), Quaternion.identity );
+			GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(Controllers.Count), Quaternion.identity );
 
 			unit = unitSpawn.GetComponent<Unit>();
 			unit.SetSquad( this, Controllers.Count );
@@ -127,13 +127,46 @@ namespace AIRogue.GameState.Battle
 		/// Calculates the position a new unit should be spawned at.
 		/// </summary>
 		/// <returns></returns>
-		private Vector3 newUnitPos()
+		private Vector3 newUnitPos( int unitNumber )
 		{
-			Vector3 pos = new Vector3(	startPosition.x + (SPAWN_SPACING * Controllers.Count), 
-										startPosition.y, 
-										startPosition.z );
+			var rowCapacity = 1;  //same as row number
+			var numberInRow = 1;
 
-			return pos;
+			for (int i = 0; i < unitNumber; i++)
+			{
+				numberInRow++;
+				if (numberInRow > rowCapacity)
+				{
+					rowCapacity++;
+					numberInRow = 1;
+				}
+			}
+
+			var rowNumber = rowCapacity;
+
+			return GetPyramidPosition(rowNumber, numberInRow, startPosition, SPAWN_SPACING);
+		}
+		Vector3 GetPyramidPosition(int rowNumber, int posInRow, Vector3 startPos, float spacing)
+		{
+			var spacesFromMiddleToRowEnd = rowNumber - 1;
+
+			var backwardsOffset = Vector3.back * (spacing * spacesFromMiddleToRowEnd);
+
+			//     1		1,  0 spaces from center
+			//   2   3		2,  1 space from center
+			// 4   5   6	3,  2 spaces from center
+			var numberOfSpaces = rowNumber - 1;
+			var leftMostOffset = Vector3.left * (spacing * numberOfSpaces);
+			var spacesFromLeft = posInRow - 1;
+			var horizontalOffset = leftMostOffset + Vector3.right * (spacing * spacesFromLeft);
+
+			var offset = horizontalOffset + backwardsOffset;
+
+			//Vector3 pos = new Vector3( startPosition.x + (SPAWN_SPACING * unitNumber),
+			//							startPosition.y,
+			//							startPosition.z );
+
+			return startPos + offset;
 		}
 
 		public override string ToString()
