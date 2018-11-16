@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,6 +21,11 @@ namespace IronGrimoire.Gui
 		public bool ChangeSpeedOnClose = false;
 		public float GameSpeedOnClose = 1;
 
+		[Header( "Audio Mixer Settings" )]
+		public AudioMixerSnapshot SnapshotOnOpen;
+		public AudioMixerSnapshot SnapshotOnClose;
+		public float SnapshotTransitionDuration = 0.2f;
+
 		public GUISystem GUISystem { get; private set; }
 		public GUIScreen GUIScreen { get; private set; }
 
@@ -28,7 +34,7 @@ namespace IronGrimoire.Gui
 			GUISystem = GetComponentInParent<GUISystem>();
 			GUIScreen = GetComponent<GUIScreen>();
 
-			GUIScreen.OnOpened.AddListener( UpdateView );
+			GUIScreen.OnOpened.AddListener( OnOpened );
 
 			if (ChangeSpeedOnOpen)
 			{
@@ -38,10 +44,23 @@ namespace IronGrimoire.Gui
 			{
 				GUIScreen.OnClosed.AddListener( ChangeClosedSpeed );
 			}
+
+			if (SnapshotOnOpen)
+			{
+				GUIScreen.OnOpened.AddListener(
+					() => SnapshotOnOpen.TransitionTo( SnapshotTransitionDuration )
+				);
+			}
+			if (SnapshotOnClose)
+			{
+				GUIScreen.OnClosed.AddListener(
+					() => SnapshotOnClose.TransitionTo( SnapshotTransitionDuration )
+				);
+			}
 		}
 		protected virtual void Start() { }
 
-		public abstract void UpdateView();
+		public abstract void OnOpened();
 
 		void Update()
 		{
@@ -65,7 +84,7 @@ namespace IronGrimoire.Gui
 		}
 	}
 
-	[System.Serializable]
+	[Serializable]
 	public class KeyDownEvent
 	{
 		public KeyCode Key;
@@ -80,7 +99,7 @@ namespace IronGrimoire.Gui
 		}
 	}
 
-	[System.Serializable]
+	[Serializable]
 	public class ButtonDownEvent
 	{
 		public string Button;

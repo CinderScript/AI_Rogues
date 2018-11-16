@@ -24,7 +24,7 @@ namespace IronGrimoire.Gui.Game
 			game = GetComponentInParent<InGameGUIController>();
 		}
 
-		public override void UpdateView()
+		public override void OnOpened()
 		{
 			PopulateEnemyShips();
 		}
@@ -42,7 +42,7 @@ namespace IronGrimoire.Gui.Game
 
 		public void EndGame()
 		{
-			game.EndGame();
+			game.TriggerRoundEnding( LevelProgress.Loss );
 		}
 	}
 }

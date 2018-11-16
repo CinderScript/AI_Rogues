@@ -7,6 +7,7 @@ using AIRogue.GameState.Battle;
 using AIRogue.Scene;
 
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace IronGrimoire.Gui.Game
 {
@@ -20,6 +21,9 @@ namespace IronGrimoire.Gui.Game
 
 		[Header( "GameEvent Triggered Screens" )]
 		public GUIScreen MatchEndedScreen = null;
+
+		[Header( "Default Audio Snapshot" )]
+		public AudioMixerSnapshot DefaultSnapshot;
 
 		public List<Unit> EnemyUnits { get; private set; }
 		public List<Unit> PlayerUnits { get; private set; }
@@ -77,7 +81,7 @@ namespace IronGrimoire.Gui.Game
 			}
 		}
 
-		void TriggerRoundEnding(LevelProgress result)
+		public void TriggerRoundEnding(LevelProgress result)
 		{
 			GameProgress = result;
 			guiSystem.SwitchScreens( MatchEndedScreen );
@@ -152,6 +156,7 @@ namespace IronGrimoire.Gui.Game
 			}
 
 			TimeManager.Instance.SetGameplaySpeed( 1f );
+			DefaultSnapshot.TransitionTo( 0.01f );
 			guiSystem.LoadScene( "MainMenu", false );
 		}
 

@@ -24,7 +24,7 @@ namespace IronGrimoire.Gui.Game
 
 			game = GetComponentInParent<InGameGUIController>();
 		}
-		public override void UpdateView()
+		public override void OnOpened()
 		{
 			PopulatePlayerShips();
 

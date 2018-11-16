@@ -30,9 +30,9 @@ namespace AIRogue.GameObjects
 		public float Range = 20;
 
 		[Header( "Projectile, Laser, etc..." )]
-		public GameObject DamagerPrefab;
+		public GameObject DamagerPrefab = null;
 
-		private AudioSource audio;
+		private new AudioSource audio;
 
 		public int WeaponPosition { get; set; }
 

@@ -2,7 +2,7 @@
 {
 	public class DefaultViewController : ViewController
 	{
-		public override void UpdateView()
+		public override void OnOpened()
 		{
 		}
 	}
