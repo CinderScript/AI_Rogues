@@ -24,7 +24,8 @@ namespace AIRogue.GameState
 	class BattleState : IGameState {
 
 		private readonly List<Squad> squads;
-
+		private bool isMatchStarted = false;
+		
 		/// <summary>
 		/// Instances a new BattleState creating a list of Squad objects for player and AI.
 		/// </summary>
@@ -32,6 +33,8 @@ namespace AIRogue.GameState
 		/// <param name="levelProperties"></param>
         public BattleState(UnitBank unitBank, WeaponBank weaponBank, LevelProperties levelProperties)
         {
+			EventManager.Instance.AddListenerOnce<MatchStartEvent>( StartMatch );
+
 			/* Populate list of Squads
 			 * Initialize each Squad with the correct UnitController
 			 * Give each Squad a reference to...
@@ -101,17 +104,28 @@ namespace AIRogue.GameState
 		/// </summary>
 		public void Update()
         {
-			foreach (var squad in squads)
+			if (isMatchStarted)
 			{
-				squad.Update();
+				foreach (var squad in squads)
+				{
+					squad.Update();
+				}
 			}
         }
 		public void FixedUpdate()
 		{
-			foreach (var squad in squads)
+			if (isMatchStarted)
 			{
-				squad.FixedUpdate();
+				foreach (var squad in squads)
+				{
+					squad.FixedUpdate();
+				}
 			}
+		}
+
+		void StartMatch(MatchStartEvent matchStartEvent)
+		{
+			isMatchStarted = true;
 		}
     }
 }

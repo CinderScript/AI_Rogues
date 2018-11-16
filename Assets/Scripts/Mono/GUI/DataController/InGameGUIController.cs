@@ -81,6 +81,10 @@ namespace IronGrimoire.Gui.Game
 			}
 		}
 
+		public void TriggerMatchStart()
+		{
+			EventManager.Instance.TriggerEvent( new MatchStartEvent() );
+		}
 		public void TriggerRoundEnding(LevelProgress result)
 		{
 			GameProgress = result;

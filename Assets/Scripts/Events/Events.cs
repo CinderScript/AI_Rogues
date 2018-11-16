@@ -72,6 +72,9 @@ namespace AIRogue.Events {
 	class SquadEngagedEvent : GameEvent
 	{
 	}
+	class MatchStartEvent : GameEvent
+	{
+	}
 	class MatchFinishedEvent : GameEvent
 	{
 		public bool IsWin { get; private set; }

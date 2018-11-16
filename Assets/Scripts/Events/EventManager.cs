@@ -68,11 +68,6 @@ namespace AIRogue.Events {
             return internalDelegate;
         }
 
-		internal void AddListener<T>(object unitDestroyedHandler)
-		{
-			throw new NotImplementedException();
-		}
-
 		public void AddListener<T>(EventDelegate<T> del) where T : GameEvent
         {
             AddDelegate<T>( del );
