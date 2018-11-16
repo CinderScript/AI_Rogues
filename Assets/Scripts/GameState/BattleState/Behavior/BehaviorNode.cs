@@ -108,10 +108,12 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		{
 			if (controller.Target != null)
 			{
+				controller.InCombat = true;
 				return inBattle.EvaluateTree();
 			}
 			else
 			{
+				controller.InCombat = false;
 				return outBattle.EvaluateTree();
 			}
 		}

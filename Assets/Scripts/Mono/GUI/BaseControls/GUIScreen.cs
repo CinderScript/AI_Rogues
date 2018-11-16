@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -18,13 +19,17 @@ namespace IronGrimoire.Gui
 		public UnityEvent OnOpened = new UnityEvent();
 
 		public GUISystem GUISystem { get; private set; }
+
 		//private CanvasGroup canvasGroup;
 		private Animator animator;
+		private AudioSource[] screenAudio;
 
 		protected virtual void Awake()
 		{
 			GUISystem = GetComponentInParent<GUISystem>();
 			animator = GetComponent<Animator>();
+			screenAudio = GetComponents<AudioSource>();
+
 			//canvasGroup = GetComponent<CanvasGroup>();
 		}
 		protected virtual void Start() { }
@@ -43,6 +48,14 @@ namespace IronGrimoire.Gui
 			gameObject.SetActive( true );
 
 			OnOpened?.Invoke();
+			if (screenAudio != null)
+			{
+				for (int i = 0; i < screenAudio.Length; i++)
+				{
+					screenAudio[i].Play();
+				}
+			}
+
 			animator.SetTrigger( "show" );
 		}
 

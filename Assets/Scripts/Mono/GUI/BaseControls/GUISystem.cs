@@ -137,9 +137,12 @@ namespace IronGrimoire.Gui
 				TransitionPercentText.text = "Loading: 0%";
 			}
 
+			// let the user see that we are starting to load (pause)
 			yield return new WaitForSecondsRealtime( 0.4f );
 
 			var asyncOperation = SceneManager.LoadSceneAsync( scene );
+
+			musicFader.FadeOut( MusicFadeOutDuration );
 
 			// this value stops the scene from displaying when it's finished loading
 			asyncOperation.allowSceneActivation = false;
@@ -164,7 +167,13 @@ namespace IronGrimoire.Gui
 						////Wait to you press the space key to activate the Scene
 						//if (Input.anyKey)
 
+						// let the user see that we are done (pause)
 						yield return new WaitForSecondsRealtime( 0.75f );
+					}
+
+					while (musicFader.IsFading)
+					{
+						yield return null;
 					}
 
 					//Activate the Scene

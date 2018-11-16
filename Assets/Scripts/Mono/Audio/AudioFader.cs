@@ -12,9 +12,12 @@ namespace IronGrimoire.Audio
 		[Header( "Audio Fader Properties" )]
 		public AudioSource AudioSource;
 
-		public float MaxVolume = 1;
+		[Tooltip( "Minmum volume during fade out.  " +
+			"MaxVolume is set by AudioSource starting volume." )]
 		public float MinVolume = 0;
 
+		// maxVolume is controlled by AudioSource
+		private float maxVolume = 1;
 		public bool IsFading { get; private set; }
 		public float TimeRemaining { get; private set; }
 
@@ -31,17 +34,17 @@ namespace IronGrimoire.Audio
 
 			if (AudioSource)
 			{
-				MaxVolume = AudioSource.volume;
+				maxVolume = AudioSource.volume;
 			}
 		}
 
-		public void FadeIn(float duration)
+		public void FadeIn(float duration, bool stopAudioSource = false)
 		{
-			FadeTo( MaxVolume, duration );
+			FadeTo( maxVolume, duration, stopAudioSource );
 		}
-		public void FadeOut(float duration)
+		public void FadeOut(float duration, bool stopAudioSource = false)
 		{
-			FadeTo( MinVolume, duration );
+			FadeTo( MinVolume, duration, stopAudioSource );
 		}
 
 		/// <summary>
@@ -49,16 +52,16 @@ namespace IronGrimoire.Audio
 		/// </summary>
 		/// <param name="targetVolume"></param>
 		/// <param name="duration"></param>
-		public void FadeTo(float targetVolume, float duration)
+		public void FadeTo(float targetVolume, float duration, bool stopAudioSource = false)
 		{
 			if (IsFading)
 			{
 				StopCoroutine( fading );
 			}
 
-			fading = StartCoroutine( Fade( targetVolume, duration ) );
+			fading = StartCoroutine( Fade( targetVolume, duration, stopAudioSource ) );
 		}
-		IEnumerator Fade(float targetVolume, float duration)
+		IEnumerator Fade(float targetVolume, float duration, bool stopAudioSource = false)
 		{
 			IsFading = true;
 
@@ -86,6 +89,11 @@ namespace IronGrimoire.Audio
 				}
 
 				AudioSource.volume = targetVolume;
+
+				if (stopAudioSource)
+				{
+					AudioSource.Stop();
+				}
 			}
 
 			IsFading = false;

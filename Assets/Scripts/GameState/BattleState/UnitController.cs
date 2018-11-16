@@ -14,7 +14,6 @@ namespace AIRogue.GameState.Battle
 	/// </summary>
 	abstract class UnitController
 	{
-
 		public Unit Unit { get; private set; }
 		public Squad Squad { get; private set; }
 
@@ -39,11 +38,16 @@ namespace AIRogue.GameState.Battle
 			}
 		}
 
+		public bool InCombat { get; set; }
+
 		protected RunnableBehavior Behavior;
 		private float updateBehaviorCooldownTimer = -1;
 		private const float BEHAVIOR_UPDATE_SECONDS = 0.25f;
 
-		public UnitController() { }
+		public UnitController()
+		{
+			InCombat = false;
+		}
 
 		/// <summary>
 		/// The Initialization must be included because Squad uses a UnitController as a 

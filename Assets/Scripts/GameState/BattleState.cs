@@ -59,14 +59,17 @@ namespace AIRogue.GameState
 
 			EventManager.Instance.QueueEvent( new UnitSelectedEvent( player ) );
 
-			for (int i = 0; i < 3; i++)
+			// player 
+			for (int i = 0; i < 2; i++)
 			{
 				unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
 				player = playerSquad.SpawnUnit<AIController>( unitPrefab );
 				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
 				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Cannon ) );
 			}
-			for (int i = 0; i < 2; i++)
+
+			// player 
+			for (int i = 0; i < 1; i++)
 			{
 				unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
 				Unit player2 = playerSquad.SpawnUnit<AIController>( unitPrefab );
@@ -90,7 +93,8 @@ namespace AIRogue.GameState
 			}
 
 			EventManager.Instance.QueueEvent( new UnitsSpawnedEvent( squads ) );
- 		}
+			EventManager.Instance.QueueEvent( new BattleStateStartEvent() );
+		}
 
 		/// <summary>
 		/// Runs the correct Army's update loop and keeps track of turns.

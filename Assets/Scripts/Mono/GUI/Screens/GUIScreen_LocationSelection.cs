@@ -25,13 +25,10 @@ namespace IronGrimoire.Gui.Game
 			}
 		}
 
-		public void Buy()
+		public void Play()
 		{
 
 		}
-		public void Sell()
-		{
 
-		}
 	}
 }

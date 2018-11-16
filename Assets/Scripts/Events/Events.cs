@@ -65,4 +65,20 @@ namespace AIRogue.Events {
 			}
 		}
 	}
+
+	class BattleStateStartEvent : GameEvent
+	{
+	}
+	class SquadEngagedEvent : GameEvent
+	{
+	}
+	class MatchFinishedEvent : GameEvent
+	{
+		public bool IsWin { get; private set; }
+
+		public MatchFinishedEvent(bool isWin)
+		{
+			IsWin = isWin;
+		}
+	}
 }

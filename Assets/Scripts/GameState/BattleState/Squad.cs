@@ -17,6 +17,7 @@ namespace AIRogue.GameState.Battle
 		public Unit LeadUnit;
 		public List<Squad> AllSquads { get; private set; }
 
+		public bool InCombat { get; private set; }
 		public Squad[] EngagedSquads = new Squad[0];
 		private HashSet<Squad> engagedSquads = new HashSet<Squad>(
 				new General.ReferenceEqualityComparer<Squad>() );
@@ -98,6 +99,13 @@ namespace AIRogue.GameState.Battle
 				
 				// recipricate engagement by other squad
 				squad.EngageSquad( this );  // engage my squad back
+
+				// if this is the first squad to engage, trip combat event
+				if (engagedSquads.Count == 1)
+				{
+					InCombat = true;
+					EventManager.Instance.QueueEvent( new SquadEngagedEvent() );
+				}
 			}
 		}
 		

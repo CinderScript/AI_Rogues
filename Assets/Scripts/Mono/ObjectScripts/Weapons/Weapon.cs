@@ -32,6 +32,8 @@ namespace AIRogue.GameObjects
 		[Header( "Projectile, Laser, etc..." )]
 		public GameObject DamagerPrefab;
 
+		private AudioSource audio;
+
 		public int WeaponPosition { get; set; }
 
 		// Used for targeting logic
@@ -51,6 +53,8 @@ namespace AIRogue.GameObjects
 
 		protected virtual void Awake()
 		{
+			audio = GetComponent<AudioSource>();
+
 			unit = transform.root.GetComponent<Unit>();
 			damagerSpawnPoint = GetComponentInChildren<BulletSpawnPoint>().transform;
 
@@ -84,6 +88,7 @@ namespace AIRogue.GameObjects
 			{
 				shotCooldownTimer = secondsPerShot;
 				activateShot();
+				audio?.Play();
 			}
 		}
 
