@@ -25,7 +25,7 @@ namespace AIRogue.GameState.Battle
 		private readonly UnitBank unitBank;
 		private readonly Vector3 startPosition;
 
-		private const int SPAWN_SPACING = 10;
+		private const int SPAWN_SPACING = 11;
 
 		/// <summary>
 		/// Instances a new Squad containing a List of UnitControllers.  A deep copy of controllerBlueprint is made for each 
@@ -130,21 +130,21 @@ namespace AIRogue.GameState.Battle
 		private Vector3 newUnitPos( int unitNumber )
 		{
 			var rowCapacity = 1;  //same as row number
-			var numberInRow = 1;
+			var posInRow = 1;
 
 			for (int i = 0; i < unitNumber; i++)
 			{
-				numberInRow++;
-				if (numberInRow > rowCapacity)
+				posInRow++;
+				if (posInRow > rowCapacity)
 				{
 					rowCapacity++;
-					numberInRow = 1;
+					posInRow = 1;
 				}
 			}
 
 			var rowNumber = rowCapacity;
 
-			return GetPyramidPosition(rowNumber, numberInRow, startPosition, SPAWN_SPACING);
+			return GetPyramidPosition(rowNumber, posInRow, startPosition, SPAWN_SPACING);
 		}
 		Vector3 GetPyramidPosition(int rowNumber, int posInRow, Vector3 startPos, float spacing)
 		{
@@ -152,12 +152,13 @@ namespace AIRogue.GameState.Battle
 
 			var backwardsOffset = Vector3.back * (spacing * spacesFromMiddleToRowEnd);
 
-			//     1		1,  0 spaces from center
-			//   2   3		2,  1 space from center
-			// 4   5   6	3,  2 spaces from center
-			var numberOfSpaces = rowNumber - 1;
-			var leftMostOffset = Vector3.left * (spacing * numberOfSpaces);
-			var spacesFromLeft = posInRow - 1;
+			//       1			1,  0 spaces from center to leftmost
+			//    2  ,  3		2,  1 space from center to leftmost
+			// 4  ,  5  ,  6	3,  2 spaces from center to leftmost
+			// unit every two spaces starting at leftmost: spacesFromLeft = (posInRow - 1) * 2
+
+			var leftMostOffset = Vector3.left * (spacing * spacesFromMiddleToRowEnd);
+			var spacesFromLeft = (posInRow - 1) * 2;
 			var horizontalOffset = leftMostOffset + Vector3.right * (spacing * spacesFromLeft);
 
 			var offset = horizontalOffset + backwardsOffset;
