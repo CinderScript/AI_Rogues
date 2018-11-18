@@ -10,7 +10,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		private const float DISTANCE_BEHIND_LEADER = 10;
 
 		private Unit leader;
-		public FollowLeaderBehavior(UnitController controller) : base( controller ) {}
+		public FollowLeaderBehavior(UnitControllerBase controller) : base( controller ) {}
 
 		public override RunnableBehavior EvaluateTree()
 		{

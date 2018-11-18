@@ -13,7 +13,7 @@ namespace AIRogue.GameState.Battle
 	{
 		public string Name { get; }
 		public SquadFaction Faction { get; }
-		public readonly List<UnitController> Controllers;
+		public readonly List<UnitControllerBase> Controllers;
 		public Unit LeadUnit;
 		public List<Squad> AllSquads { get; private set; }
 
@@ -41,7 +41,7 @@ namespace AIRogue.GameState.Battle
             Name = name;
 			Faction = faction;
 
-			Controllers = new List<UnitController>();
+			Controllers = new List<UnitControllerBase>();
 		}
 
 		public void Update()
@@ -65,7 +65,7 @@ namespace AIRogue.GameState.Battle
 		/// </summary>
 		/// <param name="unitType"></param>
 		/// <param name="spawnLocation"></param>
-		public Unit SpawnUnit<T>(GameObject prefab) where T : UnitController, new()
+		public Unit SpawnUnit<T>(GameObject prefab) where T : UnitControllerBase, new()
         {
 			Unit unit;
 

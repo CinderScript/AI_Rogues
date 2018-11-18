@@ -6,7 +6,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	class HelpAllyBehavior : Behavior
 	{
-		public HelpAllyBehavior(UnitController controller) : base( controller ) { }
+		public HelpAllyBehavior(UnitControllerBase controller) : base( controller ) { }
 
 		public override RunnableBehavior EvaluateTree()
 		{

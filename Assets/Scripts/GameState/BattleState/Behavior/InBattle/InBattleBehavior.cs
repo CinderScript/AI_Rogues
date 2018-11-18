@@ -5,7 +5,7 @@
 		AttackTargetBehavior attackTarget;
 		//HelpAllyBehavior helpAlly;
 
-		public InBattleBehavior(UnitController controller) : base( controller )
+		public InBattleBehavior(UnitControllerBase controller) : base( controller )
 		{
 			attackTarget = new AttackTargetBehavior( controller );
 			//helpAlly = new HelpAllyBehavior( controller );

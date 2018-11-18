@@ -12,10 +12,10 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	abstract class Behavior {
 
-		protected readonly UnitController controller;
+		protected readonly UnitControllerBase controller;
 		protected readonly Unit unit;
 
-		public Behavior(UnitController unitController)
+		public Behavior(UnitControllerBase unitController)
 		{
 			controller = unitController;
 			unit = controller.Unit;
@@ -52,7 +52,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		}
 		protected List<Unit> AlliesInWeaponRange()
 		{
-			List<UnitController> allies = controller.Squad.Controllers;
+			List<UnitControllerBase> allies = controller.Squad.Controllers;
 			List<Unit> alliesInRange = new List<Unit>();
 			Func<Vector3, bool> inRange = unit.WeaponWithLongestRange.InRangeOf;
 
@@ -99,7 +99,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 		InBattleBehavior inBattle;
 		OutOfBattleBehavior outBattle;
 
-		public AIBehaviorRoot(UnitController controller) : base( controller )
+		public AIBehaviorRoot(UnitControllerBase controller) : base( controller )
 		{
 			inBattle = new InBattleBehavior( controller );
 			outBattle = new OutOfBattleBehavior( controller );
@@ -121,7 +121,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 
 	class InputListenerBehavior : RunnableBehavior
 	{
-		public InputListenerBehavior(UnitController controller) : base( controller ) { }
+		public InputListenerBehavior(UnitControllerBase controller) : base( controller ) { }
 
 		public override RunnableBehavior EvaluateTree()
 		{

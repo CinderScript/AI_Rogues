@@ -6,7 +6,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	class HasTargetBehavior : Behavior
 	{
-		public HasTargetBehavior(UnitController controller) : base( controller )
+		public HasTargetBehavior(UnitControllerBase controller) : base( controller )
 		{
 
 		}

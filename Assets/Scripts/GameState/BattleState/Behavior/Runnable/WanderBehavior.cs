@@ -5,7 +5,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	class WanderBehavior : RunnableBehavior
 	{
-		public WanderBehavior(UnitController controller) : base( controller )
+		public WanderBehavior(UnitControllerBase controller) : base( controller )
 		{
 
 		}

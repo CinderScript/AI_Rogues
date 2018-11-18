@@ -11,7 +11,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 
 		private Unit target;
 
-		public AttackTargetBehavior(UnitController controller) : base( controller ) { }
+		public AttackTargetBehavior(UnitControllerBase controller) : base( controller ) { }
 
 		public override RunnableBehavior EvaluateTree()
 		{

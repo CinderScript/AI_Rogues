@@ -10,7 +10,7 @@ namespace AIRogue.GameState.Battle
 	/// This is a controller for AI units and its behaviors will not be choosen 
 	/// through the GUI, but through AI logic.
 	/// </summary>
-	class AIController : UnitController {
+	class AIController : UnitControllerBase {
 
 		private Behavior behaviorTree;
 

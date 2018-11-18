@@ -7,7 +7,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	{
 		private UnitActions actions;
 
-		public RunnableBehavior(UnitController unitController) : base( unitController )
+		public RunnableBehavior(UnitControllerBase unitController) : base( unitController )
 		{
 			actions = new UnitActions();
 		}
@@ -81,9 +81,9 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	/// UnitController's abstract update behavior function can't be set until after 
 	/// UnitController is initialized with a Unit.
 	/// </summary>
-	class StartupBehavior : RunnableBehavior
+	class EmptyBehavior : RunnableBehavior
 	{
-		public StartupBehavior(UnitController unitController) : base( unitController )
+		public EmptyBehavior(UnitControllerBase unitController) : base( unitController )
 		{
 		}
 		public override RunnableBehavior EvaluateTree()

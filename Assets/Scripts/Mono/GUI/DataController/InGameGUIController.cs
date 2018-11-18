@@ -91,7 +91,7 @@ namespace IronGrimoire.Gui.Game
 			guiSystem.SwitchScreens( MatchEndedScreen );
 
 			bool isWin = result == LevelProgress.Win;
-			EventManager.Instance.QueueEvent( new MatchFinishedEvent(isWin) );
+			EventManager.Instance.TriggerEvent( new MatchFinishedEvent(isWin) );
 		}
 
 		bool AllEnemyDestroyed()

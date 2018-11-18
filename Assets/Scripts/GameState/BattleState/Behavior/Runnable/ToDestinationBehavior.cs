@@ -6,7 +6,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 {
 	class ToDestinationBehavior : RunnableBehavior
 	{
-		public ToDestinationBehavior(UnitController controller) : base( controller )
+		public ToDestinationBehavior(UnitControllerBase controller) : base( controller )
 		{
 
 		}

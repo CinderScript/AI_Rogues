@@ -24,7 +24,6 @@ namespace AIRogue.GameState
 	class BattleState : IGameState {
 
 		private readonly List<Squad> squads;
-		private bool isMatchStarted = false;
 		
 		/// <summary>
 		/// Instances a new BattleState creating a list of Squad objects for player and AI.
@@ -33,7 +32,6 @@ namespace AIRogue.GameState
 		/// <param name="levelProperties"></param>
         public BattleState(UnitBank unitBank, WeaponBank weaponBank, LevelProperties levelProperties)
         {
-			EventManager.Instance.AddListenerOnce<MatchStartEvent>( StartMatch );
 
 			/* Populate list of Squads
 			 * Initialize each Squad with the correct UnitController
@@ -56,7 +54,7 @@ namespace AIRogue.GameState
 			GameObject unitPrefab;
 			Unit player;
 			unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
-			player = playerSquad.SpawnUnit<PlayerController>( unitPrefab );
+			player = playerSquad.SpawnUnit<UnitController>( unitPrefab );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.Green_Laser) );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.Red_Laser) );
 
@@ -66,7 +64,7 @@ namespace AIRogue.GameState
 			for (int i = 0; i < 2; i++)
 			{
 				unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
-				player = playerSquad.SpawnUnit<AIController>( unitPrefab );
+				player = playerSquad.SpawnUnit<UnitController>( unitPrefab );
 				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
 				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Cannon ) );
 			}
@@ -75,7 +73,7 @@ namespace AIRogue.GameState
 			for (int i = 0; i < 4; i++)
 			{
 				unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
-				Unit player2 = playerSquad.SpawnUnit<AIController>( unitPrefab );
+				Unit player2 = playerSquad.SpawnUnit<UnitController>( unitPrefab );
 				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Laser ) );
 				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
 			}
@@ -104,28 +102,17 @@ namespace AIRogue.GameState
 		/// </summary>
 		public void Update()
         {
-			if (isMatchStarted)
+			foreach (var squad in squads)
 			{
-				foreach (var squad in squads)
-				{
-					squad.Update();
-				}
-			}
-        }
-		public void FixedUpdate()
-		{
-			if (isMatchStarted)
-			{
-				foreach (var squad in squads)
-				{
-					squad.FixedUpdate();
-				}
+				squad.Update();
 			}
 		}
-
-		void StartMatch(MatchStartEvent matchStartEvent)
+		public void FixedUpdate()
 		{
-			isMatchStarted = true;
+			foreach (var squad in squads)
+			{
+				squad.FixedUpdate();
+			}
 		}
     }
 }

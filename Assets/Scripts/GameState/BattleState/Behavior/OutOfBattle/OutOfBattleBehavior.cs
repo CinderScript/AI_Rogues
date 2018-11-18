@@ -8,7 +8,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	{
 		WanderBehavior wander;
 		FollowLeaderBehavior follow;
-		public OutOfBattleBehavior(UnitController controller) : base( controller )
+		public OutOfBattleBehavior(UnitControllerBase controller) : base( controller )
 		{
 			wander = new WanderBehavior( controller );
 			follow = new FollowLeaderBehavior( controller );
