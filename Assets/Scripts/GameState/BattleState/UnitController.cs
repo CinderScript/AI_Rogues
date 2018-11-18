@@ -1,8 +1,5 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using AIRogue.Events;
+
 using AIRogue.GameObjects;
 using AIRogue.GameState.Battle.BehaviorTree;
 using UnityEngine;
@@ -42,7 +39,7 @@ namespace AIRogue.GameState.Battle
 
 		protected RunnableBehavior Behavior;
 		private float updateBehaviorCooldownTimer = -1;
-		private const float BEHAVIOR_UPDATE_SECONDS = 0.25f;
+		private readonly float BEHAVIOR_UPDATE_SECONDS = 0.20f + Random.Range(0, 0.06f); // so all units don't update at once
 
 		public UnitController()
 		{
@@ -57,6 +54,7 @@ namespace AIRogue.GameState.Battle
 		/// <param name="unit"></param>
 		public virtual void Initialize(Unit unit, Squad squad)
 		{
+			Debug.Log( BEHAVIOR_UPDATE_SECONDS.ToString() );
 			Unit = unit;
 			Squad = squad;
 			Behavior = new StartupBehavior( this );  // needed so that a reference exists when FixedUpdate is called for the first time.
@@ -169,28 +167,5 @@ namespace AIRogue.GameState.Battle
 
 			return attacker;
 		}
-		//// maybe change to closestAllyAttacker
-		//private Unit closestAllyTarget()
-		//{
-		//	Unit allyTarget = null;
-
-		//	if (AlliesWithTargets.Length > 0)
-		//	{
-		//		float shortest = distanceToUnit( AlliesWithTargets[0].Target );
-		//		allyTarget = AlliesWithTargets[0].Target;
-
-		//		for (int i = 1; i < AlliesWithTargets.Length; i++)
-		//		{
-		//			float dist = distanceToUnit( AlliesWithTargets[i].Target );
-		//			if (dist < shortest)
-		//			{
-		//				shortest = dist;
-		//				allyTarget = AlliesWithTargets[i].Target;
-		//			}
-		//		}
-		//	}
-
-		//	return allyTarget;
-		//}
 	}
 }
