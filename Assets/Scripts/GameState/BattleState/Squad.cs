@@ -59,18 +59,12 @@ namespace AIRogue.GameState.Battle
 			}
 		}
 
-		/// <summary>
-		/// Uses the UnitLoader to create a new unit with the properties defined in in the 
-		/// properties list given to the UnitLoader.
-		/// </summary>
-		/// <param name="unitType"></param>
-		/// <param name="spawnLocation"></param>
-		public Unit SpawnUnit<T>(GameObject prefab) where T : UnitControllerBase, new()
-        {
+		public Unit SpawnUnit(GameObject prefab)
+		{
 			Unit unit;
 
 			// spawn unit
-			GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(Controllers.Count), Quaternion.identity );
+			GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos( Controllers.Count ), Quaternion.identity );
 
 			unit = unitSpawn.GetComponent<Unit>();
 			unit.SetSquad( this, Controllers.Count );
@@ -78,9 +72,9 @@ namespace AIRogue.GameState.Battle
 
 			unitSpawn.name = unit.ToString();
 
-			T controller = new T();
-            controller.Initialize( unit, this );
-            Controllers.Add( controller );
+			UnitController controller = new UnitController();
+			controller.Initialize( unit, this );
+			Controllers.Add( controller );
 
 			if (Controllers.Count == 1)
 			{
@@ -88,7 +82,37 @@ namespace AIRogue.GameState.Battle
 			}
 
 			return unit;
-        }
+		}
+		///// <summary>
+		///// Uses the UnitLoader to create a new unit with the properties defined in in the 
+		///// properties list given to the UnitLoader.
+		///// </summary>
+		///// <param name="unitType"></param>
+		///// <param name="spawnLocation"></param>
+		//public Unit SpawnUnit<T>(GameObject prefab) where T : UnitControllerBase, new()
+		//      {
+		//	Unit unit;
+
+		//	// spawn unit
+		//	GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos(Controllers.Count), Quaternion.identity );
+
+		//	unit = unitSpawn.GetComponent<Unit>();
+		//	unit.SetSquad( this, Controllers.Count );
+		//	unit.OnDamageTaken += memberTookDamage;
+
+		//	unitSpawn.name = unit.ToString();
+
+		//	T controller = new T();
+		//          controller.Initialize( unit, this );
+		//          Controllers.Add( controller );
+
+		//	if (Controllers.Count == 1)
+		//	{
+		//		LeadUnit = controller.Unit;
+		//	}
+
+		//	return unit;
+		//      }
 		public void EngageSquad(Squad squad)
 		{
 			// if not already engaged, add

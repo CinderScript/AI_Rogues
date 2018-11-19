@@ -30,7 +30,6 @@ namespace AIRogue.GameState.Battle
 			EventManager.Instance.AddListenerOnce<MatchFinishedEvent>( OnMatchFinished );
 			EventManager.Instance.AddListener<UnitSelectedEvent>( OnUnitSelectionChange );
 		}
-
 		protected override RunnableBehavior SelectCurrentBehavior()
 		{
 			if (unitsPaused)

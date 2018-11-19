@@ -54,7 +54,7 @@ namespace AIRogue.GameState
 			GameObject unitPrefab;
 			Unit player;
 			unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
-			player = playerSquad.SpawnUnit<UnitController>( unitPrefab );
+			player = playerSquad.SpawnUnit( unitPrefab );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.Green_Laser) );
 			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.Red_Laser) );
 
@@ -64,7 +64,7 @@ namespace AIRogue.GameState
 			for (int i = 0; i < 2; i++)
 			{
 				unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
-				player = playerSquad.SpawnUnit<UnitController>( unitPrefab );
+				player = playerSquad.SpawnUnit( unitPrefab );
 				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
 				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Cannon ) );
 			}
@@ -73,7 +73,7 @@ namespace AIRogue.GameState
 			for (int i = 0; i < 4; i++)
 			{
 				unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
-				Unit player2 = playerSquad.SpawnUnit<UnitController>( unitPrefab );
+				Unit player2 = playerSquad.SpawnUnit( unitPrefab );
 				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Laser ) );
 				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
 			}
@@ -87,7 +87,7 @@ namespace AIRogue.GameState
 				for (int ii = 0; ii < 1; ii++)
 				{
 					unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
-					Unit ai = aiSquad.SpawnUnit<AIController>( unitPrefab );
+					Unit ai = aiSquad.SpawnUnit( unitPrefab );
 					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Green_Laser ) );
 					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Laser ) );
 				}

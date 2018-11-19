@@ -59,23 +59,7 @@ namespace AIRogue.GameState.Battle
 			Squad = squad;
 			Behavior = new EmptyBehavior( this );  // needed so that a reference exists when FixedUpdate is called for the first time.
 
-			///// Set each OnTargetChosen delegate with each controller's <see cref="AllyChoseTarget"/> method
-			//foreach (var controller in Squad.Controllers)
-			//{
-			//	// should always be true if initialized before being added to squad
-			//	if (!ReferenceEquals( this, controller ))
-			//	{
-			//		// add other controller's events to this delegate
-			//		OnTargetChosen += controller.AllyChoseTarget;
-			//		controller.OnTargetChosen += AllyChoseTarget;
-			//	}
-			//}
-
-
-			//EventManager.Instance.AddListener<UnitDestroyedEvent>( UnitDestroyedHandler );
 			Unit.OnUnitDestroyed += thisUnitDestroyedHandler;
-
-
 		}
 
 		protected abstract RunnableBehavior SelectCurrentBehavior();
