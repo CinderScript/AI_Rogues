@@ -30,14 +30,18 @@ namespace AIRogue.GameState
 		/// </summary>
 		/// <param name="unitBank"></param>
 		/// <param name="levelProperties"></param>
-        public BattleState(UnitBank unitBank, WeaponBank weaponBank, LevelProperties levelProperties)
+        public BattleState(BattleStateDriver driver)
         {
+			UnitBank unitBank = driver.UnitLibrary;
+			WeaponBank weaponBank = driver.WeaponLibrary;
+			LevelProperties levelProperties = driver.LevelProperties;
+			GameSave gameSave = driver.GameSave;
 
 			/* Populate list of Squads
 			 * Initialize each Squad with the correct UnitController
 			 * Give each Squad a reference to...
 			 */
-			
+
 			squads = new List<Squad>();
 
 			/* Add Squads to List
@@ -51,32 +55,36 @@ namespace AIRogue.GameState
 			Squad playerSquad = new Squad( squads, levelProperties.PlayerStart.position, "Player", SquadFaction.Player );
 			squads.Add( playerSquad );
 
-			GameObject unitPrefab;
-			Unit player;
-			unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
-			player = playerSquad.SpawnUnit( unitPrefab );
-			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.Green_Laser) );
-			player.SpawnWeapon( weaponBank.GetPrefab(WeaponModel.Red_Laser) );
-
-			EventManager.Instance.QueueEvent( new UnitSelectedEvent( player ) );
-
-			// player 
-			for (int i = 0; i < 2; i++)
+			foreach (var playerUnit in gameSave.Squad)
 			{
-				unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
-				player = playerSquad.SpawnUnit( unitPrefab );
-				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
-				player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Cannon ) );
+				var unitPrefab = unitBank.GetPrefab( playerUnit.UnitModel );
+				var unit = playerSquad.SpawnUnit( unitPrefab );
+
+				foreach (var weapon in playerUnit.Weapons)
+				{
+					unit.SpawnWeapon( weaponBank.GetPrefab( weapon ) );
+				}
 			}
 
-			// player 
-			for (int i = 0; i < 4; i++)
-			{
-				unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
-				Unit player2 = playerSquad.SpawnUnit( unitPrefab );
-				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Laser ) );
-				player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
-			}
+			EventManager.Instance.QueueEvent( new UnitSelectedEvent( playerSquad.LeadUnit ) );
+
+			//// player 
+			//for (int i = 0; i < 2; i++)
+			//{
+			//	unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
+			//	player = playerSquad.SpawnUnit( unitPrefab );
+			//	player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
+			//	player.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Cannon ) );
+			//}
+
+			//// player 
+			//for (int i = 0; i < 4; i++)
+			//{
+			//	unitPrefab = unitBank.GetPrefab( UnitModel.Simple_Fighter );
+			//	Unit player2 = playerSquad.SpawnUnit( unitPrefab );
+			//	player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Laser ) );
+			//	player2.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Blue_Cannon ) );
+			//}
 
 			/* ADD ENEMY SQUADS */
 			for (int i = 0; i < levelProperties.AIStart.Count; i++)
@@ -86,7 +94,7 @@ namespace AIRogue.GameState
 
 				for (int ii = 0; ii < 1; ii++)
 				{
-					unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
+					var unitPrefab = unitBank.GetPrefab( UnitModel.Test_Unit );
 					Unit ai = aiSquad.SpawnUnit( unitPrefab );
 					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Green_Laser ) );
 					ai.SpawnWeapon( weaponBank.GetPrefab( WeaponModel.Red_Laser ) );

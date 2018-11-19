@@ -13,7 +13,12 @@ namespace AIRogue.Scene
 	/// </summary>
 	class BattleStateDriver : MonoBehaviour {
 
-        private GameStateManager game;
+		public UnitBank UnitLibrary { get; private set; }
+		public WeaponBank WeaponLibrary { get; private set; }
+		public LevelProperties LevelProperties { get; private set; }
+		public GameSave GameSave { get; private set; }
+
+		private GameStateManager game;
 
         void Awake()
         {
@@ -22,20 +27,21 @@ namespace AIRogue.Scene
 
         void Start()
         {
-			UnitBank units = GetComponentInChildren<UnitBank>();
-			WeaponBank weaponBank = GetComponentInChildren<WeaponBank>();
-			LevelProperties levelProperties = GetComponentInChildren<LevelProperties>();
+			UnitLibrary = GetComponentInChildren<UnitBank>();
+			WeaponLibrary = GetComponentInChildren<WeaponBank>();
+			LevelProperties = GetComponentInChildren<LevelProperties>();
+			GameSave = GetComponentInChildren<GameSave>();
 
-            game.LoadBattleState( units, weaponBank, levelProperties );
-        }
+			game.LoadBattleState( this );
+		}
 
-        void FixedUpdate()
-        {
-            game.FixedUpdateGame();
-        }
-        void Update()
-        {
+		void FixedUpdate()
+		{
+			game.FixedUpdateGame();
+		}
+		void Update()
+		{
             game.UpdateGame();
-        }
-    }
+		}
+	}
 }

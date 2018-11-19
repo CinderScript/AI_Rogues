@@ -63,9 +63,9 @@ namespace AIRogue.GameState
         /// </summary>
         /// <param name="gridProps">Grid settings to be used for the current scene's world grid.</param>
         /// <param name="unitBank">Contains list of all units available for this battle.</param>
-        public void LoadBattleState(UnitBank unitBank, WeaponBank weaponBank, LevelProperties levelProperties)
+        public void LoadBattleState(BattleStateDriver driver)
         {
-            BattleState battleState = new BattleState( unitBank, weaponBank, levelProperties);
+            BattleState battleState = new BattleState( driver );
             currentState = battleState;
         }
 
