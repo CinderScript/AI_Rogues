@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace AIRogue.GameObjects
 {
-
 	/// <summary>
 	/// A gameplay unit used in AI Rogue.
 	/// </summary>
@@ -47,6 +46,7 @@ namespace AIRogue.GameObjects
 
 		public List<Weapon> Weapons = new List<Weapon>();
 		public WeaponMount[] WeaponMounts { get; private set; }
+		private WeaponsGroupController weaponsController;
 		public Shield Shield { get; private set; }
 
 		public Weapon WeaponWithLongestRange { get; private set; }
@@ -76,6 +76,8 @@ namespace AIRogue.GameObjects
 
 			FollowModule = new TargetingModule( transform, Rigidbody, MaxVelocity );
 			Engine = GetComponentInChildren<Engine>();
+
+			EventManager.Instance.AddListenerOnce<BattleStateStartEvent>( OnBattleStartHandler );
 		}
 
 		public delegate void DamageTakenReporter(Unit damagedUnit, Unit attacker);
@@ -139,10 +141,11 @@ namespace AIRogue.GameObjects
 		}
 		public void FireWeapons()
 		{
-			foreach (var weapon in Weapons)
-			{
-				weapon.FireWeapon();
-			}
+			weaponsController.FireWeapons();
+			//foreach (var weapon in Weapons)
+			//{
+			//	weapon.FireWeapon();
+			//}
 		}
 
 		/// <summary>
@@ -187,7 +190,7 @@ namespace AIRogue.GameObjects
 			int weaponNumber = Weapons.Count;
 			Transform mount = WeaponMounts[weaponNumber].transform;
 
-			// spawn unit
+			// spawn weap
 			var weaponSpawn = Instantiate( weaponPrefab, mount.position, Quaternion.identity, mount );
 			var weapon = weaponSpawn.GetComponent<Weapon>();
 			weapon.WeaponPosition = Weapons.Count;
@@ -251,6 +254,12 @@ namespace AIRogue.GameObjects
 
 			EventManager.Instance.QueueEvent( new UnitDestroyedEvent( this ) );
 			OnUnitDestroyed?.Invoke( this );
+		}
+
+		void OnBattleStartHandler(BattleStateStartEvent gameEvent)
+		{
+			weaponsController = gameObject.AddComponent<WeaponsGroupController>();
+			weaponsController.Initialize( Weapons );
 		}
 
 		public override string ToString()

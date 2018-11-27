@@ -1,12 +1,10 @@
-﻿using AIRogue.Exceptions;
+﻿using System;
+using AIRogue.Exceptions;
 
 using UnityEngine;
 
 namespace AIRogue.GameObjects
 {
-	/// <summary>
-	/// A gameplay unit used in Pawn of Kings.
-	/// </summary>
 	abstract class Weapon : Purchasable
 	{
 		[Header( "Gameplay Properties" )]
@@ -36,6 +34,8 @@ namespace AIRogue.GameObjects
 
 		public int WeaponPosition { get; set; }
 
+		public float TimeSinceActivation { get; private set; }
+
 		// Used for targeting logic
 		public abstract float DamagerVelocity { get; }
 		public float WeaponDPS { get; private set; }
@@ -48,7 +48,6 @@ namespace AIRogue.GameObjects
 		protected Unit unit;
 		protected Transform damagerSpawnPoint;
 
-		private float shotCooldownTimer = -1;
 		float secondsPerShot;
 
 		protected virtual void Awake()
@@ -79,17 +78,31 @@ namespace AIRogue.GameObjects
 		}
 		protected virtual void Update()
 		{
-			shotCooldownTimer -= Time.deltaTime;
+			TimeSinceActivation += Time.deltaTime;
 		}
 
-		public void FireWeapon()
+		public bool FireWeapon()
 		{
-			if ( shotCooldownTimer < 0)
+			if (TimeSinceActivation > secondsPerShot)
 			{
-				shotCooldownTimer = secondsPerShot;
-				activateShot();
+				TimeSinceActivation = 0;
 				audio?.Play();
+
+				activateShot();
+
+				return true;
 			}
+			else
+			{
+				return false;
+			}
+
+			//if ( shotCooldownTimer < 0)
+			//{
+			//	shotCooldownTimer = secondsPerShot;
+			//	audio?.Play();
+			//	activateShot();
+			//}
 		}
 
 		protected abstract void activateShot();
