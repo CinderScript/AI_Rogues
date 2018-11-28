@@ -20,7 +20,7 @@ namespace AIRogue.Gui
 		{
 			var name = ship.DisplayName;
 			var shield = ship.ShieldCapacity	.ToString( "0.#" );
-			var hull = ship.Health				.ToString("0.#");
+			var hull = ship.HullCapacity		.ToString("0.#");
 			var velocity = ship.MaxVelocity		.ToString("0.#");
 			var accel = ship.AccelerationForce	.ToString( "0.#" );
 			var turn = ship.RotationSpeed		.ToString( "0.#" );

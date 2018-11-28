@@ -48,12 +48,12 @@ namespace IronGrimoire.Gui.Game
 		public void SetText(Unit unit)
 		{
 			// if ship is still alive
-			if (unit.Health > 0)
+			if (unit.Hull > 0)
 			{
-				var hull = unit.Health.ToString( "0" );
+				var hull = unit.Hull.ToString( "0" );
 				var shield = unit.Shield.HitPoints.ToString( "0" );
 
-				var hullMax = 50;
+				var hullMax = unit.HullCapacity.ToString( "0" );
 				var shieldMax = unit.Shield.HitPointCapacity.ToString( "0" );
 
 				Icon.sprite = unit.Icon;

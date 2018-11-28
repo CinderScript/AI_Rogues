@@ -19,8 +19,8 @@ namespace AIRogue.GameObjects
 		public int WeaponMountCount = 1;
 
 		[Header( "Condition" )]
-		public float Health = 1;
-		public float ShieldCapacity = 1;
+		public float HullCapacity = 10;
+		public float ShieldCapacity = 20;
 
 		[Header( "Movement" )]
 		public float MaxVelocity = 5;
@@ -34,6 +34,7 @@ namespace AIRogue.GameObjects
 		public GameObject DeathExplosionEffect = null;
 		public GameObject ShieldImpactEffect = null;
 
+		public float Hull { get; private set; }
 		public bool IsDestroyed { get; private set; }
 
 		public Squad Squad { get; private set; }
@@ -65,6 +66,7 @@ namespace AIRogue.GameObjects
 		void Awake()
 		{
 			IsDestroyed = false;
+			Hull = HullCapacity;
 
 			WeaponMounts = GetComponentsInChildren<WeaponMount>();
 			Shield = GetComponentInChildren<Shield>();
@@ -166,9 +168,9 @@ namespace AIRogue.GameObjects
 		/// <param name="damage"></param>
 		public void TakeDamage(float damage)
 		{
-			Health -= damage;
+			Hull -= damage;
 
-			if (Health <= 0)
+			if (Hull <= 0)
 			{
 				destroyShip();
 			}
