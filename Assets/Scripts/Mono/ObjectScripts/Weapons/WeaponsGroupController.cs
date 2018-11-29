@@ -11,7 +11,7 @@ namespace AIRogue.GameObjects
 	/// </summary>
 	class WeaponsGroupController : MonoBehaviour
 	{
-		private const float TIME_BETWEEN_SHOTS = 0.05f;
+		private const float TIME_BETWEEN_SHOTS = 0.02f;
 
 		private List<Weapon> weapons;
 		private float cooldownTimer = -1;
