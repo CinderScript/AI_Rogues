@@ -20,7 +20,7 @@ namespace IronGrimoire.Gui.Game
 			base.Awake();
 
 			game = GetComponentInParent<PreGameGUIController>();
-			base.OnOpened.AddListener( this.OnOpened );
+			base.OnOpened.AddListener( this.OnOpenedHandler );
 		}
 		protected override void Start()
 		{
@@ -31,10 +31,10 @@ namespace IronGrimoire.Gui.Game
 		{
 			game.GameSave.NewGame();
 			Debug.Log( game.GameSave.ToString() );
-			OnOpened();
+			OnOpenedHandler();
 		}
 
-		private void OnOpened()
+		private void OnOpenedHandler()
 		{
 			var funds = game.GameSave.Funds;
 			var shipCount = game.GameSave.Squad.Count;
