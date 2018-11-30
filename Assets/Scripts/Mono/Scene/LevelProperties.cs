@@ -20,5 +20,16 @@ namespace AIRogue.Scene {
 
 		public Transform PlayerStart = null;
 		public List<Transform> AIStart = null;
+
+		private void Awake()
+		{
+			// remove graphical aid used in Editor Mode if they exist
+			PlayerStart.gameObject.SetActive( false );
+
+			foreach (var transform in AIStart)
+			{
+				transform.gameObject.SetActive( false );
+			}
+		}
 	}
 }
