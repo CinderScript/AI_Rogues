@@ -20,29 +20,25 @@ namespace IronGrimoire.Gui.Game
 			base.Awake();
 
 			game = GetComponentInParent<PreGameGUIController>();
-			OnOpened.AddListener( SetText );
+			base.OnOpened.AddListener( this.OnOpened );
 		}
 		protected override void Start()
 		{
 			base.Start();
 		}
 		
-		public void Play()
-		{
-			GUISystem.LoadScene( "RedCanyon" );
-		}
 		public void ResetSavedInfo()
 		{
 			game.GameSave.NewGame();
 			Debug.Log( game.GameSave.ToString() );
-			SetText();
+			OnOpened();
 		}
 
-		private void SetText()
+		private void OnOpened()
 		{
 			var funds = game.GameSave.Funds;
 			var shipCount = game.GameSave.Squad.Count;
-			var level = "Sector 7";
+			var level = game.SelectedLevel.DisplayName;
 			var earnings = 750;
 
 			Funds.text = $"Funds: ${funds}";

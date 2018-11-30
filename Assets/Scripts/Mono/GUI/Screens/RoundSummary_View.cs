@@ -40,7 +40,7 @@ namespace IronGrimoire.Gui.Game
 
 			ShipsDestroyed.text = "Enemy Ships Destroyed: " + game.GetEnemyDestroyedCount();
 			ShipsLost.text = "Player Ships Lost: " + game.GetPlayerDestroyedCount();
-			Level.text = "Location: " + game.LevelProperties.LevelName;
+			Level.text = "Location: " + game.LevelProperties.DisplayName;
 		}
 
 		public void EndGame()

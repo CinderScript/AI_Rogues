@@ -12,12 +12,13 @@ namespace AIRogue.Scene {
     /// </summary>
     class LevelProperties : MonoBehaviour {
 
-		public string LevelName = null;
+		public string DisplayName = null;
+		public string SceneName = null;
 		public int Payout = 500;
-		public int LevelDifficulty = 1;
+		public int EnemyRank = 1;
+		public int EnemyCount = 1;
 
 		public Transform PlayerStart = null;
 		public List<Transform> AIStart = null;
-
 	}
 }

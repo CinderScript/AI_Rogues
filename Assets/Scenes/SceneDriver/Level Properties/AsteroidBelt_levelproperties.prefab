@@ -9,53 +9,53 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1412317522145862}
+  m_RootGameObject: {fileID: 1476039183296912}
   m_IsPrefabAsset: 1
---- !u!1 &1412317522145862
+--- !u!1 &1476039183296912
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4866247564103314}
-  - component: {fileID: 114511670844695182}
+  - component: {fileID: 4802363752687820}
+  - component: {fileID: 114205788915888644}
   m_Layer: 0
-  m_Name: RedCanyon_levelproperties
+  m_Name: AsteroidBelt_levelproperties
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4866247564103314
+--- !u!4 &4802363752687820
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1412317522145862}
+  m_GameObject: {fileID: 1476039183296912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 596.3862, y: 301.471, z: -498.42337}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114511670844695182
+--- !u!114 &114205788915888644
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1412317522145862}
+  m_GameObject: {fileID: 1476039183296912}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 214262b529a25f4449f4fee777c1a2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayName: Red Canyon
-  SceneName: RedCanyon
-  Payout: 200
-  EnemyRank: 1
-  EnemyCount: 2
+  DisplayName: Asteroid Belt
+  SceneName: AsteroidBelt
+  Payout: 1000
+  EnemyRank: 2
+  EnemyCount: 3
   PlayerStart: {fileID: 0}
   AIStart:
   - {fileID: 0}

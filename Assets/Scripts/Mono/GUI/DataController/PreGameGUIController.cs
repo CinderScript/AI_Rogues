@@ -14,9 +14,22 @@ namespace IronGrimoire.Gui.Game
 		public GameSave GameSave;
 		public UnitBank ShipLibrary;
 		public WeaponBank WeaponLibrary;
+		public LevelPropertiesBank LevelLibrary;
 
+		public LevelProperties SelectedLevel { get; set; }
 		public UnitSave SelectedUnit_Save { get; private set; }
 		public Unit SelectedUnit_Stats { get; private set; }
+
+
+		void Start()
+		{
+			SelectedLevel = LevelLibrary.GetAllLevels()[0];
+		}
+
+		public void LoadSelectedLevel()
+		{
+			GetComponent<GUISystem>().LoadScene( SelectedLevel.SceneName );
+		}
 
 		public void SetSelectedUnit(UnitSave unit)
 		{

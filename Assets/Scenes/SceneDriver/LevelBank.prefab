@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1412317522145862}
+  m_RootGameObject: {fileID: 1898567112486340}
   m_IsPrefabAsset: 1
---- !u!1 &1412317522145862
+--- !u!1 &1898567112486340
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4866247564103314}
-  - component: {fileID: 114511670844695182}
+  - component: {fileID: 4916983493777432}
+  - component: {fileID: 114097675450587226}
   m_Layer: 0
-  m_Name: RedCanyon_levelproperties
+  m_Name: LevelBank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4866247564103314
+--- !u!4 &4916983493777432
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1412317522145862}
+  m_GameObject: {fileID: 1898567112486340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,22 +40,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114511670844695182
+--- !u!114 &114097675450587226
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1412317522145862}
+  m_GameObject: {fileID: 1898567112486340}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214262b529a25f4449f4fee777c1a2f4, type: 3}
+  m_Script: {fileID: 11500000, guid: bdad74eab5e6a394fb9981a1f09830ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayName: Red Canyon
-  SceneName: RedCanyon
-  Payout: 200
-  EnemyRank: 1
-  EnemyCount: 2
-  PlayerStart: {fileID: 0}
-  AIStart:
-  - {fileID: 0}
+  LevelPrefabs:
+  - {fileID: 1412317522145862, guid: 06cad821458f32741810fe714b7109ef, type: 2}
+  - {fileID: 1476039183296912, guid: 1f19878a3ffc7634f9816a530f97bad7, type: 2}
