@@ -113,7 +113,7 @@ MonoBehaviour:
   SceneName: RedCanyon
   Payout: 200
   EnemyRank: 1
-  EnemyCount: 2
+  EnemyCount: 3
   PlayerStart: {fileID: 4804528399344906}
   AIStart:
   - {fileID: 4256352907397256}

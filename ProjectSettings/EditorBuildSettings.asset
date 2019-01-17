@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AsteroidBelt.unity
     guid: 6a3fa40929bfaf94a918fbd8fb9853a0
+  - enabled: 1
+    path: Assets/Scenes/CloudWorld.unity
+    guid: 9d6a78b271fcf3241ae4186fe9e5d26f
   m_configObjects: {}

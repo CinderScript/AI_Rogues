@@ -64,11 +64,11 @@ namespace AIRogue.GameState.Battle
 			Unit unit;
 
 			// spawn unit
-			GameObject unitSpawn = Object.Instantiate( prefab, newUnitPos( Controllers.Count ), Quaternion.identity );
+			GameObject unitSpawn = Object.Instantiate( prefab, NewUnitPos( Controllers.Count ), Quaternion.identity );
 
 			unit = unitSpawn.GetComponent<Unit>();
 			unit.SetSquad( this, Controllers.Count );
-			unit.OnDamageTaken += memberTookDamage;
+			unit.OnDamageTaken += MemberTookDamage;
 
 			unitSpawn.name = unit.ToString();
 
@@ -132,8 +132,23 @@ namespace AIRogue.GameState.Battle
 				}
 			}
 		}
+		public void UnitDestroyed(UnitControllerBase controller)
+		{
+			Controllers.Remove( controller );
+
+			if (controller.Unit == LeadUnit)
+			{
+				// select new leader
+				if (Controllers.Count > 0)
+				{
+					LeadUnit = Controllers[0].Unit;
+					EventManager.Instance.QueueEvent( new UnitSelectedEvent( LeadUnit ) );
+				}
+
+			}
+		}
 		
-		private void memberTookDamage(Unit squadMember, Unit attacker)
+		private void MemberTookDamage(Unit squadMember, Unit attacker)
 		{
 			EventManager.Instance.QueueEvent( new UnitDamagedEvent( squadMember ) );
 
@@ -151,7 +166,7 @@ namespace AIRogue.GameState.Battle
 		/// Calculates the position a new unit should be spawned at.
 		/// </summary>
 		/// <returns></returns>
-		private Vector3 newUnitPos( int unitNumber )
+		private Vector3 NewUnitPos( int unitNumber )
 		{
 			var rowCapacity = 1;  //same as row number
 			var posInRow = 1;

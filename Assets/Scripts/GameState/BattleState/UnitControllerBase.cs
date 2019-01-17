@@ -70,7 +70,7 @@ namespace AIRogue.GameState.Battle
 
 		private void thisUnitDestroyedHandler(Unit unit)
 		{
-			Squad.Controllers.Remove( this );
+			Squad.UnitDestroyed( this );
 		}
 		private void targetDestroyedHandler(Unit unit)
 		{

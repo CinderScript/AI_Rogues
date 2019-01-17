@@ -153,7 +153,7 @@ namespace IronGrimoire.Gui
 				{
 					// loading bar progress
 					var loadingProgress = Mathf.Clamp01( asyncOperation.progress / 0.9f ) * 100;
-					TransitionPercentText.text = $"Loading: {loadingProgress.ToString("0%")}";
+					TransitionPercentText.text = $"Loading: {loadingProgress.ToString("###%")}";
 				}
 
 				// scene has loaded as much as possible, the last 10% can't be multi-threaded
