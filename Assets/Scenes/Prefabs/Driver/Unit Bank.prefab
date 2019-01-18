@@ -54,3 +54,5 @@ MonoBehaviour:
   UnitPrefabs:
   - {fileID: 1955995641078418, guid: b939e8facc7b7f642b1513dbdcc0a8ea, type: 2}
   - {fileID: 1486090201975002, guid: f84922b9beb0a3a4a914326801d4170e, type: 2}
+  - {fileID: 1000627657037410, guid: b44cc8683e052c14a86bb7e050ccd97f, type: 2}
+  - {fileID: 1420363772968782, guid: a626e8c7d20e325418705d259f2ceae5, type: 2}

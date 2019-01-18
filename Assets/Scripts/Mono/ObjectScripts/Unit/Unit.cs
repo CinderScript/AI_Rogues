@@ -275,6 +275,10 @@ namespace AIRogue.GameObjects
 		Not_Found = 0,
 		Test_Unit = 1,
 		Simple_Fighter = 2,
-		Space_Fighter = 3
+		Space_Fighter = 3,
+		Trident = 4,
+		Voyager = 5,
+		Luminaris = 6,
+		Corvette = 7
 	}
 }

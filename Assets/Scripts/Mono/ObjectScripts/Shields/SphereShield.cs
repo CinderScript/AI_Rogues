@@ -2,9 +2,6 @@
 
 namespace AIRogue.GameObjects {
 
-	/// <summary>
-	/// A gameplay unit used in Pawn of Kings.
-	/// </summary>
 	class SphereShield : Shield
 	{
 		public Gradient ShieldConditionColor;
