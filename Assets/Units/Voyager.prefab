@@ -1410,15 +1410,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f2a1e2d660aa74a859e4620e70842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 36dd6b54f3406de4587e96d63810a0ec, type: 3}
+  Icon: {fileID: 21300000, guid: 09157c0c74734364d9d78e5853b98c60, type: 3}
   Value: 1500
   UnitModel: 5
   WeaponMountCount: 2
   HullCapacity: 5
   ShieldCapacity: 15
   MaxVelocity: 10
-  AccelerationForce: 6
-  RotationSpeed: 100
+  AccelerationForce: 7
+  RotationSpeed: 220
   WeaponLevel: 1
   DeathExplosionEffect: {fileID: 1957113391800994, guid: 104c8c7454010d14e9185578425d34ad,
     type: 2}

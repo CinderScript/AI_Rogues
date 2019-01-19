@@ -1102,7 +1102,7 @@ MonoBehaviour:
   AccelerationForce: 15
   RotationSpeed: 200
   WeaponLevel: 1
-  DeathExplosionEffect: {fileID: 1957113391800994, guid: 104c8c7454010d14e9185578425d34ad,
+  DeathExplosionEffect: {fileID: 1454478764928534, guid: bad81c99de344d045b7b395c4ec660e9,
     type: 2}
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
     type: 2}
