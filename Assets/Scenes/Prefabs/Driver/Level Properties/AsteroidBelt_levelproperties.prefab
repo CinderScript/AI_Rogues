@@ -199,8 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: Asteroid Belt
   SceneName: AsteroidBelt
-  Payout: 1000
-  EnemyRank: 2
+  Payout: 3500
+  EnemyRank: 4
   EnemyCount: 3
   PlayerStart: {fileID: 4954568510128610}
   AIStart:

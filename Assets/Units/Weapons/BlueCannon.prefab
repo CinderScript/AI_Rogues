@@ -701,11 +701,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 8966c8c81ac54e2418f87a2f86a0fa8e, type: 3}
-  Value: 300
+  Value: 1800
+  Rank: 4
   WeaponModel: 3
-  Damage: 3
+  Damage: 25
   RateOfFire: 1.5
   Range: 15
   DamagerPrefab: {fileID: 1557922754166998, guid: f471342c0328d024680fec39d4d4a74f,
     type: 2}
-  Velocity: 8
+  Velocity: 10

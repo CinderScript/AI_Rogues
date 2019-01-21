@@ -937,15 +937,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: fb23c544b039eec469eb215c5a5d020c, type: 3}
-  Value: 100
+  Value: 6000
+  Rank: 5
   UnitModel: 7
   WeaponMountCount: 4
-  HullCapacity: 5
-  ShieldCapacity: 10
-  MaxVelocity: 5
-  AccelerationForce: 3
-  RotationSpeed: 80
-  WeaponLevel: 1
+  HullCapacity: 150
+  ShieldCapacity: 350
+  MaxVelocity: 8
+  AccelerationForce: 6
+  RotationSpeed: 95
   DeathExplosionEffect: {fileID: 1822756548200026, guid: 97c3fc3043f2fee44bc8d8528cd9c596,
     type: 2}
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,

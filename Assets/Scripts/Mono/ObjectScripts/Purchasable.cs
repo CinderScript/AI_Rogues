@@ -13,7 +13,8 @@ namespace AIRogue.GameObjects
 		public Sprite Icon;
 
 		[Header( "Purchasable - Properties" )]
-		public int Value;
+		public int Value = 100;
+		public int Rank = 1;
 
 		/// <summary>
 		/// Name to be used when displaying item in the GUI.

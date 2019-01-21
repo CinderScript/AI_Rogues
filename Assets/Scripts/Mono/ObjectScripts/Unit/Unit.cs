@@ -27,9 +27,6 @@ namespace AIRogue.GameObjects
 		public float AccelerationForce = 3;
 		public float RotationSpeed = 30;
 
-		[Header( "Attack" )]
-		public int WeaponLevel = 1;
-
 		[Header( "Particle Effects" )]
 		public GameObject DeathExplosionEffect = null;
 		public GameObject ShieldImpactEffect = null;

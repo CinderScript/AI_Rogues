@@ -483,8 +483,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: f1fa9635e12241e44bfd8e440fd5c10e, type: 3}
   Value: 100
+  Rank: 1
   WeaponModel: 4
-  Damage: 0.15
+  Damage: 0.1
   RateOfFire: 10
   Range: 20
   DamagerPrefab: {fileID: 1315191894800984, guid: 28e4538b28143934daa4a5c7cd66560e,

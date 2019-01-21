@@ -1062,8 +1062,8 @@ MonoBehaviour:
   Value: 500
   UnitModel: 1
   WeaponMountCount: 1
-  HullCapacity: 2
-  ShieldCapacity: 3
+  HullCapacity: 5
+  ShieldCapacity: 10
   MaxVelocity: 12
   AccelerationForce: 8
   RotationSpeed: 170

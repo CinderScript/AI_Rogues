@@ -199,8 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: Cloud World
   SceneName: CloudWorld
-  Payout: 2000
-  EnemyRank: 3
+  Payout: 1000
+  EnemyRank: 2
   EnemyCount: 4
   PlayerStart: {fileID: 4757862367251182}
   AIStart:
