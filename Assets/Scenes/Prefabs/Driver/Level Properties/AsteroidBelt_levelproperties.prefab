@@ -201,7 +201,7 @@ MonoBehaviour:
   SceneName: AsteroidBelt
   Payout: 3500
   EnemyRank: 4
-  EnemyCount: 3
+  EnemyCount: 5
   PlayerStart: {fileID: 4954568510128610}
   AIStart:
   - {fileID: 4869791020459066}

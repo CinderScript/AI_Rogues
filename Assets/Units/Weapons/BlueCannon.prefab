@@ -704,9 +704,9 @@ MonoBehaviour:
   Value: 1800
   Rank: 4
   WeaponModel: 3
-  Damage: 25
-  RateOfFire: 1.5
-  Range: 15
+  Damage: 10
+  RateOfFire: 0.6
+  Range: 30
   DamagerPrefab: {fileID: 1557922754166998, guid: f471342c0328d024680fec39d4d4a74f,
     type: 2}
   Velocity: 10

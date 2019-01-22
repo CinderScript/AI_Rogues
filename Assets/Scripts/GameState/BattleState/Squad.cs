@@ -25,7 +25,8 @@ namespace AIRogue.GameState.Battle
 		private readonly UnitBank unitBank;
 		private readonly Vector3 startPosition;
 
-		private const int SPAWN_SPACING = 11;
+		private const int SPAWN_SPACING = 18
+			;
 
 		/// <summary>
 		/// Instances a new Squad containing a List of UnitControllers.  A deep copy of controllerBlueprint is made for each 

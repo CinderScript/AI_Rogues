@@ -371,6 +371,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 344.9
       objectReference: {fileID: 0}
+    - target: {fileID: 114511670844695182, guid: 06cad821458f32741810fe714b7109ef,
+        type: 2}
+      propertyPath: EnemyCount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06cad821458f32741810fe714b7109ef, type: 2}
   m_IsPrefabAsset: 0
