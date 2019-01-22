@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using AIRogue.Exceptions;
 using AIRogue.GameObjects;
@@ -62,6 +63,33 @@ namespace AIRogue.Scene
 		public Weapon GetWeapon(WeaponModel weapon)
 		{
 			return GetPrefab( weapon ).GetComponent<Weapon>();
+		}
+
+		public List<GameObject> GetWeaponPrefabsByRank(int rank)
+		{
+			var prefabs = new List<GameObject>();
+
+			if (rank < 1)
+			{
+				prefabs = null;
+			}
+			else
+			{
+				foreach (var prefab in WeaponPrefabs)
+				{
+					if (prefab.GetComponent<Weapon>().Rank == rank)
+					{
+						prefabs.Add( prefab );
+					}
+				}
+
+				if (prefabs.Count < 1)
+				{
+					prefabs = GetWeaponPrefabsByRank( rank - 1 );
+				}
+			}
+
+			return prefabs;
 		}
 	}
 }

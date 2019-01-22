@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using AIRogue.Exceptions;
 using AIRogue.GameObjects;
@@ -60,6 +61,7 @@ namespace AIRogue.Scene
 				if (unit.UnitModel == type)
 				{
 					unitPrefab = prefab;
+					break;
 				}
 			}
 
@@ -73,6 +75,41 @@ namespace AIRogue.Scene
 		public Unit GetUnit(UnitModel type)
 		{
 			return GetPrefab( type ).GetComponent<Unit>();
+		}
+
+		/// <summary>
+		/// Returns a list of Unit prefabs given the selected rank.
+		/// If no Units for the given rank are found, units of lower rank
+		/// are searched for and given when found.
+		/// </summary>
+		/// <param name="rank"></param>
+		/// <returns></returns>
+		public List<GameObject> GetUnitPrefabsByRank(int rank)
+		{
+			List<GameObject> prefabs = new List<GameObject>();
+
+			if (rank < 1)
+			{
+				prefabs = null;
+			}
+			else
+			{
+				foreach (var prefab in UnitPrefabs)
+				{
+					Unit unit = prefab.GetComponent<Unit>();
+					if (unit.Rank == rank)
+					{
+						prefabs.Add( prefab );
+					}
+				}
+
+				if (prefabs.Count < 1)
+				{
+					prefabs = GetUnitPrefabsByRank( rank - 1 );
+				}
+			}
+
+			return prefabs;
 		}
 	}
 }
