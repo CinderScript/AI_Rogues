@@ -133,6 +133,9 @@ MonoBehaviour:
   Target: {fileID: 0}
   HeightOffest: 70
   LengthOffest: 33
+  SelectedUnitIndicator: {fileID: 1466081078920160, guid: cb96a33b5c49a2342a8995cb8d0f67c1,
+    type: 2}
+  LerpDuration: 10
 --- !u!124 &124511297480478160
 Behaviour:
   m_ObjectHideFlags: 1

@@ -496,8 +496,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1312951333322524}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.48, z: 0.1}
-  m_LocalScale: {x: 12.35, y: 10.15, z: 9.4}
+  m_LocalPosition: {x: 0, y: -0.48, z: -0.2}
+  m_LocalScale: {x: 12.56, y: 10.3, z: 9.4}
   m_Children: []
   m_Father: {fileID: 4906362878286662}
   m_RootOrder: 0
@@ -954,9 +954,9 @@ MonoBehaviour:
   WeaponMountCount: 4
   HullCapacity: 30
   ShieldCapacity: 60
-  MaxVelocity: 8
-  AccelerationForce: 6
-  RotationSpeed: 70
+  MaxVelocity: 6
+  AccelerationForce: 5
+  RotationSpeed: 60
   DeathExplosionEffect: {fileID: 1822756548200026, guid: 97c3fc3043f2fee44bc8d8528cd9c596,
     type: 2}
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,

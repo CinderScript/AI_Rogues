@@ -1461,9 +1461,9 @@ MonoBehaviour:
   WeaponMountCount: 4
   HullCapacity: 5
   ShieldCapacity: 40
-  MaxVelocity: 13
-  AccelerationForce: 7
-  RotationSpeed: 110
+  MaxVelocity: 9
+  AccelerationForce: 6
+  RotationSpeed: 90
   DeathExplosionEffect: {fileID: 1957113391800994, guid: 104c8c7454010d14e9185578425d34ad,
     type: 2}
   ShieldImpactEffect: {fileID: 1158281429743150, guid: 2a7f0cbed1b1db84288aa60871f687cc,
