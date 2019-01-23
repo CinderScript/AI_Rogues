@@ -67,6 +67,12 @@ namespace AIRogue.GameState.Battle
 			// spawn unit
 			GameObject unitSpawn = Object.Instantiate( prefab, NewUnitPos( Controllers.Count ), Quaternion.identity );
 
+			// enemy AI should face the other direction
+			if (Faction != SquadFaction.Player)
+			{
+				unitSpawn.transform.Rotate( 0, 180, 0 );
+			}
+
 			unit = unitSpawn.GetComponent<Unit>();
 			unit.SetSquad( this, Controllers.Count );
 			unit.OnDamageTaken += MemberTookDamage;
@@ -145,7 +151,6 @@ namespace AIRogue.GameState.Battle
 					LeadUnit = Controllers[0].Unit;
 					EventManager.Instance.QueueEvent( new UnitSelectedEvent( LeadUnit ) );
 				}
-
 			}
 		}
 		
@@ -191,6 +196,12 @@ namespace AIRogue.GameState.Battle
 			var spacesFromMiddleToRowEnd = rowNumber - 1;
 
 			var backwardsOffset = Vector3.back * (spacing * spacesFromMiddleToRowEnd);
+
+			// flip the triangle if this is AI squad
+			if (Faction != SquadFaction.Player)
+			{
+				backwardsOffset = Vector3.forward * (spacing * spacesFromMiddleToRowEnd);
+			}
 
 			//       1			1,  0 spaces from center to leftmost
 			//    2  ,  3		2,  1 space from center to leftmost

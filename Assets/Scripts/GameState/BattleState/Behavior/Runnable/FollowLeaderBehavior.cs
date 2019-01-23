@@ -6,7 +6,7 @@ namespace AIRogue.GameState.Battle.BehaviorTree
 	class FollowLeaderBehavior : RunnableBehavior
 	{
 		private const float THRUST_ON_ANGLE_BELLOW = 30;
-		private const float THRUST_ON_DISTANCE_ABOVE = 35;
+		private const float THRUST_ON_DISTANCE_ABOVE = 40;
 		private const float DISTANCE_BEHIND_LEADER = 10;
 
 		private Unit leader;

@@ -706,7 +706,7 @@ MonoBehaviour:
   WeaponModel: 2
   Damage: 1.9
   RateOfFire: 1.1
-  Range: 30
+  Range: 37
   DamagerPrefab: {fileID: 1794260022970158, guid: ebc646e8c51da7c47865cda1f84396aa,
     type: 2}
   Velocity: 20

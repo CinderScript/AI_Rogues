@@ -5,6 +5,7 @@ using AIRogue.Persistence;
 using AIRogue.Scene;
 
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace IronGrimoire.Gui.Game
 {
@@ -15,6 +16,7 @@ namespace IronGrimoire.Gui.Game
 		public UnitBank ShipLibrary;
 		public WeaponBank WeaponLibrary;
 		public LevelPropertiesBank LevelLibrary;
+		public AudioMixer MainMixer;
 
 		public LevelProperties SelectedLevel { get; set; }
 		public UnitSave SelectedUnit_Save { get; private set; }
@@ -28,7 +30,33 @@ namespace IronGrimoire.Gui.Game
 
 		public void LoadSelectedLevel()
 		{
-			GetComponent<GUISystem>().LoadScene( SelectedLevel.SceneName );
+			bool hasUnit = GameSave.Squad.Count > 0;
+			bool allUnitsHaveWeapons = true;
+			foreach (var ship in GameSave.Squad)
+			{
+				if (ship.Weapons.Count < 1)
+				{
+					allUnitsHaveWeapons = false;
+				}
+			}
+
+			if (!hasUnit)
+			{
+				GetComponent<GUISystem>().Dialog.Show( "You must have at least 1 unit in your squad." );
+			}
+			else if (!allUnitsHaveWeapons)
+			{
+				GetComponent<GUISystem>().Dialog.Show( "All of your units must have at least 1 weapon." );
+			}
+			else
+			{
+				GetComponent<GUISystem>().LoadScene( SelectedLevel.SceneName );
+			}
+		}
+		public void SetMasterVolume(float level)
+		{
+			MainMixer.SetFloat( "MasterVolume", Mathf.Log( level ) * 20 );
+			GameSave.MasterVolume = level;
 		}
 
 		public void SetSelectedUnit(UnitSave unit)
