@@ -77,6 +77,7 @@ namespace IronGrimoire.Gui.Game
 			{
 				ListItem_Ship item = (ListItem_Ship)ShipMarketScrollview.AddTemplatedItem();
 				item.SetText( unit );
+				item.Guns.text = $"1 of {unit.WeaponMountCount}";
 				item.Tagged = unit;
 			}
 		}

@@ -55,6 +55,8 @@ namespace IronGrimoire.Gui.Game
 			Ships.text = $"My Ship Count: {shipCount}";
 			Location.text = $"Selected Level: {level}";
 			Earnings.text = $"Earnings on Next Win: {earnings}";
+
+			game.DisplayFirstLoadMessage();
 		}
 	}
 }

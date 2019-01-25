@@ -23,14 +23,21 @@ namespace IronGrimoire.Persistence
 				throw;
 			}
 		}
-		public static Object LoadFromFile<Object>(string filePath)
+		public static Object LoadFromFile<Object>(string filePath, out bool fileFound)
 		{
 			Object deserializable;
+
+			fileFound = false;
 
 			try
 			{
 				FileInfo fileInfo = new FileInfo( filePath );
 				Directory.CreateDirectory( fileInfo.Directory.FullName );
+
+				if (!fileInfo.Exists)
+				{
+					fileFound = true;
+				}
 
 				using (FileStream stream = File.Open( filePath, FileMode.OpenOrCreate ))
 				{
@@ -39,7 +46,6 @@ namespace IronGrimoire.Persistence
 			}
 			catch
 			{
-				deserializable = default( Object );
 				throw;
 			}
 

@@ -22,10 +22,24 @@ namespace IronGrimoire.Gui.Game
 		public UnitSave SelectedUnit_Save { get; private set; }
 		public Unit SelectedUnit_Stats { get; private set; }
 
+		private string firstLoadMessage = 
+			"Thank you for playing AI_Rogues!" + "\n" +
+			"Build your squad and defeat the AI found " +
+			"in each level.  Check out \"Game Info\" for" + "\n" +
+			"more instructions.";
 
 		void Start()
 		{
 			SelectedLevel = LevelLibrary.GetAllLevels()[0];
+		}
+
+		public void DisplayFirstLoadMessage()
+		{
+			if (GameSave.FirstLoad)
+			{
+				GetComponent<GUISystem>().Dialog.Show( firstLoadMessage );
+				GameSave.FirstLoad = false;
+			}
 		}
 
 		public void LoadSelectedLevel()

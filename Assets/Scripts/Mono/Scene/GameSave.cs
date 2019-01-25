@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 
 using AIRogue.GameObjects;
@@ -33,6 +34,9 @@ namespace AIRogue.Scene
 
 		[ProtoMember( 30 )]
 		public float MasterVolume;
+
+		[ProtoMember( 40 )]
+		public bool FirstLoad;
 
 		void Awake()
 		{
@@ -75,31 +79,29 @@ namespace AIRogue.Scene
 		}
 		public void LoadDataFromFile()
 		{
-			GameSave data = ProtoUtility.LoadFromFile<GameSave>( SAVE_PATH );
+			bool saveFound;
+			GameSave data = ProtoUtility.LoadFromFile<GameSave>( SAVE_PATH, out saveFound );
 
 			// If: no file found
-			if (data.Squad == null && data.Funds == 0)
+			if ( saveFound )
 			{
 				NewGame();
+
+				FirstLoad = true;
+				MasterVolume = DEFAULT_MASTER_VOLUME;
 			}
-			// else if: file found, but squad count was 0 and protobuf returned null
-			else if (data.Squad == null)
-			{
-				data.Squad = new List<UnitSave>();
-				Funds = data.Funds;
-			}
-			// else: get protobuf data
 			else
 			{
 				Squad = data.Squad;
 				Funds = data.Funds;
+				MasterVolume = data.MasterVolume;
+				FirstLoad = data.FirstLoad;
 			}
 
-			if (data.MasterVolume == 0)
+			if (Squad == null)
 			{
-				data.MasterVolume = DEFAULT_MASTER_VOLUME;
+				Squad = new List<UnitSave>();
 			}
-			MasterVolume = data.MasterVolume;
 		}
 
 		public override string ToString()
