@@ -190,7 +190,10 @@ namespace AIRogue.GameObjects
 			Transform mount = WeaponMounts[weaponNumber].transform;
 
 			// spawn weap
-			var weaponSpawn = Instantiate( weaponPrefab, mount.position, Quaternion.identity, mount );
+			var weaponSpawn = Instantiate( weaponPrefab, mount );
+			weaponSpawn.transform.localPosition = Vector3.zero;
+			weaponSpawn.transform.localRotation = Quaternion.identity;
+
 			var weapon = weaponSpawn.GetComponent<Weapon>();
 			weapon.WeaponPosition = Weapons.Count;
 
