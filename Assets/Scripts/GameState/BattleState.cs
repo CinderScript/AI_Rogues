@@ -66,7 +66,7 @@ namespace AIRogue.GameState
 				}
 			}
 
-			EventManager.Instance.QueueEvent( new UnitSelectedEvent( playerSquad.LeadUnit ) );
+			EventManager.Instance.QueueEvent( new PlayerLeaderChangedEvent( playerSquad.LeadUnit ) );
 
 			//// player 
 			//for (int i = 0; i < 2; i++)

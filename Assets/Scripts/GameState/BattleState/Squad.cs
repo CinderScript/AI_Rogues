@@ -149,7 +149,12 @@ namespace AIRogue.GameState.Battle
 				if (Controllers.Count > 0)
 				{
 					LeadUnit = Controllers[0].Unit;
-					EventManager.Instance.QueueEvent( new UnitSelectedEvent( LeadUnit ) );
+					EventManager.Instance.QueueEvent( new LeadUnitChangedEvent( LeadUnit ) );
+
+					if (Faction == SquadFaction.Player)
+					{
+						EventManager.Instance.QueueEvent( new PlayerLeaderChangedEvent( LeadUnit ) );
+					}
 				}
 			}
 		}

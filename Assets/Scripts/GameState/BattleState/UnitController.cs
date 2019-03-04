@@ -28,7 +28,7 @@ namespace AIRogue.GameState.Battle
 			unitsPaused = true; // units start paused so they can't move during opening
 			EventManager.Instance.AddListenerOnce<MatchStartEvent>( OnStartMatch );
 			EventManager.Instance.AddListenerOnce<MatchFinishedEvent>( OnMatchFinished );
-			EventManager.Instance.AddListener<UnitSelectedEvent>( OnUnitSelectionChange );
+			EventManager.Instance.AddListener<PlayerLeaderChangedEvent>( OnPlayerLeaderChangedEvent );
 		}
 		protected override RunnableBehavior SelectCurrentBehavior()
 		{
@@ -57,7 +57,7 @@ namespace AIRogue.GameState.Battle
 		{
 			unitsPaused = true;
 		}
-		void OnUnitSelectionChange(UnitSelectedEvent gameEvent)
+		void OnPlayerLeaderChangedEvent(PlayerLeaderChangedEvent gameEvent)
 		{
 			if (gameEvent.SelectedUnit == Unit)
 			{

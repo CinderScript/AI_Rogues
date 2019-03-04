@@ -26,7 +26,7 @@ namespace AIRogue.GameObjects
 
 		void Awake()
 		{
-			EventManager.Instance.AddListener<UnitSelectedEvent>( OnUnitSelected );
+			EventManager.Instance.AddListener<PlayerLeaderChangedEvent>( OnPlayerLeaderChangedEvent );
 			EventManager.Instance.AddListenerOnce<MatchStartEvent>( MatchStartEventHandler );
 		}
 
@@ -62,7 +62,7 @@ namespace AIRogue.GameObjects
 		}
 
 		// Game Event Listener
-		void OnUnitSelected(UnitSelectedEvent e)
+		void OnPlayerLeaderChangedEvent(PlayerLeaderChangedEvent e)
 		{
 			if (hasMatchStarted)
 			{
@@ -118,7 +118,7 @@ namespace AIRogue.GameObjects
 
 		void OnDestroy()
 		{
-			EventManager.Instance.RemoveListener<UnitSelectedEvent>( OnUnitSelected );
+			EventManager.Instance.RemoveListener<PlayerLeaderChangedEvent>( OnPlayerLeaderChangedEvent );
 		}
 	}
 }

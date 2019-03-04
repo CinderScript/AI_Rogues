@@ -4,11 +4,21 @@ using AIRogue.GameState.Battle;
 
 namespace AIRogue.Events {
 
-    class UnitSelectedEvent : GameEvent
+    class LeadUnitChangedEvent : GameEvent
 	{
 		public Unit SelectedUnit { get; }
 
-		public UnitSelectedEvent(Unit selectedUnit)
+		public LeadUnitChangedEvent(Unit selectedUnit)
+		{
+			SelectedUnit = selectedUnit;
+		}
+	}
+
+	class PlayerLeaderChangedEvent : GameEvent
+	{
+		public Unit SelectedUnit { get; }
+
+		public PlayerLeaderChangedEvent(Unit selectedUnit)
 		{
 			SelectedUnit = selectedUnit;
 		}

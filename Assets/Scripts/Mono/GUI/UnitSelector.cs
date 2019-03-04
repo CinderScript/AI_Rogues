@@ -27,7 +27,7 @@ public class UnitSelector : MonoBehaviour {
 					Unit unit = hit.transform.GetComponent<Unit>();
 
 					/* QUEUE GAME EVENT */
-					EventManager.Instance.QueueEvent( new UnitSelectedEvent( unit ) );
+					EventManager.Instance.QueueEvent( new PlayerLeaderChangedEvent( unit ) );
 				}
 			}
 		}
