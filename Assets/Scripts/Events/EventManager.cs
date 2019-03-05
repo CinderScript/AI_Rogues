@@ -7,7 +7,7 @@ namespace AIRogue.Events {
 
 	/// <summary>
 	/// ***Type-safe*** Event Manager
-	/// Taken from http://www.bendangelo.me/unity3d/2014/12/24/unity3d-event-manager.html
+	/// Taken from	https://www.bendangelo.me/2014/12/24/unity3d-event-manager/	
 	/// Written by Ben D'Angelo. Dec 24, 2014.
 	/// Free online resource / Blog
 	/// 
