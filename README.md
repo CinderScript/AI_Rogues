@@ -1,8 +1,8 @@
-# Pawn Of Kings
+# AI_Rogues
 Unity 5.5 Project Repository.
 
 ## Description
-Pawn of Kings is a game inspired by XCOM, StarCraft, Fallen Haven, and a little bit of Magic the Gathering.  It is being developed for Android and Windows in the Unity game engine.  Game features include:
+AI_Rogues is a game inspired by XCOM, StarCraft, Fallen Haven, and a little bit of Magic the Gathering.  It is being developed for Android and Windows in the Unity game engine.  Game features include:
    - Strategy
    - Turn Based
    - Grid Based
@@ -16,7 +16,7 @@ This repository is a full Unity project using Git source control.  The Git repos
  3. Generate the visual studio solution in Unity
 
 ## Set-up: Visual Studio TFS
-1. Open Visual Studio and using Team Services, connect to the Team Foundation Server. Select [Manage Connections] from the Team Explorer or the Team menu.  Right click the project repository in the server (cinderscript.visualstudio.com) and select [clone]. *A new local repository should now be listed (PawnOfKings if the default name was kept).*
+1. Open Visual Studio and using Team Services, connect to the Team Foundation Server. Select [Manage Connections] from the Team Explorer or the Team menu.  Right click the project repository in the server (cinderscript.visualstudio.com) and select [clone]. *A new local repository should now be listed (AI_Rogues if the default name was kept).*
 
 2. Open Unity and select [File] -> [Open Project].  Select the folder of the newly cloned repository and load in Unity.  The project will import, and generate a Library and Temp folder.  Select a scene from the Scene folder. *Unity may need to be restarted if terrain lighting looks incorrect.*
 
