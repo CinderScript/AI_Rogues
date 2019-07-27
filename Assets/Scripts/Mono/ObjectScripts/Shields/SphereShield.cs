@@ -4,8 +4,11 @@ namespace AIRogue.GameObjects {
 
 	class SphereShield : Shield
 	{
+		[Header( "Shield Effects" )]
 		public Gradient ShieldConditionColor;
 		public AnimationCurve ShieldFlashAnim;
+
+		[Header( "Shield Hit Particle" )]
 		public GameObject ShieldFlashPrefab = null;
 
 		private Collider shieldCollider;	// turns on and off

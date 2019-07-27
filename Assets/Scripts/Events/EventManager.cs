@@ -16,7 +16,7 @@ namespace AIRogue.Events {
 	/// Fraxis Games
 	/// Sparks, Maryland
 	/// 
-	/// Modified to fit AI_Rogue
+	/// Modified to fit AI_Rogues
 	/// </summary>
 	public class EventManager {
 
